@@ -1,0 +1,1375 @@
+[
+  {
+    "nome": "Jardim da Hípica",
+    "bairro": "Alto da Boa Vista",
+    "cat": "lancamento",
+    "status": "Em Obras",
+    "data": "Mar/2031",
+    "ll": [
+      -23.645377,
+      -46.710906
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/hipica",
+    "vidurl": "https://www.youtube.com/watch?v=roH62wHNDfo",
+    "vid": "roH62wHNDfo",
+    "fase": "Lançamento",
+    "entrega": "Mar/2031",
+    "units": [
+      {
+        "tipo": "Torre A",
+        "m2": 276,
+        "planta": "4 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Torre A",
+        "m2": 180,
+        "planta": "4 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Torre B",
+        "m2": 149,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Torre B",
+        "m2": 133,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Torre C",
+        "m2": 170,
+        "planta": "4 Dorm",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Torre C",
+        "m2": 133,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Torre C",
+        "m2": 84,
+        "planta": "3 Dorm",
+        "vagas": "1"
+      },
+      {
+        "tipo": "Torre D",
+        "m2": 223,
+        "planta": "4 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Torre D",
+        "m2": 184,
+        "planta": "4 Suítes",
+        "vagas": "2"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+    "hero_image": "assets/images/jardim_hipica_facade_4k.jpg",
+    "gallery": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/6a7af7a5-8150-41f9-9417-4b0f8baa165c_thumbhipicavaranda.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/1b63b3eb-821a-46bf-9a7b-f30d3c2cf130_churrasqueira.webp"
+    ],
+    "official_status_2026": "Em Obras",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 184,
+    "total_count": 946,
+    "avail_info": "🟢 184 Livres (Torres A–D) • Tabela Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/jardim_hipica_produto.mp4",
+    "lancamento": "Abr/2026",
+    "fluxo_curto": "Fluxo 55% Obra / 45% Chaves",
+    "fluxo_obra": "55% Obra (6,5% Sinal + 6,5% em 2x 60/90d + 27% em 49 mensais + 10% em 3 anuais + 5% Única Mar/2031) + 45% Financiamento (Mar/2031)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Jardim da Hípica Apartments",
+    "bairro": "Alto da Boa Vista",
+    "cat": "lancamento",
+    "status": "Em Obras",
+    "data": "Mar/2031",
+    "ll": [
+      -23.644888,
+      -46.70907
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/jardim-da-hipica-apartments",
+    "vidurl": "https://www.youtube.com/watch?v=z2mzeHU4HHA",
+    "vid": "z2mzeHU4HHA",
+    "fase": "Lançamento",
+    "entrega": "Mar/2031",
+    "units": [
+      {
+        "tipo": "Apto",
+        "m2": 57,
+        "planta": "2 Dorms (1 Suíte)",
+        "vagas": "0 ou 1"
+      },
+      {
+        "tipo": "Apto",
+        "m2": 48,
+        "planta": "2 Dorms (1 Suíte)",
+        "vagas": "-"
+      },
+      {
+        "tipo": "1 Dorm",
+        "m2": 28,
+        "planta": "1 Dormitório",
+        "vagas": "-"
+      },
+      {
+        "tipo": "1 Dorm",
+        "m2": 26,
+        "planta": "1 Dormitório",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Studio",
+        "m2": 21,
+        "planta": "Studio",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+    "hero_image": "assets/images/hipica_apartments_piscina_25m.jpg",
+    "gallery": [
+      "assets/images/hipica_apartments_fachada_oficial.jpg",
+      "assets/images/hipica_apartments_piscina_25m.jpg",
+      "assets/images/hipica_apartments_beach_tennis.jpg",
+      "assets/images/hipica_apartments_acesso.jpg",
+      "assets/images/hipica_apartments_fitness.jpg",
+      "assets/images/hipica_apartments_salao_festas.jpg",
+      "assets/images/hipica_apartments_churrasqueira.jpg",
+      "assets/images/hipica_apartments_coworking.jpg"
+    ],
+    "official_status_2026": "Em Obras",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 215,
+    "total_count": 630,
+    "avail_info": "🟢 Torre E Ativa (630 unid. • Torre F não lançada) • Tabela Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "lancamento": "Mai/2026",
+    "fluxo_curto": "Fluxo 55% Obra / 45% Chaves",
+    "fluxo_obra": "55% Obra (6,5% Sinal + 6,5% em 2x 60/90d + 27% em 49 mensais + 10% em 3 anuais + 5% Única Mar/2031) + 45% Financiamento (Mar/2031)",
+    "m2": "21 m² a 57 m²",
+    "table_ref": "Out/2026 (v1)"
+  },
+  {
+    "nome": "Le Six Residences",
+    "bairro": "Paraíso",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Jun/2029",
+    "ll": [
+      -23.572349,
+      -46.645109
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/le-six-residences",
+    "vidurl": "https://www.youtube.com/watch?v=Z-sgdXxgQN8",
+    "vid": "Z-sgdXxgQN8",
+    "fase": "Em Obras",
+    "entrega": "Jun/2029",
+    "units": [
+      {
+        "tipo": "Apto Tipo",
+        "m2": 156,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 203,
+        "planta": "4 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 264,
+        "planta": "4 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Cobertura Duplex",
+        "m2": 521,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1Om79HE4jq40ctTNqFqxcZhbdkaJsr0T8",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e6441bdd-de71-4272-be23-d4944fe5f802_piscinacoberta.webp",
+    "official_status_2026": "Em Obras",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 57,
+    "total_count": 522,
+    "avail_info": "🟢 57 Livres (401 Vendidas) • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/le_six_filme_produto.mp4",
+    "lancamento": "Mai/2025",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 15% em 27 mensais + 5% em 2 anuais + 5% Única Jun/29) + 65% Financiamento",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Villa Residence",
+    "bairro": "Moema",
+    "cat": "pronto",
+    "status": "Pronto para Morar",
+    "data": "Pronto (Ago/2025)",
+    "ll": [
+      -23.60034,
+      -46.66034
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/villa-residence",
+    "vidurl": "https://www.youtube.com/watch?v=_sdR_k2ewWs",
+    "vid": "_sdR_k2ewWs",
+    "fase": "Pronto Para Morar",
+    "entrega": "Pronto (Fev/2026)",
+    "units": [
+      {
+        "tipo": "Duplex",
+        "m2": 404,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 220,
+        "planta": "4 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 150,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/19AIPzOtqk3Iz8wYCZQbm_mQltfzsgvHz",
+    "hero_image": "assets/images/villa_moema_versace_facade_4k.jpg",
+    "gallery": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-residence/imagens/thumbnail/foto_da_area_de_lazer.webp"
+    ],
+    "official_status_2026": "Pronto Para Morar",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 8,
+    "total_count": 403,
+    "avail_info": "⚡ Últimas 8 Unidades Prontas • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/villa_versace_decorado.mp4",
+    "lancamento": "Jun/2021",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "fluxo_obra": "Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista)",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Villa Studios",
+    "bairro": "Moema",
+    "cat": "pronto",
+    "status": "Pronto para Morar",
+    "data": "Pronto (Ago/2025)",
+    "ll": [
+      -23.601027,
+      -46.660824
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/villa-studios",
+    "vidurl": "https://www.youtube.com/watch?v=ycuDVuI7xyo",
+    "vid": "ycuDVuI7xyo",
+    "fase": "Pronto Para Morar",
+    "entrega": "Pronto (Ago/2025)",
+    "units": [
+      {
+        "tipo": "Studio",
+        "m2": 31,
+        "planta": "Studio Versace",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Studio",
+        "m2": 28,
+        "planta": "Studio Versace",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/19AIPzOtqk3Iz8wYCZQbm_mQltfzsgvHz",
+    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/banner/BannerPrincipalVillaStudios.webp",
+    "gallery": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/galeria/1_-_foto_da_area_de_lazer_do_rooftop.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/galeria/3_-_foto_do_piscina_do_rooftop.webp"
+    ],
+    "official_status_2026": "Pronto Para Morar",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 5,
+    "total_count": 120,
+    "avail_info": "⚡ Últimos 5 Studios Prontos • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "lancamento": "Jun/2021",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "fluxo_obra": "Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista)",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Green View Residence",
+    "bairro": "Butantã",
+    "cat": "pronto",
+    "status": "Pronto para Morar",
+    "data": "Pronto (Mar/2026)",
+    "ll": [
+      -23.570657,
+      -46.711288
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/green-view-residence",
+    "vidurl": "https://www.youtube.com/watch?v=gO9RMWwNS6k",
+    "vid": "gO9RMWwNS6k",
+    "fase": "Pronto Para Morar",
+    "entrega": "Pronto (Fev/2026)",
+    "units": [
+      {
+        "tipo": "Apto Tipo",
+        "m2": 159,
+        "planta": "4 Dorms / 3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 132,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/18vT-N8Y4kY6oQ_55oU4F2oPZ8a_uQe11",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/30349a37-5ea0-4d44-be1f-e90fc5311463_1_foto_da_fachada.webp",
+    "official_status_2026": "Pronto Para Morar",
+    "status_category": "last_units",
+    "is_sold_out": false,
+    "is_last_units": true,
+    "avail_count": 11,
+    "total_count": 433,
+    "avail_info": "⚡ Últimas 11 Unidades Prontas • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/green_view_residencial.mp4",
+    "lancamento": "Jun/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "fluxo_obra": "Imóvel Pronto (Entregue Mar/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Alive",
+    "bairro": "Vila Prudente",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Abr/2028",
+    "ll": [
+      -23.582885,
+      -46.578652
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/alive",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Em Obras",
+    "entrega": "Abr/2028",
+    "units": [
+      {
+        "tipo": "Cobertura Duplex",
+        "m2": 350,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      },
+      {
+        "tipo": "Penthouse",
+        "m2": 211,
+        "planta": "3 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 188,
+        "planta": "4 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 170,
+        "planta": "3 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 139,
+        "planta": "3 Suítes / 4 Dorms",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 113,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 85,
+        "planta": "3 Dorms / 1 Suíte",
+        "vagas": "1 ou 2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 72,
+        "planta": "2 Dorms / 1 Suíte",
+        "vagas": "1"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1jXk45L40s6fG7eG10i7rYkLh00n7P_3U",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f326a0b9-5c4a-43cf-ae17-21b333469145_1_foto_da_fachada.webp",
+    "official_status_2026": "Em Obras",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 172,
+    "total_count": 1400,
+    "avail_info": "🟢 172 Livres • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/alive_filme.mp4",
+    "lancamento": "Mar/2024",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 10% em 13 mensais + 5% Anual + 10% Única Mar/28) + 65% Financiamento (Abr/2028)",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Heaven Residences",
+    "bairro": "Paraíso",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Mar/2029",
+    "ll": [
+      -23.571439,
+      -46.643329
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/heaven-residences",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Em Obras",
+    "entrega": "Mar/2029",
+    "units": [
+      {
+        "tipo": "Cobertura Duplex",
+        "m2": 513,
+        "planta": "4 Suítes",
+        "vagas": "5"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 258,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 187,
+        "planta": "3 Suítes",
+        "vagas": "3"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1h6B1e7dGz89v9Z6v0562s8Z0g0H04y12",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d316e6d1-dcf3-4ba9-b3e6-fa1ee0ae6692_bannerheavenresidences.jpg",
+    "official_status_2026": "Em Obras",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 66,
+    "total_count": 947,
+    "avail_info": "🟢 66 Livres (870 Vendidas) • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/heaven_190.mp4",
+    "lancamento": "Out/2024",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 15% em 24 mensais + 5% em 2 anuais + 5% Única Fev/29) + 65% Financiamento (Mar/2029)",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Palace",
+    "bairro": "Brás",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Dez/2027",
+    "ll": [
+      -23.549999,
+      -46.613333
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/palace",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Em Obras",
+    "entrega": "Dez/2027",
+    "units": [
+      {
+        "tipo": "Cobertura Duplex",
+        "m2": 370,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 164,
+        "planta": "4 Dorms / 2 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 142,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 86,
+        "planta": "2 Suítes",
+        "vagas": "1"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1eT6b7e65yZ9h8q7kL9h8Z6v54q8Z9y0",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 19,
+    "total_count": 216,
+    "avail_info": "🟢 19 Livres (194 Vendidas) • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/901b5485-463a-4fc7-8378-2e9a2fdba51c_anyconvcom_cinema_ao_ar_livre.webp",
+    "src": "assets/videos/palace_filme.mp4",
+    "lancamento": "Abr/2024",
+    "fluxo_curto": "Fluxo 37% Obra / 63% Chaves",
+    "fluxo_obra": "37% Obra (5% Sinal + 5% em 2x + 14% em 9 mensais + 8% Anual + 5% Única Nov/27) + 63% Financiamento (Dez/2027)",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Petra",
+    "bairro": "Brooklin",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Jul/2028",
+    "ll": [
+      -23.619895,
+      -46.689033
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/petra",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Em Obras",
+    "entrega": "Jul/2028",
+    "units": [
+      {
+        "tipo": "Cobertura",
+        "m2": 305,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 199,
+        "planta": "4 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 162,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1sYt8b0h6y89u9kL0e4y98h6v70G61Pq",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 53,
+    "total_count": 407,
+    "avail_info": "🟢 53 Livres (344 Vendidas) • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/7f8be81c-0798-4ff1-b96d-b54f542a4881_9_perspectiva_ilustrada_da_quadra_recreativa_gramada.webp",
+    "lancamento": "Set/2024",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 16 mensais + 8% em 2 anuais + 5% Única Jun/28) + 53% Financiamento (Jul/2028)",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Saffire",
+    "bairro": "Moema",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Nov/2026",
+    "ll": [
+      -23.602568,
+      -46.656078
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/saffire-elie-saab",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Em Obras",
+    "entrega": "Nov/2026",
+    "units": [
+      {
+        "tipo": "Mansão Suspensa",
+        "m2": 493,
+        "planta": "4 Suítes",
+        "vagas": "6"
+      },
+      {
+        "tipo": "Mansão Suspensa",
+        "m2": 360,
+        "planta": "4 Suítes",
+        "vagas": "5"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1SRC24jZK80BXeSsIAjqgIEQzNBW-hhbf",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 23,
+    "total_count": 147,
+    "avail_info": "🟢 23 Livres (124 Vendidas) • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "hero_image": "assets/images/saffire_elie_saab_facade_4k.jpg",
+    "src": "assets/videos/saffire_elie_saab_filme.mp4",
+    "lancamento": "Abr/2023",
+    "fluxo_curto": "Fluxo 30% Chaves / 70% Financ.",
+    "fluxo_obra": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Parcela Única na Entrega (Nov/26) + 70% Financiamento",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Soleil Apartments",
+    "bairro": "Chácara Klabin",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Abr/2029",
+    "ll": [
+      -23.593285,
+      -46.626756
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/soleil-apartments",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Em Obras",
+    "entrega": "Abr/2029",
+    "units": [
+      {
+        "tipo": "Studio",
+        "m2": 31,
+        "planta": "Studio Boca do Lobo",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Studio",
+        "m2": 23,
+        "planta": "Studio Boca do Lobo",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1v6H8k0l9yZ6v0562s8Z0g0H04y12L0",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 19,
+    "total_count": 80,
+    "avail_info": "🟢 19 Studios Livres • Simulador Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e94d8692-a1f4-44b4-a4f0-4663e2dcf237_1_foto_da_fachada.webp",
+    "lancamento": "Mar/2025",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Soleil Residences",
+    "bairro": "Chácara Klabin",
+    "cat": "obras",
+    "status": "Em Obras",
+    "data": "Abr/2029",
+    "ll": [
+      -23.593678,
+      -46.626989
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/soleil-residences",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Em Obras",
+    "entrega": "Abr/2029",
+    "units": [
+      {
+        "tipo": "Cobertura Duplex",
+        "m2": 487,
+        "planta": "4 Suítes",
+        "vagas": "5"
+      },
+      {
+        "tipo": "Garden",
+        "m2": 376,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      },
+      {
+        "tipo": "Mansão Suspensa",
+        "m2": 246,
+        "planta": "4 Suítes",
+        "vagas": "3 e 4"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1v6H8k0l9yZ6v0562s8Z0g0H04y12L0",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e94d8692-a1f4-44b4-a4f0-4663e2dcf237_1_foto_da_fachada.webp",
+    "official_status_2026": "Em Obras",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 38,
+    "total_count": 154,
+    "avail_info": "🟢 38 Livres (104 Vendidas) • Simulador Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "lancamento": "Mar/2025",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Verdant",
+    "bairro": "Tucuruvi",
+    "cat": "pronto",
+    "status": "Pronto para Morar",
+    "data": "Pronto (Dez/2025)",
+    "ll": [
+      -23.480029,
+      -46.602511
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/verdant",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Pronto Para Morar",
+    "entrega": "Pronto (Fev/2026)",
+    "units": [
+      {
+        "tipo": "Cobertura",
+        "m2": 261,
+        "planta": "3 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 155,
+        "planta": "3 Suítes",
+        "vagas": "3"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 133,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 129,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1yZ6v0562s8Z0g0H04y12L01v6H8k0",
+    "status_category": "last_units",
+    "is_sold_out": false,
+    "is_last_units": true,
+    "avail_count": 2,
+    "total_count": 174,
+    "avail_info": "⚡ Últimas 2 Unidades Prontas (171 Vend.) • Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp",
+    "lancamento": "Abr/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Grand Square",
+    "bairro": "Praça da Árvore",
+    "cat": "pronto",
+    "status": "Pronto para Morar",
+    "data": "Pronto (Mai/2026)",
+    "ll": [
+      -23.610534,
+      -46.637822
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/grand-square",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Pronto Para Morar",
+    "entrega": "Pronto (Mai/2026)",
+    "units": [
+      {
+        "tipo": "Apto Tipo",
+        "m2": 79,
+        "planta": "3 Dorms / 1 Suíte",
+        "vagas": "1 ou 2"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 65,
+        "planta": "2 Dorms / 1 Suíte",
+        "vagas": "1"
+      },
+      {
+        "tipo": "Studio",
+        "m2": 32,
+        "planta": "Studio Pronto",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1k8L0e4y98h6v70G61PqsYt8b0h6y89u",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d63ea75e-88fe-4e5c-9c02-7c9367d3e098_1_foto_da_fachada.webp",
+    "official_status_2026": "Pronto Para Morar",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 62,
+    "total_count": 343,
+    "avail_info": "🟢 62 Prontos Livres (260 Vend.) • Tabela 26.10",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/grand_square_filme.mp4",
+    "lancamento": "Ago/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "fluxo_obra": "Imóvel Pronto (Entregue Mai/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "table_ref": "Out/2026 (26.10)"
+  },
+  {
+    "nome": "Le Six Ibirapuera",
+    "bairro": "Moema",
+    "cat": "breve",
+    "status": "Lançamento",
+    "data": "Out/2030",
+    "ll": [
+      -23.5975,
+      -46.6575
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/le-six-ibirapuera",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Breve Lançamento",
+    "entrega": "Out/2030",
+    "units": [
+      {
+        "tipo": "Apto Tipo",
+        "m2": 264,
+        "planta": "4 Suítes",
+        "vagas": "4"
+      },
+      {
+        "tipo": "Apto Tipo",
+        "m2": 194,
+        "planta": "3 Suítes",
+        "vagas": "3"
+      }
+    ],
+    "mat": null,
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/342b7922-d68b-4f05-b02a-1851fc4f11e9_bannerlesixibirapuera.webp",
+    "gallery": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/01e0665d-730e-4e65-adb3-fa5ceebcbeea_piscinacoberta.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/43ffbd6f-0fb0-45df-9a07-d0e011bc5a12_lobby.webp"
+    ],
+    "official_status_2026": "Breve Lançamento",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 239,
+    "total_count": 250,
+    "avail_info": "🟢 239 no Estoque Lior • Pré-Lançamento Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/le_six_filme_produto.mp4",
+    "lancamento": "Breve Lançamento",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "fluxo_obra": "35% Período de Obra (10% Entrada + 25% Mensais/Anuais sem juros) + 65% nas Chaves (Out/2030)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Le Six Ibirapuera Apartments",
+    "bairro": "Moema",
+    "cat": "breve",
+    "status": "Lançamento",
+    "data": "Out/2030",
+    "ll": [
+      -23.5978,
+      -46.6578
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/le-six-ibirapuera-apartments",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Breve Lançamento",
+    "entrega": "Out/2030",
+    "units": [
+      {
+        "tipo": "Compactos",
+        "m2": 28,
+        "planta": "Studio",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Compactos",
+        "m2": 45,
+        "planta": "1 Dorm",
+        "vagas": "1"
+      }
+    ],
+    "mat": null,
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/342b7922-d68b-4f05-b02a-1851fc4f11e9_bannerlesixibirapuera.webp",
+    "gallery": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/01e0665d-730e-4e65-adb3-fa5ceebcbeea_piscinacoberta.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/43ffbd6f-0fb0-45df-9a07-d0e011bc5a12_lobby.webp"
+    ],
+    "official_status_2026": "Breve Lançamento",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 110,
+    "total_count": 120,
+    "avail_info": "🟢 Estoque Lior Ativo • Pré-Lançamento Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/le_six_filme_produto.mp4",
+    "lancamento": "Breve Lançamento",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "fluxo_obra": "35% Período de Obra (10% Entrada + 25% Mensais/Anuais sem juros) + 65% nas Chaves (Out/2030)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "T.O.M. Paraíso",
+    "bairro": "Paraíso",
+    "cat": "lancamento",
+    "status": "Lançamento Out/2026",
+    "data": "Jul/2030",
+    "ll": [
+      -23.5731,
+      -46.6465
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/tom-paraiso",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Lançamento",
+    "entrega": "Jul/2030",
+    "units": [
+      {
+        "tipo": "Apto R2V",
+        "m2": 44,
+        "planta": "2 Dorms / 1 Suíte",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Apto R2V",
+        "m2": 40,
+        "planta": "1 Suíte Ampla",
+        "vagas": "-"
+      },
+      {
+        "tipo": "1 Dorm R2V",
+        "m2": 34,
+        "planta": "1 Dormitório",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Studio HMP/R2V",
+        "m2": 27,
+        "planta": "Studio",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Studio HIS-2/R2V",
+        "m2": 25,
+        "planta": "Studio / 1 Dorm",
+        "vagas": "-"
+      }
+    ],
+    "mat": null,
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f020e835-439f-4193-8c61-064f503a4c33_bannertom_v2.webp",
+    "gallery": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/85c2389f-dbe6-4fa2-ac0e-a33d5cc79f3c_tom_01_fachada_a_ef_v3.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f0360526-0d1e-4471-9c6e-67bbd00c29a0_tom_03_quadra_beach_ef2.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/201bd6a2-69f6-44d6-b013-b825d7009bb8_tom_09_piscina_ext_ef_v3.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bed0a629-f429-4685-be53-49b1438434a2_tom_11_lobby_ef_v1.webp"
+    ],
+    "official_status_2026": "Lançamento",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 380,
+    "total_count": 901,
+    "avail_info": "🟢 380 Livres de 901 • Simulador Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "src": "assets/videos/tom_paraiso_filme.mp4",
+    "lancamento": "Out/2026",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 39 mensais + 8% em 3 anuais + 5% Única Jul/30) + 53% Financiamento (Jul/2030)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "High Wonder",
+    "bairro": "Brás",
+    "cat": "vendido",
+    "status": "Últimas 2 Unidades",
+    "data": "Pronto (Nov/2025)",
+    "ll": [
+      -23.5508,
+      -46.6138
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/high-wonder",
+    "vidurl": null,
+    "vid": null,
+    "fase": "100% Vendido",
+    "entrega": "Pronto (Nov/2025)",
+    "units": [],
+    "mat": null,
+    "status_category": "last_units",
+    "is_sold_out": false,
+    "is_last_units": true,
+    "avail_count": 2,
+    "total_count": 258,
+    "avail_info": "⚡ RETA FINAL: Apenas 2 Unidades Disponíveis! (256 vendidas)",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/7f8be81c-0798-4ff1-b96d-b54f542a4881_9_perspectiva_ilustrada_da_quadra_recreativa_gramada.webp",
+    "lancamento": "Fev/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "fluxo_obra": "Imóvel Pronto (Entregue Nov/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato"
+  },
+  {
+    "nome": "Galleria Klabin",
+    "bairro": "Chácara Klabin",
+    "cat": "pronto",
+    "status": "Pronto para Morar",
+    "data": "Pronto (Ago/2026)",
+    "ll": [
+      -23.596182,
+      -46.625504
+    ],
+    "url": "https://www.lavvi.com.br/empreendimentos/galleria-klabin",
+    "vidurl": "https://www.youtube.com/watch?v=HeeVDFbaLNQ",
+    "vid": "HeeVDFbaLNQ",
+    "fase": "Última Unidade",
+    "entrega": "Pronto (Jul/2026)",
+    "units": [
+      {
+        "tipo": "Apto Tipo",
+        "m2": 166,
+        "planta": "3 Suítes",
+        "vagas": "2"
+      }
+    ],
+    "mat": null,
+    "status_category": "last_units",
+    "is_sold_out": false,
+    "is_last_units": true,
+    "avail_count": 1,
+    "total_count": 606,
+    "avail_info": "⚡ Última Unidade Pronta (166 m²) • Out/2026",
+    "brand_line": "lavvi",
+    "brand_name": "Coleção Lavvi",
+    "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/418f77ea-fe57-41a4-9e90-c4199fc0d13d_3_foto_da_fachada.webp",
+    "lancamento": "Nov/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "fluxo_obra": "Imóvel Pronto (Entregue Ago/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Novvo Santa Marina",
+    "bairro": "Água Branca",
+    "cat": "novvo",
+    "status": "Lançamento",
+    "data": "Set/2029",
+    "ll": [
+      -23.5205,
+      -46.687
+    ],
+    "url": "https://meunovvo.com.br/santamarina/",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Lançamento",
+    "entrega": "Set/2029",
+    "units": [
+      {
+        "tipo": "1 dorm",
+        "m2": 31,
+        "planta": "1 dorm + terraço",
+        "vagas": "-"
+      },
+      {
+        "tipo": "2 dorms",
+        "m2": 41,
+        "planta": "2 dorms + terraço",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/901b5485-463a-4fc7-8378-2e9a2fdba51c_anyconvcom_cinema_ao_ar_livre.webp",
+    "official_status_2026": "Lançamento",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 160,
+    "total_count": 462,
+    "avail_info": "🟢 160 Livres (289 Vendidas) • Simulador Out/2026",
+    "brand_line": "novvo",
+    "brand_name": "Linha Meu Novvo",
+    "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)",
+    "lancamento": "Mar/2026",
+    "fluxo_curto": "Fluxo 54% Obra / 46% Chaves",
+    "fluxo_obra": "54% Obra (6% Sinal + 6% em 2x + 30% em 31 mensais + 7% em 3 anuais + 5% Única Ago/29) + 46% Financiamento (Set/2029)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Novvo Anália Franco",
+    "bairro": "Anália Franco",
+    "cat": "novvo",
+    "status": "Lançamento",
+    "data": "Nov/2028",
+    "ll": [
+      -23.563018,
+      -46.552205
+    ],
+    "url": "https://meunovvo.com.br/novvoanaliafranco/",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Lançamento",
+    "entrega": "Nov/2028",
+    "units": [
+      {
+        "tipo": "1 dorm",
+        "m2": 31,
+        "planta": "1 dorm + terraço",
+        "vagas": "-"
+      },
+      {
+        "tipo": "2 dorms",
+        "m2": 41,
+        "planta": "2 dorms + terraço",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/ab6bb83a-fed4-4e86-8a23-ed34a3b33810_2_perspectiva_ilustrada_da_piscina.webp",
+    "official_status_2026": "Lançamento",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 23,
+    "total_count": 594,
+    "avail_info": "⚡ Últimas 23 Unidades (569 Vend.) • Out/2026",
+    "brand_line": "novvo",
+    "brand_name": "Linha Meu Novvo",
+    "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)",
+    "lancamento": "Nov/2025",
+    "fluxo_curto": "Fluxo 41% Obra / 59% Chaves",
+    "fluxo_obra": "R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 21 mensais + 7% em 2 anuais + 5% Única Nov/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Novvo Vila Prudente",
+    "bairro": "Vila Prudente",
+    "cat": "novvo",
+    "status": "Em Obras",
+    "data": "Out/2028",
+    "ll": [
+      -23.589982,
+      -46.57701
+    ],
+    "url": "https://meunovvo.com.br/vilaprudente/",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Lançamento",
+    "entrega": "Out/2028",
+    "units": [
+      {
+        "tipo": "1 dorm",
+        "m2": 31,
+        "planta": "1 dorm + terraço",
+        "vagas": "-"
+      },
+      {
+        "tipo": "2 dorms",
+        "m2": 41,
+        "planta": "2 dorms + terraço",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/7f8be81c-0798-4ff1-b96d-b54f542a4881_9_perspectiva_ilustrada_da_quadra_recreativa_gramada.webp",
+    "official_status_2026": "Em Obras",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 290,
+    "total_count": 900,
+    "avail_info": "🟢 290 Livres (590 Vendidas) • Simulador Out/2026",
+    "brand_line": "novvo",
+    "brand_name": "Linha Meu Novvo",
+    "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)",
+    "lancamento": "Set/2025",
+    "fluxo_curto": "Fluxo 41% Obra / 59% Chaves",
+    "fluxo_obra": "R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 20 mensais + 7% em 2 anuais + 5% Única Out/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Novvo Marajoara",
+    "bairro": "Jardim Marajoara",
+    "cat": "novvo",
+    "status": "Última Unidade",
+    "data": "Fev/2028",
+    "ll": [
+      -23.649,
+      -46.698
+    ],
+    "url": "https://meunovvo.com.br/novvo-marajoara/",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Última Unidade",
+    "entrega": "Fev/2028",
+    "units": [
+      {
+        "tipo": "1 dorm",
+        "m2": 31,
+        "planta": "1 dorm + terraço",
+        "vagas": "-"
+      },
+      {
+        "tipo": "2 dorms",
+        "m2": 41,
+        "planta": "2 dorms + terraço",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/68d65571-9db9-4fad-8dc6-b924e92726f4_perspectiva_ilustrada_da_piscina_adulto_2.webp",
+    "official_status_2026": "Em Obras",
+    "status_category": "last_units",
+    "is_sold_out": false,
+    "is_last_units": true,
+    "avail_count": 1,
+    "total_count": 794,
+    "avail_info": "⚡ Última Unidade (792 Vendidas) • Out/2026",
+    "brand_line": "novvo",
+    "brand_name": "Linha Meu Novvo",
+    "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)",
+    "lancamento": "Nov/2024",
+    "fluxo_curto": "Fluxo 54% Obra / 46% Chaves",
+    "fluxo_obra": "54% Obra (6% Sinal + 6% em 2x + 30% em 12 mensais + 7% em 2 anuais + 5% Única Fev/28) + 46% Financiamento (Fev/2028)",
+    "table_ref": "Out/2026"
+  },
+  {
+    "nome": "Well Perdizes",
+    "bairro": "Perdizes",
+    "cat": "novvo",
+    "status": "Lançamento",
+    "data": "Fev/2030",
+    "ll": [
+      -23.533478,
+      -46.664939
+    ],
+    "url": "https://meunovvo.com.br/wellperdizes/",
+    "vidurl": null,
+    "vid": null,
+    "fase": "Lançamento",
+    "entrega": "Fev/2030",
+    "units": [
+      {
+        "tipo": "2 Suítes R2V",
+        "m2": 51,
+        "planta": "2 Suítes c/ Vaga",
+        "vagas": "1"
+      },
+      {
+        "tipo": "2 Suítes R2V",
+        "m2": 47,
+        "planta": "2 Suítes c/ Vaga",
+        "vagas": "1"
+      },
+      {
+        "tipo": "2 Dorms R2V/HIS",
+        "m2": 35,
+        "planta": "2 Dormitórios",
+        "vagas": "-"
+      },
+      {
+        "tipo": "Studio NR",
+        "m2": 30,
+        "planta": "Studio NR",
+        "vagas": "-"
+      },
+      {
+        "tipo": "1 Dorm HIS-2",
+        "m2": 25,
+        "planta": "1 Dormitório",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/4150ee13-4f2f-4286-99fa-a3b80ab619dd_22_novvo_cardoso_voo_de_passaro_r03.jpg",
+    "gallery": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bcd59772-3885-49ca-a15f-282f2ad98a42_01_novvo_cardoso_fachada_torre_a_r03a.jpg",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f45c9dd3-ec22-41c9-9c12-00bd0275d260_05_novvo_cardoso_piscina_r02a.jpg"
+    ],
+    "official_status_2026": "Lançamento",
+    "status_category": "active",
+    "is_sold_out": false,
+    "is_last_units": false,
+    "avail_count": 805,
+    "total_count": 1252,
+    "avail_info": "🟢 805 Livres (Lior API) • Simulador Out/2026",
+    "brand_line": "novvo",
+    "brand_name": "Linha Meu Novvo",
+    "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)",
+    "lancamento": "Ago/2026",
+    "fluxo_curto": "Fluxo 41% Obra / 59% Chaves",
+    "fluxo_obra": "41% Obra (6% Sinal + 6% em 2x + 17% em 32 mensais + 7% em 2 anuais + 5% Única Out/29) + 59% Financiamento (Fev/2030)",
+    "table_ref": "Out/2026"
+  }
+]

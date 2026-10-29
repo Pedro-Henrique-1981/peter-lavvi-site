@@ -1,0 +1,25 @@
+{
+  "brand_name": "Pedro Soares | Private Real Estate & Wealth Advisory — São Paulo",
+  "aesthetic_inspiration": "Carolwood Estates (Beverly Hills) x La Grande Bellezza x Old World Burgundy Wine",
+  "contact_whatsapp": "+55 11 96610-5952",
+  "palette": {
+    "background_alabaster": "#F7F4EE",
+    "surface_stone": "#EFECE4",
+    "ink_charcoal": "#161514",
+    "muted_taupe": "#6E6A63",
+    "accent_barolo_burgundy": "#4A151B",
+    "accent_champagne_bronze": "#8C6D46",
+    "hairline_border": "rgba(22, 21, 20, 0.12)"
+  },
+  "typography": {
+    "heading_serif": "Cormorant Garamond, Playfair Display, Georgia, serif",
+    "body_sans": "Plus Jakarta Sans, Inter, -apple-system, sans-serif",
+    "label_tracking": "0.2em"
+  },
+  "tone_of_voice": [
+    "Quiet Luxury & Editorial Restraint",
+    "Raised in Vila Nova Conceição | ESPM Alum | 5 Years in Canada",
+    "6 Languages: PT, EN, FR, IT, ES, DE",
+    "Data-Verified (Cosimo Fact-Check Gate: Zero Hallucinations)"
+  ]
+}

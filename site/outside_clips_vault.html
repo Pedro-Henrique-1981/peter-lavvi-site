@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outside Creative Vault • Clipes de Bairros & React Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07090d;
+      --bg-card: rgba(18, 22, 31, 0.9);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(197, 160, 89, 0.35);
+      --gold: #c5a059;
+      --gold-light: #e5c98e;
+      --cyan: #38bdf8;
+      --emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Cinzel', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at 15% 15%, rgba(197, 160, 89, 0.05) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      padding: 30px 20px 80px;
+      min-height: 100vh;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--border-card);
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 40%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 700px;
+      margin-top: 6px;
+    }
+    .header-actions { display: flex; gap: 10px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-card);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: rgba(197, 160, 89, 0.15);
+      border-color: var(--gold);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #c5a059, #a8823b);
+      color: #07090d;
+      font-weight: 700;
+      border: none;
+    }
+
+    /* Concept Banner */
+    .banner {
+      background: rgba(18, 22, 31, 0.8);
+      border-left: 4px solid var(--cyan);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .banner-text { font-size: 0.95rem; font-weight: 500; }
+    .banner-text strong { color: var(--cyan); }
+
+    /* Filter Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 25px;
+      border-bottom: 1px solid var(--border-card);
+    }
+    .tab-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--cyan);
+      color: #fff;
+    }
+
+    /* Grid of Clips */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    .clip-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+    .clip-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-2px);
+    }
+    .clip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .clip-neighborhood {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+    }
+    .clip-timestamp {
+      background: rgba(255,255,255,0.06);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--gold-light);
+    }
+    .clip-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .clip-channel {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .box-quote {
+      background: rgba(0,0,0,0.35);
+      border-left: 3px solid var(--gold);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+    .box-lavvi {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--emerald);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+    .clip-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div>
+      <div class="badge">🌐 Ariadne's Outside Sources Hunter • Cofre #31</div>
+      <h1>Outside Creative Vault</h1>
+      <p class="subtitle">Acervo de fontes externas, históricas, walking tours e documentários independentes dos bairros (Hípica, Paraíso, Moema) para produção de vídeos de React & Comentário Curado.</p>
+    </div>
+    <div class="header-actions">
+      <a href="file:///G:/Meine%20Ablage/LAVVI/00_OUTSIDE_CREATIVE_VAULT" class="btn btn-gold" target="_blank">📂 Abrir no Google Drive</a>
+      <a href="creative_vault.html" class="btn">🎨 Creative Vault Geral</a>
+      <a href="canvas.html" class="btn">👁️ The Matrix Canvas</a>
+    </div>
+  </header>
+
+  <div class="banner">
+    <div class="banner-text">
+      🎬 <strong>O Formato Vencedor no YouTube/Reels:</strong> Corte de 5s de clipe de terceiro (história/bairro) ➔ <strong>Pedro comenta como especialista insider</strong> ➔ Conexão suave com o empreendimento Lavvi.
+    </div>
+    <div style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">
+      ⚖️ 100% Legal via Fair Use (Art. 46, VIII, Lei 9.610/98)
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="filterBairro('all')">Todos os Bairros</button>
+    <button class="tab-btn" onclick="filterBairro('hipica')">Hípica & Alto da Boa Vista</button>
+    <button class="tab-btn" onclick="filterBairro('paraiso')">Paraíso & Eixo Paulista</button>
+    <button class="tab-btn" onclick="filterBairro('moema')">Moema Pássaros</button>
+    <button class="tab-btn" onclick="filterBairro('urbanismo')">Plano Diretor & Urbanismo</button>
+  </div>
+
+  <div class="grid" id="clipsGrid">
+    <!-- Card 1 -->
+    <div class="clip-card" data-bairro="hipica">
+      <div>
+        <div class="clip-header">
+          <span class="clip-neighborhood">Alto da Boa Vista / Hípica</span>
+          <span class="clip-timestamp">⏱️ 00:15 - 00:22</span>
+        </div>
+        <div class="clip-title">Clube Hípico de Santo Amaro fundado em 1935</div>
+        <div class="clip-channel">📺 Canal Oficial: CHSA TV (@chsatv)</div>
+        <div class="box-quote">
+          <strong>Pedro Comenta:</strong> "Você sabia que a 3 minutos do metrô em São Paulo existe um parque hípico de 280 mil metros quadrados fundado em 1935?"
+        </div>
+        <div class="box-lavvi">
+          <strong>A Conexão Lavvi:</strong> É bem em frente a esse clube que está o Jardim da Hípica, com terreno de 40.000m² e duas quadras de tênis de saibro oficiais.
+        </div>
+      </div>
+      <div class="clip-footer">
+        <a href="https://www.youtube.com/@chsatv" target="_blank" class="btn" style="font-size: 0.78rem;">Ver Canal</a>
+        <button class="btn btn-gold" onclick="copyScript(1)">📋 Copiar Roteiro</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="clip-card" data-bairro="hipica">
+      <div>
+        <div class="clip-header">
+          <span class="clip-neighborhood">Alto da Boa Vista</span>
+          <span class="clip-timestamp">⏱️ 02:10 - 02:18</span>
+        </div>
+        <div class="clip-title">Walking through Alto da Boa Vista (Silent Streets 4K)</div>
+        <div class="clip-channel">📺 São Paulo Walking Tours 4K</div>
+        <div class="box-quote">
+          <strong>Pedro Comenta:</strong> "Repara no som ambiente desse vídeo. Nenhum ônibus, nenhuma buzina. Parece Campos do Jordão, mas é a Zona Sul da capital."
+        </div>
+        <div class="box-lavvi">
+          <strong>A Conexão Lavvi:</strong> Proteção de zoneamento ZM/ZCOR e praça de 10.000m² doada por Benedito Abbud bem em frente às torres.
+        </div>
+      </div>
+      <div class="clip-footer">
+        <a href="https://www.youtube.com/results?search_query=Alto+da+Boa+Vista+Sao+Paulo+walking+tour" target="_blank" class="btn" style="font-size: 0.78rem;">Ver Busca</a>
+        <button class="btn btn-gold" onclick="copyScript(2)">📋 Copiar Roteiro</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="clip-card" data-bairro="paraiso">
+      <div>
+        <div class="clip-header">
+          <span class="clip-neighborhood">Paraíso / Paulista</span>
+          <span class="clip-timestamp">⏱️ 00:45 - 00:52</span>
+        </div>
+        <div class="clip-title">O Maior Polo Hospitalar da América Latina (HCor & Santa Catarina)</div>
+        <div class="clip-channel">📺 Medicina & Saúde SP</div>
+        <div class="box-quote">
+          <strong>Pedro Comenta:</strong> "Quem dá plantão não pode perder duas horas no trânsito. O eixo da Vergueiro e Paraíso tem uma das maiores demandas de locação médica de SP."
+        </div>
+        <div class="box-lavvi">
+          <strong>A Conexão Lavvi:</strong> T.O.M. Paraíso a 7 minutos a pé dos hospitais com vacância de studios historicamente próxima de zero.
+        </div>
+      </div>
+      <div class="clip-footer">
+        <a href="https://www.youtube.com/results?search_query=Polo+hospitalar+Paulista+HCor+Santa+Catarina" target="_blank" class="btn" style="font-size: 0.78rem;">Ver Busca</a>
+        <button class="btn btn-gold" onclick="copyScript(3)">📋 Copiar Roteiro</button>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="clip-card" data-bairro="moema">
+      <div>
+        <div class="clip-header">
+          <span class="clip-neighborhood">Moema Pássaros</span>
+          <span class="clip-timestamp">⏱️ 01:30 - 01:38</span>
+        </div>
+        <div class="clip-title">Moema Pássaros vs Moema Índios: Onde Vale Mais a Pena?</div>
+        <div class="clip-channel">📺 Bairros Paulistanos Drone</div>
+        <div class="box-quote">
+          <strong>Pedro Comenta:</strong> "Moema tem uma regra que nenhum portal conta: Pássaros tem árvores e silêncio; Índios tem comércio e rota de aproximação de Congonhas."
+        </div>
+        <div class="box-lavvi">
+          <strong>A Conexão Lavvi:</strong> Villa Moema Versace posicionado no lado dos Pássaros, blindado de ruído aeronáutico.
+        </div>
+      </div>
+      <div class="clip-footer">
+        <a href="https://www.youtube.com/results?search_query=Moema+Passaros+vs+Moema+Indios" target="_blank" class="btn" style="font-size: 0.78rem;">Ver Busca</a>
+        <button class="btn btn-gold" onclick="copyScript(4)">📋 Copiar Roteiro</button>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="clip-card" data-bairro="urbanismo">
+      <div>
+        <div class="clip-header">
+          <span class="clip-neighborhood">Plano Diretor SP</span>
+          <span class="clip-timestamp">⏱️ 00:20 - 00:28</span>
+        </div>
+        <div class="clip-title">Revisão do Plano Diretor de SP restringe novos studios em eixos</div>
+        <div class="clip-channel">📺 Notícias de Urbanismo SP</div>
+        <div class="box-quote">
+          <strong>Pedro Comenta:</strong> "A Prefeitura de SP limitou a aprovação desenfreada de studios pequenos sem vaga. A nova cota-parte criou escassez imediata."
+        </div>
+        <div class="box-lavvi">
+          <strong>A Conexão Lavvi:</strong> Os studios do Jardim da Hípica e T.O.M. Paraíso foram aprovados no regime clássico com outorga travada.
+        </div>
+      </div>
+      <div class="clip-footer">
+        <a href="https://www.youtube.com/results?search_query=Revisao+Plano+Diretor+estudios+Sao+Paulo" target="_blank" class="btn" style="font-size: 0.78rem;">Ver Busca</a>
+        <button class="btn btn-gold" onclick="copyScript(5)">📋 Copiar Roteiro</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function filterBairro(b) {
+    document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.clip-card').forEach(c => {
+      if (b === 'all' || c.dataset.bairro === b) {
+        c.style.display = 'flex';
+      } else {
+        c.style.display = 'none';
+      }
+    });
+  }
+
+  function copyScript(id) {
+    const scripts = {
+      1: "Você sabia que a 3 minutos do metrô em São Paulo existe esse complexo verde de 280 mil metros quadrados fundado em 1935? É bem em frente ao Clube Hípico de Santo Amaro que a Lavvi está erguendo o Jardim da Hípica, com 40.000m² de terreno e 2 quadras de tênis oficiais. Me chama no WhatsApp para ver as plantas!",
+      2: "Repara no som ambiente desse vídeo. Nenhum ônibus, nenhuma buzina. Parece Campos do Jordão, mas é o Alto da Boa Vista em SP. Essa tranquilidade é protegida por lei. E no Jardim da Hípica você ainda tem uma praça pública verde de 10.000m² desenhada por Benedito Abbud. Me dá um alô no WhatsApp!",
+      3: "Quem dá plantão médico não pode perder duas horas no trânsito. O eixo da Vergueiro e Paraíso tem uma das maiores demandas de locação médica de SP. Por isso os studios do T.O.M. Paraíso têm vacância quase nula projetada. Envie mensagem para ver o estudo de rentabilidade frente ao CDI!",
+      4: "Moema tem uma regra que nenhum portal conta: Pássaros tem árvores e silêncio; Índios tem barulho de avião descendo na pista. A coleção Villa Moema Versace da Lavvi foi colocada no lado dos Pássaros, blindada de ruído. Fale comigo no WhatsApp!",
+      5: "A Prefeitura de SP limitou a aprovação de novos studios sem vaga de garagem nos eixos de metrô. Quem comprou na planta antes pegou a última safra de alta liquidez. O T.O.M. Paraíso e o Jardim da Hípica já estão com licenças travadas e valorização garantida. Quer entender a lei? Me chame no WhatsApp!"
+    };
+    navigator.clipboard.writeText(scripts[id]);
+    alert('Roteiro copiado! Cole no seu aplicativo de gravação ou teleprompter.');
+  }
+</script>
+
+</body>
+</html>

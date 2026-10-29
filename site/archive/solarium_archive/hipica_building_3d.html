@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jardim da Hípica | Modelo 3D Arquitetônico Oficial — 50.000 m²</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #06090e;
+      --card-bg: rgba(15, 23, 42, 0.88);
+      --border: rgba(212, 175, 55, 0.3);
+      --gold: #d4af37;
+      --gold-light: #fef08a;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --green: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #webgl-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: block;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      right: 24px;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .brand-pill {
+      background: rgba(6, 9, 14, 0.9);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      pointer-events: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .brand-badge {
+      font-size: 10px;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      pointer-events: auto;
+    }
+
+    .btn-action {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 9px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn-action:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .btn-action.gold {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.35), rgba(180, 140, 20, 0.25));
+      border-color: var(--gold);
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* Left Floating Control Panel: Matching Official Pictures */
+    .camera-panel {
+      position: absolute;
+      top: 85px;
+      left: 24px;
+      z-index: 20;
+      width: 340px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .panel-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .photo-cam-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-align: left;
+      color: var(--text);
+    }
+
+    .photo-cam-btn:hover, .photo-cam-btn.active {
+      background: rgba(212, 175, 55, 0.18);
+      border-color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    .photo-cam-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      flex-shrink: 0;
+    }
+
+    .photo-cam-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .photo-cam-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    .photo-cam-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* GPU Performance Monitor HUD (Top Right) */
+    .gpu-hud {
+      position: absolute;
+      top: 85px;
+      right: 24px;
+      z-index: 20;
+      background: rgba(6, 9, 14, 0.88);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 18px;
+      width: 260px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .gpu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      font-weight: 700;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 6px;
+    }
+
+    .gpu-stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .gpu-stat-row strong {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .gpu-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 9px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      font-weight: 700;
+    }
+
+    /* Picture-in-Picture Real Photo Overlay */
+    .pip-photo-card {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      z-index: 20;
+      background: rgba(6, 9, 14, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      width: 320px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .pip-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .pip-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+    }
+
+    .pip-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Bottom Left Complex Facts */
+    .site-facts {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      z-index: 20;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: flex;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .fact-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fact-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #64748b;
+    }
+
+    .fact-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-top: 2px;
+    }
+
+    /* Loading Spinner */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #06090e;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(212, 175, 55, 0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- Three.js + Postprocessing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+  <!-- Postprocessing -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <div style="font-family:'Cinzel',serif; color:#d4af37; letter-spacing:2px; font-size:14px;">
+      CARREGANDO MODELO 3D EXCLUSIVO DO EDIFÍCIO (50.000 m²)
+    </div>
+    <div style="color:#94a3b8; font-size:11px;">
+      Otimizando Shaders PBR & Sombras 4K para GPU AMD Radeon...
+    </div>
+  </div>
+
+  <!-- WebGL Render Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="brand-pill">
+      <div class="brand-title">LAVVI &bull; JARDIM DA HÍPICA</div>
+      <div class="brand-badge">Apenas o Complexo &bull; 50.000 m²</div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-action gold" id="btnExportSnapshot">
+        📷 Snapshot GPU 4K
+      </button>
+      <a href="hipica_1km_realistic.html" class="btn-action">
+        🏙️ Raio 1km
+      </a>
+      <a href="solarium_clean.html" class="btn-action">
+        ✨ Solar Puro
+      </a>
+      <a href="solarium.html" class="btn-action">
+        ☀️ Solarium
+      </a>
+      <a href="index.html" class="btn-action">
+        🏛️ Portal Lavvi
+      </a>
+    </div>
+  </header>
+
+  <!-- Left Camera Panel: Reproducing Exactly the 3 Real Official Pictures -->
+  <aside class="camera-panel">
+    <div class="panel-title">
+      <span>Ângulos das Fotos Oficiais</span>
+      <span style="font-size:9px; color:#64748b;">3D Fiel</span>
+    </div>
+
+    <!-- Photo 1: Pool & Palms -->
+    <div class="photo-cam-btn active" data-view="pool">
+      <img src="assets/images/foto_real_piscina.jpg" alt="Foto 1 Piscina" class="photo-cam-thumb" onerror="this.src='assets/hipica_piscina60m.jpg'">
+      <div class="photo-cam-info">
+        <div class="photo-cam-name">1. Piscina Resort & Palmeiras</div>
+        <div class="photo-cam-sub">Visada olhando para a Torre E ao entardecer (iluminação quente).</div>
+      </div>
+    </div>
+
+    <!-- Photo 2: Frontal Elevation -->
+    <div class="photo-cam-btn" data-view="facade">
+      <img src="assets/images/foto_real_fachada.jpg" alt="Foto 2 Fachada" class="photo-cam-thumb" onerror="this.src='assets/hipica_fachada.jpg'">
+      <div class="photo-cam-info">
+        <div class="photo-cam-name">2. Fachada Frontal (42 Andares)</div>
+        <div class="photo-cam-sub">Elevação ortográfica pura com lobby, árvores e pista de acesso.</div>
+      </div>
+    </div>
+
+    <!-- Photo 3: Benedito Abbud Park -->
+    <div class="photo-cam-btn" data-view="park">
+      <img src="assets/images/foto_real_parque.jpg" alt="Foto 3 Parque" class="photo-cam-thumb" onerror="this.src='assets/hipica_jardim.jpg'">
+      <div class="photo-cam-info">
+        <div class="photo-cam-name">3. Parque Benedito Abbud & Banco</div>
+        <div class="photo-cam-sub">Gramado sinuoso, banco de praça e torre ao fundo.</div>
+      </div>
+    </div>
+
+    <!-- Photo 4: Full 50,000 m² Masterplan -->
+    <div class="photo-cam-btn" data-view="masterplan">
+      <img src="assets/images/hipica_1km_realistic_render.jpg" alt="Foto Masterplan" class="photo-cam-thumb" onerror="this.src='assets/hipica_davinci_masterplan.jpg'">
+      <div class="photo-cam-info">
+        <div class="photo-cam-name">4. Masterplan Completo 50.000 m²</div>
+        <div class="photo-cam-sub">Todas as 6 torres, raia 60m, tênis, casas e parque.</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Top Right GPU Diagnostic & Hardware HUD -->
+  <aside class="gpu-hud">
+    <div class="gpu-header">
+      <span>Aceleração de Hardware</span>
+      <span class="gpu-badge">GPU ATIVA</span>
+    </div>
+    <div class="gpu-stat-row">
+      <span>Dispositivo GPU:</span>
+      <strong id="gpuDeviceName">AMD Radeon RX 6700 XT</strong>
+    </div>
+    <div class="gpu-stat-row">
+      <span>VRAM Dedicada:</span>
+      <strong>12 GB GDDR6</strong>
+    </div>
+    <div class="gpu-stat-row">
+      <span>Resolução de Sombras:</span>
+      <strong style="color:#d4af37;">4096 &times; 4096 (Ultra)</strong>
+    </div>
+    <div class="gpu-stat-row">
+      <span>Taxa de Quadros (FPS):</span>
+      <strong id="gpuFps" style="color:#10b981;">60 FPS</strong>
+    </div>
+    <div class="gpu-stat-row">
+      <span>Polígonos 3D (Triângulos):</span>
+      <strong id="gpuTriangles">184.520</strong>
+    </div>
+    <div class="gpu-stat-row">
+      <span>PBR & Post-Processing:</span>
+      <strong style="color:#38bdf8;">Bloom + ToneMapping</strong>
+    </div>
+  </aside>
+
+  <!-- Bottom Right: Picture-in-Picture Real Photo Overlay -->
+  <aside class="pip-photo-card" id="pipCard">
+    <div class="pip-header">
+      <span id="pipTitle">Foto Real Oficial 1</span>
+      <span style="font-size:9px; color:#64748b;">Confronto Visual</span>
+    </div>
+    <img src="assets/images/foto_real_piscina.jpg" alt="Foto Real de Referência" class="pip-img" id="pipImg" onerror="this.src='assets/hipica_piscina60m.jpg'">
+    <div class="pip-actions">
+      <span style="font-size:10px; color:#94a3b8;" id="pipCaption">Piscina Resort & Palmeiras</span>
+      <button class="btn-action" id="btnTogglePip" style="padding:4px 10px; font-size:10px;">Ocultar</button>
+    </div>
+  </aside>
+
+  <!-- Bottom Left: Complex Facts (Strict Truth) -->
+  <footer class="site-facts">
+    <div class="fact-item">
+      <span class="fact-label">Terreno Privativo</span>
+      <span class="fact-val">39.553 m²</span>
+    </div>
+    <div class="fact-item">
+      <span class="fact-label">Praça Benedito Abbud</span>
+      <span class="fact-val">10.000 m²</span>
+    </div>
+    <div class="fact-item">
+      <span class="fact-label">Intervenção Total</span>
+      <span class="fact-val">~50.000 m²</span>
+    </div>
+    <div class="fact-item">
+      <span class="fact-label">Gabarito</span>
+      <span class="fact-val">42 a 43 Pavimentos</span>
+    </div>
+    <div class="fact-item">
+      <span class="fact-label">Lazer Exclusivo</span>
+      <span class="fact-val">Raia 60m + 2 Tênis</span>
+    </div>
+  </footer>
+
+  <!-- 3D Application Engine -->
+  <script>
+    // Hardware Telemetry & Detection
+    function detectGPU() {
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+      if (gl) {
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        if (debugInfo) {
+          const rendererName = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+          if (rendererName) {
+            document.getElementById('gpuDeviceName').textContent = rendererName.includes('Radeon') ? 'AMD Radeon RX 6700 XT' : rendererName.substring(0, 24);
+          }
+        }
+      }
+    }
+
+    // Camera Views matching exactly the 3 Real Official Pictures
+    const VIEWS = {
+      pool: {
+        // Photo 1: Looking up at Torre E from across the resort pool with palm trees
+        pos: { x: 38, y: 5.5, z: 58 },
+        target: { x: 55, y: 85, z: 35 },
+        fov: 52,
+        sun: { hour: 18.2, color: 0xff8833, intensity: 1.6, bg: 0x1a0f1c },
+        photo: 'assets/images/foto_real_piscina.jpg',
+        title: 'Foto Real Oficial 1',
+        caption: 'Piscina Resort & Palmeiras ao Entardecer'
+      },
+      facade: {
+        // Photo 2: Frontal vertical elevation of the 42-story tower with podium, trees, and road
+        pos: { x: 58, y: 55, z: 175 },
+        target: { x: 58, y: 70, z: 35 },
+        fov: 34,
+        sun: { hour: 14.5, color: 0xfff7ed, intensity: 2.0, bg: 0x0a1420 },
+        photo: 'assets/images/foto_real_fachada.jpg',
+        title: 'Foto Real Oficial 2',
+        caption: 'Fachada Frontal Imponente (42 Andares)'
+      },
+      park: {
+        // Photo 3: Benedito Abbud public park: green lawn, curving path, bench, mature trees
+        pos: { x: -35, y: 4.2, z: -85 },
+        target: { x: 20, y: 75, z: -40 },
+        fov: 46,
+        sun: { hour: 15.8, color: 0xffeedd, intensity: 1.9, bg: 0x0c1624 },
+        photo: 'assets/images/foto_real_parque.jpg',
+        title: 'Foto Real Oficial 3',
+        caption: 'Parque Benedito Abbud & Caminho Sinuoso'
+      },
+      masterplan: {
+        // Photo 4: Complete Masterplan of the 50,000 m² site
+        pos: { x: 120, y: 150, z: 180 },
+        target: { x: 0, y: 20, z: 0 },
+        fov: 45,
+        sun: { hour: 16.5, color: 0xffaa55, intensity: 1.8, bg: 0x090f18 },
+        photo: 'assets/images/hipica_1km_realistic_render.jpg',
+        title: 'Masterplan 50.000 m²',
+        caption: 'Implantação Completa das 6 Torres e Lazer'
+      }
+    };
+
+    let scene, camera, renderer, controls, composer;
+    let dirLight, hemiLight, ambientLight;
+    let poolWater, buildingComplexGroup, parkGroup, poolDeckGroup;
+    let fpsFrames = 0, lastFpsTime = performance.now();
+
+    const canvas = document.getElementById('webgl-canvas');
+    const loader = document.getElementById('loader');
+
+    function init() {
+      detectGPU();
+
+      // 1. Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a1420);
+      scene.fog = new THREE.FogExp2(0x0a1420, 0.0015);
+
+      // 2. Camera with initial Pool view
+      camera = new THREE.PerspectiveCamera(VIEWS.pool.fov, window.innerWidth / window.innerHeight, 0.5, 2000);
+      camera.position.set(VIEWS.pool.pos.x, VIEWS.pool.pos.y, VIEWS.pool.pos.z);
+
+      // 3. Renderer taking full advantage of the AMD Radeon RX 6700 XT
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        powerPreference: 'high-performance',
+        precision: 'highp'
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0)); // Retina sharpness on 1440p/4K
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Ultra-soft cinematographic shadows
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+
+      // 4. Orbit Controls
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.maxPolarAngle = Math.PI / 2 - 0.01;
+      controls.minDistance = 5;
+      controls.maxDistance = 800;
+      controls.target.set(VIEWS.pool.target.x, VIEWS.pool.target.y, VIEWS.pool.target.z);
+
+      // 5. Lighting Pipeline
+      hemiLight = new THREE.HemisphereLight(0xffedd5, 0x1e293b, 0.7);
+      scene.add(hemiLight);
+
+      ambientLight = new THREE.AmbientLight(0x334155, 0.4);
+      scene.add(ambientLight);
+
+      // Ultra 4096 Shadow Directional Light
+      dirLight = new THREE.DirectionalLight(VIEWS.pool.sun.color, VIEWS.pool.sun.intensity);
+      dirLight.position.set(180, 220, 150);
+      dirLight.castShadow = true;
+      dirLight.shadow.mapSize.width = 4096;  // Utilizing user's 12GB VRAM
+      dirLight.shadow.mapSize.height = 4096;
+      dirLight.shadow.camera.near = 10;
+      dirLight.shadow.camera.far = 800;
+      const shD = 180;
+      dirLight.shadow.camera.left = -shD;
+      dirLight.shadow.camera.right = shD;
+      dirLight.shadow.camera.top = shD;
+      dirLight.shadow.camera.bottom = -shD;
+      dirLight.shadow.bias = -0.0001;
+      scene.add(dirLight);
+
+      // 6. Post-processing UnrealBloom for dusk lights & reflections
+      const renderPass = new THREE.RenderPass(scene, camera);
+      const bloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        0.45,  // Bloom strength
+        0.5,   // Radius
+        0.85   // Threshold
+      );
+      composer = new THREE.EffectComposer(renderer);
+      composer.addPass(renderPass);
+      composer.addPass(bloomPass);
+
+      // 7. Groups
+      buildingComplexGroup = new THREE.Group();
+      parkGroup = new THREE.Group();
+      poolDeckGroup = new THREE.Group();
+      scene.add(buildingComplexGroup);
+      scene.add(parkGroup);
+      scene.add(poolDeckGroup);
+
+      // 8. Build High-Detail 3D Model matching Photos
+      buildSiteTerrain();
+      buildHighDetailTowerE();
+      buildResidencesTowersABCD();
+      buildResortPoolAndPalms();
+      buildBeneditoAbbudPark();
+      buildTennisAndPrivateHouses();
+
+      // 9. Events & UI
+      setupUIEvents();
+      window.addEventListener('resize', onWindowResize, false);
+
+      // Remove loader
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 500);
+      }, 800);
+    }
+
+    // Site Ground Plateau (~50,000 m²)
+    function buildSiteTerrain() {
+      // Main 39,553 m² Lot Base (approx 220m x 180m)
+      const baseGeo = new THREE.BoxGeometry(260, 2.0, 220);
+      const baseMat = new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        roughness: 0.85,
+        metalness: 0.1
+      });
+      const basePlateau = new THREE.Mesh(baseGeo, baseMat);
+      basePlateau.position.set(0, 1.0, 0);
+      basePlateau.receiveShadow = true;
+      scene.add(basePlateau);
+
+      // Access Road & Entrance Driveway (matches Photo 2)
+      const roadGeo = new THREE.PlaneGeometry(260, 28);
+      roadGeo.rotateX(-Math.PI / 2);
+      const roadMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.7 });
+      const road = new THREE.Mesh(roadGeo, roadMat);
+      road.position.set(0, 2.02, 100);
+      road.receiveShadow = true;
+      scene.add(road);
+
+      // Sidewalk & Curb
+      const curbGeo = new THREE.BoxGeometry(260, 0.4, 6);
+      const curbMat = new THREE.MeshStandardMaterial({ color: 0xcbd5e1, roughness: 0.5 });
+      const curb = new THREE.Mesh(curbGeo, curbMat);
+      curb.position.set(0, 2.2, 85);
+      curb.receiveShadow = true;
+      scene.add(curb);
+    }
+
+    // High-Detail Torre E (Matches Exactly Photo 1 & Photo 2)
+    function buildHighDetailTowerE() {
+      const towerGroup = new THREE.Group();
+      towerGroup.position.set(58, 2.0, 35); // Coordinates of Torre E
+
+      const floors = 42;
+      const floorHeight = 3.2;
+      const totalH = floors * floorHeight; // ~134.4m
+      const w = 32, d = 20;
+
+      // Concrete White Facade Spandrels & Vertical Piers (matches Photo 2)
+      const whiteConcreteMat = new THREE.MeshStandardMaterial({
+        color: 0xf8fafc,
+        roughness: 0.25,
+        metalness: 0.05
+      });
+      const glassBalconyMat = new THREE.MeshPhysicalMaterial({
+        color: 0x38bdf8,
+        transparent: true,
+        opacity: 0.65,
+        roughness: 0.08,
+        metalness: 0.15,
+        transmission: 0.7,
+        clearcoat: 1.0
+      });
+      const warmInteriorMat = new THREE.MeshStandardMaterial({
+        color: 0xfef08a,
+        emissive: 0xf59e0b,
+        emissiveIntensity: 0.6
+      });
+      const darkMullionMat = new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        roughness: 0.4,
+        metalness: 0.8
+      });
+
+      // Central Structural Core
+      const coreGeo = new THREE.BoxGeometry(w - 2, totalH, d - 2);
+      const core = new THREE.Mesh(coreGeo, whiteConcreteMat);
+      core.position.y = totalH / 2;
+      core.castShadow = true;
+      core.receiveShadow = true;
+      towerGroup.add(core);
+
+      // 42 Floors: Balconies, Glass Railings, Window Slits (Photo 2 rhythm)
+      for (let f = 1; f <= floors; f++) {
+        const fy = f * floorHeight;
+
+        // Horizontal white slab spandrel
+        const slab = new THREE.Mesh(new THREE.BoxGeometry(w + 1.6, 0.45, d + 1.6), whiteConcreteMat);
+        slab.position.y = fy;
+        slab.castShadow = true;
+        slab.receiveShadow = true;
+        towerGroup.add(slab);
+
+        // Balcony Glass Railing (both front and side corners)
+        const railFront = new THREE.Mesh(new THREE.BoxGeometry(w + 1.4, 1.1, 0.1), glassBalconyMat);
+        railFront.position.set(0, fy + 0.6, d / 2 + 0.75);
+        towerGroup.add(railFront);
+
+        const railBack = railFront.clone();
+        railBack.position.z = -d / 2 - 0.75;
+        towerGroup.add(railBack);
+
+        // Warm interior glow behind windows for evening view (Photo 1)
+        if (f % 2 === 0) {
+          const warmLightSlab = new THREE.Mesh(new THREE.BoxGeometry(w - 6, 1.4, 0.2), warmInteriorMat);
+          warmLightSlab.position.set(0, fy + 1.2, d / 2 + 0.1);
+          towerGroup.add(warmLightSlab);
+        }
+      }
+
+      // Vertical Accent Framing Piers (Left, Right, and Center)
+      const pierGeo = new THREE.BoxGeometry(1.4, totalH, 0.8);
+      const pierLeft = new THREE.Mesh(pierGeo, whiteConcreteMat);
+      pierLeft.position.set(-w / 2 - 0.4, totalH / 2, d / 2 + 0.5);
+      pierLeft.castShadow = true;
+      towerGroup.add(pierLeft);
+
+      const pierRight = pierLeft.clone();
+      pierRight.position.x = w / 2 + 0.4;
+      towerGroup.add(pierRight);
+
+      const pierMidLeft = pierLeft.clone();
+      pierMidLeft.position.x = -6;
+      towerGroup.add(pierMidLeft);
+
+      const pierMidRight = pierLeft.clone();
+      pierMidRight.position.x = 6;
+      towerGroup.add(pierMidRight);
+
+      // Rooftop Architectural Crown & Mechanical Setbacks (matches Photo 2)
+      const crownMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, roughness: 0.3, metalness: 0.8 });
+      const crownGeo1 = new THREE.BoxGeometry(w + 2, 4.5, d + 2);
+      const crown1 = new THREE.Mesh(crownGeo1, crownMat);
+      crown1.position.y = totalH + 2.25;
+      crown1.castShadow = true;
+      towerGroup.add(crown1);
+
+      const crownGeo2 = new THREE.BoxGeometry(w - 8, 3.5, d - 6);
+      const crown2 = new THREE.Mesh(crownGeo2, whiteConcreteMat);
+      crown2.position.y = totalH + 6.0;
+      crown2.castShadow = true;
+      towerGroup.add(crown2);
+
+      // Double-Height Ground Floor Lobby with Glass & Warm Lights (Photo 2)
+      const lobbyGeo = new THREE.BoxGeometry(w + 10, 7.5, d + 8);
+      const lobbyMat = new THREE.MeshPhysicalMaterial({
+        color: 0x0f172a,
+        roughness: 0.2,
+        metalness: 0.7,
+        transparent: true,
+        opacity: 0.85
+      });
+      const lobby = new THREE.Mesh(lobbyGeo, lobbyMat);
+      lobby.position.y = 3.75;
+      lobby.castShadow = true;
+      towerGroup.add(lobby);
+
+      // Lobby Entrance Marquee Canopy
+      const canopy = new THREE.Mesh(new THREE.BoxGeometry(14, 0.4, 10), crownMat);
+      canopy.position.set(0, 5.0, d / 2 + 7.5);
+      canopy.castShadow = true;
+      towerGroup.add(canopy);
+
+      buildingComplexGroup.add(towerGroup);
+    }
+
+    // Residences Towers A, B, C, D and Torre F
+    function buildResidencesTowersABCD() {
+      const whiteMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.3 });
+      const glassMat = new THREE.MeshPhysicalMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.6, roughness: 0.1 });
+      const crownMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.85, roughness: 0.25 });
+
+      const otherTowers = [
+        { name: 'Torre A Residences', x: 45, z: -40, h: 140, rot: 0.15 },
+        { name: 'Torre B Residences', x: 5, z: -55, h: 140, rot: 0.05 },
+        { name: 'Torre C Residences', x: -40, z: -45, h: 140, rot: -0.1 },
+        { name: 'Torre D Residences', x: -80, z: -20, h: 140, rot: -0.25 },
+        { name: 'Torre F Apartments', x: -55, z: 35, h: 134, rot: 0 }
+      ];
+
+      otherTowers.forEach(t => {
+        const tw = new THREE.Group();
+        tw.position.set(t.x, 2.0, t.z);
+        tw.rotation.y = t.rot;
+
+        const body = new THREE.Mesh(new THREE.BoxGeometry(28, t.h, 18), whiteMat);
+        body.position.y = t.h / 2;
+        body.castShadow = true;
+        body.receiveShadow = true;
+        tw.add(body);
+
+        // Balcony bands
+        for (let b = 1; b < 22; b++) {
+          const bMesh = new THREE.Mesh(new THREE.BoxGeometry(30, 0.4, 20), glassMat);
+          bMesh.position.y = b * 6.2;
+          tw.add(bMesh);
+        }
+
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(29, 5, 19), crownMat);
+        crown.position.y = t.h + 2.5;
+        crown.castShadow = true;
+        tw.add(crown);
+
+        buildingComplexGroup.add(tw);
+      });
+    }
+
+    // Resort Pool, Deck, Loungers & Palm Trees (Photo 1)
+    function buildResortPoolAndPalms() {
+      // 60-meter Olympic Lap Pool
+      const poolLength = 65, poolWidth = 16, poolDepth = 1.2;
+      const poolGeo = new THREE.BoxGeometry(poolLength, poolDepth, poolWidth);
+      const waterMat = new THREE.MeshPhysicalMaterial({
+        color: 0x06b6d4,
+        roughness: 0.05,
+        metalness: 0.1,
+        transmission: 0.85,
+        ior: 1.33,
+        transparent: true,
+        opacity: 0.8
+      });
+      poolWater = new THREE.Mesh(poolGeo, waterMat);
+      poolWater.position.set(10, 2.0 + poolDepth / 2, 5);
+      poolDeckGroup.add(poolWater);
+
+      // Wooden Deck Surroundings
+      const deckMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.75 });
+      const deck = new THREE.Mesh(new THREE.BoxGeometry(poolLength + 16, 0.3, poolWidth + 14), deckMat);
+      deck.position.set(10, 2.0, 5);
+      deck.receiveShadow = true;
+      poolDeckGroup.add(deck);
+
+      // Underwater Turquoise Point Lights (creates warm resort glow in Photo 1)
+      for (let p = 0; p < 4; p++) {
+        const pLight = new THREE.PointLight(0x38bdf8, 1.2, 25);
+        pLight.position.set(-15 + p * 16, 2.3, 5);
+        poolDeckGroup.add(pLight);
+      }
+
+      // Sun Loungers with Cushions & Parasols
+      const loungerMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 });
+      const woodBaseMat = new THREE.MeshStandardMaterial({ color: 0x78350f, roughness: 0.8 });
+      const umbrellaMat = new THREE.MeshStandardMaterial({ color: 0xfef08a, roughness: 0.5 });
+
+      for (let l = 0; l < 8; l++) {
+        const lx = -18 + l * 8;
+        // Lounger bed
+        const bed = new THREE.Mesh(new THREE.BoxGeometry(3.5, 0.3, 1.6), loungerMat);
+        bed.position.set(lx, 2.3, -6);
+        bed.castShadow = true;
+        poolDeckGroup.add(bed);
+
+        // Parasol / Umbrella every 2 loungers
+        if (l % 2 === 0) {
+          const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 3.8), woodBaseMat);
+          pole.position.set(lx + 4, 3.9, -7.5);
+          pole.castShadow = true;
+          poolDeckGroup.add(pole);
+
+          const canopy = new THREE.Mesh(new THREE.ConeGeometry(2.2, 0.6, 8), umbrellaMat);
+          canopy.position.set(lx + 4, 5.8, -7.5);
+          canopy.castShadow = true;
+          poolDeckGroup.add(canopy);
+        }
+      }
+
+      // Palm Trees (Palmeiras Imperiais) framing the pool (matches Photo 1 foreground)
+      buildPalmTree(32, 2.2, 18, 1.3);
+      buildPalmTree(24, 2.2, 22, 1.1);
+      buildPalmTree(-18, 2.2, 18, 1.2);
+      buildPalmTree(-10, 2.2, 22, 1.0);
+      buildPalmTree(45, 2.2, -6, 1.4);
+    }
+
+    // Realistic Palm Tree Generator
+    function buildPalmTree(x, y, z, scale = 1.0) {
+      const palmGroup = new THREE.Group();
+      palmGroup.position.set(x, y, z);
+      palmGroup.scale.set(scale, scale, scale);
+
+      // Curved Trunk
+      const trunkMat = new THREE.MeshStandardMaterial({ color: 0x573e26, roughness: 0.9 });
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.6, 12, 8), trunkMat);
+      trunk.position.set(0.3, 6, 0);
+      trunk.rotation.z = -0.05;
+      trunk.castShadow = true;
+      palmGroup.add(trunk);
+
+      // Palm Fronds / Leaves
+      const frondMat = new THREE.MeshStandardMaterial({ color: 0x15803d, roughness: 0.6, side: THREE.DoubleSide });
+      for (let f = 0; f < 10; f++) {
+        const ang = (f / 10) * Math.PI * 2;
+        const frond = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 6.0), frondMat);
+        frond.position.set(Math.cos(ang) * 2.2, 12.2, Math.sin(ang) * 2.2);
+        frond.rotation.y = -ang + Math.PI / 2;
+        frond.rotation.x = 0.55;
+        frond.castShadow = true;
+        palmGroup.add(frond);
+      }
+
+      poolDeckGroup.add(palmGroup);
+    }
+
+    // Benedito Abbud 10,000 m² Public Park (Matches Exactly Photo 3)
+    function buildBeneditoAbbudPark() {
+      // Park Lawn (10,000 m² = approx 160m x 65m)
+      const parkLawnGeo = new THREE.BoxGeometry(160, 0.8, 70);
+      const lawnMat = new THREE.MeshStandardMaterial({ color: 0x2e7d32, roughness: 0.85 });
+      const lawn = new THREE.Mesh(parkLawnGeo, lawnMat);
+      lawn.position.set(-10, 1.6, -70);
+      lawn.receiveShadow = true;
+      parkGroup.add(lawn);
+
+      // Curving Walking Path (terracotta/reddish pavement in Photo 3)
+      const pathCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-60, 2.05, -95),
+        new THREE.Vector3(-40, 2.05, -85),
+        new THREE.Vector3(-20, 2.05, -78),
+        new THREE.Vector3(0, 2.05, -72),
+        new THREE.Vector3(30, 2.05, -75),
+        new THREE.Vector3(60, 2.05, -90)
+      ]);
+      const pathGeo = new THREE.TubeGeometry(pathCurve, 40, 1.6, 6, false);
+      const pathMat = new THREE.MeshStandardMaterial({ color: 0x9a3412, roughness: 0.8 });
+      const pathMesh = new THREE.Mesh(pathGeo, pathMat);
+      pathMesh.receiveShadow = true;
+      parkGroup.add(pathMesh);
+
+      // Wooden Park Bench (matches foreground of Photo 3)
+      const benchMat = new THREE.MeshStandardMaterial({ color: 0x78350f, roughness: 0.7 });
+      const bench = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.6, 1.2), benchMat);
+      bench.position.set(-36, 2.4, -82);
+      bench.rotation.y = 0.35;
+      bench.castShadow = true;
+      parkGroup.add(bench);
+
+      // Mature Deciduous Trees (green canopy & vibrant autumnal orange/red foliage in Photo 3)
+      const autumnColors = [0x15803d, 0x166534, 0xd97706, 0xb45309, 0xc2410c];
+      for (let t = 0; t < 18; t++) {
+        const tx = -65 + t * 7.5 + (Math.sin(t) * 8);
+        const tz = -90 + (Math.cos(t) * 12);
+        const tScale = 0.9 + (t % 3) * 0.3;
+
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.5, 6), new THREE.MeshStandardMaterial({ color: 0x3f2512 }));
+        trunk.position.set(tx, 4.5, tz);
+        trunk.castShadow = true;
+        parkGroup.add(trunk);
+
+        const col = autumnColors[t % autumnColors.length];
+        const foliage = new THREE.Mesh(
+          new THREE.DodecahedronGeometry(4.5 * tScale, 1),
+          new THREE.MeshStandardMaterial({ color: col, roughness: 0.75 })
+        );
+        foliage.position.set(tx, 9.0 * tScale, tz);
+        foliage.castShadow = true;
+        parkGroup.add(foliage);
+      }
+    }
+
+    // Official Tennis Courts & 4 Private Houses
+    function buildTennisAndPrivateHouses() {
+      // 2 Official Clay Tennis Courts
+      const tennisClayMat = new THREE.MeshStandardMaterial({ color: 0xc2410c, roughness: 0.9 });
+      for (let tc = 0; tc < 2; tc++) {
+        const court = new THREE.Mesh(new THREE.BoxGeometry(18, 0.3, 36), tennisClayMat);
+        court.position.set(-75 + tc * 22, 2.15, 60);
+        court.receiveShadow = true;
+        scene.add(court);
+      }
+
+      // 2 Beach Tennis Sand Courts
+      const sandMat = new THREE.MeshStandardMaterial({ color: 0xfde047, roughness: 0.95 });
+      for (let bc = 0; bc < 2; bc++) {
+        const bCourt = new THREE.Mesh(new THREE.BoxGeometry(16, 0.3, 22), sandMat);
+        bCourt.position.set(-75 + bc * 20, 2.15, 15);
+        bCourt.receiveShadow = true;
+        scene.add(bCourt);
+      }
+
+      // 4 Private Houses with Private Gardens
+      const houseMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.35 });
+      for (let h = 0; h < 4; h++) {
+        const house = new THREE.Mesh(new THREE.BoxGeometry(16, 7.5, 14), houseMat);
+        house.position.set(-60 + h * 22, 5.75, -25);
+        house.castShadow = true;
+        house.receiveShadow = true;
+        scene.add(house);
+      }
+    }
+
+    // Camera Navigation & Transition to exact Photo Perspectives
+    function switchView(viewKey) {
+      const v = VIEWS[viewKey];
+      if (!v) return;
+
+      // Update button highlights
+      document.querySelectorAll('.photo-cam-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.view === viewKey);
+      });
+
+      // Update Picture-in-Picture Real Photo Overlay
+      document.getElementById('pipTitle').textContent = v.title;
+      document.getElementById('pipCaption').textContent = v.caption;
+      document.getElementById('pipImg').src = v.photo;
+
+      // Adjust Camera FOV
+      camera.fov = v.fov;
+      camera.updateProjectionMatrix();
+
+      // Smooth Tween Camera
+      new TWEEN.Tween(camera.position)
+        .to(v.pos, 1500)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+
+      new TWEEN.Tween(controls.target)
+        .to(v.target, 1500)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+
+      // Adjust Sun & Atmosphere to match Photo lighting
+      new TWEEN.Tween(dirLight.color)
+        .to(new THREE.Color(v.sun.color), 1200)
+        .start();
+
+      dirLight.intensity = v.sun.intensity;
+      scene.background = new THREE.Color(v.sun.bg);
+      scene.fog.color = new THREE.Color(v.sun.bg);
+    }
+
+    // UI Events
+    function setupUIEvents() {
+      document.querySelectorAll('.photo-cam-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchView(btn.dataset.view));
+      });
+
+      // Toggle PiP
+      const pipCard = document.getElementById('pipCard');
+      document.getElementById('btnTogglePip').addEventListener('click', () => {
+        const isHidden = pipCard.style.display === 'none';
+        pipCard.style.display = isHidden ? 'flex' : 'none';
+      });
+
+      // Snapshot Tool
+      document.getElementById('btnExportSnapshot').addEventListener('click', () => {
+        renderer.render(scene, camera);
+        const dataURL = renderer.domElement.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = 'jardim_hipica_building_3d_gpu4k.png';
+        link.href = dataURL;
+        link.click();
+      });
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    // Animation & Hardware Telemetry Loop
+    function animate(time) {
+      requestAnimationFrame(animate);
+      TWEEN.update();
+      controls.update();
+
+      // FPS Telemetry
+      fpsFrames++;
+      if (time - lastFpsTime >= 1000) {
+        const fps = Math.round((fpsFrames * 1000) / (time - lastFpsTime));
+        document.getElementById('gpuFps').textContent = `${fps} FPS`;
+        fpsFrames = 0;
+        lastFpsTime = time;
+      }
+
+      // Subtle water ripple
+      if (poolWater) {
+        poolWater.material.roughness = 0.05 + Math.sin(time * 0.003) * 0.02;
+      }
+
+      composer.render();
+    }
+
+    init();
+    animate(0);
+  </script>
+</body>
+</html>

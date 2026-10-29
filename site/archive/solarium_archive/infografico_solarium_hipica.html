@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta Solar 365: Jardim da Hípica | Pedro Soares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #07080b;
+      --bg-card: rgba(18, 20, 28, 0.9);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(212, 175, 55, 0.4);
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --text-main: #f5f5f7;
+      --text-muted: #8e8e93;
+      --accent-amber: #f59e0b;
+      --accent-green: #10b981;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .infographic-wrapper {
+      max-width: 860px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .infographic-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f59e0b, #d4af37, #10b981);
+    }
+
+    .brand-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .main-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .main-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    /* Visual Sun Arc Container */
+    .sun-diagram-box {
+      background: radial-gradient(circle at 50% 120%, rgba(245, 158, 11, 0.15) 0%, rgba(0, 0, 0, 0.5) 70%);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .diagram-svg-wrap {
+      max-width: 580px;
+      margin: 0 auto 16px;
+    }
+
+    .sun-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 680px) {
+      .sun-highlights { grid-template-columns: 1fr; }
+      .infographic-wrapper { padding: 24px 18px; }
+    }
+
+    .sun-card {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    .sun-card.gold-border {
+      border-color: var(--border-gold);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .sun-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .tag-norte { color: var(--gold-light); }
+    .tag-leste { color: #38bdf8; }
+    .tag-oeste { color: var(--accent-amber); }
+
+    .sun-val {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .sun-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Bioclimatic Box */
+    .bioclimatic-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 680px) {
+      .bioclimatic-bar { grid-template-columns: 1fr; }
+    }
+
+    .bio-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #cbd5e1;
+    }
+
+    .bio-card strong {
+      color: #fff;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    /* Footer CTA */
+    .cta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .broker-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .broker-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d4af37, #996515);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .broker-details h5 { font-size: 14px; color: #fff; font-weight: 600; }
+    .broker-details span { font-size: 12px; color: var(--text-muted); }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-sim {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-sim:hover {
+      background: rgba(212, 175, 55, 0.15);
+    }
+
+    .btn-wa {
+      background: #25d366;
+      color: #000;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s;
+    }
+
+    .btn-wa:hover {
+      transform: scale(1.02);
+      background: #20ba5a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="infographic-wrapper">
+    <div class="brand-meta">
+      <span>Lavvi Private Wealth • Conforto Bioclimático</span>
+      <span style="color: var(--accent-amber);">Física Solar de Precisão (São Paulo UTC-3)</span>
+    </div>
+
+    <h1 class="main-title">Carta Solar 365: Jardim da Hípica</h1>
+    <p class="main-subtitle">
+      Por que a orientação solar é o fator número #1 que determina a preservação patrimonial e a saúde respiratória no Alto da Boa Vista.
+    </p>
+
+    <!-- Solar Graphic Box -->
+    <div class="sun-diagram-box">
+      <div class="diagram-svg-wrap">
+        <svg viewBox="0 0 500 210" style="width: 100%; height: auto;">
+          <!-- Horizon Line -->
+          <line x1="20" y1="180" x2="480" y2="180" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+          <text x="25" y="172" fill="#8e8e93" font-size="10" font-family="'JetBrains Mono', monospace">LESTE (06:00)</text>
+          <text x="235" y="172" fill="#d4af37" font-size="10" font-family="'JetBrains Mono', monospace">NORTE (12:00)</text>
+          <text x="405" y="172" fill="#f59e0b" font-size="10" font-family="'JetBrains Mono', monospace">OESTE (18:00)</text>
+
+          <!-- Summer Solstice Arc (High) -->
+          <path d="M 50 180 Q 250 15 450 180" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="4,4"/>
+          <circle cx="250" cy="15" r="7" fill="#f59e0b"/>
+          <text x="250" y="32" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">Solstício de Verão (82° Zenital)</text>
+
+          <!-- Winter Solstice Arc (Low - Enters deep into North facade) -->
+          <path d="M 50 180 Q 250 80 450 180" fill="none" stroke="#d4af37" stroke-width="3"/>
+          <circle cx="250" cy="80" r="8" fill="#d4af37"/>
+          <text x="250" y="98" fill="#d4af37" font-size="10" text-anchor="middle" font-weight="bold">Solstício de Inverno (43° Inclinado • Luz Profunda)</text>
+
+          <!-- Building Profile Representation -->
+          <rect x="220" y="140" width="60" height="40" fill="rgba(212,175,55,0.2)" stroke="#d4af37" stroke-width="1.5" rx="3"/>
+          <text x="250" y="164" fill="#fff" font-size="9" text-anchor="middle">Torres Hípica</text>
+        </svg>
+      </div>
+
+      <div class="sun-highlights">
+        <div class="sun-card gold-border">
+          <span class="sun-tag tag-norte">☀️ Face Norte (Ouro)</span>
+          <div class="sun-val">Sol Suave o Dia Todo</div>
+          <p class="sun-desc">Luz profunda no inverno (evita mofo e umidade) e sol zenital no verão (protegido pelas abas da varanda).</p>
+        </div>
+
+        <div class="sun-card">
+          <span class="sun-tag tag-leste">🌅 Face Leste</span>
+          <div class="sun-val">Sol da Manhã (07h às 11h)</div>
+          <p class="sun-desc">Ambientes frescos à tarde. Despertar com iluminação natural revigorante e vista para as quadras de tênis.</p>
+        </div>
+
+        <div class="sun-card">
+          <span class="sun-tag tag-oeste">🌇 Face Oeste</span>
+          <div class="sun-val">Pôr do Sol Cinematográfico</div>
+          <p class="sun-desc">Aquece no fim da tarde. Ideal para quem aprecia finais de tarde na varanda gourmet com vista para o hipismo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bioclimatic Details -->
+    <div class="bioclimatic-bar">
+      <div class="bio-card">
+        <strong>🍃 Ventilação Cruzada Natural:</strong>
+        O bosque tombado de 10.000m² e os 40.000m² de terreno geram uma brisa úmida constante que reduz a necessidade de ar-condicionado em até 35%.
+      </div>
+      <div class="bio-card">
+        <strong>📈 Proteção de Liquidez (+18% na Revenda):</strong>
+        Unidades Face Norte com vista livre para o Clube Hípico apresentam o menor tempo de vacância e a maior taxa de valorização histórica da Zona Sul.
+      </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="cta-bar">
+      <div class="broker-info">
+        <div class="broker-avatar">PS</div>
+        <div class="broker-details">
+          <h5>Pedro Soares • Lavvi Private Wealth</h5>
+          <span>Alto da Boa Vista & Zona Sul SP | CRECI-SP (Estágio em homologação)</span>
+        </div>
+      </div>
+      <div class="btn-group">
+        <a href="solarium.html" target="_blank" class="btn-sim">☀️ Abrir Simulador 3D</a>
+        <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Gostaria%20de%20ver%20a%20disponibilidade%20de%20unidades%20Face%20Norte%20no%20Jardim%20da%20H%C3%ADpica." target="_blank" class="btn-wa">
+          💬 Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Fortaleza dos 29.000 Médicos | T.O.M. Paraíso | Pedro Soares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #07080b;
+      --bg-card: rgba(18, 20, 28, 0.9);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(212, 175, 55, 0.4);
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --text-main: #f5f5f7;
+      --text-muted: #8e8e93;
+      --accent-blue: #38bdf8;
+      --accent-green: #10b981;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .infographic-wrapper {
+      max-width: 860px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .infographic-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #d4af37, #996515);
+    }
+
+    .brand-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .main-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .main-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+
+    /* Radar / Hub Layout */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .hub-grid { grid-template-columns: 1fr; }
+      .infographic-wrapper { padding: 24px 18px; }
+    }
+
+    /* Hospital List */
+    .hospital-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hospital-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .hospital-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(56, 189, 248, 0.05);
+    }
+
+    .hosp-info h5 {
+      font-size: 14px;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .hosp-info span {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hosp-dist {
+      text-align: right;
+    }
+
+    .dist-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+
+    .dist-time {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* Metric Column */
+    .moat-column {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .moat-stat-card {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+
+    .moat-stat-card.gold-border {
+      border-color: var(--border-gold);
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%);
+    }
+
+    .moat-num {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .moat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .moat-desc {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    /* Why It Protects Box */
+    .defense-box {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.5;
+    }
+
+    .defense-box strong { color: var(--accent-green); }
+
+    /* Footer CTA */
+    .cta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .broker-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .broker-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d4af37, #996515);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .broker-details h5 { font-size: 14px; color: #fff; font-weight: 600; }
+    .broker-details span { font-size: 12px; color: var(--text-muted); }
+
+    .btn-wa {
+      background: #25d366;
+      color: #000;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s;
+    }
+
+    .btn-wa:hover {
+      transform: scale(1.02);
+      background: #20ba5a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="infographic-wrapper">
+    <div class="brand-meta">
+      <span>Lavvi Private Wealth • Tese de Renda Passiva</span>
+      <span style="color: var(--accent-blue);">Eixo Hospitalar Paraíso / Vergueiro</span>
+    </div>
+
+    <h1 class="main-title">A Fortaleza dos 29.000 Médicos: T.O.M. Paraíso</h1>
+    <p class="main-subtitle">
+      Por que studios no Paraíso não sofrem com a vacância de bairros periféricos: uma barreira geográfica natural cercada pelos maiores complexos hospitalares da América Latina.
+    </p>
+
+    <div class="hub-grid">
+      <!-- Left: Hospitals -->
+      <div class="hospital-list">
+        <div class="hospital-card">
+          <div class="hosp-info">
+            <h5>Hospital Santa Catarina</h5>
+            <span>Cardiologia, Oncologia & Emergência</span>
+          </div>
+          <div class="hosp-dist">
+            <span class="dist-badge">350 metros</span>
+            <div class="dist-time">4 min a pé</div>
+          </div>
+        </div>
+
+        <div class="hospital-card">
+          <div class="hosp-info">
+            <h5>BP — Beneficência Portuguesa</h5>
+            <span>Maior polo cirúrgico privado da América Latina</span>
+          </div>
+          <div class="hosp-dist">
+            <span class="dist-badge">650 metros</span>
+            <div class="dist-time">8 min a pé</div>
+          </div>
+        </div>
+
+        <div class="hospital-card">
+          <div class="hosp-info">
+            <h5>HCor — Hospital do Coração</h5>
+            <span>Referência internacional cardiovascular</span>
+          </div>
+          <div class="hosp-dist">
+            <span class="dist-badge">750 metros</span>
+            <div class="dist-time">9 min a pé</div>
+          </div>
+        </div>
+
+        <div class="hospital-card">
+          <div class="hosp-info">
+            <h5>Hospital Paulistano & Oswaldo Cruz</h5>
+            <span>Oncologia de alta precisão e pós-graduação</span>
+          </div>
+          <div class="hosp-dist">
+            <span class="dist-badge">1.100 metros</span>
+            <div class="dist-time">13 min a pé</div>
+          </div>
+        </div>
+
+        <div class="hospital-card">
+          <div class="hosp-info">
+            <h5>Hospital São Paulo / UNIFESP</h5>
+            <span>Formação médica, residência e congressos</span>
+          </div>
+          <div class="hosp-dist">
+            <span class="dist-badge">1.400 metros</span>
+            <div class="dist-time">6 min de carro / metrô</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Moat Stats -->
+      <div class="moat-column">
+        <div class="moat-stat-card gold-border">
+          <div class="moat-label">Público Cativo Resiliente</div>
+          <div class="moat-num" style="color: var(--gold-light);">29.000+</div>
+          <p class="moat-desc">Médicos, cirurgiões, residentes e pesquisadores com alta renda e necessidade de moradia a passos do plantão.</p>
+        </div>
+
+        <div class="moat-stat-card">
+          <div class="moat-label">Rentabilidade Líquida Projetada</div>
+          <div class="moat-num" style="color: var(--accent-green);">0,65% a 0,82%</div>
+          <p class="moat-desc">Ao mês (líquido de gestão Charlie / Housi), superando em até 80% a média residencial de São Paulo (0,40%).</p>
+        </div>
+
+        <div class="moat-stat-card">
+          <div class="moat-label">Taxa Média de Ocupação</div>
+          <div class="moat-num" style="color: var(--accent-blue);">92%</div>
+          <p class="moat-desc">Proteção contra a sazonalidade turística: pacientes em tratamento e médicos não dependem de férias para viajar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="defense-box">
+      <strong>🛡️ A Diferença Entre Especulação e Assimetria:</strong> Enquanto 90% dos studios lançados em São Paulo dependem de turismo ou locação corporativa volátil, o T.O.M. Paraíso atende uma demanda médica inelástica de saúde e cirurgia que funciona 24 horas por dia, 365 dias por ano.
+    </div>
+
+    <div class="cta-bar">
+      <div class="broker-info">
+        <div class="broker-avatar">PS</div>
+        <div class="broker-details">
+          <h5>Pedro Soares • Lavvi Private Wealth</h5>
+          <span>Paraíso & Jardins | CRECI-SP (Estágio em homologação)</span>
+        </div>
+      </div>
+      <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Vi%20a%20sua%20an%C3%A1lise%20da%20demanda%20m%C3%A9dica%20no%20TOM%20Para%C3%ADso.%20Gostaria%20de%20ver%20a%20tabela%20de%20studios%20de%2021m%C2%B2%20a%2057m%C2%B2%20e%20o%20estudo%20Charlie." target="_blank" class="btn-wa">
+        💬 Receber Estudo de Rentabilidade no WhatsApp
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

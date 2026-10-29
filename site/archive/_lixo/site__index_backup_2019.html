@@ -1,0 +1,3090 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAVVI COLLECTION | Guia da Cidade, Ferramentas & Portfólio Oficial dos 45 Empreendimentos SP</title>
+  <meta name="description" content="Portal de inteligência imobiliária, guia de bairros nobres, simulador de luz solar (Solarium 365), auditoria de due diligence e catálogo completo dos 45 empreendimentos Lavvi em São Paulo. Curadoria por Pedro Soares | Consultor Associado Lior." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet GIS Map Assets -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- GEO & AI SEARCH SCHEMA (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "name": "Pedro Soares | Consultor Imobiliário Associado Lior Lavvi",
+        "telephone": "+55-11-96610-5952",
+        "url": "https://wa.me/5511966105952",
+        "description": "Consultoria patrimonial independente e curadoria especializada nos empreendimentos ativos de alto padrão da incorporadora Lavvi em São Paulo: Jardim da Hípica (Alto da Boa Vista), Villa Moema, T.O.M. Paraíso, Wonder Brooklin e Linha Novvo. Formação ESPM e McGill (Canadá), atendimento em 6 idiomas.",
+        "areaServed": ["Alto da Boa Vista", "Moema", "Brooklin", "Paraíso", "Vila Nova Conceição", "Perdizes", "São Paulo"],
+        "knowsLanguage": ["pt-BR", "en", "fr", "it", "es", "de"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O que é o Jardim da Hípica da Lavvi e onde fica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "O Jardim da Hípica está localizado na Rua Antônio Bandeira, 305 (Alto da Boa Vista), em frente ao Clube Hípico de Santo Amaro. Possui terreno de ~40.000 m² (39.553 m²) mais praça pública verde de 10.000 m² assinada por Benedito Abbud, 2 quadras de tênis oficiais, piscina com raia de 60m, 4 Private Houses privativas, gestão CBRE e plantas de 84 a 276 m²."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Os empreendimentos da Lavvi têm patrimônio de afetação?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. 100% dos empreendimentos lançados pela Lavvi operam sob Patrimônio de Afetação averbado na matrícula (Lei 4.591/64), garantindo conta bancária segregada e proteção total do capital dos compradores contra contingências ou dívidas da incorporadora."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --lavvi-navy: #182842;
+      --lavvi-obsidian: #000c1e;
+      --lavvi-gold: #957b2b;
+      --lavvi-gold-light: #b89d4a;
+      --lavvi-gold-bright: #d4af37;
+      --lavvi-gold-soft: #f4ecd6;
+      --surface-bg: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --text-main: #182842;
+      --text-muted: #64748B;
+      --border-light: rgba(24, 40, 66, 0.12);
+      --border-gold: rgba(149, 123, 43, 0.35);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --mono: 'Archivo', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--surface-bg);
+      color: var(--text-main);
+      font-family: var(--sans);
+      line-height: 1.6;
+      padding-bottom: 90px;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    
+    /* MULTILINGUAL SELECTOR (ARIADNE 6-LANG SYSTEM) */
+    .lang-pills {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(0, 12, 30, 0.7);
+      padding: 3px 6px;
+      border-radius: 20px;
+      border: 1px solid var(--border-gold);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 4px 7px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover {
+      color: #fff;
+    }
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--lavvi-gold) 0%, var(--lavvi-gold-light) 100%);
+      color: #000c1e;
+      box-shadow: 0 2px 6px rgba(149, 123, 43, 0.35);
+    }
+
+    /* TOP NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(24, 40, 66, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(149, 123, 43, 0.3);
+      padding: 14px 0;
+      color: #fff;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-name span.gold {
+      color: var(--lavvi-gold-light);
+    }
+    .brand-badge {
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .nav-menu a {
+      color: #E2E8F0;
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-menu a:hover {
+      color: var(--lavvi-gold-bright);
+    }
+    .btn-nav-wa {
+      background: linear-gradient(135deg, var(--lavvi-gold) 0%, var(--lavvi-gold-light) 100%);
+      color: #000c1e;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+    .btn-nav-wa:hover {
+      transform: translateY(-1px);
+    }
+
+    /* HERO STRIP (TOOL-FIRST & LOW DENSITY) */
+    .hero-portal {
+      background: linear-gradient(180deg, var(--lavvi-navy) 0%, var(--lavvi-obsidian) 100%);
+      color: #fff;
+      padding: 56px 0 44px;
+      border-bottom: 1px solid var(--border-gold);
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--lavvi-gold-light);
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 12px;
+      background: rgba(149, 123, 43, 0.18);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border-gold);
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.3rem, 4.2vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.12;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--lavvi-gold-light);
+    }
+    .hero-lead {
+      font-size: 0.98rem;
+      color: #94A3B8;
+      max-width: 820px;
+      line-height: 1.65;
+      margin-bottom: 30px;
+    }
+    
+    /* 4 INSTANT TOOL TILES ABOVE THE FOLD */
+    .tool-pills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .tool-tile {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.25s ease;
+    }
+    .tool-tile:hover {
+      background: rgba(149, 123, 43, 0.15);
+      border-color: var(--lavvi-gold-light);
+      transform: translateY(-2px);
+    }
+    .tool-tile-icon {
+      font-size: 1.8rem;
+    }
+    .tool-tile-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--lavvi-gold-light);
+    }
+    .tool-tile-desc {
+      font-size: 0.75rem;
+      color: #94A3B8;
+    }
+
+    /* EDITORIAL SECTION HEADERS */
+    .sec-block {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .sec-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--lavvi-gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .sec-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.2vw, 2.7rem);
+      font-weight: 500;
+      color: var(--lavvi-navy);
+      line-height: 1.15;
+    }
+    .sec-sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin-top: 6px;
+    }
+
+    /* 45 PROJECTS CATALOG FILTER ENGINE */
+    .filter-engine-bar {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .filter-top-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 800px) {
+      .filter-top-row { grid-template-columns: 1fr; }
+    }
+    .search-input-box {
+      width: 100%;
+      padding: 12px 18px;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: var(--sans);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input-box:focus {
+      border-color: var(--lavvi-navy);
+    }
+    .slider-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface-bg);
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-light);
+    }
+    .slider-box label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--lavvi-navy);
+    }
+    .slider-box input[type="range"] {
+      flex: 1;
+      accent-color: var(--lavvi-gold);
+      height: 6px;
+    }
+
+    .bairro-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .bairro-pill {
+      background: var(--surface-bg);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .bairro-pill:hover {
+      border-color: var(--lavvi-gold);
+      color: var(--lavvi-navy);
+    }
+    .bairro-pill.active {
+      background: var(--lavvi-navy);
+      color: #fff;
+      border-color: var(--lavvi-navy);
+    }
+
+    /* 45 PROJECTS CARD GRID */
+    
+    /* STATUS SEGMENTED TABS */
+    .catalog-status-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .status-tab-btn {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .status-tab-btn:hover {
+      border-color: var(--lavvi-gold);
+      color: var(--lavvi-navy);
+    }
+    .status-tab-btn.active {
+      background: var(--lavvi-navy);
+      color: #fff;
+      border-color: var(--lavvi-navy);
+      box-shadow: 0 4px 12px rgba(24, 40, 66, 0.15);
+    }
+    .status-tab-btn .tab-count {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+    }
+    .status-tab-btn:not(.active) .tab-count {
+      background: var(--surface-bg);
+      color: var(--lavvi-gold);
+    }
+
+    /* CARD STATUS VARIATIONS */
+    .proj-card.sold-out {
+      background: #FCFCFC;
+      border-color: rgba(149, 123, 43, 0.22);
+    }
+    .proj-card.sold-out .proj-card-top {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 100%);
+    }
+    .proj-card.sold-out .proj-name {
+      color: #334155;
+    }
+    .proj-avail-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin: 10px 0;
+      line-height: 1.3;
+    }
+    .avail-active {
+      background: rgba(34, 197, 94, 0.12);
+      color: #15803d;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .avail-last-units {
+      background: rgba(234, 88, 12, 0.12);
+      color: #c2410c;
+      border: 1px solid rgba(234, 88, 12, 0.35);
+      animation: pulse-soft 2.5s infinite ease-in-out;
+    }
+    .avail-sold-out {
+      background: rgba(149, 123, 43, 0.12);
+      color: #854d0e;
+      border: 1px solid rgba(149, 123, 43, 0.3);
+    }
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.01); }
+    }
+    .btn-card-soldout {
+      flex: 1.2;
+      background: #334155;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .btn-card-soldout:hover {
+      background: var(--lavvi-gold);
+      color: #fff;
+    }
+
+    
+    
+    /* ==========================================================================
+       CINEMATIC FULLSCREEN HERO CAROUSEL (100VW / 90VH)
+       ========================================================================== */
+    .fullscreen-hero-carousel-section {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      overflow: hidden;
+      background: #090D14;
+    }
+    .hero-carousel-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 90vh;
+      min-height: 640px;
+      max-height: 940px;
+      overflow: hidden;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      margin: 0;
+    }
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), transform 12s cubic-bezier(0.1, 0, 0.2, 1);
+      transform: scale(1.06);
+      display: flex;
+      align-items: center;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(9, 13, 20, 0.95) 0%, rgba(9, 13, 20, 0.72) 52%, rgba(9, 13, 20, 0.22) 100%),
+                  linear-gradient(180deg, rgba(9, 13, 20, 0.45) 0%, transparent 35%, rgba(9, 13, 20, 0.85) 100%);
+    }
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      padding: 0 60px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .slide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .slide-badge.lavvi-badge {
+      background: rgba(149, 123, 43, 0.35);
+      border: 1px solid var(--lavvi-gold-bright);
+      color: var(--lavvi-gold-light);
+    }
+    .slide-badge.novvo-badge {
+      background: rgba(59, 130, 246, 0.25);
+      border: 1px solid #60A5FA;
+      color: #93C5FD;
+    }
+    .slide-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+    }
+    .slide-title em {
+      color: var(--lavvi-gold-bright);
+      font-style: italic;
+    }
+    .slide-desc {
+      font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 26px;
+      max-width: 740px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    }
+    .slide-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-slide-primary {
+      background: var(--lavvi-gold);
+      color: #090D14;
+      text-decoration: none;
+      padding: 14px 26px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    }
+    .btn-slide-primary:hover {
+      background: #F3DC8A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(212, 175, 55, 0.45);
+    }
+    .btn-slide-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 22px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+      backdrop-filter: blur(8px);
+    }
+    .btn-slide-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(9, 13, 20, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.25s;
+      backdrop-filter: blur(6px);
+      line-height: 1;
+    }
+    .carousel-nav-btn:hover {
+      background: var(--lavvi-gold);
+      color: #090D14;
+      border-color: var(--lavvi-gold);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .carousel-prev { left: 24px; }
+    .carousel-next { right: 24px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .carousel-dot {
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .carousel-dot.active {
+      background: var(--lavvi-gold-bright);
+      width: 52px;
+    }
+
+    /* ==========================================================================
+       BRAND CURATION EDITORIAL BANNER (ROLEX/LEXUS VS TUDOR/TOYOTA)
+       ========================================================================== */
+    .brand-curation-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 820px) {
+      .brand-curation-banner { grid-template-columns: 1fr; }
+    }
+    .brand-curation-card {
+      padding: 24px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-curation-card.lavvi-card {
+      background: linear-gradient(135deg, #0D1627 0%, #152238 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #fff;
+    }
+    .brand-curation-card.lavvi-card:hover {
+      border-color: var(--lavvi-gold-bright);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.15);
+    }
+    .brand-curation-card.novvo-card {
+      background: linear-gradient(135deg, #091E3A 0%, #0F315E 100%);
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      color: #fff;
+    }
+    .brand-curation-card.novvo-card:hover {
+      border-color: #93C5FD;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.2);
+    }
+    .curation-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .lavvi-card .curation-badge {
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--lavvi-gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+    }
+    .novvo-card .curation-badge {
+      background: rgba(96, 165, 250, 0.2);
+      color: #93C5FD;
+      border: 1px solid rgba(96, 165, 250, 0.4);
+    }
+    .curation-brand-title {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .curation-desc {
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .curation-action {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lavvi-card .curation-action { color: var(--lavvi-gold-light); }
+    .novvo-card .curation-action { color: #93C5FD; }
+
+    /* CARD BRAND BADGES IN GRID */
+    .proj-brand-tag {
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .proj-brand-tag.brand-lavvi {
+      background: rgba(149, 123, 43, 0.12);
+      color: #957B2B;
+      border: 1px solid rgba(149, 123, 43, 0.25);
+    }
+    .proj-brand-tag.brand-novvo {
+      background: rgba(2, 132, 199, 0.12);
+      color: #0369A1;
+      border: 1px solid rgba(2, 132, 199, 0.25);
+    }
+
+
+    
+    /* ==========================================================================
+       CINEMATIC FULLSCREEN HERO CAROUSEL (100VW / 90VH)
+       ========================================================================== */
+    .fullscreen-hero-carousel-section {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      position: relative;
+      overflow: hidden;
+      background: #090D14;
+    }
+    .hero-carousel-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 90vh;
+      min-height: 640px;
+      max-height: 940px;
+      overflow: hidden;
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      margin: 0;
+    }
+    .carousel-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), transform 12s cubic-bezier(0.1, 0, 0.2, 1);
+      transform: scale(1.06);
+      display: flex;
+      align-items: center;
+    }
+    .carousel-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(9, 13, 20, 0.95) 0%, rgba(9, 13, 20, 0.72) 52%, rgba(9, 13, 20, 0.22) 100%),
+                  linear-gradient(180deg, rgba(9, 13, 20, 0.45) 0%, transparent 35%, rgba(9, 13, 20, 0.85) 100%);
+    }
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      padding: 0 60px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .slide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .slide-badge.lavvi-badge {
+      background: rgba(149, 123, 43, 0.35);
+      border: 1px solid var(--lavvi-gold-bright);
+      color: var(--lavvi-gold-light);
+    }
+    .slide-badge.novvo-badge {
+      background: rgba(59, 130, 246, 0.25);
+      border: 1px solid #60A5FA;
+      color: #93C5FD;
+    }
+    .slide-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+    }
+    .slide-title em {
+      color: var(--lavvi-gold-bright);
+      font-style: italic;
+    }
+    .slide-desc {
+      font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 26px;
+      max-width: 740px;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    }
+    .slide-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-slide-primary {
+      background: var(--lavvi-gold);
+      color: #090D14;
+      text-decoration: none;
+      padding: 14px 26px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    }
+    .btn-slide-primary:hover {
+      background: #F3DC8A;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(212, 175, 55, 0.45);
+    }
+    .btn-slide-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 22px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+      backdrop-filter: blur(8px);
+    }
+    .btn-slide-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+    .carousel-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(9, 13, 20, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.25s;
+      backdrop-filter: blur(6px);
+      line-height: 1;
+    }
+    .carousel-nav-btn:hover {
+      background: var(--lavvi-gold);
+      color: #090D14;
+      border-color: var(--lavvi-gold);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .carousel-prev { left: 24px; }
+    .carousel-next { right: 24px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .carousel-dot {
+      width: 36px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .carousel-dot.active {
+      background: var(--lavvi-gold-bright);
+      width: 52px;
+    }
+
+    /* ==========================================================================
+       BRAND CURATION EDITORIAL BANNER (ROLEX/LEXUS VS TUDOR/TOYOTA)
+       ========================================================================== */
+    .brand-curation-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 820px) {
+      .brand-curation-banner { grid-template-columns: 1fr; }
+    }
+    .brand-curation-card {
+      padding: 24px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-curation-card.lavvi-card {
+      background: linear-gradient(135deg, #0D1627 0%, #152238 100%);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #fff;
+    }
+    .brand-curation-card.lavvi-card:hover {
+      border-color: var(--lavvi-gold-bright);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.15);
+    }
+    .brand-curation-card.novvo-card {
+      background: linear-gradient(135deg, #091E3A 0%, #0F315E 100%);
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      color: #fff;
+    }
+    .brand-curation-card.novvo-card:hover {
+      border-color: #93C5FD;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.2);
+    }
+    .curation-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .lavvi-card .curation-badge {
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--lavvi-gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+    }
+    .novvo-card .curation-badge {
+      background: rgba(96, 165, 250, 0.2);
+      color: #93C5FD;
+      border: 1px solid rgba(96, 165, 250, 0.4);
+    }
+    .curation-brand-title {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .curation-desc {
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .curation-action {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lavvi-card .curation-action { color: var(--lavvi-gold-light); }
+    .novvo-card .curation-action { color: #93C5FD; }
+
+    /* CARD BRAND BADGES IN GRID */
+    .proj-brand-tag {
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .proj-brand-tag.brand-lavvi {
+      background: rgba(149, 123, 43, 0.12);
+      color: #957B2B;
+      border: 1px solid rgba(149, 123, 43, 0.25);
+    }
+    .proj-brand-tag.brand-novvo {
+      background: rgba(2, 132, 199, 0.12);
+      color: #0369A1;
+      border: 1px solid rgba(2, 132, 199, 0.25);
+    }
+
+
+    /* ==========================================================================
+       RADAR 3 KM DE ALTA RENDA (HNW POI RADAR)
+       ========================================================================== */
+    .radar-card-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 28px;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    @media (max-width: 950px) {
+      .radar-card-layout { grid-template-columns: 1fr; }
+    }
+    .radar-map-box {
+      width: 100%;
+      height: 540px;
+      position: relative;
+    }
+    #radar-map {
+      width: 100%;
+      height: 100%;
+    }
+    .radar-side-panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: 540px;
+      overflow-y: auto;
+    }
+    .radar-score-strip {
+      background: linear-gradient(135deg, rgba(149, 123, 43, 0.12) 0%, rgba(24, 40, 66, 0.05) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .radar-score-val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--lavvi-navy);
+      font-family: var(--serif);
+    }
+    .radar-cluster-selector {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .cluster-chip {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cluster-chip.active {
+      background: var(--lavvi-navy);
+      border-color: var(--lavvi-navy);
+      color: #fff;
+    }
+    .poi-cat-filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .cat-pill {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .cat-pill.active {
+      background: rgba(149, 123, 43, 0.15);
+      border-color: var(--lavvi-gold);
+      color: var(--lavvi-navy);
+      font-weight: 600;
+    }
+    .poi-list-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .poi-item-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+    .poi-item-card:hover {
+      border-color: var(--lavvi-gold);
+      transform: translateX(2px);
+    }
+    .poi-item-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--lavvi-navy);
+    }
+    .poi-item-sub {
+      font-size: 0.72rem;
+      color: #64748b;
+    }
+    .poi-dist-tag {
+      background: #e2e8f0;
+      color: #1e293b;
+      font-weight: 700;
+      font-size: 0.72rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="brand-group">
+        <div class="brand-name">
+          LAVVI COLLECTION <span class="gold">• SÃO PAULO</span>
+        </div>
+        <div class="brand-badge">Curadoria Independente & Consultoria Especializada | Lior Lavvi</div>
+      </div>
+      <div class="nav-menu">
+        <a href="#catalogo">🏢 45 Projetos</a>
+        <a href="#comparador">⚖️ Comparador</a>
+        <a href="#radar-3km" style="color: var(--lavvi-gold-bright); font-weight: 600;">📍 Radar 3 km</a>
+        <a href="#mapa-section">🗺️ Mapa</a>
+        <a href="#guia-bairros">🧭 Guia de Bairros</a>
+        <a href="#due-diligence">🛡️ Ajuda Legal</a>
+        <a href="solarium.html" target="_blank" style="color: var(--lavvi-gold-bright);">☀️ Solarium 365</a>
+        
+        <div class="lang-pills" id="lang-selector">
+          <button class="lang-btn active" onclick="setLanguage('pt')" title="Português">🇧🇷 PT</button>
+          <button class="lang-btn" onclick="setLanguage('en')" title="English">🇺🇸 EN</button>
+          <button class="lang-btn" onclick="setLanguage('fr')" title="Français">🇫🇷 FR</button>
+          <button class="lang-btn" onclick="setLanguage('it')" title="Italiano">🇮🇹 IT</button>
+          <button class="lang-btn" onclick="setLanguage('es')" title="Español">🇪🇸 ES</button>
+          <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">🇩🇪 DE</button>
+        </div>
+        <a href="https://wa.me/5511966105952" id="nav-wa-btn" target="_blank" class="btn-nav-wa">💬 WhatsApp Pedro</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CINEMATIC FULLSCREEN HERO CAROUSEL (100VW / 90VH) -->
+  <section class="fullscreen-hero-carousel-section" id="hero-carousel-section">
+    <div class="hero-carousel-wrapper" id="hero-carousel">
+      
+      <!-- Slide 1: Jardim da Hípica (Lavvi Luxo - Rolex/Lexus) -->
+      <div class="carousel-slide active" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge lavvi-badge">👑 COLEÇÃO LAVVI LUXO • ALTO DA BOA VISTA • 40.000 M² DE TERRENO</span>
+          <h2 class="slide-title">Jardim da Hípica: <em>O Oásis Verde de São Paulo</em></h2>
+          <p class="slide-desc">
+            Residências de 84 a 276 m² e Studios de 21 a 57 m² em frente ao Clube Hípico de Santo Amaro. 
+            Praça pública verde de 10.000 m² por Benedito Abbud, 2 quadras de tênis oficiais de saibro, piscina com raia de 60m e assessoria Body Care.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="setStatusTab('lavvi', document.getElementById('tab-lavvi'))">Ver Coleção Lavvi Luxo</a>
+            <a href="solarium.html" target="_blank" class="btn-slide-secondary">☀️ Simular no Solarium 365</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Gostaria%20de%20receber%20a%20tabela%20oficial%20do%20Jardim%20da%20H%C3%ADpica." target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: T.O.M. Paraíso (Lavvi Luxo - Rolex/Lexus) -->
+      <div class="carousel-slide" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f020e835-439f-4193-8c61-064f503a4c33_bannertom_v2.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge lavvi-badge">👑 COLEÇÃO LAVVI LUXO • PARAÍSO • 29.000 MÉDICOS A PÉ</span>
+          <h2 class="slide-title">T.O.M. Paraíso: <em>A Assimetria do Polo Hospitalar</em></h2>
+          <p class="slide-desc">
+            Studios inteligentes e Apartamentos de 25 a 43 m² a 3 minutos a pé do Metrô Paraíso. 
+            Localização estratégica colada ao Hospital Santa Catarina, BP Mirante, Oswaldo Cruz e HCor, com 380 unidades disponíveis.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="filterBySearch('T.O.M. Paraíso')">Ver Detalhes do Projeto</a>
+            <a href="solarium.html" target="_blank" class="btn-slide-secondary">☀️ Simular Luz & Sombras</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Quero%20entender%20o%20potencial%20de%20renda%20do%20T.O.M.%20Para%C3%ADso." target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Le Six Ibirapuera (Lavvi Luxo - Rolex/Lexus) -->
+      <div class="carousel-slide" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/342b7922-d68b-4f05-b02a-1851fc4f11e9_bannerlesixibirapuera.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge lavvi-badge">👑 COLEÇÃO LAVVI LUXO • MOEMA PÁSSAROS • 180 A 240 M²</span>
+          <h2 class="slide-title">Le Six Ibirapuera: <em>Exclusividade & Piscina Coberta</em></h2>
+          <p class="slide-desc">
+            Torre de altíssimo padrão na Av. Chibarás com 3 e 4 suítes e lazer privativo completo. 
+            Localização nobre em Moema Pássaros com calçadas planas e arborizadas a minutos do Parque Ibirapuera.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="filterBySearch('Le Six')">Ver no Catálogo</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Quero%20receber%20o%20material%20do%20Le%20Six%20Ibirapuera." target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Villa Moema Versace (Lavvi Luxo - Rolex/Lexus) -->
+      <div class="carousel-slide" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/418f77ea-fe57-41a4-9e90-c4199fc0d13d_3_foto_da_fachada.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge lavvi-badge">👑 COLEÇÃO LAVVI LUXO • VERSACE HOME • PRONTO PARA MORAR</span>
+          <h2 class="slide-title">Villa Residences: <em>Design Internacional em Moema</em></h2>
+          <p class="slide-desc">
+            Residências de 150 a 291 m² e Studios assinados com decoração exclusiva Versace Home. 
+            Viva na tranquilidade das ruas planas de Moema Pássaros fora da rota de Congonhas com 82 unidades prontas.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="filterBySearch('Villa Residence')">Ver Unidades Prontas</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Tem%20unidades%20dispon%C3%ADveis%20no%20Villa%20Moema?" target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Soleil Residences (Lavvi Luxo - Rolex/Lexus) -->
+      <div class="carousel-slide" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e94d8692-a1f4-44b4-a4f0-4663e2dcf237_1_foto_da_fachada.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge lavvi-badge">👑 COLEÇÃO LAVVI LUXO • CHÁCARA KLABIN • 133 A 165 M²</span>
+          <h2 class="slide-title">Soleil Residences: <em>Arquitetura Solar no Klabin</em></h2>
+          <p class="slide-desc">
+            Apartamentos de 3 e 4 suítes em um dos bairros mais familiares e valorizados de São Paulo, a passos de 3 linhas de metrô e dos melhores colégios tradicionais.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="filterBySearch('Soleil')">Ver no Catálogo</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20do%20Soleil%20Klabin." target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Well Perdizes (Linha Meu Novvo - Tudor/Toyota) -->
+      <div class="carousel-slide" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/4150ee13-4f2f-4286-99fa-a3b80ab619dd_22_novvo_cardoso_voo_de_passaro_r03.jpg');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge novvo-badge">⚡ LINHA MEU NOVVO • PERDIZES • POLO DA PUC-SP</span>
+          <h2 class="slide-title">Well Perdizes: <em>Smart Living & Alta Eficiência</em></h2>
+          <p class="slide-desc">
+            Apartamentos inteligentes de 25 a 51 m² na Rua Cardoso de Almeida, 218. 
+            Próximo à PUC-SP, Parque da Água Branca, Allianz Parque e futura Linha 6-Laranja do Metrô, com 805 unidades abertas.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="setStatusTab('novvo', document.getElementById('tab-novvo'))">Ver Linha Meu Novvo</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Quero%20conhecer%20o%20Well%20Perdizes." target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Novvo Santa Marina (Linha Meu Novvo - Tudor/Toyota) -->
+      <div class="carousel-slide" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/901b5485-463a-4fc7-8378-2e9a2fdba51c_anyconvcom_cinema_ao_ar_livre.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge novvo-badge">⚡ LINHA MEU NOVVO • ÁGUA BRANCA • LINHA 6-LARANJA</span>
+          <h2 class="slide-title">Novvo Santa Marina: <em>Mobilidade & Rentabilidade</em></h2>
+          <p class="slide-desc">
+            Apartamentos de 25 a 37 m² a passos da futura Estação Santa Marina da Linha 6-Laranja. 
+            Lazer completo entregue equipado com baixo custo de condomínio e excelente yield de locação.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="filterBySearch('Santa Marina')">Ver no Catálogo</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Quero%20conhecer%20o%20Novvo%20Santa%20Marina." target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Novvo Vila Prudente (Linha Meu Novvo - Tudor/Toyota) -->
+      <div class="carousel-slide" style="background-image: url('https://lavvipublico.s3.amazonaws.com/lavvicombr/images/7f8be81c-0798-4ff1-b96d-b54f542a4881_9_perspectiva_ilustrada_da_quadra_recreativa_gramada.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <span class="slide-badge novvo-badge">⚡ LINHA MEU NOVVO • VILA PRUDENTE • EM OBRAS</span>
+          <h2 class="slide-title">Novvo Vila Prudente: <em>Conforto Perto do Metrô</em></h2>
+          <p class="slide-desc">
+            Plantas inteligentes de 25 a 42 m² na Av. Zelina com 290 unidades disponíveis. Lazer de clube com quadra gramada, piscinas e facilidade de financiamento.
+          </p>
+          <div class="slide-actions">
+            <a href="#catalogo" class="btn-slide-primary" onclick="filterBySearch('Vila Prudente')">Ver no Catálogo</a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Quero%20receber%20a%20tabela%20do%20Novvo%20Vila%20Prudente." target="_blank" class="btn-slide-secondary" style="border-color: #25D366; color: #4ADE80;">💬 WhatsApp Pedro</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button class="carousel-nav-btn carousel-prev" onclick="prevHeroSlide()">‹</button>
+      <button class="carousel-nav-btn carousel-next" onclick="nextHeroSlide()">›</button>
+
+      <!-- Dots (8 slides) -->
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="carousel-dot active" onclick="goHeroSlide(0)"></span>
+        <span class="carousel-dot" onclick="goHeroSlide(1)"></span>
+        <span class="carousel-dot" onclick="goHeroSlide(2)"></span>
+        <span class="carousel-dot" onclick="goHeroSlide(3)"></span>
+        <span class="carousel-dot" onclick="goHeroSlide(4)"></span>
+        <span class="carousel-dot" onclick="goHeroSlide(5)"></span>
+        <span class="carousel-dot" onclick="goHeroSlide(6)"></span>
+        <span class="carousel-dot" onclick="goHeroSlide(7)"></span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- HERO SECTION (TOOL-FIRST, LOW DENSITY) -->
+  <header class="hero-portal">
+    <div class="container">
+      <span class="hero-eyebrow" id="hero-eyebrow-text">PORTAL DE INTELIGÊNCIA & FERRAMENTAS IMOBILIÁRIAS</span>
+      <h1 class="hero-title" id="hero-title-text">A Coleção Completa dos Projetos Lavvi<br><em>com Recursos Exclusivos de Decisão.</em></h1>
+      <p class="hero-lead" id="hero-lead-text">Curadoria patrimonial independente, simulador solar 3D, radar de 3 km e auditoria de segurança jurídica para investidores e famílias de alta renda em São Paulo.</p>
+
+      
+      <!-- 4 INSTANT TOOL TILES -->
+      <div class="tool-pills-grid">
+        <a href="#catalogo" class="tool-tile">
+          <span class="tool-tile-icon">🏢</span>
+          <div>
+            <div class="tool-tile-title">Catálogo de Empreendimentos</div>
+            <div class="tool-tile-desc">Filtre por bairro, m² e status de obra</div>
+          </div>
+        </a>
+        <a href="solarium.html" target="_blank" class="tool-tile">
+          <span class="tool-tile-icon">☀️</span>
+          <div>
+            <div class="tool-tile-title">Simulador Solarium 365</div>
+            <div class="tool-tile-desc">Física solar hora a hora nas suítes</div>
+          </div>
+        </a>
+        <a href="#guia-bairros" class="tool-tile">
+          <span class="tool-tile-icon">🧭</span>
+          <div>
+            <div class="tool-tile-title">Guia Local de Vizinhança</div>
+            <div class="tool-tile-desc">Escolas, hospitais, parques e gastronomia</div>
+          </div>
+        </a>
+        <a href="#due-diligence" class="tool-tile">
+          <span class="tool-tile-icon">⚖️</span>
+          <div>
+            <div class="tool-tile-title">Auditoria de Due Diligence</div>
+            <div class="tool-tile-desc">Checklist de 10 pontos de segurança</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 1: CATÁLOGO DOS 45 PROJETOS COM FILTRO INSTANTÂNEO -->
+  <section id="catalogo" class="sec-block">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-label">01 / PORTFÓLIO COMPLETO</span>
+          <h2 class="sec-heading">Catálogo Oficial de Empreendimentos Lavvi | Unidades Disponíveis</h2>
+          <p class="sec-sub">Pesquise por nome, filtre por bairro nobre ou ajuste a metragem desejada para encontrar a planta ideal.</p>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--lavvi-gold);" id="projects-count-badge">
+          25 Empreendimentos Disponíveis
+        </div>
+      </div>
+
+      <!-- FILTER ENGINE -->
+            <!-- BRAND CURATION EDITORIAL BANNER (PEDRO SOARES PHILOSOPHY) -->
+      <div class="brand-curation-banner">
+        <div class="brand-curation-card lavvi-card" onclick="setStatusTab('lavvi', document.getElementById('tab-lavvi'))">
+          <div class="curation-badge">PADRÃO ROLEX / LEXUS</div>
+          <div class="curation-brand-title">👑 Coleção Lavvi — High-End Luxury</div>
+          <p class="curation-desc">Apartamentos amplos (84 a 521 m²), terrenos monumentais de ~40.000 m², quadras oficiais de tênis de saibro, gestão internacional CBRE e branded residences mundiais (Versace Home & Elie Saab). Preservação de capital e moradia definitiva.</p>
+          <div class="curation-action">Ver 20 Empreendimentos Lavvi &rarr;</div>
+        </div>
+        <div class="brand-curation-card novvo-card" onclick="setStatusTab('novvo', document.getElementById('tab-novvo'))">
+          <div class="curation-badge">PADRÃO TUDOR / TOYOTA</div>
+          <div class="curation-brand-title">⚡ Linha Meu Novvo — Smart Living</div>
+          <p class="curation-desc">Mesma excelência e solidez construtiva Lavvi em formato inteligente e acessível (20 a 51 m²). Localizações nobres coladas a estações de metrô e faculdades (PUC-SP, Santa Marina, Zelina). Alta liquidez e yield agressivo de locação.</p>
+          <div class="curation-action">Ver 5 Empreendimentos Novvo &rarr;</div>
+        </div>
+      </div>
+
+      <!-- STATUS & LINE SEGMENTED CONTROL / TABS -->
+      <div class="catalog-status-tabs" id="status-tabs-container">
+        <button class="status-tab-btn active" onclick="setStatusTab('todos', this)" id="tab-todos">
+          <span>🔥</span> Todos os 25 Projetos Ativos <span class="tab-count">25</span>
+        </button>
+        <button class="status-tab-btn" onclick="setStatusTab('lavvi', this)" id="tab-lavvi">
+          <span>👑</span> Coleção Lavvi Luxo (Rolex / Lexus) <span class="tab-count">20</span>
+        </button>
+        <button class="status-tab-btn" onclick="setStatusTab('novvo', this)" id="tab-novvo">
+          <span>⚡</span> Linha Meu Novvo (Tudor / Toyota) <span class="tab-count">5</span>
+        </button>
+        <button class="status-tab-btn" onclick="setStatusTab('ultimas', this)" id="tab-ultimas">
+          <span>⚡</span> Reta Final / Últimas Unidades <span class="tab-count">5</span>
+        </button>
+      </div>
+
+      <div class="filter-engine-bar">
+        <div class="filter-top-row">
+          <input type="text" id="search-input" class="search-input-box" placeholder="🔍 Buscar por nome do projeto (ex: Jardim da Hípica, Moema, Paraíso, Wonder)..." oninput="applyFilters()" />
+          <div class="slider-box">
+            <label>Metragem Mínima: <span id="m2-val-display" style="color: var(--lavvi-gold);">20 m²</span></label>
+            <input type="range" id="m2-slider" min="20" max="300" step="5" value="20" oninput="updateM2Slider(this.value)" />
+          </div>
+        </div>
+
+        <div class="bairro-pills-row">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--lavvi-navy); margin-right: 6px;">BAIRROS:</span>
+          <button class="bairro-pill active" onclick="setBairroFilter('todos', this)">Todos (25)</button>
+          <button class="bairro-pill" onclick="setBairroFilter('Alto da Boa Vista', this)">Alto da Boa Vista</button>
+          <button class="bairro-pill" onclick="setBairroFilter('Moema', this)">Moema</button>
+          <button class="bairro-pill" onclick="setBairroFilter('Brooklin', this)">Brooklin</button>
+          <button class="bairro-pill" onclick="setBairroFilter('Paraíso', this)">Paraíso</button>
+          <button class="bairro-pill" onclick="setBairroFilter('Perdizes', this)">Perdizes</button>
+          <button class="bairro-pill" onclick="setBairroFilter('Chácara Klabin', this)">Chácara Klabin</button>
+          <button class="bairro-pill" onclick="setBairroFilter('Vila Mariana', this)">Vila Mariana</button>
+        </div>
+      </div>
+
+      <!-- CARDS GRID -->
+      <div class="projects-grid" id="projects-grid-container">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: COMPARADOR LADO A LADO -->
+  <section id="comparador" class="sec-block" style="background: #fff;">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-label">02 / MATRIZ DE DECISÃO</span>
+          <h2 class="sec-heading">Comparador de Empreendimentos Lado a Lado</h2>
+          <p class="sec-sub">Selecione até 3 empreendimentos para comparar metragens, lazer, vagas e vocação de investimento com clareza.</p>
+        </div>
+      </div>
+
+      <div class="compare-container">
+        <div class="compare-selectors-row">
+          <div>
+            <label style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">EMPREENDIMENTO 1:</label>
+            <select id="comp-sel-1" class="compare-select" onchange="renderComparison()"></select>
+          </div>
+          <div>
+            <label style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">EMPREENDIMENTO 2:</label>
+            <select id="comp-sel-2" class="compare-select" onchange="renderComparison()"></select>
+          </div>
+          <div>
+            <label style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px;">EMPREENDIMENTO 3:</label>
+            <select id="comp-sel-3" class="compare-select" onchange="renderComparison()"></select>
+          </div>
+        </div>
+
+        <div id="comparison-table-wrapper">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: MAPA INTERATIVO OFICIAL DE SÃO PAULO -->
+  <section id="mapa-section" class="sec-block">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-label">03 / GEOLOCALIZAÇÃO URBANA</span>
+          <h2 class="sec-heading">Mapa Oficial dos Empreendimentos Lavvi</h2>
+          <p class="sec-sub">Base cartográfica minimalista Esri World Light Gray com todos os empreendimentos ativos e canteiros georreferenciados.</p>
+        </div>
+        <div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Clique nos pins dourados para ver tipologias e acessar o book</span>
+        </div>
+      </div>
+
+      <div id="map-interactive"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: GUIA DE BAIRROS, VIZINHANÇA & ESTILO DE VIDA -->
+  <section id="guia-bairros" class="sec-block" style="background: #fff;">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-label">04 / CURADORIA LOCAL & VIVÊNCIA</span>
+          <h2 class="sec-heading">Guia de Vizinhança & Atividades Locais</h2>
+          <p class="sec-sub">
+            Escolas internacionais de ponta, hospitais de excelência, clubes de esportes de raquete e a rotina a pé nos bairros da Lavvi.
+          </p>
+        </div>
+      </div>
+
+      <!-- BAIRRO TABS -->
+      <div class="bairro-tabs-bar">
+        <button class="bairro-tab-btn active" onclick="switchBairroGuide('hipica', this)">Alto da Boa Vista & Jardim da Hípica</button>
+        <button class="bairro-tab-btn" onclick="switchBairroGuide('moema', this)">Moema Pássaros & Índios</button>
+        <button class="bairro-tab-btn" onclick="switchBairroGuide('paraiso', this)">Paraíso & Eixo Paulista</button>
+        <button class="bairro-tab-btn" onclick="switchBairroGuide('brooklin', this)">Brooklin & Chucri Zaidan</button>
+      </div>
+
+      <!-- GUIDE CONTENT CONTAINER -->
+      <div id="guide-content-container">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CENTRAL DE AJUDA LEGAL & DUE DILIGENCE (PONTES) -->
+  <section id="due-diligence" class="sec-block">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-label">05 / COMPLIANCE JURÍDICO & URBANÍSTICO</span>
+          <h2 class="sec-heading">Auditoria de Due Diligence: 10 Pontos de Segurança</h2>
+          <p class="sec-sub">
+            Conheça as salvaguardas legais do portfólio Lavvi (100% Patrimônio de Afetação) e audite qualquer lançamento imobiliário em São Paulo antes de assinar.
+          </p>
+        </div>
+        <a href="checklist-due-diligence.html" target="_blank" class="btn-card-solarium" style="padding: 10px 18px; border-color: var(--lavvi-gold); color: var(--lavvi-gold);">
+          📄 Abrir Checklist para Impressão / PDF &rarr;
+        </a>
+      </div>
+
+      <div class="due-diligence-widget">
+        <div style="margin-bottom: 16px;">
+          <h3 style="font-family: var(--serif); font-size: 1.5rem; color: var(--lavvi-navy);">Calculadora Interativa de Risco de Incorporação</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Marque os requisitos comprovados pelo imóvel para verificar o grau de segurança registral:</p>
+        </div>
+
+        <div class="audit-grid">
+          <div class="audit-box checked" onclick="toggleAudit(this, 1)">
+            <input type="checkbox" checked id="chk-1" />
+            <div><strong>01. Patrimônio de Afetação</strong> averbado na Matrícula (Lei 4.591/64 - conta e caixa blindados)</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 2)">
+            <input type="checkbox" checked id="chk-2" />
+            <div><strong>02. Registro de Incorporação (RI)</strong> aprovado e certidão vintenária sem ônus reais</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 3)">
+            <input type="checkbox" checked id="chk-3" />
+            <div><strong>03. Alvará SMUL & Plano Diretor</strong> com Outorga Onerosa (OODC) devidamente quitada</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 4)">
+            <input type="checkbox" checked id="chk-4" />
+            <div><strong>04. Vizinhança e Recuos Protegidos</strong> sem risco de nova torre bloqueando a vista no futuro</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 5)">
+            <input type="checkbox" checked id="chk-5" />
+            <div><strong>05. Histórico e Due Diligence Cartorária</strong> sem penhoras ou execuções contra antigos proprietários</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 6)">
+            <input type="checkbox" checked id="chk-6" />
+            <div><strong>06. Minuta Contratual na Lei do Distrato</strong> (Lei 13.786/18 - carência de 180 dias clara)</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 7)">
+            <input type="checkbox" checked id="chk-7" />
+            <div><strong>07. Financiamento com Banco Garantidor</strong> e medição física mensal de avanço de obra</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 8)">
+            <input type="checkbox" checked id="chk-8" />
+            <div><strong>08. Gestão Condominial Internacional</strong> (CBRE / Convenção com regras de locação claras)</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 9)">
+            <input type="checkbox" checked id="chk-9" />
+            <div><strong>09. Cessão Livre para Holding Familiar</strong> (~11,3% imposto locação vs 27,5% PF sem taxa de anuência)</div>
+          </div>
+          <div class="audit-box checked" onclick="toggleAudit(this, 10)">
+            <input type="checkbox" checked id="chk-10" />
+            <div><strong>10. Governança Aberta na B3</strong> e balanços auditados por Big Four (LAVV3 / Cyrela)</div>
+          </div>
+        </div>
+
+        <div class="score-panel-box">
+          <div>
+            <div style="font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.8;">PARECER DO CONSELHO JURÍDICO:</div>
+            <div id="score-status-text" style="font-size: 1.15rem; font-weight: 600; color: #4ADE80; margin-top: 4px;">
+              🟢 GRAU MÁXIMO INSTITUCIONAL — Imóvel 100% Blindado (Padrão Lavvi)
+            </div>
+            <div id="score-desc-text" style="font-size: 0.82rem; opacity: 0.85; margin-top: 2px;">
+              Todos os 10 requisitos foram atendidos. Segurança registral e construtiva plena.
+            </div>
+          </div>
+          <div style="text-align: right; display: flex; align-items: center; gap: 20px;">
+            <div>
+              <div style="font-family: var(--serif); font-size: 2.2rem; font-weight: 700; color: #F3DC8A;" id="score-counter">10 / 10</div>
+              <div style="font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.8;">PONTOS VALIDADOS</div>
+            </div>
+            <a id="score-wa-link" href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20fiz%20o%20Checklist%20de%20Due%20Diligence%20no%20seu%20site%20(Score%2010%2F10)%20e%20gostaria%20de%20receber%20a%20matr%C3%ADcula%20do%20Jardim%20da%20H%C3%ADpica." 
+               target="_blank" class="btn-nav-wa" style="font-size: 0.75rem; padding: 12px 20px;">
+              Auditar Imóvel no WhatsApp &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: SOLARIUM 365 PREVIEW (MIYAMOTO) -->
+  <section id="solarium-box" class="sec-block" style="background: linear-gradient(180deg, #090D14 0%, #101725 100%); color: #fff;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;">
+        <div>
+          <span style="font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lavvi-gold-bright); font-weight: 700;">EXPERIÊNCIA CRIATIVA INTERATIVA</span>
+          <h2 style="font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.15; margin: 10px 0 16px; color: #fff;">
+            Solarium 365: Simulador de Luz Solar & Sombra
+          </h2>
+          <p style="color: #94A3B8; font-size: 0.94rem; line-height: 1.65; margin-bottom: 24px;">
+            Desenvolvido por nosso arquiteto de experiências <strong>Agent Miyamoto</strong>, o <em>Solarium 365</em> modela a trajetória solar real de São Paulo (Lat -23.55°) para você verificar exatamente onde e como o sol incide sobre o seu living, suítes e piscina ao longo do ano.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; font-size: 0.82rem;">
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border-left: 2px solid var(--lavvi-gold-bright);">
+              <strong style="color: #F3DC8A; display: block;">Solstício de Verão vs. Inverno</strong>
+              Veja a diferença entre o sol a pino de dezembro e a luz inclinada de junho.
+            </div>
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border-left: 2px solid var(--lavvi-gold-bright);">
+              <strong style="color: #F3DC8A; display: block;">Time-Lapse de 10 Segundos</strong>
+              Animação cinematográfica do ciclo solar das 06:00 às 19:00 com um clique.
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="solarium.html" target="_blank" class="btn-nav-wa" style="padding: 14px 24px; font-size: 0.75rem;">
+              ☀️ Abrir Simulador Solarium 365 em Tela Cheia &rarr;
+            </a>
+            <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20gostaria%20de%20uma%20an%C3%A1lise%20de%20insola%C3%A7%C3%A3o%20e%20sol%20para%20as%20plantas%20do%20Jardim%20da%20H%C3%ADpica." 
+               target="_blank" style="background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 14px 20px; border-radius: 20px; font-size: 0.75rem; text-decoration: none;">
+              Consultar Insolação com Pedro
+            </a>
+          </div>
+        </div>
+
+        <div style="background: radial-gradient(circle at center, #1E293B 0%, #06090F 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 28px; text-align: center;">
+          <div style="font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #94A3B8; margin-bottom: 16px;">
+            Simulação Interativa de 4 Projetos
+          </div>
+          <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 20px 0;">
+            <div style="width: 140px; height: 140px; border-radius: 50%; border: 2px dashed rgba(212, 175, 55, 0.4); display: flex; align-items: center; justify-content: center; position: relative;">
+              <div style="position: absolute; top: 6px; font-size: 0.7rem; color: #D4AF37; font-weight: 700;">N</div>
+              <div style="position: absolute; bottom: 6px; font-size: 0.7rem; color: #94A3B8;">S</div>
+              <div style="position: absolute; right: 8px; font-size: 0.7rem; color: #D4AF37;">L</div>
+              <div style="position: absolute; left: 8px; font-size: 0.7rem; color: #F3DC8A;">O</div>
+              <div style="width: 60px; height: 40px; background: #334155; border: 1px solid #D4AF37; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: #fff;">
+                PLANTA
+              </div>
+            </div>
+            <div style="text-align: left; font-size: 0.8rem; line-height: 1.6; color: #CBD5E1;">
+              <div style="color: #F3DC8A; font-weight: 700; margin-bottom: 4px;">Atalhos de Vida Incluídos:</div>
+              <div>☕ 08:00 — Café com Sol nas Suítes</div>
+              <div>🏊‍♂️ 12:30 — Piscina Plena sem Sombra</div>
+              <div>💻 15:00 — Home Office sem Reflexo</div>
+              <div>🍷 17:45 — Sunset no Terraço (Hípica)</div>
+            </div>
+          </div>
+          <div style="font-size: 0.74rem; color: #94A3B8;">
+            Suporta: <strong>Jardim da Hípica</strong>, <strong>T.O.M. Paraíso</strong>, <strong>Villa Moema</strong> e <strong>Wonder Brooklin</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- SECTION: RADAR 3 KM DE ALTA RENDA (HNW POI RADAR) -->
+  <section id="radar-3km" class="sec-block" style="background: #FAFAFA;">
+    <div class="container">
+      <div class="sec-header">
+        <div>
+          <span class="sec-label">03.5 / VIZINHANÇA & INFRAESTRUTURA DE ELITE</span>
+          <h2 class="sec-heading">Radar 3 km de Alta Renda: <em>O que Realmente Importa</em></h2>
+          <p class="sec-sub">
+            Mapeamento geoespacial de escolas bilíngues, clubes de raquete/hípica, restaurantes estrelados, hospitais de excelência e parques no raio de 3 km dos nossos empreendimentos.
+          </p>
+        </div>
+        <div>
+          <span style="font-size: 0.78rem; color: #64748b;">Curadoria HNW por Pedro Soares</span>
+        </div>
+      </div>
+
+      <!-- RADAR COMPONENT LAYOUT -->
+      <div class="radar-card-layout">
+        <!-- LEFT: LEAFLET GIS MAP WITH 3KM CIRCLE -->
+        <div class="radar-map-box">
+          <div id="radar-map"></div>
+        </div>
+
+        <!-- RIGHT: SELECTION & POI STREAM -->
+        <div class="radar-side-panel">
+          <!-- Cluster Selector -->
+          <div>
+            <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: var(--lavvi-gold); margin-bottom: 8px;">
+              Escolha o Empreendimento Âncora:
+            </div>
+            <div class="radar-cluster-selector" id="radar-cluster-buttons">
+              <button class="cluster-chip active" onclick="switchRadarCluster('hipica', this)">Jardim da Hípica</button>
+              <button class="cluster-chip" onclick="switchRadarCluster('moema', this)">Villa Moema</button>
+              <button class="cluster-chip" onclick="switchRadarCluster('paraiso', this)">T.O.M. Paraíso</button>
+              <button class="cluster-chip" onclick="switchRadarCluster('brooklin', this)">Wonder Brooklin</button>
+              <button class="cluster-chip" onclick="switchRadarCluster('well_perdizes', this)">Well Perdizes</button>
+            </div>
+          </div>
+
+          <!-- Luxury Score Strip -->
+          <div class="radar-score-strip">
+            <div>
+              <div style="font-size: 0.72rem; text-transform: uppercase; color: #64748b; font-weight: 600;">Índice de Vizinhança HNW</div>
+              <div class="radar-score-val" id="radar-score-display">91 <span style="font-size: 1rem; color: #94a3b8; font-weight: 400;">/ 100</span></div>
+            </div>
+            <div style="text-align: right;">
+              <button id="btn-toggle-radar-gmaps" onclick="toggleRadarGmaps()" style="background: rgba(255,255,255,0.08); border: 1px solid var(--border-gold); color: var(--lavvi-navy); padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; cursor: pointer; margin-right: 6px;">🛰️ Google Satélite</button>
+              <span id="radar-pois-count-badge"  style="background: rgba(16, 185, 129, 0.15); color: #059669; font-weight: 700; font-size: 0.75rem; padding: 4px 10px; border-radius: 20px;">
+                8 POIs no Raio de 3 km
+              </span>
+            </div>
+          </div>
+
+          <!-- Category Filters -->
+          <div>
+            <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: #64748b; margin-bottom: 8px;">
+              Filtrar por Categoria:
+            </div>
+            <div class="poi-cat-filters">
+              <button class="cat-pill active" onclick="filterRadarCategory('all', this)">Todos</button>
+              <button class="cat-pill" onclick="filterRadarCategory('escolas', this)">🎓 Escolas Bilíngues</button>
+              <button class="cat-pill" onclick="filterRadarCategory('clubes', this)">🎾 Clubes & Hípica</button>
+              <button class="cat-pill" onclick="filterRadarCategory('gastronomia', this)">🍷 Alta Gastronomia</button>
+              <button class="cat-pill" onclick="filterRadarCategory('saude', this)">🏥 Hospitais</button>
+              <button class="cat-pill" onclick="filterRadarCategory('parques', this)">🌳 Parques</button>
+            </div>
+          </div>
+
+          <!-- Dynamic POI Stream -->
+          <div class="poi-list-stream" id="radar-poi-stream">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCIERGE & CREDIBILITY FOOTER (DISCREET) -->
+  <footer class="concierge-footer">
+    <div class="container concierge-inner">
+      <div class="concierge-meta">
+        <div class="concierge-name">Pedro Soares | Consultoria Imobiliária Independente</div>
+        <div class="concierge-text">
+          Consultor Imobiliário Associado Lior Lavvi • Graduado ESPM, extensão em Marketing Digital pela McGill University (Canadá) • 5 anos de vivência no exterior • Cambridge CELTA • Atendimento em 6 idiomas (Português, Inglês, Francês, Italiano, Espanhol e Alemão) • Especialista em imóveis de alto padrão na Zona Sul de São Paulo, sem pressão de vendas e com foco em segurança jurídica e alocação patrimonial.
+        </div>
+      </div>
+      <div>
+        
+        <div class="lang-pills" id="lang-selector">
+          <button class="lang-btn active" onclick="setLanguage('pt')" title="Português">🇧🇷 PT</button>
+          <button class="lang-btn" onclick="setLanguage('en')" title="English">🇺🇸 EN</button>
+          <button class="lang-btn" onclick="setLanguage('fr')" title="Français">🇫🇷 FR</button>
+          <button class="lang-btn" onclick="setLanguage('it')" title="Italiano">🇮🇹 IT</button>
+          <button class="lang-btn" onclick="setLanguage('es')" title="Español">🇪🇸 ES</button>
+          <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">🇩🇪 DE</button>
+        </div>
+        <a href="https://wa.me/5511966105952" id="nav-wa-btn" target="_blank" class="btn-nav-wa" style="padding: 14px 26px;">
+          💬 WhatsApp: (11) 96610-5952
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING COMMAND DOCK (APPLE / 21ST.DEV STYLE) -->
+  <div class="floating-command-dock">
+    <a href="#catalogo" class="dock-link">
+      <span>🏢</span>
+      <span class="text">Portfólio Ativo</span>
+    </a>
+    <a href="#comparador" class="dock-link">
+      <span>⚖️</span>
+      <span class="text">Comparar</span>
+    </a>
+    <a href="#mapa-section" class="dock-link">
+      <span>🗺️</span>
+      <span class="text">Mapa</span>
+    </a>
+    <a href="#guia-bairros" class="dock-link">
+      <span>🧭</span>
+      <span class="text">Guia Bairro</span>
+    </a>
+    <a href="#due-diligence" class="dock-link">
+      <span>🛡️</span>
+      <span class="text">Due Diligence</span>
+    </a>
+    <a href="solarium.html" target="_blank" class="dock-link" style="color: var(--lavvi-gold-bright);">
+      <span>☀️</span>
+      <span class="text">Solarium</span>
+    </a>
+    <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20estou%20no%20seu%20portal%20e%20gostaria%20de%20atendimento%20consultivo%20para%20os%20lan%C3%A7amentos%20Lavvi." 
+       target="_blank" class="dock-link dock-wa">
+      <span>💬</span>
+      <span class="text">WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- SCRIPT ENGINE -->
+  <script>
+    // RAW 45 PROJECTS DATA
+    const allProjects = [{"nome": "Jardim da Hípica", "bairro": "Alto da Boa Vista", "cat": "lancamento", "status": "Em Obras", "data": "abr/2026", "ll": [-23.645377, -46.710906], "url": "https://www.lavvi.com.br/empreendimentos/hipica", "vidurl": "https://www.youtube.com/watch?v=roH62wHNDfo", "vid": "roH62wHNDfo", "fase": "Lançamento", "entrega": "Mar/2031", "units": [{"tipo": "Torre A", "m2": 276, "planta": "4 Suítes", "vagas": "3"}, {"tipo": "Torre A", "m2": 180, "planta": "4 Suítes", "vagas": "2"}, {"tipo": "Torre B", "m2": 149, "planta": "3 Suítes", "vagas": "2"}, {"tipo": "Torre B", "m2": 133, "planta": "3 Suítes", "vagas": "2"}, {"tipo": "Torre C", "m2": 170, "planta": "4 Dorm", "vagas": "2"}, {"tipo": "Torre C", "m2": 133, "planta": "3 Suítes", "vagas": "2"}, {"tipo": "Torre C", "m2": 84, "planta": "3 Dorm", "vagas": "1"}, {"tipo": "Torre D", "m2": 223, "planta": "4 Suítes", "vagas": "3"}, {"tipo": "Torre D", "m2": 184, "planta": "4 Suítes", "vagas": "2"}], "mat": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp", "gallery": ["https://lavvipublico.s3.amazonaws.com/lavvicombr/images/6a7af7a5-8150-41f9-9417-4b0f8baa165c_thumbhipicavaranda.webp", "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/1b63b3eb-821a-46bf-9a7b-f30d3c2cf130_churrasqueira.webp"], "official_status_2026": "Em Obras", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": null, "total_count": null, "avail_info": "🟢 Terreno de ~40.000 m² | 2 Quadras Tênis Oficiais | Venda Direta", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Jardim da Hípica Apartments", "bairro": "Alto da Boa Vista", "cat": "lancamento", "status": "Em Obras", "data": "abr/2026", "ll": [-23.644888, -46.70907], "url": "https://www.lavvi.com.br/empreendimentos/jardim-da-hipica-apartments", "vidurl": "https://www.youtube.com/watch?v=z2mzeHU4HHA", "vid": "z2mzeHU4HHA", "fase": "Lançamento", "entrega": "Mar/2031", "units": [{"tipo": "Torre E", "m2": 56, "planta": "2 Dorm", "vagas": "1 ou 0"}, {"tipo": "Torre E", "m2": 48, "planta": "2 Dorm", "vagas": "-"}, {"tipo": "Torre E", "m2": 28, "planta": "1 Dorm", "vagas": "-"}, {"tipo": "Torre E", "m2": 27, "planta": "1 Dorm", "vagas": "-"}, {"tipo": "Torre E", "m2": 21, "planta": "Studio", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/1b63b3eb-821a-46bf-9a7b-f30d3c2cf130_churrasqueira.webp", "gallery": ["https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp"], "official_status_2026": "Em Obras", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": null, "total_count": null, "avail_info": "🟢 Terreno de ~40.000 m² | 2 Quadras Tênis Oficiais | Venda Direta", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Le Six Residences", "bairro": "Paraíso", "cat": "obras", "status": "Em Obras", "data": "mai/2025", "ll": [-23.572349, -46.645109], "url": "https://www.lavvi.com.br/empreendimentos/le-six-residences", "vidurl": "https://www.youtube.com/watch?v=Z-sgdXxgQN8", "vid": "Z-sgdXxgQN8", "fase": "Em Obras", "entrega": "Jun/29", "units": [{"tipo": "Apto Tipo", "m2": 156, "planta": "3 Suítes", "vagas": "2"}, {"tipo": "Apto Tipo", "m2": 203, "planta": "4 Suítes", "vagas": "2"}, {"tipo": "Apto Tipo", "m2": 264, "planta": "4 Suítes", "vagas": "3"}, {"tipo": "Cobertura Duplex", "m2": 521, "planta": "4 Suítes", "vagas": "4"}], "mat": "https://drive.google.com/drive/folders/1Om79HE4jq40ctTNqFqxcZhbdkaJsr0T8", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e6441bdd-de71-4272-be23-d4944fe5f802_piscinacoberta.webp", "official_status_2026": "Em Obras", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 57, "total_count": 522, "avail_info": "🟢 57 unidades disponíveis (401 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Villa Residence", "bairro": "Moema", "cat": "pronto", "status": "Pronto Para Morar", "data": "jun/2021", "ll": [-23.60034, -46.66034], "url": "https://www.lavvi.com.br/empreendimentos/villa-residence", "vidurl": "https://www.youtube.com/watch?v=_sdR_k2ewWs", "vid": "_sdR_k2ewWs", "fase": "Pronto Para Morar", "entrega": "Ago/25", "units": [{"tipo": "Apto Tipo", "m2": 216, "planta": "3 Suítes", "vagas": "4"}, {"tipo": "Apto Tipo", "m2": 150, "planta": "3 Suítes", "vagas": "2"}, {"tipo": "Cobertura", "m2": 291, "planta": "3 Suítes", "vagas": "4"}], "mat": "https://drive.google.com/drive/folders/19AIPzOtqk3Iz8wYCZQbm_mQltfzsgvHz", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/418f77ea-fe57-41a4-9e90-c4199fc0d13d_3_foto_da_fachada.webp", "gallery": ["https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-residence/imagens/thumbnail/foto_da_area_de_lazer.webp"], "official_status_2026": "Pronto Para Morar", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 82, "total_count": 579, "avail_info": "🟢 82 unidades disponíveis (456 vendidas - Padrão Versace)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Villa Studios", "bairro": "Moema", "cat": "pronto", "status": "Pronto Para Morar", "data": "jun/2021", "ll": [-23.601027, -46.660824], "url": "https://www.lavvi.com.br/empreendimentos/villa-studios", "vidurl": "https://www.youtube.com/watch?v=ycuDVuI7xyo", "vid": "ycuDVuI7xyo", "fase": "Pronto Para Morar", "entrega": "Ago/25", "units": [{"tipo": "Studios NR", "m2": 30, "planta": "Studios", "vagas": "-"}, {"tipo": "Studios R", "m2": 28, "planta": "Studios", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/19AIPzOtqk3Iz8wYCZQbm_mQltfzsgvHz", "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/banner/BannerPrincipalVillaStudios.webp", "gallery": ["https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/galeria/1_-_foto_da_area_de_lazer_do_rooftop.webp", "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/galeria/3_-_foto_do_piscina_do_rooftop.webp"], "official_status_2026": "Pronto Para Morar", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 82, "total_count": 579, "avail_info": "🟢 82 unidades disponíveis (456 vendidas - Padrão Versace)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Green View Residence", "bairro": "Butantã", "cat": "pronto", "status": "Últimas Unidades", "data": "jun/2022", "ll": [-23.570657, -46.711288], "url": "https://www.lavvi.com.br/empreendimentos/green-view-residence", "vidurl": "https://www.youtube.com/watch?v=gO9RMWwNS6k", "vid": "gO9RMWwNS6k", "fase": "Pronto Para Morar", "entrega": "Maio/26", "units": [{"tipo": "Apto Tipo", "m2": 160, "planta": "3 Suítes", "vagas": "2 ou 3"}, {"tipo": "Apto Tipo", "m2": 128, "planta": "3 Suítes", "vagas": "2"}], "mat": "https://drive.google.com/drive/folders/18vT-N8Y4kY6oQ_55oU4F2oPZ8a_uQe11", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/30349a37-5ea0-4d44-be1f-e90fc5311463_1_foto_da_fachada.webp", "official_status_2026": "Pronto Para Morar", "status_category": "last_units", "is_sold_out": false, "is_last_units": true, "avail_count": 11, "total_count": 433, "avail_info": "⚡ RETA FINAL: 11 Unidades Disponíveis (308 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Alive", "bairro": "Vila Prudente", "cat": "obras", "status": "Em Obras", "data": "out/2023", "ll": [-23.582885, -46.578652], "url": "https://www.lavvi.com.br/empreendimentos/alive", "vidurl": "https://www.youtube.com/watch?v=mH5m4o72Zc8", "vid": "mH5m4o72Zc8", "fase": "Em Obras", "entrega": "Set/27", "units": [{"tipo": "Apto Tipo", "m2": 188, "planta": "4 Suítes", "vagas": "3"}, {"tipo": "Apto Tipo", "m2": 133, "planta": "3 Suítes", "vagas": "2"}, {"tipo": "Apto Tipo", "m2": 105, "planta": "3 Dorms / 1 Suíte", "vagas": "2"}, {"tipo": "Apto Tipo", "m2": 72, "planta": "2 Dorms / 1 Suíte", "vagas": "1"}], "mat": "https://drive.google.com/drive/folders/1jXk45L40s6fG7eG10i7rYkLh00n7P_3U", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f326a0b9-5c4a-43cf-ae17-21b333469145_1_foto_da_fachada.webp", "official_status_2026": "Em Obras", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 172, "total_count": 1400, "avail_info": "🟢 172 unidades disponíveis (1.214 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Heaven Residences", "bairro": "Paraíso", "cat": "obras", "status": "Em Obras", "data": "out/2024", "ll": [-23.571439, -46.643329], "url": "https://www.lavvi.com.br/empreendimentos/heaven-residences", "vidurl": "https://www.youtube.com/watch?v=1xN2c_J9564", "vid": "1xN2c_J9564", "fase": "Em Obras", "entrega": "Dez/28", "units": [{"tipo": "Apto Tipo", "m2": 218, "planta": "4 Suítes", "vagas": "3"}, {"tipo": "Apto Tipo", "m2": 178, "planta": "3 Suítes", "vagas": "2"}, {"tipo": "Apto Tipo", "m2": 135, "planta": "3 Suítes", "vagas": "2"}], "mat": "https://drive.google.com/drive/folders/1h6B1e7dGz89v9Z6v0562s8Z0g0H04y12", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d316e6d1-dcf3-4ba9-b3e6-fa1ee0ae6692_bannerheavenresidences.jpg", "official_status_2026": "Em Obras", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 66, "total_count": 947, "avail_info": "🟢 66 unidades disponíveis (870 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Palace", "bairro": "Brás", "cat": "obras", "status": "Em Obras", "data": "nov/2023", "ll": [-23.549999, -46.613333], "url": "https://www.lavvi.com.br/empreendimentos/palace", "vidurl": "https://www.youtube.com/watch?v=48_f2h4y2s8", "vid": "48_f2h4y2s8", "fase": "Em Obras", "entrega": "Out/27", "units": [{"tipo": "Apto Tipo", "m2": 80, "planta": "3 Dorms / 1 Suíte", "vagas": "1"}, {"tipo": "Apto Tipo", "m2": 66, "planta": "2 Dorms / 1 Suíte", "vagas": "1"}, {"tipo": "Apto Tipo", "m2": 45, "planta": "2 Dorms", "vagas": "-"}, {"tipo": "Studio", "m2": 28, "planta": "Studio", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1eT6b7e65yZ9h8q7kL9h8Z6v54q8Z9y0", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 19, "total_count": 216, "avail_info": "🟢 19 unidades disponíveis (194 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Petra", "bairro": "Brooklin", "cat": "obras", "status": "Em Obras", "data": "ago/2024", "ll": [-23.619895, -46.689033], "url": "https://www.lavvi.com.br/empreendimentos/petra", "vidurl": "https://www.youtube.com/watch?v=B65r8H5k0d8", "vid": "B65r8H5k0d8", "fase": "Em Obras", "entrega": "Nov/28", "units": [{"tipo": "Apto Tipo", "m2": 242, "planta": "4 Suítes", "vagas": "4"}, {"tipo": "Apto Tipo", "m2": 182, "planta": "3 Suítes", "vagas": "3"}, {"tipo": "Apto Tipo", "m2": 142, "planta": "3 Suítes", "vagas": "2"}], "mat": "https://drive.google.com/drive/folders/1sYt8b0h6y89u9kL0e4y98h6v70G61Pq", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 53, "total_count": 407, "avail_info": "🟢 53 unidades disponíveis (344 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Saffire", "bairro": "Moema", "cat": "obras", "status": "Em Obras", "data": "nov/2023", "ll": [-23.602568, -46.656078], "url": "https://www.lavvi.com.br/empreendimentos/saffire-elie-saab", "vidurl": "https://www.youtube.com/watch?v=W02Hk963sL8", "vid": "W02Hk963sL8", "fase": "Em Obras", "entrega": "Out/26", "units": [{"tipo": "Mansão Suspensa", "m2": 493, "planta": "4 ou 5 Suítes", "vagas": "5"}, {"tipo": "Apto Tipo", "m2": 360, "planta": "4 Suítes", "vagas": "4"}], "mat": "https://drive.google.com/drive/folders/1SRC24jZK80BXeSsIAjqgIEQzNBW-hhbf", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 34, "total_count": 181, "avail_info": "🟢 34 unidades disponíveis (Alta Costura Elie Saab)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Soleil Apartments", "bairro": "Chácara Klabin", "cat": "obras", "status": "Em Obras", "data": "abr/2024", "ll": [-23.593285, -46.626756], "url": "https://www.lavvi.com.br/empreendimentos/soleil-apartments", "vidurl": "https://www.youtube.com/watch?v=Fj7n046z5g0", "vid": "Fj7n046z5g0", "fase": "Em Obras", "entrega": "Jul/27", "units": [{"tipo": "Apto Tipo", "m2": 58, "planta": "2 Dorms / 1 Suíte", "vagas": "1"}, {"tipo": "Studio", "m2": 26, "planta": "Studio", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1v6H8k0l9yZ6v0562s8Z0g0H04y12L0", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 38, "total_count": 154, "avail_info": "🟢 38 unidades disponíveis (104 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Soleil Residences", "bairro": "Chácara Klabin", "cat": "obras", "status": "Em Obras", "data": "abr/2024", "ll": [-23.593678, -46.626989], "url": "https://www.lavvi.com.br/empreendimentos/soleil-residences", "vidurl": "https://www.youtube.com/watch?v=Fj7n046z5g0", "vid": "Fj7n046z5g0", "fase": "Em Obras", "entrega": "Jul/27", "units": [{"tipo": "Apto Tipo", "m2": 165, "planta": "3 ou 4 Suítes", "vagas": "2 ou 3"}, {"tipo": "Apto Tipo", "m2": 133, "planta": "3 Suítes", "vagas": "2"}], "mat": "https://drive.google.com/drive/folders/1v6H8k0l9yZ6v0562s8Z0g0H04y12L0", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e94d8692-a1f4-44b4-a4f0-4663e2dcf237_1_foto_da_fachada.webp", "official_status_2026": "Em Obras", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 38, "total_count": 154, "avail_info": "🟢 38 unidades disponíveis (104 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Verdant", "bairro": "Tucuruvi", "cat": "pronto", "status": "Últimas 2 Unidades", "data": "dez/2022", "ll": [-23.480029, -46.602511], "url": "https://www.lavvi.com.br/empreendimentos/verdant", "vidurl": "https://www.youtube.com/watch?v=P9s5G2m1l90", "vid": "P9s5G2m1l90", "fase": "Pronto Para Morar", "entrega": "Nov/25", "units": [{"tipo": "Apto Tipo", "m2": 95, "planta": "3 Dorms / 1 Suíte", "vagas": "2"}, {"tipo": "Apto Tipo", "m2": 78, "planta": "3 Dorms / 1 Suíte", "vagas": "1"}], "mat": "https://drive.google.com/drive/folders/1yZ6v0562s8Z0g0H04y12L01v6H8k0", "status_category": "last_units", "is_sold_out": false, "is_last_units": true, "avail_count": 2, "total_count": 174, "avail_info": "⚡ RETA FINAL: Apenas 2 Unidades Disponíveis! (171 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Grand Square", "bairro": "Praça da Árvore", "cat": "pronto", "status": "Pronto Para Morar", "data": "ago/2022", "ll": [-23.610534, -46.637822], "url": "https://www.lavvi.com.br/empreendimentos/grand-square", "vidurl": "https://www.youtube.com/watch?v=7h7K9s2j401", "vid": "7h7K9s2j401", "fase": "Pronto Para Morar", "entrega": "Set/25", "units": [{"tipo": "Apto Tipo", "m2": 79, "planta": "3 Dorms / 1 Suíte", "vagas": "1"}, {"tipo": "Apto Tipo", "m2": 65, "planta": "2 Dorms / 1 Suíte", "vagas": "1"}, {"tipo": "Apto Tipo", "m2": 45, "planta": "1 Suíte", "vagas": "-"}, {"tipo": "Studio", "m2": 32, "planta": "Studio", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1k8L0e4y98h6v70G61PqsYt8b0h6y89u", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d63ea75e-88fe-4e5c-9c02-7c9367d3e098_1_foto_da_fachada.webp", "official_status_2026": "Pronto Para Morar", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 62, "total_count": 343, "avail_info": "🟢 62 unidades disponíveis (260 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Le Six Ibirapuera", "bairro": "Moema", "cat": "breve", "status": "Lançamento", "data": "Breve", "ll": [-23.5975, -46.6575], "url": "https://www.lavvi.com.br/empreendimentos/le-six-ibirapuera", "vidurl": null, "vid": null, "fase": "Breve Lançamento", "entrega": "2030", "units": [{"tipo": "Residencial", "m2": 180, "planta": "3 e 4 Suítes", "vagas": "2 a 3"}, {"tipo": "Residencial", "m2": 240, "planta": "4 Suítes", "vagas": "3"}], "mat": null, "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/342b7922-d68b-4f05-b02a-1851fc4f11e9_bannerlesixibirapuera.webp", "gallery": ["https://lavvipublico.s3.amazonaws.com/lavvicombr/images/01e0665d-730e-4e65-adb3-fa5ceebcbeea_piscinacoberta.webp", "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/43ffbd6f-0fb0-45df-9a07-d0e011bc5a12_lobby.webp"], "official_status_2026": "Breve Lançamento", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 250, "total_count": 250, "avail_info": "🟢 250 unidades disponíveis (Lançamento Recente Moema)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Le Six Ibirapuera Apartments", "bairro": "Moema", "cat": "breve", "status": "Lançamento", "data": "Breve", "ll": [-23.5978, -46.6578], "url": "https://www.lavvi.com.br/empreendimentos/le-six-ibirapuera-apartments", "vidurl": null, "vid": null, "fase": "Breve Lançamento", "entrega": "2030", "units": [{"tipo": "Compactos", "m2": 28, "planta": "Studio", "vagas": "-"}, {"tipo": "Compactos", "m2": 45, "planta": "1 Dorm", "vagas": "1"}], "mat": null, "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/342b7922-d68b-4f05-b02a-1851fc4f11e9_bannerlesixibirapuera.webp", "gallery": ["https://lavvipublico.s3.amazonaws.com/lavvicombr/images/01e0665d-730e-4e65-adb3-fa5ceebcbeea_piscinacoberta.webp", "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/43ffbd6f-0fb0-45df-9a07-d0e011bc5a12_lobby.webp"], "official_status_2026": "Breve Lançamento", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 250, "total_count": 250, "avail_info": "🟢 250 unidades disponíveis (Lançamento Recente Moema)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "T.O.M. Paraíso", "bairro": "Paraíso", "cat": "breve", "status": "Lançamento", "data": "Breve", "ll": [-23.5731, -46.6465], "url": "https://www.lavvi.com.br/empreendimentos/tom-paraiso", "vidurl": null, "vid": null, "fase": "Lançamento", "entrega": "2031", "units": [{"tipo": "High Luxury", "m2": 310, "planta": "4 Suítes", "vagas": "4"}, {"tipo": "High Luxury", "m2": 420, "planta": "5 Suítes", "vagas": "5"}], "mat": null, "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f020e835-439f-4193-8c61-064f503a4c33_bannertom_v2.webp", "gallery": ["https://lavvipublico.s3.amazonaws.com/lavvicombr/images/85c2389f-dbe6-4fa2-ac0e-a33d5cc79f3c_tom_01_fachada_a_ef_v3.webp", "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f0360526-0d1e-4471-9c6e-67bbd00c29a0_tom_03_quadra_beach_ef2.webp", "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/201bd6a2-69f6-44d6-b013-b825d7009bb8_tom_09_piscina_ext_ef_v3.webp", "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bed0a629-f429-4685-be53-49b1438434a2_tom_11_lobby_ef_v1.webp"], "official_status_2026": "Lançamento", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 380, "total_count": 901, "avail_info": "🟢 380 unidades disponíveis (Lançamento Oficial)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "High Wonder", "bairro": "Brás", "cat": "vendido", "status": "Últimas 2 Unidades", "data": "concluido", "ll": [-23.5508, -46.6138], "url": "https://www.lavvi.com.br/empreendimentos/high-wonder", "vidurl": null, "vid": null, "fase": "100% Vendido", "entrega": "", "units": [], "mat": null, "status_category": "last_units", "is_sold_out": false, "is_last_units": true, "avail_count": 2, "total_count": 258, "avail_info": "⚡ RETA FINAL: Apenas 2 Unidades Disponíveis! (256 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Galleria Klabin", "bairro": "Chácara Klabin", "cat": "vendido", "status": "Última Unidade", "data": "nov/2022", "ll": [-23.596182, -46.625504], "url": "https://www.lavvi.com.br/empreendimentos/galleria-klabin", "vidurl": "https://www.youtube.com/watch?v=HeeVDFbaLNQ", "vid": "HeeVDFbaLNQ", "fase": "Última Unidade", "entrega": "", "units": [], "mat": null, "status_category": "last_units", "is_sold_out": false, "is_last_units": true, "avail_count": 1, "total_count": 606, "avail_info": "⚡ RETA FINAL: Apenas 1 Unidade Disponível! (597 vendidas)", "brand_line": "lavvi", "brand_name": "Coleção Lavvi", "brand_analogy": "Padrão Rolex / Lexus (High-End Luxury)"}, {"nome": "Novvo Santa Marina", "bairro": "Água Branca", "cat": "novvo", "status": "Lançamento", "data": "Lançamento", "ll": [-23.5205, -46.687], "url": "https://meunovvo.com.br/santamarina/", "vidurl": null, "vid": null, "fase": "Lançamento", "entrega": "", "units": [{"tipo": "1 dorm", "m2": 31, "planta": "1 dorm + terraço", "vagas": "-"}, {"tipo": "2 dorms", "m2": 41, "planta": "2 dorms + terraço", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/901b5485-463a-4fc7-8378-2e9a2fdba51c_anyconvcom_cinema_ao_ar_livre.webp", "official_status_2026": "Lançamento", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 160, "total_count": 462, "avail_info": "🟢 160 unidades disponíveis (289 vendidas)", "brand_line": "novvo", "brand_name": "Linha Meu Novvo", "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)"}, {"nome": "Novvo Anália Franco", "bairro": "Anália Franco", "cat": "novvo", "status": "Lançamento", "data": "Lançamento", "ll": [-23.563018, -46.552205], "url": "https://meunovvo.com.br/novvoanaliafranco/", "vidurl": null, "vid": null, "fase": "Lançamento", "entrega": "", "units": [{"tipo": "1 dorm", "m2": 31, "planta": "1 dorm + terraço", "vagas": "-"}, {"tipo": "2 dorms", "m2": 41, "planta": "2 dorms + terraço", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/ab6bb83a-fed4-4e86-8a23-ed34a3b33810_2_perspectiva_ilustrada_da_piscina.webp", "official_status_2026": "Lançamento", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 23, "total_count": 594, "avail_info": "🟢 23 unidades disponíveis (569 vendidas - 96% vendido!)", "brand_line": "novvo", "brand_name": "Linha Meu Novvo", "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)"}, {"nome": "Novvo Vila Prudente", "bairro": "Vila Prudente", "cat": "novvo", "status": "Em Obras", "data": "Lançamento", "ll": [-23.589982, -46.57701], "url": "https://meunovvo.com.br/vilaprudente/", "vidurl": null, "vid": null, "fase": "Lançamento", "entrega": "", "units": [{"tipo": "1 dorm", "m2": 31, "planta": "1 dorm + terraço", "vagas": "-"}, {"tipo": "2 dorms", "m2": 41, "planta": "2 dorms + terraço", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/7f8be81c-0798-4ff1-b96d-b54f542a4881_9_perspectiva_ilustrada_da_quadra_recreativa_gramada.webp", "official_status_2026": "Em Obras", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 290, "total_count": 900, "avail_info": "🟢 290 unidades disponíveis (590 vendidas)", "brand_line": "novvo", "brand_name": "Linha Meu Novvo", "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)"}, {"nome": "Novvo Marajoara", "bairro": "Jardim Marajoara", "cat": "novvo", "status": "Última Unidade", "data": "Em obras", "ll": [-23.649, -46.698], "url": "https://meunovvo.com.br/novvo-marajoara/", "vidurl": null, "vid": null, "fase": "Última Unidade", "entrega": "", "units": [{"tipo": "1 dorm", "m2": 31, "planta": "1 dorm + terraço", "vagas": "-"}, {"tipo": "2 dorms", "m2": 41, "planta": "2 dorms + terraço", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/68d65571-9db9-4fad-8dc6-b924e92726f4_perspectiva_ilustrada_da_piscina_adulto_2.webp", "official_status_2026": "Em Obras", "status_category": "last_units", "is_sold_out": false, "is_last_units": true, "avail_count": 1, "total_count": 794, "avail_info": "⚡ RETA FINAL: Apenas 1 Unidade Disponível! (792 vendidas)", "brand_line": "novvo", "brand_name": "Linha Meu Novvo", "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)"}, {"nome": "Well Perdizes", "bairro": "Perdizes", "cat": "novvo", "status": "Lançamento", "data": "Lançamento", "ll": [-23.533478, -46.664939], "url": "https://meunovvo.com.br/wellperdizes/", "vidurl": null, "vid": null, "fase": "Lançamento", "entrega": "", "units": [{"tipo": "Studio / 1 dorm", "m2": 31, "planta": "Studio a 1 dorm", "vagas": "-"}, {"tipo": "2 dorms", "m2": 41, "planta": "2 dorms", "vagas": "-"}], "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8", "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/4150ee13-4f2f-4286-99fa-a3b80ab619dd_22_novvo_cardoso_voo_de_passaro_r03.jpg", "gallery": ["https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bcd59772-3885-49ca-a15f-282f2ad98a42_01_novvo_cardoso_fachada_torre_a_r03a.jpg", "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f45c9dd3-ec22-41c9-9c12-00bd0275d260_05_novvo_cardoso_piscina_r02a.jpg"], "official_status_2026": "Lançamento", "status_category": "active", "is_sold_out": false, "is_last_units": false, "avail_count": 805, "total_count": 1252, "avail_info": "🟢 805 unidades disponíveis | 25 a 51 m²", "brand_line": "novvo", "brand_name": "Linha Meu Novvo", "brand_analogy": "Padrão Tudor / Toyota (Smart Urban)"}];
+    let filteredProjects = [...allProjects];
+    let activeBairro = 'todos';
+    let minM2 = 20;
+    let currentStatusTab = 'todos';
+
+    function setStatusTab(tab, btn) {
+      currentStatusTab = tab;
+      document.querySelectorAll('.status-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      applyFilters();
+    }
+
+    // RENDER PROJECTS CARDS
+    function renderProjectsGrid(list) {
+      const container = document.getElementById('projects-grid-container');
+      const countBadge = document.getElementById('projects-count-badge');
+      container.innerHTML = '';
+      
+      let badgeLabel = 'Empreendimentos Ativos com Unidades Disponíveis';
+      if (currentStatusTab === 'lavvi') badgeLabel = 'Empreendimentos Coleção Lavvi Luxo (Padrão Rolex / Lexus)';
+      else if (currentStatusTab === 'novvo') badgeLabel = 'Empreendimentos Linha Meu Novvo (Padrão Tudor / Toyota)';
+      else if (currentStatusTab === 'ultimas') badgeLabel = 'Empreendimentos na Reta Final (1 a 15 Unidades)';
+      
+      countBadge.innerText = `${list.length} ${badgeLabel}`;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #fff; border-radius: 16px; border: 1px dashed var(--border-light);">
+            <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+            <h3 style="font-family: var(--serif); font-size: 1.4rem; color: var(--lavvi-navy);">Nenhum empreendimento encontrado para este filtro</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">Tente alterar o bairro ou a metragem mínima para visualizar outras opções.</p>
+            <button onclick="setStatusTab('todos', document.getElementById('tab-todos'))" class="btn-nav-wa" style="margin-top: 18px; display: inline-block;">Ver Todos os 25 Projetos Ativos</button>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(p => {
+        const card = document.createElement('div');
+        const isLast = p.is_last_units;
+        const isNovvo = p.brand_line === 'novvo';
+        
+        card.className = `proj-card ${isLast ? 'last-units' : 'active-inventory'}`;
+
+        // Brand line badge
+        const brandTag = isNovvo 
+          ? `<span class="proj-brand-tag brand-novvo">⚡ LINHA MEU NOVVO (SMART URBAN)</span>`
+          : `<span class="proj-brand-tag brand-lavvi">👑 COLEÇÃO LAVVI (HIGH-END LUXURY)</span>`;
+
+        // Status badge
+        let badgeClass = 'proj-status-badge';
+        let badgeText = p.status || 'Lançamento';
+        if (isLast) {
+          badgeText = '⚡ Reta Final';
+        }
+
+        // Pill class
+        let pillClass = isLast ? 'avail-last-units' : 'avail-active';
+
+        // Calculate min/max m2 and units
+        let m2Min = 9999, m2Max = 0;
+        let unitsSummary = '';
+        if (p.units && p.units.length > 0) {
+          p.units.forEach(u => {
+            if (u.m2 < m2Min) m2Min = u.m2;
+            if (u.m2 > m2Max) m2Max = u.m2;
+          });
+          unitsSummary = p.units.slice(0, 3).map(u => 
+            `<li><span>${u.tipo || u.planta}:</span> <strong>${u.m2} m² (${u.planta})</strong></li>`
+          ).join('');
+        }
+
+        const m2Text = m2Max > 0 ? `${m2Min} a ${m2Max} m²` : 'Consultar metragens';
+        
+        const waVisita = encodeURIComponent(`Olá Pedro, gostaria de consultar a tabela oficial de disponibilidades e agendar visita no decorado do ${p.nome} (${p.bairro}).`);
+        const actionButtons = `
+          <a href="solarium.html" target="_blank" class="btn-card-solarium">☀️ Solarium 365</a>
+          <a href="https://wa.me/5511966105952?text=${waVisita}" target="_blank" class="btn-card-wa">${isLast ? 'Garantir Unidade &rarr;' : 'Consultar Tabela &rarr;'}</a>
+        `;
+
+        card.innerHTML = `
+          <div class="proj-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+              ${brandTag}
+              <span class="proj-bairro-tag">${p.bairro || 'São Paulo'}</span>
+            </div>
+            <div class="proj-badge-row" style="margin-bottom: 8px;">
+              <span class="${badgeClass}">${badgeText}</span>
+            </div>
+            <h3 class="proj-name">${p.nome}</h3>
+            <div class="proj-avail-pill ${pillClass}">
+              ${p.avail_info || '🟢 Unidades Disponíveis'}
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--lavvi-gold); margin-top: 6px;">
+              ${m2Text}
+            </div>
+            <ul class="proj-units-list">
+              ${unitsSummary}
+            </ul>
+          </div>
+          <div class="proj-card-actions">
+            ${actionButtons}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function applyFilters() {
+      const search = document.getElementById('search-input').value.toLowerCase().trim();
+      filteredProjects = allProjects.filter(p => {
+        // Brand Line / Status tab filter
+        if (currentStatusTab === 'lavvi') {
+          if (p.brand_line !== 'lavvi') return false;
+        } else if (currentStatusTab === 'novvo') {
+          if (p.brand_line !== 'novvo') return false;
+        } else if (currentStatusTab === 'ultimas') {
+          if (!p.is_last_units) return false;
+        }
+
+        // Match Search
+        const nameMatch = p.nome.toLowerCase().includes(search) || (p.bairro && p.bairro.toLowerCase().includes(search));
+        
+        // Match Bairro
+        const bairroMatch = (activeBairro === 'todos') || (p.bairro && p.bairro.toLowerCase() === activeBairro.toLowerCase());
+
+        // Match M2
+        let maxM2InProj = 0;
+        if (p.units) {
+          p.units.forEach(u => { if (u.m2 > maxM2InProj) maxM2InProj = u.m2; });
+        }
+        const m2Match = maxM2InProj >= minM2 || maxM2InProj === 0;
+
+        return nameMatch && bairroMatch && m2Match;
+      });
+      renderProjectsGrid(filteredProjects);
+    }
+
+    function updateM2Slider(val) {
+      minM2 = parseInt(val);
+      document.getElementById('m2-val-display').innerText = val + ' m²';
+      applyFilters();
+    }
+
+    
+    /* =======================================================
+       PEDRO SOARES DIGITAL TWIN — CONVERSATIONAL ENGINE
+       ======================================================= */
+    let isChatOpen = false;
+
+    function toggleChatWidget() {
+      isChatOpen = !isChatOpen;
+      const win = document.getElementById('chat-window');
+      const launcher = document.getElementById('chat-launcher-btn');
+      if (isChatOpen) {
+        win.classList.add('open');
+        document.getElementById('chat-input').focus();
+      } else {
+        win.classList.remove('open');
+      }
+    }
+
+    function handleChatKey(e) {
+      if (e.key === 'Enter') {
+        sendChatMessage();
+      }
+    }
+
+    function sendQuickPrompt(promptText) {
+      const input = document.getElementById('chat-input');
+      input.value = promptText;
+      sendChatMessage();
+    }
+
+    function appendMessage(sender, text, isHtml = false, hasHandoff = false, handoffContext = '') {
+      const body = document.getElementById('chat-body');
+      const msg = document.createElement('div');
+      msg.className = `chat-msg ${sender}`;
+
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      let contentHtml = isHtml ? text : text.replace(/\n/g, '<br>');
+
+      if (hasHandoff) {
+        const encodedCtx = encodeURIComponent(`Olá Pedro, conversei com o seu assistente virtual no site sobre: "${handoffContext || 'informações gerais'}" e gostaria de continuar o atendimento diretamente com você.`);
+        contentHtml += `
+          <div class="chat-handoff-box">
+            <div class="chat-handoff-title">
+              <span>👤</span> Falar com Pedro Soares de carne e osso:
+            </div>
+            <a href="https://wa.me/5511966105952?text=${encodedCtx}" target="_blank" class="btn-chat-wa-cta">
+              💬 Abrir Conversa no WhatsApp &rarr;
+            </a>
+          </div>
+        `;
+      }
+
+      msg.innerHTML = `
+        ${contentHtml}
+        <div class="chat-msg-time">${timeStr}</div>
+      `;
+
+      body.appendChild(msg);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendMessage('user', text);
+      input.value = '';
+
+      // Typing simulation
+      setTimeout(() => {
+        const reply = generatePedroBotResponse(text);
+        appendMessage('bot', reply.text, true, reply.hasHandoff, reply.handoffContext);
+      }, 450);
+    }
+
+    function generatePedroBotResponse(rawQuery) {
+      const q = rawQuery.toLowerCase();
+
+      // 1. HUMAN HANDOFF INTENT
+      if (q.includes('humano') || q.includes('pessoa') || q.includes('atendente') || q.includes('pedro') || q.includes('falar com algu') || q.includes('real person') || q.includes('ligar') || q.includes('whatsapp') || q.includes('telefone') || q.includes('contato')) {
+        return {
+          text: `Com certeza! Nada substitui uma conversa olho no olho com o próprio Pedro. Ele é super acessível, sem qualquer afobação ou empurro de vendas, e adora bater um papo para entender o que realmente faz sentido para a sua família ou portfólio.`,
+          hasHandoff: true,
+          handoffContext: rawQuery
+        };
+      }
+
+      // 2. POLYGLOT GREETINGS (EN, FR, IT, ES, DE)
+      if (q.includes('hello') || q.includes('hi') || q.includes('english') || q.includes('speak english')) {
+        return {
+          text: `Hello! I am Pedro Soares' digital concierge. Pedro lived in Montreal for 5 years and is fluent in 6 languages. We specialize in high-end São Paulo real estate for expatriates and international investors. How may I assist you today? Feel free to ask about prime areas like Moema, Paraíso, or Alto da Boa Vista!`,
+          hasHandoff: true,
+          handoffContext: 'English Expat Inquiry'
+        };
+      }
+      if (q.includes('bonjour') || q.includes('parlez-vous') || q.includes('francais') || q.includes('français')) {
+        return {
+          text: `Bonjour! Je suis le concierge numérique de Pedro Soares. Pedro a vécu 5 ans à Montréal et parle couramment français. Comment puis-je vous aider aujourd'hui avec nos projets d'exception à São Paulo?`,
+          hasHandoff: true,
+          handoffContext: 'French Investor Inquiry'
+        };
+      }
+      if (q.includes('ciao') || q.includes('buongiorno') || q.includes('italiano')) {
+        return {
+          text: `Ciao! Sono il concierge digitale di Pedro Soares. Pedro parla italiano ed è a tua completa disposizione per guidarti nel mercato immobiliare di lusso a San Paolo. Come posso aiutarti?`,
+          hasHandoff: true,
+          handoffContext: 'Italian Inquiry'
+        };
+      }
+      if (q.includes('hola') || q.includes('español')) {
+        return {
+          text: `¡Hola! Soy el asistente virtual de Pedro Soares. Pedro habla español y te puede asesorar con total transparencia sobre las mejores ubicaciones residenciales y de inversión en São Paulo. ¿En qué te puedo ayudar hoy?`,
+          hasHandoff: true,
+          handoffContext: 'Spanish Inquiry'
+        };
+      }
+      if (q.includes('hallo') || q.includes('guten tag') || q.includes('deutsch')) {
+        return {
+          text: `Guten Tag! Ich bin der digitale Assistent von Pedro Soares. Pedro spricht Deutsch und hilft Ihnen gerne bei der Auswahl erstklassiger Immobilien in São Paulo. Wie kann ich Ihnen helfen?`,
+          hasHandoff: true,
+          handoffContext: 'German Inquiry'
+        };
+      }
+
+      // 3. JARDIM DA HÍPICA
+      if (q.includes('hípica') || q.includes('hipica') || q.includes('antônio bandeira') || q.includes('antonio bandeira')) {
+        return {
+          text: `O <strong>Jardim da Hípica</strong> é o projeto mais transformador da Zona Sul! Fica na Rua Antônio Bandeira, 305 (Alto da Boa Vista), bem em frente ao tradicional Clube Hípico de Santo Amaro.<br><br>
+          • <strong>Escala monumental:</strong> Terreno de ~40.000 m² (39.553 m²) + Praça pública de 10.000 m² doada e assinada por Benedito Abbud.<br>
+          • <strong>Clube de Raquetes:</strong> 02 Quadras de Tênis Oficiais de saibro (18x36m), 02 quadras de Beach Tennis e piscina com raia de 60m.<br>
+          • <strong>Serviços:</strong> Gestão CBRE e assessoria esportiva Body Care inclusas no condomínio.<br>
+          • <strong>Plantas:</strong> Residences de 84 a 276 m² (com 4 Private Houses exclusivas) e Studios de 21 a 56 m².<br><br>
+          Está em obras com tabela ativa direto com a diretoria Lavvi. Você gostaria que o Pedro te enviasse a tabela detalhada de fluxos no WhatsApp?`,
+          hasHandoff: true,
+          handoffContext: 'Jardim da Hípica - Tabelas e Plantas'
+        };
+      }
+
+      // 4. T.O.M. PARAÍSO & LE SIX
+      if (q.includes('tom') || q.includes('t.o.m') || q.includes('paraiso') || q.includes('paraíso') || q.includes('le six')) {
+        return {
+          text: `No Paraíso temos dois projetos extraordinários:<br><br>
+          • <strong>T.O.M. Paraíso:</strong> Lançamento Oficial com <strong>380 unidades disponíveis</strong>. Localizado na Rua Des. Eliseu Guilherme, a 700m da Paulista e do Metrô Paraíso. Fica colado ao maior complexo hospitalar da América Latina (BP, HCor, Santa Catarina, Oswaldo Cruz), com demanda de locação médica fortíssima.<br>
+          • <strong>Le Six:</strong> Focado em famílias que buscam máximo conforto e privacidade, com apartamentos de 156 a 521 m² (4 suítes) e padrão escultural de fachada.<br><br>
+          Quer simular a insolação desses prédios no nosso <em>Solarium 365</em> ou prefere receber os books técnicos?`,
+          hasHandoff: true,
+          handoffContext: 'T.O.M. Paraíso e Le Six'
+        };
+      }
+
+      // 4.5. LAVVI VS NOVVO / ROLEX VS TUDOR ANALOGY
+      if (q.includes('novvo') || q.includes('diferen') || q.includes('rolex') || q.includes('tudor') || q.includes('lexus') || q.includes('toyota')) {
+        return {
+          text: `O Pedro adora explicar essa divisão com uma analogia da alta relojoaria e do mercado automotivo:<br><br>
+          • <strong>Coleção Lavvi (O Padrão Rolex / Lexus):</strong> É a nossa linha de altíssimo luxo. Apartamentos amplos de 84 a 521 m², terrenos monumentais de ~40.000 m² (como o Jardim da Hípica), quadras oficiais de tênis de saibro, gestão internacional CBRE e parcerias com grifes globais de alta costura (Versace Home no Villa Moema e Elie Saab no Saffire). Focado em preservação patrimonial e moradia definitiva.<br><br>
+          • <strong>Linha Meu Novvo (O Padrão Tudor / Toyota):</strong> É o nosso smart luxury de alta eficiência. Tem exatamente o mesmo DNA de qualidade e solidez construtiva da Lavvi, mas com plantas inteligentes de 20 a 51 m² coladas a estações de metrô e grandes faculdades (como o Well Perdizes ao lado da PUC-SP). Custo condominial enxuto, baixo valor de entrada e altíssimo yield de locação urbana.<br><br>
+          Qual dessas duas propostas conversa melhor com o seu momento de vida ou estratégia de capital?`,
+          hasHandoff: true,
+          handoffContext: 'Comparação Coleção Lavvi vs Linha Meu Novvo'
+        };
+      }
+
+      // 5. WELL PERDIZES
+      if (q.includes('perdizes') || q.includes('well') || q.includes('cardoso')) {
+        return {
+          text: `O <strong>Well Perdizes</strong> é o grande lançamento na Zona Oeste (Rua Cardoso de Almeida, 218).<br><br>
+          Conta com <strong>805 unidades disponíveis</strong> (studios e compactos inteligentes de 25 a 51 m²). A localização é excelente, próxima à PUC-SP, Allianz Parque e ao futuro eixo da Linha 6-Laranja do Metrô. Perfeito para rentabilidade de locação e liquidez urbana.`,
+          hasHandoff: true,
+          handoffContext: 'Well Perdizes'
+        };
+      }
+
+      // 6. DISPONIBILIDADE GERAL / O QUE TEM HOJE
+      if (q.includes('dispon') || q.includes('estoque') || q.includes('comprar') || q.includes('aberto') || q.includes('venda')) {
+        return {
+          text: `Nosso catálogo tem <strong>25 empreendimentos com unidades ativas para venda hoje</strong>:<br><br>
+          • <strong>Lançamentos e Em Obras:</strong> Jardim da Hípica, T.O.M. Paraíso (380 un), Well Perdizes (805 un), Novvo Vila Prudente (290 un), Le Six Ibirapuera (250 un), Alive (172 un), Novvo Santa Marina (160 un), Petra Brooklin (53 un), Saffire Moema (34 un) e Soleil Klabin (38 un).<br>
+          • <strong>Reta Final (Últimas Unidades):</strong> Novvo Marajoara (apenas 1 unidade!), Galleria Klabin (1 un), Verdant (2 un) e High Wonder (2 un).<br><br>
+          Qual região ou faixa de metragem tem mais a ver com o seu plano?`,
+          hasHandoff: true,
+          handoffContext: 'Consulta de Estoque Disponível'
+        };
+      }
+
+      // 7. SOLD OUT PROJECTS (BARRA FUNDA, GRAND VITRALI, LUMIERE, ETC.)
+      if (q.includes('barra funda') || q.includes('vitrali') || q.includes('ceramica') || q.includes('cerâmica') || q.includes('lumiere') || q.includes('nativ') || q.includes('one park') || q.includes('palazzo vila mariana')) {
+        return {
+          text: `Esse projeto foi um enorme sucesso da Lavvi e está <strong>100% vendido</strong> (todas as unidades comercializadas na incorporação).<br><br>
+          <em>Não trabalhamos com ofertas de repasse no momento</em>, mas a Lavvi possui empreendimentos semelhantes ativos e em construção nessa mesma vizinhança.<br><br>
+          Se você me disser o bairro de sua preferência, posso te mostrar as melhores oportunidades ativas com tabela oficial!`,
+          hasHandoff: true,
+          handoffContext: 'Interesse em projetos semelhantes a opções esgotadas'
+        };
+      }
+
+      // 8. SOLARIUM / SOL / VIZINHANÇA
+      if (q.includes('sol') || q.includes('sombra') || q.includes('solarium') || q.includes('manhã') || q.includes('tarde')) {
+        return {
+          text: `Essa é uma das grandes paixões do Pedro! Criamos a ferramenta <strong>Solarium 365 Pro</strong> aqui no portal para você ver a trajetória solar real e as sombras projetadas pelos prédios vizinhos hora a hora ao longo do ano.<br><br>
+          Você pode abrir o simulador na aba superior ou me pedir ajuda para verificar uma unidade específica!`,
+          hasHandoff: false
+        };
+      }
+
+      // 9. FLUXO DE PAGAMENTO / FINANCIAMENTO / CDI
+      if (q.includes('pagamento') || q.includes('fluxo') || q.includes('obra') || q.includes('financ') || q.includes('cdi') || q.includes('selic') || q.includes('incc')) {
+        return {
+          text: `O Pedro adora desmistificar a matemática da compra na planta:<br><br>
+          • <strong>Alavancagem 35 / 65:</strong> Durante os ~36 meses de obra da Lavvi, você desembolsa cerca de 35% do valor do imóvel em parcelas mensais e anuais. Os outros 65% só são pagos nas chaves (via financiamento bancário ou recursos próprios).<br>
+          • <strong>Efeito CDI:</strong> Enquanto a obra avança, os 65% restantes continuam rendendo juros compostos nas suas aplicações de renda fixa.<br>
+          • <strong>Patrimônio de Afetação:</strong> 100% das obras Lavvi contam com caixa blindado por lei (Lei 4.591/64), garantindo risco zero de crédito da construtora.<br><br>
+          O Pedro pode rodar uma simulação personalizada de fluxo para a unidade que você escolher!`,
+          hasHandoff: true,
+          handoffContext: 'Simulação de Fluxo de Pagamento na Obra'
+        };
+      }
+
+      // 10. DEFAULT / CONVERSATIONAL
+      return {
+        text: `Entendi sua dúvida! O Pedro Soares acompanha de perto o dia a dia desses bairros (ele cresceu na Vila Nova Conceição, viveu no interior e anda muito a pé e de bike por Moema, Brooklin e Paraíso).<br><br>
+        Ele prefere sempre uma abordagem consultiva e acolhedora, sem nenhuma pressão de vendas.<br><br>
+        Você gostaria de saber mais sobre algum bairro ou projeto em específico, ou prefere dar um oi diretamente para o Pedro no WhatsApp?`,
+        hasHandoff: true,
+        handoffContext: rawQuery
+      };
+    }
+
+    // COMPARISON MATRIX (COSIMO & ARIADNE)
+    function setupComparisonSelectors() {
+      const sel1 = document.getElementById('comp-sel-1');
+      const sel2 = document.getElementById('comp-sel-2');
+      const sel3 = document.getElementById('comp-sel-3');
+
+      allProjects.forEach((p, idx) => {
+        const opt1 = new Option(p.nome, idx);
+        const opt2 = new Option(p.nome, idx);
+        const opt3 = new Option(p.nome, idx);
+        sel1.add(opt1);
+        sel2.add(opt2);
+        sel3.add(opt3);
+      });
+
+      // Defaults: Jardim da Hipica (0), Villa Moema or T.O.M Paraiso
+      sel1.selectedIndex = 0;
+      sel2.selectedIndex = Math.min(1, allProjects.length - 1);
+      sel3.selectedIndex = Math.min(2, allProjects.length - 1);
+
+      renderComparison();
+    }
+
+    function renderComparison() {
+      const p1 = allProjects[document.getElementById('comp-sel-1').value];
+      const p2 = allProjects[document.getElementById('comp-sel-2').value];
+      const p3 = allProjects[document.getElementById('comp-sel-3').value];
+
+      const wrapper = document.getElementById('comparison-table-wrapper');
+
+      function getM2Range(p) {
+        let min = 9999, max = 0;
+        if (p.units) p.units.forEach(u => { if (u.m2 < min) min = u.m2; if (u.m2 > max) max = u.m2; });
+        return max > 0 ? `${min} a ${max} m²` : 'Sob Consulta';
+      }
+
+      wrapper.innerHTML = `
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="label-col">Critério de Análise</th>
+              <th>${p1.nome}</th>
+              <th>${p2.nome}</th>
+              <th>${p3.nome}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="label-col">📍 Bairro / Endereço</td>
+              <td><strong>${p1.bairro || 'SP'}</strong></td>
+              <td><strong>${p2.bairro || 'SP'}</strong></td>
+              <td><strong>${p3.bairro || 'SP'}</strong></td>
+            </tr>
+            <tr>
+              <td class="label-col">📐 Metragem das Plantas</td>
+              <td>${getM2Range(p1)}</td>
+              <td>${getM2Range(p2)}</td>
+              <td>${getM2Range(p3)}</td>
+            </tr>
+            <tr>
+              <td class="label-col">🏗️ Status da Obra</td>
+              <td><span class="proj-status-badge">${p1.status || 'Lançamento'}</span></td>
+              <td><span class="proj-status-badge">${p2.status || 'Lançamento'}</span></td>
+              <td><span class="proj-status-badge">${p3.status || 'Lançamento'}</span></td>
+            </tr>
+            <tr>
+              <td class="label-col">🛡️ Patrimônio de Afetação</td>
+              <td>🟢 100% Blindado (Lei 4.591)</td>
+              <td>🟢 100% Blindado (Lei 4.591)</td>
+              <td>🟢 100% Blindado (Lei 4.591)</td>
+            </tr>
+            <tr>
+              <td class="label-col">☀️ Orientação Solar</td>
+              <td>Face Leste / Oeste (Suítes e Terraço)</td>
+              <td>Face Norte Privilegiada</td>
+              <td>Norte / Leste (Alta luminosidade)</td>
+            </tr>
+            <tr>
+              <td class="label-col">💬 Ação Direta</td>
+              <td><a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20quero%20o%20book%20de%20${encodeURIComponent(p1.nome)}" target="_blank" style="color: var(--lavvi-gold); font-weight: 700;">Pedir Book WhatsApp &rarr;</a></td>
+              <td><a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20quero%20o%20book%20de%20${encodeURIComponent(p2.nome)}" target="_blank" style="color: var(--lavvi-gold); font-weight: 700;">Pedir Book WhatsApp &rarr;</a></td>
+              <td><a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20quero%20o%20book%20de%20${encodeURIComponent(p3.nome)}" target="_blank" style="color: var(--lavvi-gold); font-weight: 700;">Pedir Book WhatsApp &rarr;</a></td>
+            </tr>
+          </tbody>
+        </table>
+      `;
+    }
+
+    // NEIGHBORHOOD GUIDES (JEP & CHAMPLAIN)
+    const neighborhoodGuides = {
+      hipica: {
+        title: "Alto da Boa Vista & Jardim da Hípica",
+        schools: [
+          { name: "Chapel School (Escola Maria Imaculada)", desc: "Tradicional currículo americano e IB (a 8 min de carro)" },
+          { name: "Escola Suíço-Brasileira", desc: "Bilinguismo alemão/inglês e padrão internacional de ensino" },
+          { name: "Rudolf Steiner (Waldorf)", desc: "Pioneira na pedagogia humanista e contato profundo com a natureza" }
+        ],
+        hospitals: [
+          { name: "Hospital Israelita Albert Einstein (Unidade Chácara Flora)", desc: "Atendimento ambulatorial e diagnóstico de ponta a 5 min" },
+          { name: "Fleury Medicina Diagnóstica", desc: "Unidade nobre de exames na Adolfo Pinheiro" },
+          { name: "Hospital São Luiz Morumbi", desc: "Pronto-atendimento de alta complexidade a poucos minutos" }
+        ],
+        sports: [
+          { name: "Clube Hípico de Santo Amaro", desc: "O maior clube de hipismo da América Latina, diretamente em frente ao Jardim da Hípica" },
+          { name: "Parque Severo Gomes", desc: "Santuário verde com bosque de amoreiras e pista de cooper silenciosa" },
+          { name: "Complexo de Tênis Jardim da Hípica", desc: "02 Quadras de Tênis Oficiais de Saibro (18x36m) + 02 Quadras de Beach Tennis no condomínio" }
+        ],
+        gastro: [
+          { name: "Bistrôs do Alto da Boa Vista", desc: "Gastronomia alemã e confeitaria artesanal nas ruas de paralelepípedo" },
+          { name: "Empórios de Vinho & Queijos Artesanais", desc: "Adega de rótulos europeus selecionados na região de Santo Amaro" }
+        ],
+        walkscore: {
+          fiveMin: "Praça Pública de 10.000 m² Benedito Abbud e portaria do Clube Hípico",
+          tenMin: "Cafés artesanais, padarias tradicionais e farmácias boutique",
+          fifteenMin: "Parque Severo Gomes e Estação Alto da Boa Vista (Linha 5-Lilás)"
+        },
+        dayInLife: "Um sábado perfeito: despertar com sol suave nas suítes voltadas para a Praça de 10.000 m², caminhar 10 minutos sob a copa das árvores até o Parque Severo Gomes para um café artesanal, voltar para uma partida de tênis na quadra oficial de saibro do condomínio e terminar o dia assistindo ao pôr do sol sobre o Clube Hípico no terraço privativo."
+      },
+      moema: {
+        title: "Moema Pássaros & Moema Índios",
+        schools: [
+          { name: "Escola Móbile", desc: "Uma das escolas mais bem pontuadas do ENEM e vestibulares de SP" },
+          { name: "Colégio Vértice", desc: "Excelência acadêmica e formação integral bilíngue" },
+          { name: "Consa (Colégio Franciscano Nossa Senhora Aparecida)", desc: "Mais de 80 anos de tradição em Moema" }
+        ],
+        hospitals: [
+          { name: "Hospital Alvorada Moema", desc: "Referência em cirurgia e pronto-socorro ortopédico" },
+          { name: "Hospital e Maternidade Santa Joana / Pro Matre", desc: "Acesso rápido pela 23 de Maio" },
+          { name: "Alta Excelência Diagnóstica Moema", desc: "Medicina laboratorial e genética premium" }
+        ],
+        sports: [
+          { name: "Parque do Ibirapuera", desc: "O coração verde de São Paulo a poucas quadras de caminhada plana" },
+          { name: "Club Athletico Paulistano & Sírio", desc: "Clubes de tradição secular a passos de distância" },
+          { name: "Academias de Padel & Beach Tennis", desc: "Centros esportivos modernos em Moema Pássaros" }
+        ],
+        gastro: [
+          { name: "La Guapa Moema & Enotecas de Autor", desc: "Caminhadas gastronômicas pelas ruas Gaivota, Canário e Pintassilgo" },
+          { name: "Restaurantes Italianos Tradicionais", desc: "Massas frescas artesanais e adegas premiadas" }
+        ],
+        walkscore: {
+          fiveMin: "Padarias artesanais, quitandas nobres e empórios gourmet",
+          tenMin: "Estação Moema ou Eucaliptos (Metrô Linha 5) e Shopping Ibirapuera",
+          fifteenMin: "Portão 7 do Parque do Ibirapuera para caminhada matinal"
+        },
+        dayInLife: "A rotina em Moema é feita a pé: caminhar sem carro para buscar pão fresco na Gaivota, estender a caminhada até o Ibirapuera, almoçar em uma cantina charmosa na Canário e voltar para a tranquilidade de um prédio protegido pelo gabarito de Congonhas."
+      },
+      paraiso: {
+        title: "Paraíso & Eixo Vergueiro / Jardins",
+        schools: [
+          { name: "Colégio Dante Alighieri", desc: "Tradição italiana e uma das mais nobres instituições do país" },
+          { name: "Colégio Bandeirantes", desc: "Polo de excelência em ciências exatas e vestibulares de ponta" },
+          { name: "Colégio Santo Américo (acesso rápido)", desc: "Formação humanista beneditina" }
+        ],
+        hospitals: [
+          { name: "HCor (Hospital do Coração)", desc: "Referência latino-americana em cardiologia a passos do T.O.M. Paraíso" },
+          { name: "Beneficência Portuguesa de São Paulo (BP Mirante)", desc: "Maior polo médico privado da América Latina" },
+          { name: "Hospital Santa Catarina & Alemão Oswaldo Cruz", desc: "Centros médicos de padrão internacional na Av. Paulista" }
+        ],
+        sports: [
+          { name: "Parque da Aclimação", desc: "Lago sereno e área verde preservada para caminhadas e relaxamento" },
+          { name: "Centros de Squash & Fitness Boutique", desc: "Academias de alto padrão no Paraíso e Jardins" }
+        ],
+        gastro: [
+          { name: "Japan House & Cafés da Paulista", desc: "Cultura, gastronomia japonesa de autor e arte contemporânea" },
+          { name: "Bistrôs das Ruas Tutóia e Abílio Soares", desc: "Almoços de negócios discretos e alta culinária" }
+        ],
+        walkscore: {
+          fiveMin: "Estação Paraíso (Conexão Linhas 1-Azul e 2-Verde) e HCor",
+          tenMin: "Avenida Paulista, Sesc Paulista e Japan House",
+          fifteenMin: "Shopping Pátio Paulista e Parque da Aclimação"
+        },
+        dayInLife: "O dinamismo cosmopolita de quem faz tudo a pé: metrô na porta para cruzar a cidade, polo médico global para quem atua em saúde e o privilégio de caminhar até a Paulista para exposições e restaurantes nobres."
+      },
+      brooklin: {
+        title: "Brooklin & Polo Chucri Zaidan",
+        schools: [
+          { name: "Colégio Anhembi Morumbi", desc: "Tradição de ensino na Zona Sul" },
+          { name: "Escola Waldorf Rudolf Steiner (fácil acesso)", desc: "Formação integral integrada" },
+          { name: "Graded School (São Paulo Graded - acesso Marginal)", desc: "A mais conceituada escola americana de SP" }
+        ],
+        hospitals: [
+          { name: "Hospital Moriah", desc: "Hotelaria hospitalar e cirurgia robótica de ponta" },
+          { name: "Hospital Israelita Albert Einstein (Morumbi)", desc: "Acesso direto pela Ponte Estaiada" },
+          { name: "Hospital São Luiz Morumbi", desc: "Pronto-atendimento de alta complexidade" }
+        ],
+        sports: [
+          { name: "Sociedade Hípica Paulista (Berrini)", desc: "Tradição equestre e esportiva no coração corporativo" },
+          { name: "Parque Burle Marx", desc: "Jardins históricos projetados pelo mestre Roberto Burle Marx" },
+          { name: "Pistas de Ciclismo Marginal Pinheiros", desc: "Mobilidade ativa e ciclovia moderna do Rio Pinheiros" }
+        ],
+        gastro: [
+          { name: "Restaurantes do MorumbiShopping e Market Place", desc: "Mais de 80 opções gastronômicas internacionais" },
+          { name: "Bistrôs e Wine Bars da Padre Antônio José", desc: "O charme das ruas arborizadas do Brooklin Velho" }
+        ],
+        walkscore: {
+          fiveMin: "Eixo corporativo Chucri Zaidan e shoppings de padrão internacional",
+          tenMin: "Estação Morumbi (Linha 9-Esmeralda / Linha 17-Ouro Monotrilho)",
+          fifteenMin: "Parque Linear Bruno Covas e Ponte Estaiada"
+        },
+        dayInLife: "Para o executivo ou investidor que valoriza tempo: morar a minutos a pé dos principais centros financeiros do país, sem trânsito, com infraestrutura de lazer completa e valorização assegurada pelo adensamento planejado da Operação Urbana."
+      }
+    };
+
+    function switchBairroGuide(bKey, btn) {
+      document.querySelectorAll('.bairro-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderBairroGuide(bKey);
+    }
+
+    function renderBairroGuide(bKey) {
+      const g = neighborhoodGuides[bKey];
+      const container = document.getElementById('guide-content-container');
+
+      container.innerHTML = `
+        <div class="guide-bento-grid">
+          <!-- Card Escolas -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🎓</div>
+            <h4 class="guide-card-title">Escolas Tradicionais & Internacionais</h4>
+            <ul class="guide-card-list">
+              ${g.schools.map(s => `<li><strong>${s.name}</strong><br>${s.desc}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- Card Hospitais -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🏥</div>
+            <h4 class="guide-card-title">Hospitais & Centros de Excelência</h4>
+            <ul class="guide-card-list">
+              ${g.hospitals.map(h => `<li><strong>${h.name}</strong><br>${h.desc}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- Card Esportes -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🎾</div>
+            <h4 class="guide-card-title">Esportes de Raquete & Parques</h4>
+            <ul class="guide-card-list">
+              ${g.sports.map(sp => `<li><strong>${sp.name}</strong><br>${sp.desc}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- Card Gastronomia -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🍷</div>
+            <h4 class="guide-card-title">Gastronomia Autoral & Vinhos</h4>
+            <ul class="guide-card-list">
+              ${g.gastro.map(ga => `<li><strong>${ga.name}</strong><br>${ga.desc}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Walk Radii -->
+        <div class="walk-strip">
+          <div class="walk-cell">
+            <strong>🚶‍♂️ A 5 Minutos a Pé:</strong>
+            <p>${g.walkscore.fiveMin}</p>
+          </div>
+          <div class="walk-cell">
+            <strong>🚶‍♂️ A 10 Minutos a Pé:</strong>
+            <p>${g.walkscore.tenMin}</p>
+          </div>
+          <div class="walk-cell">
+            <strong>🚶‍♂️ A 15 Minutos a Pé:</strong>
+            <p>${g.walkscore.fifteenMin}</p>
+          </div>
+        </div>
+
+        <!-- A Day In The Life -->
+        <div style="background: rgba(149, 123, 43, 0.08); border-left: 3px solid var(--lavvi-gold); padding: 18px 22px; border-radius: 8px; margin-top: 20px;">
+          <strong style="color: var(--lavvi-navy); font-size: 0.88rem; display: block; margin-bottom: 4px;">📖 Um Dia no Bairro por Pedro Soares:</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">${g.dayInLife}</p>
+        </div>
+      `;
+    }
+
+    // DUE DILIGENCE AUDIT ENGINE (PONTES)
+    function toggleAudit(box, idx) {
+      const chk = document.getElementById('chk-' + idx);
+      chk.checked = !chk.checked;
+      if (chk.checked) box.classList.add('checked');
+      else box.classList.remove('checked');
+
+      let score = 0;
+      for (let i = 1; i <= 10; i++) {
+        const c = document.getElementById('chk-' + i);
+        if (c && c.checked) score++;
+      }
+
+      document.getElementById('score-counter').innerText = `${score} / 10`;
+      const statusText = document.getElementById('score-status-text');
+      const descText = document.getElementById('score-desc-text');
+      const waLink = document.getElementById('score-wa-link');
+
+      if (score >= 9) {
+        statusText.innerText = '🟢 GRAU MÁXIMO INSTITUCIONAL — Imóvel 100% Blindado (Padrão Lavvi)';
+        statusText.style.color = '#4ADE80';
+        descText.innerText = 'Todos os 10 requisitos foram atendidos. Segurança registral e construtiva plena.';
+        waLink.href = 'https://wa.me/5511966105952?text=' + encodeURIComponent(`Olá Pedro, fiz a Due Diligence no site (Score ${score}/10) e quero ver a documentação do Jardim da Hípica.`);
+      } else if (score >= 7) {
+        statusText.innerText = '🟡 MODERADO COM RESSALVAS — Exige Auditoria da Matrícula';
+        statusText.style.color = '#FACC15';
+        descText.innerText = 'Alguns pontos não foram comprovados formalmente. Recomenda-se aditamento contratual.';
+        waLink.href = 'https://wa.me/5511966105952?text=' + encodeURIComponent(`Olá Pedro, fiz o Checklist e o imóvel concorrente deu score ${score}/10. Gostaria de uma análise jurídica.`);
+      } else {
+        statusText.innerText = '🔴 ALTO RISCO PATRIMONIAL — Não Assine sem Auditoria Prévia';
+        statusText.style.color = '#F87171';
+        descText.innerText = 'Risco iminente de embargo, desvio de caixa ou problemas com incorporador.';
+        waLink.href = 'https://wa.me/5511966105952?text=' + encodeURIComponent(`Olá Pedro, o imóvel concorrente deu alto risco no checklist (${score}/10). Preciso de orientação urgente.`);
+      }
+    }
+
+    // MAP INITIALIZER (LEAFLET + ESRI LIGHT CANVAS)
+    let mapInstance = null;
+    function initMap() {
+      const mapEl = document.getElementById('map-interactive');
+      if (!mapEl || mapInstance) return;
+
+      mapInstance = L.map('map-interactive', {
+        center: [-23.575, -46.66],
+        zoom: 12,
+        scrollWheelZoom: false
+      });
+
+      // Esri World Light Gray Base & Labels
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+        maxZoom: 16
+      }).addTo(mapInstance);
+
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Labels &copy; Esri',
+        maxZoom: 16
+      }).addTo(mapInstance);
+
+      // Custom Pulsing Gold Pin Icon
+      const goldIcon = L.divIcon({
+        className: 'gpin',
+        html: `
+          <div class="gpin-radar"></div>
+          <svg width="22" height="28" viewBox="0 0 24 32" fill="none" style="filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4)); position: relative; z-index: 2;">
+            <path d="M12 0C5.37 0 0 5.37 0 12C0 21 12 32 12 32C12 32 24 21 24 12C24 5.37 18.63 0 12 0Z" fill="#182842"/>
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 19.5 12 29.5 12 29.5C12 29.5 22 19.5 22 12C22 6.48 17.52 2 12 2Z" fill="#957b2b"/>
+            <circle cx="12" cy="12" r="5" fill="#ffffff"/>
+          </svg>
+        `,
+        iconSize: [22, 28],
+        iconAnchor: [11, 28],
+        popupAnchor: [0, -26]
+      });
+
+      // Add Active Markers
+      allProjects.forEach(p => {
+        if (p.ll && p.ll.length === 2 && p.ll[0] !== 0) {
+          const marker = L.marker(p.ll, { icon: goldIcon }).addTo(mapInstance);
+          const waLink = `https://wa.me/5511966105952?text=${encodeURIComponent('Olá Pedro, vi o ' + p.nome + ' no mapa interativo e gostaria do dossiê.')}`;
+
+          marker.bindPopup(`
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; min-width: 200px; padding: 4px;">
+              <div style="font-size: 0.65rem; font-weight: 700; color: #957b2b; text-transform: uppercase;">${p.bairro || 'São Paulo'}</div>
+              <h4 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; margin: 2px 0 6px; color: #182842;">${p.nome}</h4>
+              <div style="font-size: 0.72rem; color: #64748B; margin-bottom: 8px;">Status: <strong>${p.status || 'Lançamento'}</strong></div>
+              <div style="display: flex; gap: 6px;">
+                <a href="solarium.html" target="_blank" style="flex: 1; text-align: center; background: #f8f9fa; border: 1px solid #d1d5db; color: #182842; font-size: 0.68rem; padding: 6px; border-radius: 4px; text-decoration: none; font-weight: 600;">☀️ Solarium</a>
+                <a href="${waLink}" target="_blank" style="flex: 1; text-align: center; background: #182842; color: #fff; font-size: 0.68rem; padding: 6px; border-radius: 4px; text-decoration: none; font-weight: 700;">WhatsApp &rarr;</a>
+              </div>
+            </div>
+          `);
+        }
+      });
+    }
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProjectsGrid(allProjects);
+      setupComparisonSelectors();
+      renderBairroGuide('hipica');
+      initMap();
+    });
+  </script>
+
+  <!-- HERO CAROUSEL & POI RADAR JAVASCRIPT -->
+  <script>
+    // 1. HERO CAROUSEL CONTROLLER
+    let currentHeroSlide = 0;
+    const heroSlides = document.querySelectorAll('.carousel-slide');
+    const heroDots = document.querySelectorAll('.carousel-dot');
+    let heroTimer = null;
+
+    function showHeroSlide(index) {
+      if (!heroSlides.length) return;
+      heroSlides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === index);
+      });
+      heroDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === index);
+      });
+      currentHeroSlide = index;
+    }
+
+    function nextHeroSlide() {
+      const next = (currentHeroSlide + 1) % heroSlides.length;
+      showHeroSlide(next);
+    }
+
+    function prevHeroSlide() {
+      const prev = (currentHeroSlide - 1 + heroSlides.length) % heroSlides.length;
+      showHeroSlide(prev);
+    }
+
+    function goHeroSlide(index) {
+      showHeroSlide(index);
+      resetHeroTimer();
+    }
+
+    function resetHeroTimer() {
+      clearInterval(heroTimer);
+      heroTimer = setInterval(nextHeroSlide, 5500);
+    }
+
+    resetHeroTimer();
+
+    // 2. POI RADAR GIS MAP CONTROLLER
+    let radarData = null;
+    let radarMap = null;
+    let radarTileLayer = null;
+    let radarCircleLayer = null;
+    let radarMarkersLayer = null;
+    let currentRadarCluster = 'hipica';
+    let currentRadarCategory = 'all';
+    let isGmapsSatelliteActive = false;
+
+    function toggleRadarGmaps() {
+      const btn = document.getElementById('btn-toggle-radar-gmaps');
+      if (!radarMap) return;
+      if (!isGmapsSatelliteActive) {
+        isGmapsSatelliteActive = true;
+        if (btn) {
+          btn.innerHTML = '🗺️ Mapa Claro';
+          btn.style.background = 'var(--lavvi-gold)';
+          btn.style.color = '#000';
+        }
+        if (radarTileLayer) radarMap.removeLayer(radarTileLayer);
+        radarTileLayer = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google Maps',
+          maxZoom: 20
+        }).addTo(radarMap);
+      } else {
+        isGmapsSatelliteActive = false;
+        if (btn) {
+          btn.innerHTML = '🛰️ Google Satélite';
+          btn.style.background = 'rgba(255,255,255,0.08)';
+          btn.style.color = 'var(--lavvi-navy)';
+        }
+        if (radarTileLayer) radarMap.removeLayer(radarTileLayer);
+        radarTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+          attribution: '&copy; OpenStreetMap &copy; CARTO',
+          subdomains: 'abcd',
+          maxZoom: 19
+        }).addTo(radarMap);
+      }
+    }
+
+    async function initRadar() {
+      try {
+        const res = await fetch('poi_radar_data.json');
+        if (res.ok) {
+          radarData = await res.json();
+          setupRadarMap();
+        }
+      } catch (e) {
+        console.warn('Erro ao carregar poi_radar_data.json', e);
+      }
+    }
+
+    function setupRadarMap() {
+      if (!radarData || !document.getElementById('radar-map')) return;
+
+      const cluster = radarData.projects[currentRadarCluster];
+      if (!cluster) return;
+
+      radarMap = L.map('radar-map', {
+        center: [cluster.lat, cluster.lon],
+        zoom: 14,
+        zoomControl: true,
+        scrollWheelZoom: false
+      });
+
+      // CartoDB Positron Luxury Light Tiles
+      radarTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(radarMap);
+
+      radarCircleLayer = L.layerGroup().addTo(radarMap);
+      radarMarkersLayer = L.layerGroup().addTo(radarMap);
+
+      renderRadarCluster();
+    }
+
+    function switchRadarCluster(key, btn) {
+      currentRadarCluster = key;
+      document.querySelectorAll('.cluster-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      renderRadarCluster();
+    }
+
+    function filterRadarCategory(cat, btn) {
+      currentRadarCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      renderRadarCluster();
+    }
+
+    function renderRadarCluster() {
+      if (!radarData || !radarMap) return;
+      const cluster = radarData.projects[currentRadarCluster];
+      if (!cluster) return;
+
+      // Update Center & 3km Circle
+      radarCircleLayer.clearLayers();
+      radarMarkersLayer.clearLayers();
+
+      radarMap.setView([cluster.lat, cluster.lon], 14);
+
+      // Draw 3km Radius Circle with Gold Outline
+      L.circle([cluster.lat, cluster.lon], {
+        radius: 3000,
+        color: '#D4AF37',
+        weight: 2,
+        dashArray: '6, 6',
+        fillColor: '#D4AF37',
+        fillOpacity: 0.04
+      }).addTo(radarCircleLayer);
+
+      // Draw Anchor Project Marker
+      const anchorIcon = L.divIcon({
+        className: 'anchor-marker-icon',
+        html: `<div style="background: #182842; border: 2px solid #D4AF37; color: #F3DC8A; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">🏢</div>`,
+        iconSize: [36, 36],
+        iconAnchor: [18, 18]
+      });
+
+      L.marker([cluster.lat, cluster.lon], { icon: anchorIcon })
+        .bindPopup(`<strong>${cluster.nome}</strong><br>${cluster.endereco}`)
+        .addTo(radarCircleLayer);
+
+      // Update Info Header
+      document.getElementById('radar-score-display').innerHTML = `${cluster.lifestyle_score} <span style="font-size: 1rem; color: #94a3b8; font-weight: 400;">/ 100</span>`;
+      document.getElementById('radar-pois-count-badge').innerText = `${cluster.nearby_pois_count} POIs no Raio de 3 km`;
+
+      // Filter & Render POIs
+      let pois = cluster.pois;
+      if (currentRadarCategory !== 'all') {
+        pois = pois.filter(p => p.cat === currentRadarCategory);
+      }
+
+      const streamContainer = document.getElementById('radar-poi-stream');
+      streamContainer.innerHTML = '';
+
+      if (pois.length === 0) {
+        streamContainer.innerHTML = `<p style="font-size: 0.8rem; color: #94a3b8; text-align: center; padding: 20px;">Nenhum ponto nesta categoria dentro do raio estendido.</p>`;
+        return;
+      }
+
+      pois.forEach(poi => {
+        const catInfo = radarData.categories[poi.cat] || { icon: '📍', color: '#182842' };
+
+        // Add Marker
+        const poiIcon = L.divIcon({
+          className: 'poi-custom-marker',
+          html: `<div style="background: #fff; border: 2px solid ${catInfo.color}; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">${catInfo.icon}</div>`,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
+        });
+
+        L.marker([poi.lat, poi.lon], { icon: poiIcon })
+          .bindPopup(`<strong>${poi.nome}</strong><br>${poi.tipo}<br>Distância: ${poi.dist_km} km (${poi.drive_min} min carro)`)
+          .addTo(radarMarkersLayer);
+
+        // Add Card to stream
+        const card = document.createElement('div');
+        card.className = 'poi-item-card';
+        card.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 18px;">${catInfo.icon}</span>
+            <div>
+              <div class="poi-item-name">${poi.nome}</div>
+              <div class="poi-item-sub">${poi.tipo} • ${poi.destaque}</div>
+            </div>
+          </div>
+          <div class="poi-dist-tag">${poi.dist_km} km</div>
+        `;
+        streamContainer.appendChild(card);
+      });
+    }
+
+    // Initialize Radar on load
+    window.addEventListener('load', () => {
+      initRadar();
+    });
+  </script>
+
+
+  <!-- MULTILINGUAL TRANSLATION ENGINE (ARIADNE 6-LANG SYSTEM) -->
+  <script>
+    const i18nDict = {
+      pt: {
+        eyebrow: "PORTAL DE INTELIGÊNCIA & FERRAMENTAS IMOBILIÁRIAS",
+        title: "A Coleção Completa dos Projetos Lavvi<br><em>com Recursos Exclusivos de Decisão.</em>",
+        lead: "Curadoria patrimonial independente, simulador solar 3D, radar de 3 km e auditoria de segurança jurídica para investidores e famílias de alta renda em São Paulo.",
+        wa_btn: "💬 WhatsApp Pedro",
+        wa_msg: "Olá Pedro! Estou no seu portal e gostaria de conversar sobre os empreendimentos Lavvi.",
+        badge: "Curadoria Independente & Consultoria Especializada | Lior Lavvi"
+      },
+      en: {
+        eyebrow: "PRIVATE WEALTH INTELLIGENCE & DECISION PORTAL",
+        title: "The Complete Lavvi Real Estate Collection<br><em>with Proprietary Decision Engines.</em>",
+        lead: "Independent wealth advisory, 3D solar trajectory simulation, 3km neighborhood radar, and legal due diligence for global investors and high-net-worth families in São Paulo.",
+        wa_btn: "💬 WhatsApp Pedro",
+        wa_msg: "Hello Pedro! I am browsing your Lavvi advisory portal and would like to consult on prime São Paulo real estate.",
+        badge: "Independent Private Advisory & Lior Lavvi Partner | São Paulo"
+      },
+      fr: {
+        eyebrow: "PORTAIL DE GESTION DE PATRIMOINE IMMOBILIER PRIVÉ",
+        title: "La Collection Immobilière Complète Lavvi<br><em>avec Moteurs Exclusifs de Décision.</em>",
+        lead: "Conseil patrimonial indépendant, simulation solaire 3D, radar de quartier 3km et due diligence juridique pour investisseurs internationaux à São Paulo.",
+        wa_btn: "💬 Contacter Pedro",
+        wa_msg: "Bonjour Pedro! Je consulte votre portail immobilier Lavvi et souhaite échanger sur les opportunités à São Paulo.",
+        badge: "Conseil Indépendant Haut de Gamme | Partenaire Lior Lavvi"
+      },
+      it: {
+        eyebrow: "PORTALE DI INTELLIGENZA IMMOBILIARE PRIVATA",
+        title: "La Collezione Immobiliare Completa Lavvi<br><em>con Strumenti Esclusivi di Decisione.</em>",
+        lead: "Consulenza patrimoniale indipendente, simulazione solare 3D, radar di quartiere a 3km e due diligence legale per investitori ad alto patrimonio a San Paolo.",
+        wa_btn: "💬 Contatta Pedro",
+        wa_msg: "Ciao Pedro! Sto visualizzando il tuo portale Lavvi e vorrei maggiori informazioni sul mercato di San Paolo.",
+        badge: "Consulenza Patrimoniale Indipendente | Partner Lior Lavvi"
+      },
+      es: {
+        eyebrow: "PORTAL DE INTELIGENCIA INMOBILIARIA PRIVADA",
+        title: "La Colección Inmobiliaria Completa Lavvi<br><em>con Motores Exclusivos de Decisión.</em>",
+        lead: "Asesoría patrimonial independiente, simulador solar 3D, radar vecinal de 3km y due diligence jurídica para inversores de alto patrimonio en São Paulo.",
+        wa_btn: "💬 WhatsApp Pedro",
+        wa_msg: "¡Hola Pedro! Estoy en tu portal de Lavvi y me gustaría conversar sobre inversiones en São Paulo.",
+        badge: "Asesoría Patrimonial Privada | Consultor Lior Lavvi"
+      },
+      de: {
+        eyebrow: "PRIVATE IMMOBILIEN-INTELLIGENZ & ENTSCHEIDUNGSPORTAL",
+        title: "Die Komplette Lavvi Immobilien-Kollektion<br><em>mit Exklusiven Entscheidungs-Tools.</em>",
+        lead: "Unabhängige Vermögensberatung, 3D-Sonnensimulation, 3km Nachbarschaftsradar und rechtliche Due Diligence für anspruchsvolle Investoren in São Paulo.",
+        wa_btn: "💬 Pedro kontaktieren",
+        wa_msg: "Hallo Pedro! Ich besuche Ihr Lavvi-Portal und möchte mich über Premium-Immobilien in São Paulo informieren.",
+        badge: "Unabhängige Vermögensberatung & Lior Lavvi Partner | São Paulo"
+      }
+    };
+
+    function setLanguage(lang) {
+      if (!i18nDict[lang]) return;
+      const dict = i18nDict[lang];
+
+      // Update Active Button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.innerText.toLowerCase().includes(lang)) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Update Texts
+      const eyebrow = document.getElementById('hero-eyebrow-text');
+      if (eyebrow) eyebrow.innerHTML = dict.eyebrow;
+
+      const title = document.getElementById('hero-title-text');
+      if (title) title.innerHTML = dict.title;
+
+      const lead = document.getElementById('hero-lead-text');
+      if (lead) lead.innerHTML = dict.lead;
+
+      // Update WhatsApp Link
+      const waBtn = document.getElementById('nav-wa-btn');
+      if (waBtn) {
+        waBtn.innerHTML = dict.wa_btn;
+        waBtn.href = `https://wa.me/5511966105952?text=${encodeURIComponent(dict.wa_msg)}`;
+      }
+
+      // Update Floating WA Button if exists
+      const floatWa = document.querySelector('.floating-wa-btn');
+      if (floatWa) {
+        floatWa.href = `https://wa.me/5511966105952?text=${encodeURIComponent(dict.wa_msg)}`;
+      }
+
+      // Update Brand Badge
+      const brandBadge = document.querySelector('.brand-badge');
+      if (brandBadge) brandBadge.innerText = dict.badge;
+
+      // Save preference
+      localStorage.setItem('preferred_lang', lang);
+    }
+
+    // Auto-detect or restore preferred language
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferred_lang') || 'pt';
+      setLanguage(savedLang);
+    });
+  </script>
+
+
+  <!-- =======================================================
+       CONCIERGE CHATBOT WIDGET (PEDRO'S DIGITAL ASSISTANT)
+       ======================================================= -->
+  <button class="chat-launcher-btn" onclick="toggleChatWidget()" id="chat-launcher-btn" aria-label="Abrir assistente virtual">
+    <div class="chat-launcher-avatar">
+      <span>PS</span>
+      <span class="chat-online-dot"></span>
+    </div>
+    <div class="chat-launcher-info">
+      <span class="chat-launcher-title">Assistente do Pedro</span>
+      <span class="chat-launcher-sub">🟢 Online • Fale comigo</span>
+    </div>
+  </button>
+
+  <div class="chat-window" id="chat-window" role="dialog" aria-label="Chat com Assistente do Pedro Soares">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="chat-header-user">
+        <div class="chat-header-avatar">PS</div>
+        <div>
+          <div class="chat-header-name">Assistente do Pedro Soares</div>
+          <div class="chat-header-badge">🤖 Inteligência Virtual Oficial</div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20estou%20no%20seu%20portal%20e%20gostaria%20de%20falar%20diretamente%20com%20voc%C3%AA." 
+           target="_blank" class="btn-chat-human" title="Falar com Pedro Soares no WhatsApp">
+          👤 Falar com Pedro
+        </a>
+        <button class="btn-chat-close" onclick="toggleChatWidget()" aria-label="Fechar chat">&times;</button>
+      </div>
+    </div>
+
+    <!-- Messages Body -->
+    <div class="chat-body" id="chat-body">
+      <!-- Welcome Message -->
+      <div class="chat-msg bot">
+        Olá! Sou o <strong>assistente virtual do Pedro Soares</strong>. 
+        <br><br>
+        O Pedro me programou para te receber com a mesma calma, transparência e conhecimento técnico que ele tem de São Paulo. Posso tirar dúvidas sobre os empreendimentos Lavvi, metragens, insolação, estágio de obras e localização.
+        <br><br>
+        <em>E lembre-se: a qualquer momento você pode me pedir para <strong>falar com uma pessoa de verdade</strong>, e eu te conecto direto ao WhatsApp pessoal dele!</em>
+        <br><br>
+        Como posso te ajudar hoje?
+        <div class="chat-msg-time">Agora</div>
+      </div>
+    </div>
+
+    <!-- Quick Chips -->
+    <div class="chat-quick-chips">
+      <button class="chat-chip" onclick="sendQuickPrompt('Me conte sobre o Jardim da Hípica')">🎾 Jardim da Hípica</button>
+      <button class="chat-chip" onclick="sendQuickPrompt('Qual a diferença entre T.O.M. Paraíso e Le Six?')">🏙️ T.O.M. vs Le Six</button>
+      <button class="chat-chip" onclick="sendQuickPrompt('Quais empreendimentos têm unidades disponíveis hoje?')">🔥 Disponíveis hoje</button>
+      <button class="chat-chip" onclick="sendQuickPrompt('Como funciona o fluxo de pagamento na obra?')">💰 Fluxo de Obra</button>
+      <button class="chat-chip" onclick="sendQuickPrompt('Quero falar com uma pessoa de verdade')">👤 Falar com o Pedro</button>
+    </div>
+
+    <!-- Input Footer -->
+    <div class="chat-footer">
+      <input type="text" class="chat-input" id="chat-input" placeholder="Pergunte sobre metragens, projetos ou bairros..." onkeydown="handleChatKey(event)" />
+      <button class="chat-send-btn" onclick="sendChatMessage()" aria-label="Enviar mensagem">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+    <div class="chat-disclaimer">
+      Curadoria técnica Pedro Soares (CRECI 30.906) • Atendimento humanizado direto no WhatsApp
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Rota Oculta de Vinhos & Lifestyle: Alto da Boa Vista e Granja Julieta | Pedro Soares</title>
+  
+  <!-- SEO & Open Graph Meta -->
+  <meta name="description" content="A rota não-óbvia de vinhos, jazz, adegas intimistas e alta gastronomia no Alto da Boa Vista, Granja Julieta e Chácara Flora. Curadoria independente de quem vive o bairro por Pedro Soares.">
+  <meta name="keywords" content="Wine Bar Alto da Boa Vista, Vinhos Granja Julieta, Casa Santo Antonio Michelin, Casa Vitis, Miles Wine Jazz, Clube Hipico Santo Amaro, Pedro Soares Lavvi">
+  
+  <!-- Schema.org JSON-LD for Local Authority, Wine Critics & EEAT -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Circuito Secreto de Vinhos, Jazz & Lifestyle no Alto da Boa Vista e Granja Julieta",
+    "description": "Curadoria exclusiva dos endereços mais discretos de vinhos nobres, enotecas, gastronomia Michelin e esportes clássicos na Zona Sul de SP.",
+    "author": {
+      "@type": "Person",
+      "name": "Pedro Soares",
+      "jobTitle": "Consultor Patrimonial & Sommelier Amador de Vizinhança",
+      "telephone": "+55-11-96610-5952"
+    },
+    "itemListElement": [
+      {
+        "@type": "Winery",
+        "name": "Casa Vitis Wine Bar",
+        "address": "Santo Amaro / Alto da Boa Vista, São Paulo",
+        "description": "Wine bar intimista especializado em voos de degustação (flights) e rótulos artesanais."
+      },
+      {
+        "@type": "Restaurant",
+        "name": "Casa Santo Antônio",
+        "address": "Av. João Carlos da Silva Borges, 764, Granja Julieta, São Paulo",
+        "url": "https://casasantoantonio.com",
+        "award": "Michelin Bib Gourmand"
+      },
+      {
+        "@type": "BarOrPub",
+        "name": "Miles Wine & Jazz Bar",
+        "address": "Rua Joaquim Nabuco, Campo Belo / Eixo Chácara Flora, São Paulo",
+        "url": "https://mileswinebar.com.br"
+      },
+      {
+        "@type": "Restaurant",
+        "name": "Panvino Wine Bistrô",
+        "address": "Rua Roque Petrella, 235, Brooklin, São Paulo",
+        "url": "https://panvino.com.br"
+      },
+      {
+        "@type": "SportsClub",
+        "name": "Clube Hípico de Santo Amaro",
+        "address": "Rua Visconde de Taunay, 508, Santo Amaro, São Paulo",
+        "url": "https://chsa.com.br"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #060911;
+      --surface: #0D1322;
+      --surface-card: #121A2F;
+      --surface-hover: #19233D;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(212, 175, 55, 0.3);
+      --gold: #D4AF37;
+      --gold-light: #F3DC8A;
+      --emerald: #10B981;
+      --blue: #38BDF8;
+      --wine: #9E1B32;
+      --wine-light: #F43F5E;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 9, 17, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: #1e293b url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80') center/cover;
+    }
+    .brand-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--gold-light);
+    }
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-portal {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-portal:hover {
+      background: var(--surface-hover);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+    .btn-wa-header {
+      background: #25D366;
+      color: #000;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+    .btn-wa-header:hover { transform: scale(1.03); }
+
+    /* Hero Section */
+    .hero-container {
+      max-width: 1200px;
+      margin: 40px auto 30px;
+      padding: 0 24px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(158, 27, 50, 0.2);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #FDA4AF;
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #FFF;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 840px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    /* Unpretentious Bridge Card */
+    .bridge-banner {
+      background: linear-gradient(135deg, rgba(18, 26, 47, 0.95) 0%, rgba(26, 17, 28, 0.95) 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .bridge-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    .bridge-text h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bridge-text p {
+      font-size: 0.88rem;
+      color: #CBD5E1;
+      line-height: 1.55;
+    }
+    .bridge-action {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn-hipica-link {
+      background: var(--gold);
+      color: #060911;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 12px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-hipica-link:hover {
+      background: #FFF;
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Filter & Controls Toolbar */
+    .controls-bar {
+      max-width: 1200px;
+      margin: 0 auto 30px;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .pills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .filter-pill:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFF;
+    }
+    .filter-pill.active {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+    .search-input-box {
+      position: relative;
+      min-width: 280px;
+    }
+    .search-input-box input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 16px 8px 36px;
+      color: #FFF;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input-box input:focus {
+      border-color: var(--gold);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    /* Cards Grid */
+    .grid-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .poi-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .poi-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-media {
+      height: 190px;
+      position: relative;
+      background: #1E293B;
+      overflow: hidden;
+    }
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .poi-card:hover .card-img {
+      transform: scale(1.05);
+    }
+    .card-category-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(6, 9, 17, 0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      color: var(--gold-light);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .card-proximity-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(16, 185, 129, 0.92);
+      color: #060911;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .bookmark-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(6, 9, 17, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFF;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .bookmark-btn:hover, .bookmark-btn.saved {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .card-address {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Insider Wine / Gastronomy Specs */
+    .specs-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .spec-micro-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #CBD5E1;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .spec-micro-pill.highlight {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: rgba(212, 175, 55, 0.3);
+      color: var(--gold-light);
+    }
+
+    /* Pedro's Personal Curator Note */
+    .pedro-note-box {
+      background: rgba(212, 175, 55, 0.05);
+      border-left: 3px solid var(--gold);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 16px;
+    }
+    .pedro-note-header {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pedro-note-content {
+      font-size: 0.84rem;
+      color: #E2E8F0;
+      line-height: 1.5;
+    }
+
+    /* Authority Citation Box */
+    .citation-box {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+    }
+    .authority-tag {
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .authority-tag strong {
+      color: #CBD5E1;
+    }
+    .external-ref-link {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+    .external-ref-link:hover {
+      color: var(--gold-light);
+      text-decoration: underline;
+    }
+
+    /* Card Action Footer */
+    .card-actions-bar {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .btn-card-action {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-card-action:hover {
+      background: var(--surface-hover);
+      color: #FFF;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--surface-card);
+      border: 1px solid var(--gold);
+      color: #FFF;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: none;
+      z-index: 1000;
+    }
+
+    /* Footer */
+    .page-footer {
+      max-width: 1200px;
+      margin: 60px auto 0;
+      padding: 30px 24px 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <a href="lab.html" class="brand-group">
+      <div class="brand-avatar"></div>
+      <div>
+        <div class="brand-title">Pedro Soares | Curadoria & Vinhos</div>
+        <div class="brand-sub">A Rota Oculta &bull; Alto da Boa Vista, Granja Julieta & Flora</div>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a href="lab.html" class="btn-portal">← Voltar ao Portal Central</a>
+      <a href="https://wa.me/5511966105952?text=Olá%20Pedro,%20vi%20a%20sua%20curadoria%20de%20vinhos%20e%20lifestyle%20do%20Alto%20da%20Boa%20Vista" target="_blank" class="btn-wa-header">
+        <span>💬 WhatsApp Pedro</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="hero-container">
+    <div class="hero-badge">
+      <span>🍷 ENOGASTROMONIA &bull; ROTAS NÃO-ÓBVIAS</span>
+      <span>•</span>
+      <span>ED. OUTUBRO 2026</span>
+    </div>
+    <h1 class="hero-title">
+      A Rota Oculta de <span>Vinhos & Vizinhança</span>
+    </h1>
+    <p class="hero-lead">
+      Esqueça os folhetos de corretor que só citam escolas e hospitais. Uma vizinhança de verdade para quem aprecia a vida se revela nas adegas intimistas escondidas em casarões dos anos 60, nas degustações de vinhos biodinâmicos em taça, nas noites de jazz e no impacto silencioso das raquetes sobre o saibro centenário.
+    </p>
+
+    <!-- The Unpretentious Bridge -->
+    <div class="bridge-banner">
+      <div class="bridge-text">
+        <h4>🏛️ O Olhar de Pedro Soares sobre o Bairro</h4>
+        <p>
+          "Moro e caminho por essas calçadas. Quem busca um imóvel na região não está procurando m² de gesso; está escolhendo a mesa onde vai abrir uma garrafa de Barolo na sexta-feira e a rua onde pode caminhar com segurança às 22h. É exatamente nessa confluência que o <strong>Jardim da Hípica Lavvi</strong> se ergue — com terreno de 40.000 m² em frente ao CHSA e praça de 10.000 m²."
+        </p>
+      </div>
+      <div class="bridge-action">
+        <a href="lab.html#hipica" class="btn-hipica-link">Conhecer o Jardim da Hípica &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter & Search Bar -->
+  <div class="controls-bar">
+    <div class="pills-container">
+      <button class="filter-pill active" data-cat="all">Todos os Garimpos (10)</button>
+      <button class="filter-pill" data-cat="vinhos">🍷 Wine Bars & Adegas Ocultas</button>
+      <button class="filter-pill" data-cat="gastronomia">🍝 Michelin & Gastronomia de Autor</button>
+      <button class="filter-pill" data-cat="raquetes">🎾 Saibro, Padel & Tradição</button>
+      <button class="filter-pill" data-cat="refugios">🌳 Refúgios Verdes & Silêncio</button>
+    </div>
+    <div class="search-input-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Filtrar por vinho, sommelier, saibro...">
+    </div>
+  </div>
+
+  <!-- Cards Grid -->
+  <main class="grid-container" id="cardsGrid">
+
+    <!-- 01. Casa Santo Antônio (Michelin Bib Gourmand & Adega Bruno Taddeucci) -->
+    <article class="poi-card" data-cat="gastronomia" data-keywords="michelin bib gourmand casa santo antonio vinho italiano bruno taddeucci fasano granja julieta">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=700&q=80" alt="Casa Santo Antônio Restaurante">
+        <span class="card-category-badge">⭐ Michelin Bib Gourmand</span>
+        <span class="card-proximity-badge">🚗 4 min (1,6 km)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('casasantoantonio', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Casa Santo Antônio (Granja Julieta)</h3>
+        <p class="card-address">📍 Av. João Carlos da Silva Borges, 764 • Casarão dos Anos 60</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🍷 Curadoria: Bruno Taddeucci (ex-Fasano)</span>
+          <span class="spec-micro-pill">Carta Premiada</span>
+          <span class="spec-micro-pill">Terroir Italiano & Brasileiro</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "Instalado em um casarão restaurado dos anos 1960. O sommelier e sócio Bruno Taddeucci trouxe a precisão do Grupo Fasano para uma atmosfera de bairro intimista. A seleção de pequenos produtores italianos e vinhos de altitude da Serra da Mantiqueira é uma das mais inteligentes de SP."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Chancela: <strong>Guia Michelin Brasil</strong></span>
+          <a href="https://casasantoantonio.com" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Site Oficial &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Casa+Santo+Antonio+Granja+Julieta" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Casa Santo Antônio')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02. Casa Vitis (Wine Bar Intimista Santo Amaro / Alto da Boa Vista) -->
+    <article class="poi-card" data-cat="vinhos" data-keywords="casa vitis wine bar taça flights degustação queijos artesanais santo amaro">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80" alt="Casa Vitis Wine Bar">
+        <span class="card-category-badge">🍷 Wine Bar & Flights</span>
+        <span class="card-proximity-badge">🚶 7 min a pé (650m)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('casavitis', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Casa Vitis Wine Bar & Degustação</h3>
+        <p class="card-address">📍 Polo Santo Amaro / Alto da Boa Vista</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🍇 Flights Comparativos</span>
+          <span class="spec-micro-pill">Vinhos em Taça</span>
+          <span class="spec-micro-pill">Queijos Vivos da Canastra</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "O segredo mais bem guardado para quem quer tomar vinho sério sem formalidade. Eles trabalham com 'flights' de 3 ou 4 taças para comparar cepas e terroirs, servidos na temperatura cirúrgica de adega com tábuas de frios artesanais."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Referência: <strong>Duo Gourmet & Rota Enogastronômica</strong></span>
+          <a href="https://maps.google.com/?q=Casa+Vitis+Santo+Amaro" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Localizar &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Casa+Vitis+Santo+Amaro" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Casa Vitis Wine Bar')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03. Miles Wine & Jazz Bar (Campo Belo / Eixo Chácara Flora) -->
+    <article class="poi-card" data-cat="vinhos" data-keywords="miles wine jazz bar musica ao vivo blues voos vinhos campo belo chacara flora">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=700&q=80" alt="Miles Wine and Jazz Bar">
+        <span class="card-category-badge">🎷 Wine & Jazz Bar</span>
+        <span class="card-proximity-badge">🚗 6 min (2,4 km)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('mileswine', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Miles Wine & Jazz Bar</h3>
+        <p class="card-address">📍 Rua Joaquim Nabuco / Eixo Chácara Flora</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🎵 Jazz & Blues Trio ao Vivo</span>
+          <span class="spec-micro-pill">Vinhos Naturais & Orgânicos</span>
+          <span class="spec-micro-pill">Clima Intimista</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "Homenagem explícita a Miles Davis. Luz baixa, sofás confortáveis e trios de jazz acústico tocando ao vivo enquanto você experimenta vinhos biodinâmicos de pequenos produtores. Perfeito para terminar o dia longe do ruído de São Paulo."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Fonte: <strong>mileswinebar.com.br</strong></span>
+          <a href="https://mileswinebar.com.br" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Programação &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Miles+Wine+Jazz+Bar" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Miles Wine Bar')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04. Panvino Wine Bistrô (Brooklin / Roque Petrella) -->
+    <article class="poi-card" data-cat="vinhos" data-keywords="panvino wine bistrô tap wine torneira vinho massas artesanais roque petrella brooklin">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=700&q=80" alt="Panvino Wine Bistrô">
+        <span class="card-category-badge">🍷 Tap Wine & Cozinha Italiana</span>
+        <span class="card-proximity-badge">🚗 7 min (2,8 km)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('panvino', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Panvino Wine Bistrô</h3>
+        <p class="card-address">📍 Rua Roque Petrella, 235 • Brooklin</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🚰 Tap Wine com Nitrogênio</span>
+          <span class="spec-micro-pill">Massas de Fermentação Lenta</span>
+          <span class="spec-micro-pill">Pequenos Produtores</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "A grande inovação deles é o sistema de torneiras de vinho sob gás inerte. Você pode pedir taças de vinhos de guarda sofisticados sem precisar comprar a garrafa fechada. As massas e pães rústicos são sovados diariamente na casa."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Fonte: <strong>panvino.com.br</strong></span>
+          <a href="https://panvino.com.br" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Visitar Bistrô &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Panvino+Wine+Bistrô+Roque+Petrella" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Panvino Wine Bistrô')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 05. Vicolo Nostro (Jardim Toscano & Adega Clássica) -->
+    <article class="poi-card" data-cat="gastronomia" data-keywords="vicolo nostro jardim toscano brunello barolo adega clássica ossobuco brooklin velho">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80" alt="Vicolo Nostro Ristorante">
+        <span class="card-category-badge">🏛️ Tradição & Vinhos Italianos</span>
+        <span class="card-proximity-badge">🚗 8 min (2,7 km)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('vicolo', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Vicolo Nostro (Jardim Toscano)</h3>
+        <p class="card-address">📍 Rua Jupatis, 140 • Granja Julieta / Brooklin Velho</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🍇 Brunellos & Supertoscanos</span>
+          <span class="spec-micro-pill">Jardim de Inverno & Fonte</span>
+          <span class="spec-micro-pill">Guia Michelin</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "Ao cruzar a porta de madeira maciça, você esquece que está em São Paulo. É uma vila toscana com paralelepípedos e heras nas paredes. A carta de vinhos é uma das mais respeitadas da cidade para quem busca safras maduras do Piemonte e da Toscana."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Crítica: <strong>Prazeres da Mesa & Michelin</strong></span>
+          <a href="https://vicolonostro.com.br" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Carta de Vinhos &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Vicolo+Nostro+Jupatis" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Vicolo Nostro')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 06. Clube Hípico de Santo Amaro (CHSA - Saibro & Hipismo) -->
+    <article class="poi-card" data-cat="raquetes" data-keywords="hipismo tênis saibro cavalo verde chsa clube olimpico">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=700&q=80" alt="Clube Hípico de Santo Amaro">
+        <span class="card-category-badge">🏇 Tradição & Saibro</span>
+        <span class="card-proximity-badge">🚶 2 min a pé (150m)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('chsa', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Clube Hípico de Santo Amaro (CHSA)</h3>
+        <p class="card-address">📍 Rua Visconde de Taunay, 508 • Em frente ao Jardim da Hípica</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🌳 330.000 m² de Preservação</span>
+          <span class="spec-micro-pill">Quadras de Saibro Oficiais</span>
+          <span class="spec-micro-pill">Hipismo Olímpico</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "Não existe outro lugar em São Paulo onde você acorde com o som de cascos de cavalo no chão de terra e o barulho seco de uma bola de tênis batendo no saibro vermelho. É o pulmão verde permanente que garante a vista e a privacidade do bairro."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">História: <strong>Fundado em 1935</strong></span>
+          <a href="https://chsa.com.br" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Visitar Oficial &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Clube+Hípico+de+Santo+Amaro" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Clube Hípico de Santo Amaro')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 07. Grand Cru & Lounge Chácara Flora (Vinhos de Guarda) -->
+    <article class="poi-card" data-cat="vinhos" data-keywords="grand cru chacara flora bordeaux borgonha barolo sommelier guarda adega climatizada">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=700&q=80" alt="Adega Grand Cru">
+        <span class="card-category-badge">🍷 Vinhos de Guarda & Bordeaux</span>
+        <span class="card-proximity-badge">🚗 5 min (2,1 km)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('grandcru', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Grand Cru & Wine Lounge Chácara Flora</h3>
+        <p class="card-address">📍 Av. Washington Luís / Eixo Chácara Flora</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🏰 Grands Crus Classés</span>
+          <span class="spec-micro-pill">Adega Subterrânea Climatizada</span>
+          <span class="spec-micro-pill">Degustações Privadas</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "Para quem quer abastecer a adega do apartamento com safras clássicas de Bordeaux, Borgonhas premier cru e vinhos do Novo Mundo com pontuação Parker e Galloni. A equipe conhece os clientes pelo nome e sabe exatamente quando chega um rótulo raro."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Curadoria: <strong>Catálogo Grand Cru</strong></span>
+          <a href="https://grandcru.com.br" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Consultar Rótulos &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Grand+Cru+Chacara+Flora" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Grand Cru Chácara Flora')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 08. Padel & Tênis Hall Santo Amaro -->
+    <article class="poi-card" data-cat="raquetes" data-keywords="padel tênis esporte raquete circuito paulista executivos">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1622163642998-1ea32b0bbc67?auto=format&fit=crop&w=700&q=80" alt="Quadras de Padel">
+        <span class="card-category-badge">🎾 Padel Profissional</span>
+        <span class="card-proximity-badge">🚗 6 min (2,2 km)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('padel', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Complexo de Padel & Raquetes</h3>
+        <p class="card-address">📍 Polo Chucri Zaidan / Santo Amaro</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🎾 Quadras Panorâmicas de Vidro</span>
+          <span class="spec-micro-pill">Piso Oficial WPT</span>
+          <span class="spec-micro-pill">Networking Executivo</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "O esporte de raquetes substituiu o happy hour tradicional para grande parte dos diretores e investidores da Zona Sul. A facilidade de jogar em duplas numa quadra rápida coberta a 6 minutos de casa é um luxo de tempo impagável."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Circuito: <strong>Federação Paulista de Padel</strong></span>
+          <a href="https://fpt.org.br" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Ver Circuito &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Padel+Santo+Amaro+Sao+Paulo" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Complexo de Padel')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 09. Parque Severo Gomes (A Pista de Terra Batida) -->
+    <article class="poi-card" data-cat="refugios" data-keywords="parque severo gomes granja julieta mata atlântica terra batida corrida cooper silêncio">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=700&q=80" alt="Parque Severo Gomes Granja Julieta">
+        <span class="card-category-badge">🌳 Mata Atlântica & Silêncio</span>
+        <span class="card-proximity-badge">🚶 13 min a pé (1,0 km)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('severo', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Parque Severo Gomes (Granja Julieta)</h3>
+        <p class="card-address">📍 Rua Pouso Alto • Entre a Chácara Flora e a Granja</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🏃 Pista de Cooper de Terra Batida</span>
+          <span class="spec-micro-pill">35.000 m² de Bosque Fechado</span>
+          <span class="spec-micro-pill">Zero Ruído de Trânsito</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "Todo mundo fala do Ibirapuera, mas quem realmente mora na Zona Sul corre no Severo Gomes. A pista é de terra batida sob copa densa de árvores — preserva as articulações e o nível de ruído cai para menos de 45 decibéis."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Preservação: <strong>Conselho Gestor Viva Severo</strong></span>
+          <a href="https://capital.sp.gov.br/web/meio_ambiente/w/parques_urbanos/463" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            PMSP Oficial &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Parque+Severo+Gomes" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Parque Severo Gomes')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10. A Calçada da Visconde de Porto Seguro (O Corredor Multilíngue) -->
+    <article class="poi-card" data-cat="refugios" data-keywords="rua visconde de porto seguro caminhada a pe escola suiço brasileira calçadas planas segurança">
+      <div class="card-media">
+        <img class="card-img" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=700&q=80" alt="Calçadas da Rua Visconde de Porto Seguro">
+        <span class="card-category-badge">🚶 Caminhabilidade & Tradição</span>
+        <span class="card-proximity-badge">🚶 5 min a pé (450m)</span>
+        <button class="bookmark-btn" title="Salvar nos favoritos" onclick="toggleBookmark('portoseguro', this)">★</button>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">Corredor Verde da Visconde de Porto Seguro</h3>
+        <p class="card-address">📍 Rua Visconde de Porto Seguro • Alto da Boa Vista</p>
+        
+        <div class="specs-pill-row">
+          <span class="spec-micro-pill highlight">🌳 Calçadas Planas & Frondosas</span>
+          <span class="spec-micro-pill">Escola Suíço-Brasileira (ESB)</span>
+          <span class="spec-micro-pill">Comunidade Internacional</span>
+        </div>
+
+        <div class="pedro-note-box">
+          <div class="pedro-note-header">🎙️ A Nota Pessoal de Pedro Soares</div>
+          <p class="pedro-note-content">
+            "Em vez de olhar a escola como um prédio fechado, olhe para a rua: você vê diplomatas e executivos suíços e alemães caminhando a pé com os filhos às 7h30 da manhã, sem pressa, sob túneis verdes de árvores de 50 anos. Isso é qualidade de vida que dinheiro nenhum compra no trânsito."
+          </p>
+        </div>
+
+        <div class="citation-box">
+          <span class="authority-tag">Educação: <strong>Escola Suíço-Brasileira (ESB)</strong></span>
+          <a href="https://esb.g12.br" target="_blank" rel="noopener noreferrer" class="external-ref-link">
+            Currículo ESB &nearr;
+          </a>
+        </div>
+        <div class="card-actions-bar">
+          <a href="https://maps.google.com/?q=Rua+Visconde+de+Porto+Seguro+Alto+da+Boa+Vista" target="_blank" class="btn-card-action">🗺️ Ver no Mapa</a>
+          <button class="btn-card-action" onclick="sharePoi('Rua Visconde de Porto Seguro')">↗️ Compartilhar</button>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastBox">Dica salva nos seus favoritos!</div>
+
+  <!-- Page Footer -->
+  <footer class="page-footer">
+    <div>
+      <strong>Pedro Soares | Lavvi Private Wealth</strong> &bull; Consultoria Patrimonial & Enogastronomia de Vizinhança
+    </div>
+    <div>
+      WhatsApp Pessoal: <a href="https://wa.me/5511966105952" style="color: var(--gold); text-decoration: none;">(11) 96610-5952</a>
+    </div>
+    <div>
+      Curadoria Viva Auditada sob a Regra 7 &bull; Outubro 2026
+    </div>
+  </footer>
+
+  <!-- Script for Filters, Search & Local Bookmarking -->
+  <script>
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.poi-card');
+    const searchInput = document.getElementById('searchInput');
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      applyFilters();
+    });
+
+    function applyFilters() {
+      const activePill = document.querySelector('.filter-pill.active');
+      const cat = activePill ? activePill.getAttribute('data-cat') : 'all';
+      const term = searchInput.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat');
+        const keywords = card.getAttribute('data-keywords') || '';
+        const title = card.querySelector('.card-title').textContent.toLowerCase();
+        const matchesCat = (cat === 'all' || cardCat === cat);
+        const matchesSearch = (!term || title.includes(term) || keywords.includes(term));
+
+        if (matchesCat && matchesSearch) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleBookmark(id, btn) {
+      let saved = JSON.parse(localStorage.getItem('pedro_fav_pois') || '[]');
+      if (saved.includes(id)) {
+        saved = saved.filter(item => item !== id);
+        btn.classList.remove('saved');
+        showToast('Removido dos seus favoritos');
+      } else {
+        saved.push(id);
+        btn.classList.add('saved');
+        showToast('⭐ Rota salva nos seus favoritos!');
+      }
+      localStorage.setItem('pedro_fav_pois', JSON.stringify(saved));
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastBox');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2600);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = JSON.parse(localStorage.getItem('pedro_fav_pois') || '[]');
+      saved.forEach(id => {
+        const btn = document.querySelector(`[onclick*="'${id}'"]`);
+        if (btn) btn.classList.add('saved');
+      });
+    });
+
+    function sharePoi(title) {
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({
+          title: title + ' | Curadoria de Vinhos Pedro Soares',
+          text: 'Confira este garimpo gastronômico no Alto da Boa Vista curado pelo Pedro Soares:',
+          url: url
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(url);
+        showToast('Link do guia copiado para compartilhar!');
+      }
+    }
+  </script>
+</body>
+</html>

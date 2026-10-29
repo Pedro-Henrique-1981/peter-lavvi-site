@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedro Soares | Lavvi Private Wealth • Apresentação Executiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0c10;
+      --card-bg: #141720;
+      --gold-primary: #d4af37;
+      --gold-light: #f5e6b3;
+      --text-main: #f0f3f6;
+      --text-muted: #9aa0a6;
+      --border-subtle: rgba(212, 175, 55, 0.2);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      user-select: none;
+    }
+
+    /* Top Navigation Toolbar */
+    .deck-top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-badge {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+    }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .project-selector {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      outline: none;
+    }
+
+    .btn-action {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 8px 16px;
+      min-height: 44px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+
+    .btn-action:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+    }
+
+    .btn-action-gold {
+      background: var(--gold-primary);
+      color: #0a0c10;
+      font-weight: 600;
+      border-color: var(--gold-primary);
+    }
+
+    .btn-action-gold:hover {
+      background: var(--gold-light);
+      color: #000;
+    }
+
+    /* Main Deck Stage */
+    .deck-stage {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 20px 60px 20px;
+    }
+
+    .slide-viewport {
+      width: 100%;
+      max-width: 1380px;
+      height: 100%;
+      max-height: 776px;
+      aspect-ratio: 16 / 9;
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Individual Slide */
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transform: scale(0.98);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    /* Cover Slide Style */
+    .slide-cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 60px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .slide-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,12,16,0.3) 0%, rgba(10,12,16,0.7) 50%, rgba(10,12,16,0.95) 100%);
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .cover-tag {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .cover-title {
+      font-family: var(--font-serif);
+      font-size: 56px;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .cover-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    .cover-footer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 20px;
+    }
+
+    .broker-info {
+      font-size: 14px;
+      color: var(--gold-light);
+    }
+
+    .broker-info strong {
+      color: #fff;
+      display: block;
+      font-size: 16px;
+    }
+
+    /* Content Slide (Split 50/50 Layout) */
+    .slide-split {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      height: 100%;
+    }
+
+    .slide-split-reversed {
+      grid-template-columns: 1fr 1.1fr;
+    }
+
+    .split-text {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #11141b;
+      position: relative;
+    }
+
+    .split-text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .slide-category {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .slide-title {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .slide-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .stat-val {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .split-media {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .split-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(17,20,27,0.4) 0%, transparent 40%);
+    }
+
+    .media-caption {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(10, 12, 16, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: var(--gold-light);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Financial Table Slide */
+    .finance-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+
+    .finance-table th {
+      text-align: left;
+      padding: 10px;
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--gold-light);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .finance-table td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+    }
+
+    /* Bottom Navigation Bar */
+    .deck-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      min-height: 54px;
+      padding-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+      padding-left: max(24px, env(safe-area-inset-left, 0px));
+      padding-right: max(24px, env(safe-area-inset-right, 0px));
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .slide-progress {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-arrow-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav-arrow {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.2s;
+      touch-action: manipulation;
+    }
+
+    .btn-nav-arrow:hover {
+      background: var(--gold-primary);
+      color: #0a0c10;
+      border-color: var(--gold-primary);
+    }
+
+    /* PRINT TO PDF STYLESHEET (CLEAN 16:9 LANDSCAPE VECTOR EXPORT) */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      .deck-top-bar, .deck-bottom-bar {
+        display: none !important;
+      }
+
+      .deck-stage {
+        padding: 0 !important;
+        display: block !important;
+      }
+
+      .slide-viewport {
+        max-width: 100% !important;
+        max-height: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+      }
+
+      .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        transform: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="deck-top-bar">
+    <div class="brand-title">
+      <span>Lavvi Private Wealth</span>
+      <span class="brand-badge">Deck Executivo 4K</span>
+    </div>
+
+    <div class="deck-controls">
+      <select id="projSelect" class="project-selector" onchange="switchProject(this.value)">
+        <option value="hipica">🏢 Jardim da Hípica (Alto da Boa Vista)</option>
+        <option value="versace">👑 Villa Versace (Moema Pássaros)</option>
+        <option value="tom">🌿 T.O.M. Paraíso (Eixo Hospitalar)</option>
+      </select>
+
+      <button class="btn-action" onclick="toggleFullScreen()" title="Tela Cheia (F)">
+        ⛶ Tela Cheia
+      </button>
+
+      <button class="btn-action btn-action-gold" onclick="window.print()" title="Salvar em PDF (Ctrl+P)">
+        📥 Salvar em PDF
+      </button>
+
+      <a href="https://wa.me/5511966105952" target="_blank" class="btn-action" style="background:#25D366; color:#000; font-weight:600; border:none;">
+        💬 WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- Deck Main Stage -->
+  <main class="deck-stage">
+    <div class="slide-viewport" id="slideViewport">
+      <!-- Slides dynamically rendered -->
+    </div>
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <footer class="deck-bottom-bar">
+    <div class="slide-progress" id="slideCounter">
+      Slide 1 de 7
+    </div>
+
+    <div class="nav-arrow-group">
+      <button class="btn-nav-arrow" onclick="prevSlide()" title="Slide Anterior (←)">‹</button>
+      <button class="btn-nav-arrow" onclick="nextSlide()" title="Próximo Slide (→)">›</button>
+    </div>
+  </footer>
+
+  <script>
+    const PROJECTS_DECK_DATA = {
+      hipica: {
+        name: "Jardim da Hípica",
+        tagline: "Oásis de 40.000 m² em Frente ao Clube Hípico de Santo Amaro",
+        location: "Rua Antônio Bandeira, 305 • Alto da Boa Vista",
+        slides: [
+          {
+            type: "cover",
+            bg: "assets/hipica_fachada.jpg",
+            tag: "ALTO DA BOA VISTA • PRIVATE RESORT",
+            title: "Jardim da Hípica",
+            subtitle: "Residências de altíssimo padrão cercadas por 40.000 m² de verde, praça privativa Benedito Abbud e gestão predial CBRE.",
+            curator: "Pedro Soares • CRECI-SP (Estágio em homologação) | WhatsApp: (11) 96610-5952"
+          },
+          {
+            type: "split",
+            category: "PARQUE & NATUREZA",
+            title: "O Terreno & A Praça de 10.000 m²",
+            desc: "Um dos terrenos mais escassos e cobiçados da Zona Sul. Um complexo residencial de quase 40.000 m² com praça pública verde doada à cidade com projeto paisagístico de Benedito Abbud.",
+            stats: [
+              { val: "39.553 m²", lbl: "Terreno Oficial Total" },
+              { val: "10.000 m²", lbl: "Praça Pública Verde" },
+              { val: "500+", lbl: "Árvores Nativas Preservadas" },
+              { val: "1935", lbl: "Vista para o Clube Hípico Histórico" }
+            ],
+            media: "assets/hipica_jardim.jpg",
+            caption: "Praça Benedito Abbud & Bosque Preservado"
+          },
+          {
+            type: "split_rev",
+            category: "ESPORTE & BEM-ESTAR",
+            title: "Complexo de Raquete & Raia de 60m",
+            desc: "Infraestrutura de resort internacional sem sair de casa. Quadras de tênis oficiais de saibro, quadras de beach tennis e a maior piscina residencial da região com raia de 60 metros.",
+            stats: [
+              { val: "02 Quadras", lbl: "Tênis de Saibro Oficiais (18x36m)" },
+              { val: "02 Quadras", lbl: "Beach Tennis em Areia de Sílica" },
+              { val: "60 Metros", lbl: "Piscina com Raia Olímpica" },
+              { val: "Body Care", lbl: "Assessoria Esportiva Inclusa" }
+            ],
+            media: "assets/hipica_tenis.jpg",
+            caption: "Quadras Oficiais de Saibro (18x36m)"
+          },
+          {
+            type: "split",
+            category: "ARQUITETURA & EXCLUSIVIDADE",
+            title: "04 Private Houses & Residences",
+            desc: "Assinatura arquitetônica de Königsberger Vannucchi. Conceito que integra 4 vilas residenciais exclusivas dentro do condomínio com piscinas privativas, além de apartamentos amplos com vista eterna para a copa das árvores.",
+            stats: [
+              { val: "04 Casas", lbl: "Private Houses com Piscina Privativa" },
+              { val: "84 a 276 m²", lbl: "Plantas Residences (2 a 4 Suítes)" },
+              { val: "21 a 57 m²", lbl: "Studios com Entrada Segregada" },
+              { val: "360°", lbl: "Vista Livre para a Hípica" }
+            ],
+            media: "assets/hipica_private_house.jpg",
+            caption: "04 Private Houses Exclusivas"
+          },
+          {
+            type: "split_rev",
+            category: "OPERAÇÃO & SERVIÇOS",
+            title: "Gestão Hoteleira CBRE Global",
+            desc: "A CBRE, líder global em gestão de ativos imobiliários de luxo, coordena a segurança 24h, o concierge, a governança e a conservação perene do empreendimento.",
+            stats: [
+              { val: "CBRE", lbl: "Gestão Patrimonial Internacional" },
+              { val: "Body Care", lbl: "Aulas de Tênis e Personal Inclusos" },
+              { val: "Concierge", lbl: "Atendimento Pessoal 24 Horas" },
+              { val: "Segurança", lbl: "Blindagem Perimetral e Guarita" }
+            ],
+            media: "assets/foto_real_piscina.jpg",
+            caption: "Piscina de 60m e Solarium de Luxo"
+          },
+          {
+            type: "finance",
+            category: "ALOCAÇÃO PATRIMONIAL",
+            title: "Engenharia Financeira & Tabela Out/2026",
+            desc: "Desembolso durante a obra de apenas 35% do valor do contrato sem juros remuneratórios bancários. O saldo de 65% é preservado na sua conta bancária rendendo juros compostos no CDI.",
+            media: "assets/foto_real_fachada.jpg"
+          },
+          {
+            type: "contact",
+            category: "CONSULTORIA EXCLUSIVA",
+            title: "Agende sua Visita com Pedro Soares",
+            desc: "Atendimento consultivo personalizado para aquisição de unidades no Jardim da Hípica. Tour privativo pelos decorados e simulação detalhada de fluxo de obra.",
+            brokerPhoto: "assets/pedro_hipica_suit.jpg",
+            phone: "(11) 96610-5952",
+            email: "pedro.soares@lavvi.com.br",
+            creci: "CRECI-SP (Estágio em homologação)"
+          }
+        ]
+      },
+      versace: {
+        name: "Villa Versace",
+        tagline: "A Primeira Residência Versace Home em Moema Pássaros",
+        location: "Moema Pássaros • Fora da Rota de Aviões",
+        slides: [
+          {
+            type: "cover",
+            bg: "assets/images/villa_moema_versace_facade_4k.jpg",
+            tag: "MOEMA PÁSSAROS • CO-BRANDING GLOBAL",
+            title: "Villa Versace",
+            subtitle: "Design de interiores e áreas comuns assinados pela icônica casa de moda italiana Versace Home em Moema.",
+            curator: "Pedro Soares • CRECI-SP (Estágio em homologação) | WhatsApp: (11) 96610-5952"
+          },
+          {
+            type: "split",
+            category: "LOCALIZAÇÃO PRIVILEGIADA",
+            title: "Moema Pássaros: Caminhabilidade & Verde",
+            desc: "Posicionado no quadrilátero nobre de Moema Pássaros, fora do cone de aproximação de aeronaves. Caminhe até os melhores empórios, bistrôs e colégios tradicionais.",
+            stats: [
+              { val: "0 Metros", lbl: "Da Rota de Ruído de Congonhas" },
+              { val: "100%", lbl: "Caminhável até Restaurantes Nobres" },
+              { val: "15 Min", lbl: "Caminhando até o Parque Ibirapuera" },
+              { val: "Triple A", lbl: "Valorização Histórica do m²" }
+            ],
+            media: "assets/images/villa_moema_versace_facade_4k.jpg",
+            caption: "Fachada Majestosa Versace Moema"
+          },
+          {
+            type: "contact",
+            category: "CONSULTORIA EXCLUSIVA",
+            title: "Dossiê Exclusivo Villa Versace",
+            desc: "Solicite o memorial descritivo dos acabamentos importados e o catálogo de plantas privativas com Pedro Soares.",
+            brokerPhoto: "assets/pedro_hipica_suit.jpg",
+            phone: "(11) 96610-5952",
+            email: "pedro.soares@lavvi.com.br",
+            creci: "CRECI-SP (Estágio em homologação)"
+          }
+        ]
+      },
+      tom: {
+        name: "T.O.M. Paraíso",
+        tagline: "Design Autoral no Coração do Eixo Médico de São Paulo",
+        location: "Rua Vergueiro • Paraíso",
+        slides: [
+          {
+            type: "cover",
+            bg: "assets/tom_rooftop_pool.jpg",
+            tag: "PARAÍSO • ROOFTOP RESIDENCIAL",
+            title: "T.O.M. Paraíso",
+            subtitle: "Arquitetura contemporânea a 200m do metrô, com lazer panorâmico no rooftop e piscina com vista para a Paulista.",
+            curator: "Pedro Soares • CRECI-SP (Estágio em homologação) | WhatsApp: (11) 96610-5952"
+          },
+          {
+            type: "split",
+            category: "ROOFTOP & LAZER",
+            title: "Rooftop Panorâmico & Beach Tennis",
+            desc: "Lazer elevado com piscina de borda infinita debruçada sobre o skyline do Paraíso e quadra de beach tennis nas alturas.",
+            stats: [
+              { val: "Rooftop", lbl: "Piscina com Vista Panorâmica" },
+              { val: "Beach Tennis", lbl: "Quadra Oficial no Empreendimento" },
+              { val: "200m", lbl: "De Estação de Metrô Linha Azul/Verde" },
+              { val: "Polo Médico", lbl: "Próximo ao Oswaldo Cruz e Beneficência" }
+            ],
+            media: "assets/tom_beach_tennis.jpg",
+            caption: "Quadra de Beach Tennis no Rooftop"
+          },
+          {
+            type: "contact",
+            category: "CONSULTORIA EXCLUSIVA",
+            title: "Dossiê Exclusivo T.O.M. Paraíso",
+            desc: "Ideal para moradia ou investimento com alta taxa de ocupação para médicos e executivos.",
+            brokerPhoto: "assets/pedro_hipica_suit.jpg",
+            phone: "(11) 96610-5952",
+            email: "pedro.soares@lavvi.com.br",
+            creci: "CRECI-SP (Estágio em homologação)"
+          }
+        ]
+      }
+    };
+
+    let currentProjKey = "hipica";
+    let currentSlideIdx = 0;
+
+    function renderSlide(idx) {
+      const proj = PROJECTS_DECK_DATA[currentProjKey];
+      const slides = proj.slides;
+      if (idx < 0) idx = 0;
+      if (idx >= slides.length) idx = slides.length - 1;
+      currentSlideIdx = idx;
+
+      const viewport = document.getElementById('slideViewport');
+      viewport.innerHTML = '';
+
+      const s = slides[idx];
+      const slideEl = document.createElement('div');
+      slideEl.className = 'slide active';
+
+      if (s.type === 'cover') {
+        slideEl.className += ' slide-cover';
+        slideEl.style.backgroundImage = `url('${s.bg}')`;
+        slideEl.innerHTML = `
+          <div class="cover-content">
+            <div class="cover-tag">${s.tag}</div>
+            <h1 class="cover-title">${s.title}</h1>
+            <p class="cover-subtitle">${s.subtitle}</p>
+            <div class="cover-footer">
+              <div class="broker-info">
+                <strong>Pedro Soares</strong>
+                <span>${s.curator}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (s.type === 'split' || s.type === 'split_rev') {
+        slideEl.className += ` slide-split ${s.type === 'split_rev' ? 'slide-split-reversed' : ''}`;
+        
+        const statsHtml = s.stats ? s.stats.map(st => `
+          <div class="stat-card">
+            <div class="stat-val">${st.val}</div>
+            <div class="stat-lbl">${st.lbl}</div>
+          </div>
+        `).join('') : '';
+
+        const textCol = `
+          <div class="split-text">
+            <div class="slide-category">${s.category}</div>
+            <h2 class="slide-title">${s.title}</h2>
+            <p class="slide-desc">${s.desc}</p>
+            <div class="stats-grid">${statsHtml}</div>
+          </div>
+        `;
+
+        const mediaCol = `
+          <div class="split-media" style="background-image: url('${s.media}')">
+            <div class="media-caption">📸 ${s.caption || 'Foto Oficial'}</div>
+          </div>
+        `;
+
+        slideEl.innerHTML = s.type === 'split_rev' ? (mediaCol + textCol) : (textCol + mediaCol);
+      } else if (s.type === 'finance') {
+        slideEl.className += ' slide-split';
+        slideEl.innerHTML = `
+          <div class="split-text">
+            <div class="slide-category">${s.category}</div>
+            <h2 class="slide-title">${s.title}</h2>
+            <p class="slide-desc">${s.desc}</p>
+            <table class="finance-table">
+              <thead>
+                <tr>
+                  <th>Tipologia</th>
+                  <th>Área Privativa</th>
+                  <th>Preço Médio m²</th>
+                  <th>Fluxo Obra</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Residences</strong></td>
+                  <td>84 m² a 276 m²</td>
+                  <td>R$ 13.890 a R$ 17.500</td>
+                  <td>35% em 36x sem juros</td>
+                </tr>
+                <tr>
+                  <td><strong>Private Houses</strong></td>
+                  <td>Casas com Piscina</td>
+                  <td>Sob Consulta</td>
+                  <td>Personalizado</td>
+                </tr>
+                <tr>
+                  <td><strong>Studios</strong></td>
+                  <td>21 m² a 57 m²</td>
+                  <td>R$ 14.500 a R$ 18.000</td>
+                  <td>35% em 36x sem juros</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="split-media" style="background-image: url('${s.media}')">
+            <div class="media-caption">🏛️ Fachada Oficial Jardim da Hípica</div>
+          </div>
+        `;
+      } else if (s.type === 'contact') {
+        slideEl.className += ' slide-split';
+        slideEl.innerHTML = `
+          <div class="split-text">
+            <div class="slide-category">${s.category}</div>
+            <h2 class="slide-title">${s.title}</h2>
+            <p class="slide-desc">${s.desc}</p>
+            <div style="margin-top:20px; display:flex; flex-direction:column; gap:12px;">
+              <div style="font-size:16px; color:#fff;">👤 <strong>Pedro Soares</strong> (${s.creci})</div>
+              <div style="font-size:15px; color:var(--gold-light);">📱 <strong>WhatsApp:</strong> ${s.phone}</div>
+              <div style="font-size:14px; color:var(--text-muted);">✉️ <strong>E-mail:</strong> ${s.email}</div>
+            </div>
+            <div style="margin-top:28px;">
+              <a href="https://wa.me/5511966105952" target="_blank" class="btn-action btn-action-gold" style="display:inline-flex; padding:12px 24px; font-size:15px;">
+                💬 Conversar Diretamente no WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="split-media" style="background-image: url('${s.brokerPhoto}')">
+            <div class="media-caption">Pedro Soares • Lavvi Private Wealth</div>
+          </div>
+        `;
+      }
+
+      viewport.appendChild(slideEl);
+      document.getElementById('slideCounter').innerText = `Slide ${idx + 1} de ${slides.length}`;
+    }
+
+    function nextSlide() {
+      const slides = PROJECTS_DECK_DATA[currentProjKey].slides;
+      if (currentSlideIdx < slides.length - 1) {
+        renderSlide(currentSlideIdx + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIdx > 0) {
+        renderSlide(currentSlideIdx - 1);
+      }
+    }
+
+    function switchProject(key) {
+      currentProjKey = key;
+      renderSlide(0);
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullScreen();
+      }
+    });
+
+    // Touch swipe navigation
+    let touchStartX = 0;
+    window.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    window.addEventListener('touchend', e => {
+      let diff = touchStartX - e.changedTouches[0].clientX;
+      if (diff > 50) nextSlide();
+      if (diff < -50) prevSlide();
+    });
+
+    // Initialize
+    renderSlide(0);
+  </script>
+</body>
+</html>

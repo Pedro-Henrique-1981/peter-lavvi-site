@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>LAVVI PRIVATE WEALTH | Master Startpage & Bookmarks Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070B14;
+      --card-bg: #0F172A;
+      --border: rgba(255,255,255,0.1);
+      --gold: #D4AF37;
+      --gold-bright: #F3DC8A;
+      --emerald: #10B981;
+      --blue: #38BDF8;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 40px 20px; }
+    .header { max-width: 1300px; margin: 0 auto 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+    .title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold-bright); }
+    .subtitle { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+    
+    .filter-box { width: 100%; max-width: 1300px; margin: 0 auto 25px; }
+    .filter-input { width: 100%; padding: 14px 20px; border-radius: 10px; background: #0F172A; border: 1px solid rgba(212,175,55,0.3); color: #FFF; font-size: 1rem; outline: none; }
+    .filter-input:focus { border-color: var(--gold); box-shadow: 0 0 15px rgba(212,175,55,0.2); }
+    .grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 24px; }
+    .cat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 22px; transition: transform 0.2s; }
+    .cat-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .cat-count { background: rgba(212,175,55,0.15); color: var(--gold-bright); font-size: 0.75rem; padding: 3px 8px; border-radius: 12px; }
+    .link-list { list-style: none; display: flex; flex-direction: column; gap: 8px; max-height: 480px; overflow-y: auto; padding-right: 6px; }
+    .link-list::-webkit-scrollbar { width: 5px; }
+    .link-list::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.3); border-radius: 4px; }
+    .link-item a { color: #CBD5E1; text-decoration: none; font-size: 0.88rem; display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid transparent; transition: all 0.2s; }
+    .link-item a:hover { background: rgba(212,175,55,0.12); border-color: rgba(212,175,55,0.3); color: var(--gold-bright); transform: translateX(4px); }
+    .btn-import { background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%); color: #070B14; padding: 11px 20px; border-radius: 8px; font-weight: 800; text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px; }
+    .footer { text-align: center; margin-top: 50px; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 25px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <div class="title">👑 LAVVI PRIVATE WEALTH</div>
+      <div class="subtitle">Master Bookmarks Hub & Startpage • Pedro Soares (132 Links Estratégicos Organizados)</div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <a href="LAVVI_CHROME_BOOKMARKS_IMPORT.html" download class="btn-import">📥 Baixar Bookmarks (.HTML)</a>
+    </div>
+  </div>
+
+  <div class="filter-box">
+    <input type="text" id="filterInput" class="filter-input" placeholder="🔍 Digite para filtrar arquivos, dossiês, ferramentas, bairros ou favoritos..." onkeyup="filterLinks()">
+  </div>
+
+  <div class="grid" id="bookmarksGrid">
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>01. 🌐 Portais, Cockpits & Aplicações Web</span>
+        <span class="cat-count">16 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="🏢 portal oficial lavvi (concierge, 45 projetos, radar 3km)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/index.html" target="_blank">
+            <span>🏢 Portal Oficial Lavvi (Concierge, 45 Projetos, Radar 3km)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📚 catálogo mestre dos 45 dossiês 360°">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/index.html" target="_blank">
+            <span>📚 Catálogo Mestre dos 45 Dossiês 360°</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎧 player web dos private podcasts dos 8 bairros">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/index.html" target="_blank">
+            <span>🎧 Player Web dos Private Podcasts dos 8 Bairros</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="👑 deck executivo 4k (apresentação & impressão pdf)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/deck.html" target="_blank">
+            <span>👑 Deck Executivo 4K (Apresentação & Impressão PDF)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📑 relatório executivo operação madrugada (living pedro)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/00_COCKPIT_PEDRO/RELATORIO_EXECUTIVO_LIVING_PEDRO.md" target="_blank">
+            <span>📑 Relatório Executivo Operação Madrugada (Living Pedro)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📊 comparativos oficiais de mercado (concorrentes sp)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/comparativos.html" target="_blank">
+            <span>📊 Comparativos Oficiais de Mercado (Concorrentes SP)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎬 the matrix canvas cockpit v3">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/canvas.html" target="_blank">
+            <span>🎬 The Matrix Canvas Cockpit V3</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📈 linkedin infographics studio">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/linkedin_studio.html" target="_blank">
+            <span>📈 LinkedIn Infographics Studio</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="☀️ solarium 365 (simulador solar 3d - arquivo lab)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/archive/solarium_archive/solarium_clean.html" target="_blank">
+            <span>☀️ Solarium 365 (Simulador Solar 3D - Arquivo Lab)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎓 pedro soares academy">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/academy.html" target="_blank">
+            <span>🎓 Pedro Soares Academy</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📝 creci simulado de treinamento (100 questões)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/creci_simulado.html" target="_blank">
+            <span>📝 CRECI Simulado de Treinamento (100 Questões)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🧪 portal clone lab (sandbox de testes)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/lab.html" target="_blank">
+            <span>🧪 Portal Clone LAB (Sandbox de Testes)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🔍 staging vault de aprovação">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/staging.html" target="_blank">
+            <span>🔍 Staging Vault de Aprovação</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="☁️ portal de clientes no google drive">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/PORTAL_CLIENTES_PEDRO_SOARES.html" target="_blank">
+            <span>☁️ Portal de Clientes no Google Drive</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta oficial de clientes no drive">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_PORTAL_CLIENTES/" target="_blank">
+            <span>📁 Pasta Oficial de Clientes no Drive</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🔔 canal push ntfy (alertas & confirmações críticas)">
+          <a href="https://ntfy.sh/pedro-lavvi-wealth" target="_blank">
+            <span>🔔 Canal Push ntfy (Alertas & Confirmações Críticas)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>02. 📚 Os 45 Dossiês Executivos de Investimento 360° (Standalone)</span>
+        <span class="cat-count">45 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="📄 alive">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_alive.html" target="_blank">
+            <span>📄 Alive</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 boulevard lapa">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_boulevard_lapa.html" target="_blank">
+            <span>📄 Boulevard Lapa</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 casa cerâmica">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_casa_ceramica.html" target="_blank">
+            <span>📄 Casa Cerâmica</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 eden by dror">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_eden_by_dror.html" target="_blank">
+            <span>📄 Eden By Dror</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 galleria klabin">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_galleria_klabin.html" target="_blank">
+            <span>📄 Galleria Klabin</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 grand square">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_grand_square.html" target="_blank">
+            <span>📄 Grand Square</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 grand vitrali">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_grand_vitrali.html" target="_blank">
+            <span>📄 Grand Vitrali</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 green view residence">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_green_view_residence.html" target="_blank">
+            <span>📄 Green View Residence</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 heaven apartments">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_heaven_apartments.html" target="_blank">
+            <span>📄 Heaven Apartments</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 heaven residences">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_heaven_residences.html" target="_blank">
+            <span>📄 Heaven Residences</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 high wonder">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_high_wonder.html" target="_blank">
+            <span>📄 High Wonder</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 jardim da hípica">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_jardim_da_hipica.html" target="_blank">
+            <span>📄 Jardim Da Hípica</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 jardim da hípica apartments">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_jardim_da_hipica_apartments.html" target="_blank">
+            <span>📄 Jardim Da Hípica Apartments</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 le six apartments">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_le_six_apartments.html" target="_blank">
+            <span>📄 Le Six Apartments</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 le six ibirapuera">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_le_six_ibirapuera.html" target="_blank">
+            <span>📄 Le Six Ibirapuera</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 le six ibirapuera apartments">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_le_six_ibirapuera_apartments.html" target="_blank">
+            <span>📄 Le Six Ibirapuera Apartments</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 le six residences">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_le_six_residences.html" target="_blank">
+            <span>📄 Le Six Residences</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 lumiere residence">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_lumiere_residence.html" target="_blank">
+            <span>📄 Lumiere Residence</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 lumiere studios">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_lumiere_studios.html" target="_blank">
+            <span>📄 Lumiere Studios</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 movva luz">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_movva_luz.html" target="_blank">
+            <span>📄 Movva Luz</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 nativ tatuapé tatuape">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_nativ_tatuape.html" target="_blank">
+            <span>📄 Nativ Tatuapé Tatuape</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 novvo analia franco">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_novvo_analia_franco.html" target="_blank">
+            <span>📄 Novvo Analia Franco</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 novvo barra funda">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_novvo_barra_funda.html" target="_blank">
+            <span>📄 Novvo Barra Funda</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 novvo marajoara">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_novvo_marajoara.html" target="_blank">
+            <span>📄 Novvo Marajoara</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 novvo santa marina">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_novvo_santa_marina.html" target="_blank">
+            <span>📄 Novvo Santa Marina</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 novvo vila prudente">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_novvo_vila_prudente.html" target="_blank">
+            <span>📄 Novvo Vila Prudente</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 one park perdizes">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_one_park_perdizes.html" target="_blank">
+            <span>📄 One Park Perdizes</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 palace">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_palace.html" target="_blank">
+            <span>📄 Palace</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 palazzo vila mariana">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_palazzo_vila_mariana.html" target="_blank">
+            <span>📄 Palazzo Vila Mariana</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 petra">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_petra.html" target="_blank">
+            <span>📄 Petra</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 praca mooca">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_praca_mooca.html" target="_blank">
+            <span>📄 Praca Mooca</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 praca piratininga">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_praca_piratininga.html" target="_blank">
+            <span>📄 Praca Piratininga</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 saffire">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_saffire.html" target="_blank">
+            <span>📄 Saffire</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 soleil apartments">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_soleil_apartments.html" target="_blank">
+            <span>📄 Soleil Apartments</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 soleil residences">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_soleil_residences.html" target="_blank">
+            <span>📄 Soleil Residences</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 studios elie saab">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_studios_elie_saab.html" target="_blank">
+            <span>📄 Studios Elie Saab</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 t o m paraíso">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_t_o_m_paraiso.html" target="_blank">
+            <span>📄 T O M Paraíso</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 verdant">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_verdant.html" target="_blank">
+            <span>📄 Verdant</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 villa residence">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_villa_residence.html" target="_blank">
+            <span>📄 Villa Residence</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 villa studios">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_villa_studios.html" target="_blank">
+            <span>📄 Villa Studios</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 vitrali moema">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_vitrali_moema.html" target="_blank">
+            <span>📄 Vitrali Moema</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 well perdizes">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_well_perdizes.html" target="_blank">
+            <span>📄 Well Perdizes</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 wonder by pracas da cidade">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_wonder_by_pracas_da_cidade.html" target="_blank">
+            <span>📄 Wonder By Pracas Da Cidade</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 wonder ipiranga studios">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_wonder_ipiranga_studios.html" target="_blank">
+            <span>📄 Wonder Ipiranga Studios</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📄 wonder residence">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/dossiers/dossie_wonder_residence.html" target="_blank">
+            <span>📄 Wonder Residence</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>03. 🎧 Áudios, Podcasts & Briefings Sonoros (8 Bairros)</span>
+        <span class="cat-count">11 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="🎧 web player dos 8 podcasts nobres">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/index.html" target="_blank">
+            <span>🎧 Web Player dos 8 Podcasts Nobres</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 01. alto da boa vista & chácara flora (jardim da hípica)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/01_alto_da_boa_vista.wav" target="_blank">
+            <span>🎙️ 01. Alto da Boa Vista & Chácara Flora (Jardim da Hípica)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 02. moema pássaros e índios (villa versace & saffire)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/02_moema_passaros_indios.wav" target="_blank">
+            <span>🎙️ 02. Moema Pássaros e Índios (Villa Versace & Saffire)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 03. paraíso & eixo hospitalar (t.o.m. & le six)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/03_paraiso_eixo_hospitalar.wav" target="_blank">
+            <span>🎙️ 03. Paraíso & Eixo Hospitalar (T.O.M. & Le Six)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 04. brooklin & chácara santo antônio (nurban, wonder, eden)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/04_brooklin_chacara_santo_antonio.wav" target="_blank">
+            <span>🎙️ 04. Brooklin & Chácara Santo Antônio (Nurban, Wonder, Eden)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 05. perdizes & pompéia (well perdizes)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/05_perdizes_pompeia.wav" target="_blank">
+            <span>🎙️ 05. Perdizes & Pompéia (Well Perdizes)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 06. chácara klabin & vila mariana (galleria klabin)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/06_chacara_klabin_vila_mariana.wav" target="_blank">
+            <span>🎙️ 06. Chácara Klabin & Vila Mariana (Galleria Klabin)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 07. jardim anália franco (portfólio anália franco)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/07_jardim_analia_franco.wav" target="_blank">
+            <span>🎙️ 07. Jardim Anália Franco (Portfólio Anália Franco)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ 08. jardim marajoara & interlagos (residencial marajoara)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/audio/podcasts/08_marajoara_interlagos.wav" target="_blank">
+            <span>🎙️ 08. Jardim Marajoara & Interlagos (Residencial Marajoara)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎙️ áudio briefing matinal operação madrugada (.wav)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/briefings/AUDIO_BRIEFING_LIVING_PEDRO_OVERNIGHT.wav" target="_blank">
+            <span>🎙️ Áudio Briefing Matinal Operação Madrugada (.WAV)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta de podcasts no google drive">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_COCKPIT_PEDRO/PODCASTS_BAIRROS/" target="_blank">
+            <span>📁 Pasta de Podcasts no Google Drive</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>04. 🕵️‍♂️ Prospecção CVM & Inteligência Patrimonial UHNW</span>
+        <span class="cat-count">5 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="📑 relatório cvm artigo 11 / insiders 2026 (markdown)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/00_COFRES_DE_INTELIGENCIA/RELATORIO_INSIDERS_CVM_ALTA_LIQUIDEZ_2026.md" target="_blank">
+            <span>📑 Relatório CVM Artigo 11 / Insiders 2026 (Markdown)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="☁️ relatório cvm no google drive">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_COFRES_DE_INTELIGENCIA/RELATORIO_INSIDERS_CVM_ALTA_LIQUIDEZ_2026.md" target="_blank">
+            <span>☁️ Relatório CVM no Google Drive</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🗄️ banco de dados sqlite mestre (lavvi_oracle_master.db)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/database/lavvi_oracle_master.db" target="_blank">
+            <span>🗄️ Banco de Dados SQLite Mestre (lavvi_oracle_master.db)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🛡️ simulador de holding familiar (drive)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_COCKPIT_PEDRO/holding_simulator.html" target="_blank">
+            <span>🛡️ Simulador de Holding Familiar (Drive)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎲 eurogame capital allocation slider (drive)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_COCKPIT_PEDRO/eurogame_slider.html" target="_blank">
+            <span>🎲 Eurogame Capital Allocation Slider (Drive)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>05. 🗄️ Dados Estruturados, Bases JSON & Verdade Oficial</span>
+        <span class="cat-count">10 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="🛡️ base canônica de identidade & whitelist pedro soares (json)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/data/pedro_canonical_identity.json" target="_blank">
+            <span>🛡️ Base Canônica de Identidade & Whitelist Pedro Soares (JSON)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🛡️ cosimo sentinel (super-agente anti-alucinação cli)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/scripts/cosimo_sentinel.py" target="_blank">
+            <span>🛡️ Cosimo Sentinel (Super-Agente Anti-Alucinação CLI)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🏛️ dossiê do boardroom de subagentes (vito, cosimo, burry, etc.)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/briefings/BOARDROOM_SUBAGENTS_ROSTER.md" target="_blank">
+            <span>🏛️ Dossiê do Boardroom de Subagentes (Vito, Cosimo, Burry, etc.)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🧠 pedro living brain (dna cultural, michelin, dojôs, objeções)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/data/pedro_living_brain.json" target="_blank">
+            <span>🧠 Pedro Living Brain (DNA Cultural, Michelin, Dojôs, Objeções)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📐 enriquecimento dos 46 projetos (abnt & 35/65)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/data/projects_enrichment.json" target="_blank">
+            <span>📐 Enriquecimento dos 46 Projetos (ABNT & 35/65)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🏢 cadastro canônico dos 45 projetos lavvi">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/lavvi_45_projects_clean.json" target="_blank">
+            <span>🏢 Cadastro Canônico dos 45 Projetos Lavvi</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📍 radar 3km: 176 pois auditados (michelin, escolas ib, jiu-jitsu)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/site/poi_radar_data.json" target="_blank">
+            <span>📍 Radar 3km: 176 POIs Auditados (Michelin, Escolas IB, Jiu-Jitsu)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="⚖️ matriz oficial de especificações (truth gate)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/briefings/LAVVI_OFFICIAL_SPECS_TRUTH.md" target="_blank">
+            <span>⚖️ Matriz Oficial de Especificações (Truth Gate)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📜 constituição da agência enxuta (gemini.md < 18kb)">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/scratch/lavvi-media-agency/GEMINI.md" target="_blank">
+            <span>📜 Constituição da Agência Enxuta (GEMINI.md < 18KB)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🔍 walkthrough auditoria & blindagem estrutural">
+          <a href="file:///C:/Users/pedro/.gemini/antigravity/brain/567f7aaa-f091-49bc-a8ee-443fe1d27463/walkthrough.md" target="_blank">
+            <span>🔍 Walkthrough Auditoria & Blindagem Estrutural</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>06. 🏢 Ferramentas Operacionais de Corretagem (Innova, Sigavi, Leadfy)</span>
+        <span class="cat-count">13 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="💼 lior associados — portal de corretores">
+          <a href="https://app.liorassociados.com.br/" target="_blank">
+            <span>💼 Lior Associados — Portal de Corretores</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎓 lavvi learning rocks">
+          <a href="https://lavvi.learning.rocks/en/login" target="_blank">
+            <span>🎓 Lavvi Learning Rocks</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="⚡ meu novvo portal oficial">
+          <a href="https://www.meunovvo.com.br/" target="_blank">
+            <span>⚡ Meu NOVVO Portal Oficial</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📊 crm sigavi 360">
+          <a href="https://innova.sigavi360.com.br/CRM" target="_blank">
+            <span>📊 CRM Sigavi 360</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📲 webapp leadfy imob">
+          <a href="https://app.leadfy-imob.com.br/" target="_blank">
+            <span>📲 WebApp Leadfy Imob</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🏢 siib — sistema integrado innova brasil">
+          <a href="https://siib.innovabr.com.br/login" target="_blank">
+            <span>🏢 SIIB — Sistema Integrado Innova Brasil</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📐 anapro sistema de vendas">
+          <a href="https://login.anapro.com.br/web/pages/login/anapro.aspx" target="_blank">
+            <span>📐 ANAPRO Sistema de Vendas</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📜 crecisp — requerimento & acompanhamento">
+          <a href="https://spider.crecisp.gov.br/spw/fichacadastral/crecisp/principal.aspx" target="_blank">
+            <span>📜 CRECISP — Requerimento & Acompanhamento</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🏛️ secovi-sp">
+          <a href="https://secovi.com.br/" target="_blank">
+            <span>🏛️ SECOVI-SP</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📈 índice fipezap oficial">
+          <a href="https://www.fipe.org.br/pt-br/indices/fipezap/" target="_blank">
+            <span>📈 Índice FipeZAP Oficial</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🏨 operadores short-stay: charlie">
+          <a href="https://www.staycharlie.com.br/en" target="_blank">
+            <span>🏨 Operadores Short-Stay: Charlie</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🏨 operadores short-stay: housi">
+          <a href="https://housi.com/" target="_blank">
+            <span>🏨 Operadores Short-Stay: Housi</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🔑 plataforma de locação quintoandar">
+          <a href="https://www.quintoandar.com.br/" target="_blank">
+            <span>🔑 Plataforma de Locação QuintoAndar</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>07. ⏱️ Curadoria Pessoal & DNA Pedro Soares (Watches, Idiomas, ESPM)</span>
+        <span class="cat-count">8 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="⏱️ h. moser & cie (alta relojoaria independente)">
+          <a href="https://www.h-moser.com/" target="_blank">
+            <span>⏱️ H. Moser & Cie (Alta Relojoaria Independente)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="⏱️ a. lange & söhne (glashütte / saxônia)">
+          <a href="https://www.alange-soehne.com/" target="_blank">
+            <span>⏱️ A. Lange & Söhne (Glashütte / Saxônia)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="⏱️ citizen watch global (precisão japonesa)">
+          <a href="https://www.citizenwatch-global.com/" target="_blank">
+            <span>⏱️ Citizen Watch Global (Precisão Japonesa)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎓 espm canvas portal">
+          <a href="https://canvas.espm.br/" target="_blank">
+            <span>🎓 ESPM Canvas Portal</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🇩🇪 corretagem internacional alemanha (sala real estate)">
+          <a href="https://sala-realestate.de/" target="_blank">
+            <span>🇩🇪 Corretagem Internacional Alemanha (SALA Real Estate)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🇦🇹 corretagem áustria (simmomakler viena)">
+          <a href="https://simmomakler.at/" target="_blank">
+            <span>🇦🇹 Corretagem Áustria (SIMMOMAKLER Viena)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🍷 tour enológico vale do douro">
+          <a href="https://www.getyourguide.de/porto-l151/porto-douro" target="_blank">
+            <span>🍷 Tour Enológico Vale do Douro</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🎾 clube de campo & raquetes (cristóvão colombo)">
+          <a href="https://pt.wikipedia.org/wiki/Piracicaba" target="_blank">
+            <span>🎾 Clube de Campo & Raquetes (Cristóvão Colombo)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>08. 📁 Google Drive Principal & Cofres (`G:\Meine Ablage\LAVVI\`)</span>
+        <span class="cat-count">19 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="📁 lavvi drive principal (raiz)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/" target="_blank">
+            <span>📁 LAVVI Drive Principal (Raiz)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 00_cockpit_pedro">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_COCKPIT_PEDRO/" target="_blank">
+            <span>📁 00_COCKPIT_PEDRO</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 00_cofres_de_inteligencia (32 cofres)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_COFRES_DE_INTELIGENCIA/" target="_blank">
+            <span>📁 00_COFRES_DE_INTELIGENCIA (32 Cofres)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 00_creative_vault (ativos & mídia 4k)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_CREATIVE_VAULT/" target="_blank">
+            <span>📁 00_CREATIVE_VAULT (Ativos & Mídia 4K)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 00_outside_creative_vault (b-roll gravado)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/00_OUTSIDE_CREATIVE_VAULT/" target="_blank">
+            <span>📁 00_OUTSIDE_CREATIVE_VAULT (B-Roll Gravado)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 new assets/ (pastas de novos ativos por projeto)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/new%20assets/" target="_blank">
+            <span>📁 new assets/ (Pastas de Novos Ativos por Projeto)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta jardim da hípica (+43 vídeos)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Jardim%20da%20H%C3%ADpica/" target="_blank">
+            <span>📁 Pasta Jardim da Hípica (+43 vídeos)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta tom paraíso">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/TOM%20Paraiso/" target="_blank">
+            <span>📁 Pasta TOM Paraíso</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta vila versace (+24 vídeos)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Vila%20Versace/" target="_blank">
+            <span>📁 Pasta Vila Versace (+24 vídeos)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta le six paraíso (+18 vídeos)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Le%20Six%20Paraiso/" target="_blank">
+            <span>📁 Pasta Le Six Paraíso (+18 vídeos)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta saffire elie saab (+11 vídeos)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Safire/" target="_blank">
+            <span>📁 Pasta Saffire Elie Saab (+11 vídeos)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta green view (+20 vídeos)">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Green%20View/" target="_blank">
+            <span>📁 Pasta Green View (+20 vídeos)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta well perdizes">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Well%20Perdizes/" target="_blank">
+            <span>📁 Pasta Well Perdizes</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta heaven by yoo">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Heaven/" target="_blank">
+            <span>📁 Pasta Heaven by Yoo</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta alive home resort">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Alive/" target="_blank">
+            <span>📁 Pasta Alive Home Resort</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta grand square">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Grand%20Square/" target="_blank">
+            <span>📁 Pasta Grand Square</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta palace">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Palace/" target="_blank">
+            <span>📁 Pasta Palace</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta petra">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/Petra/" target="_blank">
+            <span>📁 Pasta Petra</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📁 pasta novvo">
+          <a href="file:///G:/Meine%20Ablage/LAVVI/NOVVO/" target="_blank">
+            <span>📁 Pasta NOVVO</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-title">
+        <span>09. 💬 Canais Oficiais & Contato Pedro Soares</span>
+        <span class="cat-count">5 links</span>
+      </div>
+      <ul class="link-list">
+
+        <li class="link-item" data-text="💬 whatsapp direto pedro soares (11 96610-5952)">
+          <a href="https://wa.me/5511966105952" target="_blank">
+            <span>💬 WhatsApp Direto Pedro Soares (11 96610-5952)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🤖 telegram bot privado (@vitoantibot)">
+          <a href="https://t.me/VitoAntiBot" target="_blank">
+            <span>🤖 Telegram Bot Privado (@VitoAntiBot)</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="📸 instagram oficial @pedrosoares.lavvi">
+          <a href="https://instagram.com/pedrosoares.lavvi" target="_blank">
+            <span>📸 Instagram Oficial @pedrosoares.lavvi</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="💼 linkedin oficial pedro soares">
+          <a href="https://linkedin.com/in/pedrosoares" target="_blank">
+            <span>💼 LinkedIn Oficial Pedro Soares</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="link-item" data-text="🌐 site oficial lavvi incorporadora">
+          <a href="https://lavvi.com.br" target="_blank">
+            <span>🌐 Site Oficial Lavvi Incorporadora</span>
+            <span style="color: var(--gold); font-size: 0.75rem; margin-left: 8px;">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p><strong>Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952</strong></p>
+    <p style="margin-top: 6px;">Todos os links locais, ferramentas do Google Chrome e acervo no Google Drive integrados em 1 clique.</p>
+  </div>
+
+  <script>
+    function filterLinks() {
+      const q = document.getElementById('filterInput').value.toLowerCase();
+      const items = document.querySelectorAll('.link-item');
+      items.forEach(it => {
+        const text = it.getAttribute('data-text');
+        if (text.includes(q)) {
+          it.style.display = 'block';
+        } else {
+          it.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

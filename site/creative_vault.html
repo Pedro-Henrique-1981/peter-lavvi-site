@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Vault • A Forja Criativa da Agência</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07090d;
+      --bg-card: rgba(18, 22, 31, 0.85);
+      --border-card: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(197, 160, 89, 0.35);
+      --gold: #c5a059;
+      --gold-light: #e5c98e;
+      --emerald: #10b981;
+      --cyan: #38bdf8;
+      --purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Cinzel', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(197, 160, 89, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 85%, rgba(56, 189, 248, 0.05) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.5;
+      padding: 30px 20px 80px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border-card);
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(197, 160, 89, 0.12);
+      border: 1px solid rgba(197, 160, 89, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      background: linear-gradient(135deg, #ffffff 40%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 650px;
+      margin-top: 6px;
+    }
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-card);
+      color: var(--text-main);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: rgba(197, 160, 89, 0.15);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #c5a059, #a8823b);
+      color: #07090d;
+      border: none;
+      font-weight: 700;
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #e5c98e, #c5a059);
+      color: #07090d;
+    }
+
+    /* Equation Banner */
+    .equation-banner {
+      background: linear-gradient(90deg, rgba(18, 22, 31, 0.95), rgba(28, 35, 49, 0.95));
+      border: 1px solid var(--border-card);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 35px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .eq-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .eq-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+    .eq-pill.input { color: var(--cyan); border-color: rgba(56, 189, 248, 0.3); }
+    .eq-pill.data { color: var(--gold); border-color: rgba(197, 160, 89, 0.3); }
+    .eq-pill.output { color: var(--emerald); border-color: rgba(16, 185, 129, 0.3); }
+
+    /* Category Nav Pills */
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border-card);
+    }
+    .tab-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-card);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: rgba(197, 160, 89, 0.15);
+      border-color: var(--gold);
+      color: var(--text-main);
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+    .recipe-box {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+    }
+    .recipe-row {
+      display: flex;
+      margin-bottom: 6px;
+      gap: 8px;
+    }
+    .recipe-row:last-child { margin-bottom: 0; }
+    .recipe-label {
+      font-weight: 700;
+      min-width: 80px;
+      color: var(--text-muted);
+    }
+    .recipe-val {
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .agent-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div>
+      <div class="badge">🏛️ Cofre Compartilhado #30 • Agência Pedro Soares</div>
+      <h1>Creative Vault</h1>
+      <p class="subtitle">A Usina de Matéria-Prima Criativa da Agência. Transformando inputs visuais, mapas 3D e gamificação com dados oficiais Lavvi em vendas de alta liquidez.</p>
+    </div>
+    <div class="header-actions">
+      <a href="file:///G:/Meine%20Ablage/LAVVI/00_CREATIVE_VAULT" class="btn btn-gold" target="_blank">📂 Abrir no Google Drive</a>
+      <a href="solarium.html" class="btn" target="_blank">☀️ Solarium 365</a>
+      <a href="index.html" class="btn">🏠 Portal Principal</a>
+    </div>
+  </header>
+
+  <div class="equation-banner">
+    <div class="eq-text">
+      <span>A Forja dos Agentes:</span>
+      <span class="eq-pill input">🎨 Input Criativo (Vídeo / Mapa / App)</span>
+      <span>+</span>
+      <span class="eq-pill data">📊 Dados Verdade Lavvi (Preço / PDE / CVM)</span>
+      <span>=</span>
+      <span class="eq-pill output">💎 Venda Fechada (WhatsApp / iPad)</span>
+    </div>
+    <div style="font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Zero Tokens Desperdiçados</strong> • 100% Google Drive Livre
+    </div>
+  </div>
+
+  <div class="nav-tabs" id="navTabs">
+    <button class="tab-btn active" onclick="filterCategory('all')">Todos os 8 Pilares</button>
+    <button class="tab-btn" onclick="filterCategory('videos')">01. Vídeos & Motion</button>
+    <button class="tab-btn" onclick="filterCategory('mapas')">02. Mapas & Geospatial</button>
+    <button class="tab-btn" onclick="filterCategory('gamificacao')">03. Gamificação Eurogame</button>
+    <button class="tab-btn" onclick="filterCategory('apps')">04. Apps & Simuladores</button>
+    <button class="tab-btn" onclick="filterCategory('luxury')">05. Quiet Luxury & Design</button>
+    <button class="tab-btn" onclick="filterCategory('storytelling')">06. Roteiros & Storytelling</button>
+    <button class="tab-btn" onclick="filterCategory('forja')">07. Catálogo de Receitas</button>
+    <button class="tab-btn" onclick="filterCategory('arsenal')">08. Arsenal do Cliente</button>
+  </div>
+
+  <div class="bento-grid" id="bentoGrid">
+    <!-- Card 1: Paddy Galloway Virality -->
+    <div class="card" data-cat="videos">
+      <div>
+        <div class="card-tag" style="color: var(--cyan);">📹 01_VIDEOS_E_MOTION</div>
+        <div class="card-title">Retenção Paddy Galloway x Drones 4K</div>
+        <div class="card-desc">Fórmula de retenção dos maiores criadores do YouTube aplicada ao mercado imobiliário de ultra-luxo. Pacing de 5s e quebra de curiosidade nos primeiros 3s.</div>
+        <div class="recipe-box">
+          <div class="recipe-row"><span class="recipe-label">Input:</span><span class="recipe-val">Playbook Paddy Galloway (Cortes + Hooks)</span></div>
+          <div class="recipe-row"><span class="recipe-label">Dado Lavvi:</span><span class="recipe-val">40.000m² Hípica + Raia 60m + 2 Quadras Tênis</span></div>
+          <div class="recipe-row"><span class="recipe-label">Resultado:</span><span class="recipe-val">Reels de 35s gravado caminhando sem clichês</span></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="agent-pill">🤖 Roger Closer & Nolan</span>
+        <a href="file:///G:/Meine%20Ablage/LAVVI/00_CREATIVE_VAULT/01_VIDEOS_E_MOTION" class="btn" style="padding: 6px 12px; font-size: 0.78rem;">Ver Pasta</a>
+      </div>
+    </div>
+
+    <!-- Card 2: Geospatial & Isocrone Radar -->
+    <div class="card" data-cat="mapas">
+      <div>
+        <div class="card-tag" style="color: var(--emerald);">🗺️ 02_MAPAS_E_GEOSPATIAL</div>
+        <div class="card-title">Isócrona de 15 Minutos & GeoSampa</div>
+        <div class="card-desc">Mapas sensoriais de caminhabilidade e bicicleta para famílias. Conecta o Jardim da Hípica às escolas internacionais (Suíço-Brasileira, Rudolf Steiner) e clubes de raquete.</div>
+        <div class="recipe-box">
+          <div class="recipe-row"><span class="recipe-label">Input:</span><span class="recipe-val">Camadas GeoSampa + Rotas de Bike / A Pé</span></div>
+          <div class="recipe-row"><span class="recipe-label">Dado Lavvi:</span><span class="recipe-val">Praça de 10.000m² Benedito Abbud + Hípica</span></div>
+          <div class="recipe-row"><span class="recipe-label">Resultado:</span><span class="recipe-val">Radar Interativo de Vida sem Carro</span></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="agent-pill">🤖 Ariadne & Jep</span>
+        <a href="file:///G:/Meine%20Ablage/LAVVI/00_CREATIVE_VAULT/02_MAPAS_E_GEOSPATIAL" class="btn" style="padding: 6px 12px; font-size: 0.78rem;">Ver Pasta</a>
+      </div>
+    </div>
+
+    <!-- Card 3: Eurogame Decision Engines -->
+    <div class="card" data-cat="gamificacao">
+      <div>
+        <div class="card-tag" style="color: var(--purple);">🎲 03_INTERACOES_E_GAMIFICACAO</div>
+        <div class="card-title">Mecânica Eurogame de Alocação de Capital</div>
+        <div class="card-desc">Sliders reativos táteis baseados em pensamento sistêmico de jogos modernos (*Terraforming Mars*, *Brass Birmingham*). Permite ao investidor simular o fluxo de obra sem achismos.</div>
+        <div class="recipe-box">
+          <div class="recipe-row"><span class="recipe-label">Input:</span><span class="recipe-val">Slider de Alavancagem CDI vs 35% na Obra</span></div>
+          <div class="recipe-row"><span class="recipe-label">Dado Lavvi:</span><span class="recipe-val">Tabela Oficial Out/2026 (Preço/m² e fluxo)</span></div>
+          <div class="recipe-row"><span class="recipe-label">Resultado:</span><span class="recipe-val">O cliente descobre o ganho real por conta própria</span></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="agent-pill">🤖 Miyamoto & ME</span>
+        <a href="file:///G:/Meine%20Ablage/LAVVI/00_CREATIVE_VAULT/03_INTERACOES_E_GAMIFICACAO" class="btn" style="padding: 6px 12px; font-size: 0.78rem;">Ver Pasta</a>
+      </div>
+    </div>
+
+    <!-- Card 4: Solarium 365 -->
+    <div class="card" data-cat="apps">
+      <div>
+        <div class="card-tag" style="color: var(--gold);">☀️ 04_APPS_E_MICROMODELOS</div>
+        <div class="card-title">Solarium 365 • Simulador Solar em Tempo Real</div>
+        <div class="card-desc">Cálculo matemático de azimute e elevação solar para latitude -23.55°. O comprador vê a luz entrando na varanda nas 4 estações do ano e o cone de sombra dos vizinhos.</div>
+        <div class="recipe-box">
+          <div class="recipe-row"><span class="recipe-label">Input:</span><span class="recipe-val">Motor 3D Canvas + Cálculo Solar Astronômico</span></div>
+          <div class="recipe-row"><span class="recipe-label">Dado Lavvi:</span><span class="recipe-val">Orientação da Torre D Jardim da Hípica</span></div>
+          <div class="recipe-row"><span class="recipe-label">Resultado:</span><span class="recipe-val">Demonstração no iPad fechando dúvida de sol</span></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="agent-pill">🤖 Miyamoto & Ariadne</span>
+        <a href="solarium.html" class="btn" style="padding: 6px 12px; font-size: 0.78rem;">Abrir App</a>
+      </div>
+    </div>
+
+    <!-- Card 5: Quiet Luxury Visuals -->
+    <div class="card" data-cat="luxury">
+      <div>
+        <div class="card-tag" style="color: var(--gold-light);">⌚ 05_DESIGN_E_ESTETICA_QUIET_LUXURY</div>
+        <div class="card-title">Quiet Luxury & Horologia Japonesa/Suíça</div>
+        <div class="card-desc">Layouts inspirados em Apple, Stripe e manufaturas de alta precisão (Citizen Promaster, Grand Seiko). Zero clichês promocionais de corretores convencionais.</div>
+        <div class="recipe-box">
+          <div class="recipe-row"><span class="recipe-label">Input:</span><span class="recipe-val">Bento Grids Escuros + Tipografia Editorial</span></div>
+          <div class="recipe-row"><span class="recipe-label">Dado Lavvi:</span><span class="recipe-val">Gestão CBRE + Assessoria Body Care</span></div>
+          <div class="recipe-row"><span class="recipe-label">Resultado:</span><span class="recipe-val">Percepção instantânea de elegância sóbria</span></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="agent-pill">🤖 Jep Gambardella & Ariadne</span>
+        <a href="file:///G:/Meine%20Ablage/LAVVI/00_CREATIVE_VAULT/05_DESIGN_E_ESTETICA_QUIET_LUXURY" class="btn" style="padding: 6px 12px; font-size: 0.78rem;">Ver Pasta</a>
+      </div>
+    </div>
+
+    <!-- Card 6: 3-Beat Walk-and-Talk Scripts -->
+    <div class="card" data-cat="storytelling">
+      <div>
+        <div class="card-tag" style="color: #f43f5e;">🎙️ 06_HOOKS_E_STORYTELLING</div>
+        <div class="card-title">Roteiros de 3 Batidas (Sem Teleprompter)</div>
+        <div class="card-desc">Estrutura de fala rápida para Pedro gravar caminhando ou pedalando: Hook (0-4s) + História Urbana da Rua (4-20s) + Conexão Lavvi & WhatsApp (20-35s).</div>
+        <div class="recipe-box">
+          <div class="recipe-row"><span class="recipe-label">Input:</span><span class="recipe-val">3 Story Beats memorizáveis em 30 segundos</span></div>
+          <div class="recipe-row"><span class="recipe-label">Dado Lavvi:</span><span class="recipe-val">História do Alto da Boa Vista + Santo Amaro</span></div>
+          <div class="recipe-row"><span class="recipe-label">Resultado:</span><span class="recipe-val">Vídeos com autoridade humana e zero artificialismo</span></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="agent-pill">🤖 ME & Jep Gambardella</span>
+        <a href="file:///G:/Meine%20Ablage/LAVVI/00_CREATIVE_VAULT/06_HOOKS_E_STORYTELLING" class="btn" style="padding: 6px 12px; font-size: 0.78rem;">Ver Pasta</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function filterCategory(cat) {
+    const cards = document.querySelectorAll('.card');
+    const tabs = document.querySelectorAll('.tab-btn');
+    
+    tabs.forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+
+    cards.forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

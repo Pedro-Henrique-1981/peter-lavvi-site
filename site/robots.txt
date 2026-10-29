@@ -1,0 +1,47 @@
+User-agent: *
+Allow: /
+
+# Google Gemini & AI Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# OpenAI ChatGPT & SearchGPT Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Perplexity AI Crawlers
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic Claude Crawlers
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Bing & Copilot
+User-agent: Bingbot
+Allow: /
+
+# Direct AI Search Index Links
+# Generative Engine Optimization (GEO) Knowledge Bases:
+Sitemap: https://lavvicollection.com.br/sitemap.xml
+# AI Index: https://lavvicollection.com.br/llms.txt
+# AI Full Corpus: https://lavvicollection.com.br/llms-full.txt

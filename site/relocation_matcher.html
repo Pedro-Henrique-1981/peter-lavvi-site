@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>São Paulo 3D Relocation Matcher & Gemini Live Concierge | Pedro Soares • Lavvi</title>
+  <meta name="description" content="Descubra o bairro e o empreendimento ideal em São Paulo através de Inteligência Espacial 3D e Concierge de Voz em Tempo Real com Pedro Soares.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Three.js & OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #070A0F;
+      --card-bg: rgba(14, 20, 31, 0.85);
+      --card-border: rgba(212, 175, 55, 0.25);
+      --gold-primary: #D4AF37;
+      --gold-light: #F6E27A;
+      --gold-glow: rgba(212, 175, 55, 0.18);
+      --emerald-accent: #34D399;
+      --blue-accent: #60A5FA;
+      --text-main: #F1F5F9;
+      --text-muted: #94A3B8;
+      --font-serif: 'Cinzel', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP HEADER BAR */
+    header {
+      height: 64px;
+      background: rgba(7, 10, 15, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 50;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-left: 1px solid rgba(255,255,255,0.15);
+      padding-left: 12px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .persona-toggle {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .persona-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .persona-btn.active {
+      background: var(--gold-primary);
+      color: #070A0F;
+      box-shadow: 0 0 12px var(--gold-glow);
+    }
+
+    .btn-return-home {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.2s;
+    }
+
+    .btn-return-home:hover {
+      color: var(--gold-light);
+      border-color: var(--gold-primary);
+    }
+
+    /* MAIN APP LAYOUT (SPLIT VIEW) */
+    .app-container {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* LEFT PANEL: CONCIERGE & MATCH ENGINE */
+    .concierge-panel {
+      width: 440px;
+      max-width: 100%;
+      height: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      z-index: 40;
+      box-shadow: 10px 0 35px rgba(0,0,0,0.5);
+      transition: transform 0.35s ease;
+    }
+
+    .concierge-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .concierge-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .concierge-status {
+      font-size: 0.75rem;
+      color: var(--emerald-accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald-accent);
+      box-shadow: 0 0 8px var(--emerald-accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* CONVERSATION FEED */
+    .chat-stream {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .chat-stream::-webkit-scrollbar {
+      width: 4px;
+    }
+    .chat-stream::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.3);
+      border-radius: 4px;
+    }
+
+    .msg-bubble {
+      max-width: 90%;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .msg-bot {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #E2E8F0;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-user {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.1) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #FFF;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    /* MATCH HIGHLIGHT CARD */
+    .match-card {
+      background: rgba(10, 16, 26, 0.95);
+      border: 1px solid var(--gold-primary);
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .match-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(52, 211, 153, 0.15);
+      color: #34D399;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .match-title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .match-facts {
+      font-size: 0.8rem;
+      color: #CBD5E1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .match-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-fly-3d {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FFF;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-fly-3d:hover {
+      background: var(--gold-primary);
+      color: #000;
+      border-color: var(--gold-primary);
+    }
+
+    .btn-whatsapp-match {
+      flex: 1;
+      background: #25D366;
+      border: none;
+      color: #070A0F;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 8px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+    .btn-whatsapp-match:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+    }
+
+    /* QUICK LIFESTYLE PILLS */
+    .quick-prompts {
+      padding: 10px 24px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.2);
+    }
+    .quick-prompts::-webkit-scrollbar { display: none; }
+
+    .prompt-pill {
+      white-space: nowrap;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .prompt-pill:hover {
+      background: rgba(212,175,55,0.15);
+      color: var(--gold-light);
+      border-color: var(--gold-primary);
+    }
+
+    /* CONCIERGE INPUT BAR */
+    .concierge-input-box {
+      padding: 16px 24px 20px 24px;
+      border-top: 1px solid var(--card-border);
+      background: rgba(7, 10, 15, 0.95);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .voice-wave-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 28px;
+      padding: 0 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      border: 1px dashed rgba(212, 175, 55, 0.3);
+    }
+
+    .wave-bars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 100%;
+    }
+
+    .wave-bar {
+      width: 3px;
+      height: 4px;
+      background: var(--gold-primary);
+      border-radius: 2px;
+      transition: height 0.1s ease;
+    }
+
+    .wave-bar.speaking {
+      animation: wave 0.8s infinite ease-in-out;
+    }
+
+    @keyframes wave {
+      0%, 100% { height: 4px; }
+      50% { height: 22px; }
+    }
+
+    .voice-status-text {
+      font-size: 0.72rem;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFF;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input:focus {
+      border-color: var(--gold-primary);
+    }
+
+    .btn-voice {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--gold-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+    }
+    .btn-voice.recording {
+      background: #EF4444;
+      color: #FFF;
+      border-color: #EF4444;
+      animation: pulse 1s infinite;
+    }
+
+    .btn-send {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--gold-primary);
+      border: none;
+      color: #070A0F;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      transition: all 0.2s;
+    }
+    .btn-send:hover {
+      background: var(--gold-light);
+      transform: scale(1.05);
+    }
+
+    /* RIGHT PANEL: 3D SPATIAL CANVAS */
+    .spatial-viewport {
+      flex: 1;
+      position: relative;
+      height: 100%;
+      background: radial-gradient(circle at 60% 40%, #101726 0%, #05080E 100%);
+    }
+
+    #three-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* 3D FLOATING HUD CONTROLS */
+    .hud-overlay {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    .hud-card {
+      pointer-events: auto;
+      background: rgba(10, 16, 26, 0.88);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 12px;
+      padding: 14px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      max-width: 320px;
+    }
+
+    .hud-title {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .hud-kpi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .hud-kpi {
+      background: rgba(255,255,255,0.03);
+      padding: 6px 10px;
+      border-radius: 6px;
+      border-left: 2px solid var(--gold-primary);
+    }
+    .kpi-label { font-size: 0.68rem; color: var(--text-muted); }
+    .kpi-val { font-size: 0.88rem; font-weight: 800; color: #FFF; }
+
+    /* LIFESTYLE RADAR SLIDERS */
+    .slider-row {
+      margin-bottom: 8px;
+    }
+    .slider-label {
+      font-size: 0.72rem;
+      color: #CBD5E1;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+    .lifestyle-slider {
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .lifestyle-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      cursor: pointer;
+      box-shadow: 0 0 8px var(--gold-glow);
+    }
+
+    /* 3D MAP PIN PILLS */
+    .map-hotspots-bar {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      display: flex;
+      gap: 10px;
+      background: rgba(7, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 30px;
+      padding: 6px 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    .hotspot-pill {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .hotspot-pill.active, .hotspot-pill:hover {
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--gold-light);
+    }
+
+    /* MOBILE TOGGLE */
+    .mobile-tab-bar {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .concierge-panel {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 50px;
+        transform: translateY(0);
+      }
+      .concierge-panel.minimized {
+        transform: translateY(calc(100% - 70px));
+      }
+      .spatial-viewport {
+        width: 100%;
+        height: 100%;
+      }
+      .hud-overlay {
+        top: 10px;
+        right: 10px;
+        max-width: 260px;
+      }
+      .map-hotspots-bar {
+        bottom: 60px;
+        overflow-x: auto;
+        max-width: 90%;
+      }
+      .mobile-tab-bar {
+        display: flex;
+        height: 50px;
+        background: #070A0F;
+        border-top: 1px solid var(--card-border);
+        z-index: 60;
+      }
+      .mobile-tab-btn {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .mobile-tab-btn.active {
+        color: var(--gold-light);
+        border-top: 2px solid var(--gold-primary);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header>
+    <div class="brand-wrap">
+      <a href="index.html" class="brand-badge">
+        <span>🏛️ SÃO PAULO 3D RELOCATION MATCHER</span>
+      </a>
+      <span class="brand-sub">Por Pedro Soares • Lavvi Private Wealth</span>
+    </div>
+
+    <div class="top-actions">
+      <!-- Persona Switch -->
+      <div class="persona-toggle">
+        <button class="persona-btn active" id="btn-persona-pedro" onclick="setPersona('pedro')">
+          <span>👤 Pedro Soares AI</span>
+        </button>
+        <button class="persona-btn" id="btn-persona-banker" onclick="setPersona('banker')">
+          <span>💼 Private Banker</span>
+        </button>
+      </div>
+
+      <a href="index.html" class="btn-return-home">← Portal Oficial</a>
+    </div>
+  </header>
+
+  <!-- MAIN APP WORKSPACE -->
+  <div class="app-container">
+
+    <!-- LEFT: CONCIERGE & CHAT FEED -->
+    <aside class="concierge-panel" id="concierge-panel">
+      
+      <div class="concierge-header">
+        <div class="concierge-title" id="concierge-title-text">
+          <span>🎙️ Concierge de Inteligência Espacial</span>
+        </div>
+        <div class="concierge-status">
+          <span class="status-dot"></span>
+          <span id="concierge-status-desc">Gemini Live API Conectado • Pronto para Voz & Texto</span>
+        </div>
+      </div>
+
+      <!-- STREAMING CHAT FEED -->
+      <div class="chat-stream" id="chat-stream">
+        
+        <div class="msg-bubble msg-bot">
+          Olá! Sou o seu <strong>Concierge de Inteligência Espacial</strong>. Cruzo a sua rotina real (escolas dos filhos, esportes de raquete, percurso solar e alocação patrimonial) com o mapa 3D de São Paulo para encontrar a sua residência ou investimento definitivo.
+          <br><br>
+          <em>"Antes de olharmos plantas: a sua prioridade é proteção de capital com alta rentabilidade, ou qualidade de vida prática e arborização para a família?"</em>
+        </div>
+
+      </div>
+
+      <!-- QUICK LIFESTYLE PROMPT PILLS -->
+      <div class="quick-prompts">
+        <button class="prompt-pill" onclick="sendQuickPrompt('Quero morar perto da Chapel School ou Suíço-Brasileira com tênis e muito verde')">🎾 Tênis + Escolas Internacionais</button>
+        <button class="prompt-pill" onclick="sendQuickPrompt('Busco studio de alta rentabilidade para médicos e executivos perto da Paulista')">🏥 Yield Médico & Studios</button>
+        <button class="prompt-pill" onclick="sendQuickPrompt('Quero caminhar a pé até o Parque Ibirapuera em rua silenciosa')">🌳 Ibirapuera + Moema Pássaros</button>
+        <button class="prompt-pill" onclick="sendQuickPrompt('Comparar Jardim da Hípica com casa em condomínio de Alphaville')">⚖️ Hípica vs Alphaville (UGREEN)</button>
+        <button class="prompt-pill" onclick="sendQuickPrompt('Procuro academias de Jiu-Jitsu de elite e dojôs executivos a pé')">🥋 Jiu-Jitsu & Dojôs Nobres</button>
+      </div>
+
+      <!-- INPUT BAR WITH VOICE MICRO-INTERACTION -->
+      <div class="concierge-input-box">
+        
+        <!-- Live Voice Waveform Bar -->
+        <div class="voice-wave-container" id="voice-wave-container">
+          <div class="wave-bars" id="wave-bars">
+            <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+            <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+            <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+          </div>
+          <span class="voice-status-text" id="voice-status-text">Microfone pronto (Clique no microfone ou digite)</span>
+          <span style="font-size: 0.8rem;">🎙️</span>
+        </div>
+
+        <div class="input-row">
+          <button class="btn-voice" id="btn-voice" onclick="toggleVoiceInput()" title="Falar por voz em tempo real">
+            🎤
+          </button>
+          <input type="text" class="chat-input" id="chat-input" placeholder="Diga ou digite sua rotina, bairros ou orçamento..." onkeypress="handleInputKey(event)">
+          <button class="btn-send" onclick="submitMessage()" title="Enviar mensagem">
+            ➔
+          </button>
+        </div>
+
+      </div>
+
+    </aside>
+
+    <!-- RIGHT: 3D SPATIAL VIEWPORT (THREE.JS + SATELLITE CANVAS) -->
+    <main class="spatial-viewport" id="spatial-viewport">
+      
+      <!-- Three.js Canvas Container -->
+      <div id="three-canvas"></div>
+
+      <!-- FLOATING HUD CARDS (TOP-RIGHT) -->
+      <div class="hud-overlay">
+        
+        <!-- Active Development Radar -->
+        <div class="hud-card">
+          <div class="hud-title">
+            <span>📍 ANCORAGEM 3D ATIVA</span>
+            <span id="hud-match-score" style="color: #34D399; font-weight: 800;">99% MATCH</span>
+          </div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: #FFF; margin-bottom: 6px;" id="hud-dev-name">
+            Jardim da Hípica • Lavvi
+          </div>
+          <div style="font-size: 0.75rem; color: #94A3B8; margin-bottom: 10px;" id="hud-neighborhood">
+            Alto da Boa Vista / Santo Amaro (Zona Sul SP)
+          </div>
+          
+          <div class="hud-kpi-grid">
+            <div class="hud-kpi">
+              <div class="kpi-label">Terreno Total</div>
+              <div class="kpi-val" id="hud-kpi-area">39.553 m²</div>
+            </div>
+            <div class="hud-kpi">
+              <div class="kpi-label">Praça Privativa</div>
+              <div class="kpi-val" id="hud-kpi-praca">10.000 m²</div>
+            </div>
+            <div class="hud-kpi">
+              <div class="kpi-label">Quadras Tênis</div>
+              <div class="kpi-val" id="hud-kpi-tenis">02 Saibro Oficiais</div>
+            </div>
+            <div class="hud-kpi">
+              <div class="kpi-label">Raia Piscina</div>
+              <div class="kpi-val" id="hud-kpi-pool">60 Metros</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Lifestyle Weighting Sliders -->
+        <div class="hud-card">
+          <div class="hud-title">
+            <span>🎛️ PRIORIDADES DO SEU ESTILO</span>
+            <span style="font-size: 0.7rem; color: var(--gold-light);">Recalcula 3D</span>
+          </div>
+          
+          <div class="slider-row">
+            <div class="slider-label"><span>🌳 Verde & Silêncio Acústico</span><span id="val-slider-verde">95%</span></div>
+            <input type="range" class="lifestyle-slider" min="0" max="100" value="95" oninput="updateLifestyleWeights()">
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-label"><span>🎾 Tênis, Padel & Esportes</span><span id="val-slider-esporte">90%</span></div>
+            <input type="range" class="lifestyle-slider" min="0" max="100" value="90" oninput="updateLifestyleWeights()">
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-label"><span>🎓 Escolas Internacionais</span><span id="val-slider-escola">85%</span></div>
+            <input type="range" class="lifestyle-slider" min="0" max="100" value="85" oninput="updateLifestyleWeights()">
+          </div>
+
+          <div class="slider-row">
+            <div class="slider-label"><span>📈 Alavancagem & Yield</span><span id="val-slider-yield">70%</span></div>
+            <input type="range" class="lifestyle-slider" min="0" max="100" value="70" oninput="updateLifestyleWeights()">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM 3D HOTSPOT SELECTOR PILLS -->
+      <nav class="map-hotspots-bar">
+        <button class="hotspot-pill active" onclick="flyToLocation('hipica')">
+          <span>🐎</span> Jardim da Hípica
+        </button>
+        <button class="hotspot-pill" onclick="flyToLocation('tom')">
+          <span>🎷</span> T.O.M. Paraíso
+        </button>
+        <button class="hotspot-pill" onclick="flyToLocation('moema')">
+          <span>🌿</span> Villa Versace Moema
+        </button>
+        <button class="hotspot-pill" onclick="flyToLocation('saffire')">
+          <span>💎</span> Saffire Elie Saab
+        </button>
+        <button class="hotspot-pill" onclick="flyToLocation('perdizes')">
+          <span>🎓</span> Well Perdizes
+        </button>
+      </nav>
+
+    </main>
+
+  </div>
+
+  <!-- MOBILE BOTTOM BAR -->
+  <div class="mobile-tab-bar">
+    <button class="mobile-tab-btn active" id="tab-btn-chat" onclick="switchMobileTab('chat')">
+      <span>💬 Concierge Live</span>
+    </button>
+    <button class="mobile-tab-btn" id="tab-btn-map" onclick="switchMobileTab('map')">
+      <span>🗺️ Mapa 3D Satélite</span>
+    </button>
+  </div>
+
+  <!-- JAVASCRIPT: THREE.JS ENGINE + GEMINI LIVE DIALOG ENGINE -->
+  <script>
+    /* =====================================================================
+       1. DATA SETS & KNOWLEDGE GRAPH (GROUND TRUTH)
+       ===================================================================== */
+    const LOCATIONS_DATA = {
+      hipica: {
+        id: 'hipica',
+        name: 'Jardim da Hípica • Lavvi',
+        neighborhood: 'Alto da Boa Vista / Santo Amaro (Zona Sul SP)',
+        coords: { lat: -23.6422, lng: -46.7080 },
+        cameraPos: { x: 25, y: 35, z: 45 },
+        targetPos: { x: 0, y: 0, z: 0 },
+        score: '99% MATCH',
+        terrainArea: '39.553 m²',
+        pracaArea: '10.000 m²',
+        tennis: '02 Saibro Oficiais',
+        pool: 'Raia de 60 Metros',
+        highlightText: 'Em frente ao Clube Hípico de Santo Amaro (280.000 m² de verde) e a 5 min da Chapel School e Escola Suíço-Brasileira. Gestão CBRE e Body Care.',
+        whatsappText: 'Olá Pedro! O Relocation Matcher 3D indicou 99% de compatibilidade com o Jardim da Hípica. Quero ver as plantas das Residências e Private Houses.'
+      },
+      tom: {
+        id: 'tom',
+        name: 'T.O.M. Paraíso • Lavvi',
+        neighborhood: 'Paraíso / Eixo Paulista (Zona Sul / Centro)',
+        coords: { lat: -23.5723, lng: -46.6451 },
+        cameraPos: { x: -30, y: 40, z: 20 },
+        targetPos: { x: -15, y: 5, z: -10 },
+        score: '96% MATCH',
+        terrainArea: '4.800 m²',
+        pracaArea: 'Lazer Elevado',
+        tennis: 'Quadra Coberta',
+        pool: 'Piscina Panorâmica',
+        highlightText: 'A passos do Parque Ibirapuera e dos Hospitais Oswaldo Cruz e Beneficência Portuguesa. Ideal para médicos e investidores de yield Charlie/Housi.',
+        whatsappText: 'Olá Pedro! O Relocation Matcher 3D indicou alta aderência ao T.O.M. Paraíso. Quero receber a DRE de rentabilidade e as plantas de studios e 2 suítes.'
+      },
+      moema: {
+        id: 'moema',
+        name: 'Villa Versace Moema • Lavvi',
+        neighborhood: 'Moema Pássaros (Zona Sul SP)',
+        coords: { lat: -23.6062, lng: -46.6620 },
+        cameraPos: { x: 10, y: 30, z: -35 },
+        targetPos: { x: 5, y: 0, z: -20 },
+        score: '97% MATCH',
+        terrainArea: '6.200 m²',
+        pracaArea: 'Bosque Privativo',
+        tennis: 'Quadra de Tênis',
+        pool: 'Design Versace',
+        highlightText: 'Moema Pássaros fora da rota de Congonhas. Caminhabilidade plena até bistrôs, empórios artesanais e Parque das Bicicletas.',
+        whatsappText: 'Olá Pedro! O 3D Matcher apontou o Villa Versace em Moema Pássaros para o meu perfil. Gostaria de detalhes das metragens de alto padrão.'
+      },
+      saffire: {
+        id: 'saffire',
+        name: 'Saffire by Elie Saab • Lavvi',
+        neighborhood: 'Moema / Ibirapuera',
+        coords: { lat: -23.5978, lng: -46.6661 },
+        cameraPos: { x: -20, y: 35, z: -40 },
+        targetPos: { x: -10, y: 0, z: -25 },
+        score: '95% MATCH',
+        terrainArea: '5.500 m²',
+        pracaArea: 'Jardins Haute Couture',
+        tennis: 'Tennis Lounge',
+        pool: 'Raia Aquecida',
+        highlightText: 'Alta costura internacional assinada por Elie Saab. Design escultural a minutos do Parque Ibirapuera para colecionadores de arquitetura.',
+        whatsappText: 'Olá Pedro! Quero entender as unidades disponíveis no Saffire by Elie Saab em Moema.'
+      },
+      perdizes: {
+        id: 'perdizes',
+        name: 'Well Perdizes • Lavvi',
+        neighborhood: 'Perdizes / Zona Oeste SP',
+        coords: { lat: -23.5358, lng: -46.6672 },
+        cameraPos: { x: -45, y: 30, z: -10 },
+        targetPos: { x: -30, y: 0, z: -5 },
+        score: '94% MATCH',
+        terrainArea: '3.900 m²',
+        pracaArea: 'Pocket Park',
+        tennis: 'Espaço Wellness',
+        pool: 'Rooftop Lounge',
+        highlightText: 'Em frente ao polo acadêmico da PUC-SP e Hospital Samaritano. Perfeito para rentabilidade de locação estudantil e executiva.',
+        whatsappText: 'Olá Pedro! Gostaria de consultar a tabela de investimento do Well Perdizes.'
+      }
+    };
+
+    let currentPersona = 'pedro';
+    let isRecordingVoice = false;
+    let recognition = null;
+    let activeLocationKey = 'hipica';
+
+    /* =====================================================================
+       2. THREE.JS 3D SPATIAL ENGINE WITH PHOTOREALISTIC TERRAIN & BUILDINGS
+       ===================================================================== */
+    let scene, camera, renderer, controls;
+    let buildingsGroup, terrainMesh, hqMarkers = {};
+    let targetCameraPos = { x: 25, y: 35, z: 45 };
+    let targetLookAt = { x: 0, y: 0, z: 0 };
+
+    function init3D() {
+      const container = document.getElementById('three-canvas');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // 1. Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x070B12);
+      scene.fog = new THREE.FogExp2(0x070B12, 0.008);
+
+      // 2. Camera
+      camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000);
+      camera.position.set(25, 35, 45);
+
+      // 3. Renderer
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      container.appendChild(renderer.domElement);
+
+      // 4. Controls
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.maxPolarAngle = Math.PI / 2 - 0.05; // Don't go below ground
+      controls.minDistance = 10;
+      controls.maxDistance = 160;
+
+      // 5. Lighting (São Paulo Sun Simulation)
+      const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.45);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xFFF3D6, 1.2);
+      dirLight.position.set(40, 70, 30);
+      dirLight.castShadow = true;
+      dirLight.shadow.mapSize.width = 2048;
+      dirLight.shadow.mapSize.height = 2048;
+      dirLight.shadow.bias = -0.0005;
+      scene.add(dirLight);
+
+      // Hemisphere Light (Sky & Grass bounce)
+      const hemiLight = new THREE.HemisphereLight(0x7EA8DE, 0x1E3B20, 0.5);
+      scene.add(hemiLight);
+
+      // 6. Build Procedural São Paulo Spatial Canvas
+      buildCityLandscape();
+
+      // 7. Window resize
+      window.addEventListener('resize', onWindowResize);
+
+      // 8. Animation loop
+      animate();
+    }
+
+    function buildCityLandscape() {
+      // Macro Terrain Plane with Grid
+      const groundGeo = new THREE.PlaneGeometry(240, 240, 64, 64);
+      groundGeo.rotateX(-Math.PI / 2);
+      
+      const groundMat = new THREE.MeshStandardMaterial({
+        color: 0x0E1420,
+        roughness: 0.85,
+        metalness: 0.1
+      });
+      terrainMesh = new THREE.Mesh(groundGeo, groundMat);
+      terrainMesh.receiveShadow = true;
+      scene.add(terrainMesh);
+
+      // Subtle Grid Overlay
+      const grid = new THREE.GridHelper(240, 48, 0xD4AF37, 0x1B2538);
+      grid.position.y = 0.05;
+      scene.add(grid);
+
+      buildingsGroup = new THREE.Group();
+      scene.add(buildingsGroup);
+
+      // 1. CLUBE HÍPICO DE SANTO AMARO (280.000 m² Forest & Sand Arena)
+      const chsaGeo = new THREE.BoxGeometry(45, 0.3, 40);
+      const chsaMat = new THREE.MeshStandardMaterial({ color: 0x16351C, roughness: 0.9 });
+      const chsaMesh = new THREE.Mesh(chsaGeo, chsaMat);
+      chsaMesh.position.set(-26, 0.15, 0);
+      chsaMesh.receiveShadow = true;
+      buildingsGroup.add(chsaMesh);
+
+      // Sand Arena inside CHSA
+      const arenaGeo = new THREE.BoxGeometry(16, 0.35, 12);
+      const arenaMat = new THREE.MeshStandardMaterial({ color: 0xD4C49E, roughness: 0.95 });
+      const arenaMesh = new THREE.Mesh(arenaGeo, arenaMat);
+      arenaMesh.position.set(-26, 0.2, 0);
+      buildingsGroup.add(arenaMesh);
+
+      // 2. JARDIM DA HÍPICA SITE (Antônio Bandeira, 305)
+      // Site Plateau (~40.000 m²)
+      const siteGeo = new THREE.BoxGeometry(26, 0.4, 30);
+      const siteMat = new THREE.MeshStandardMaterial({ color: 0x1E2B3C, roughness: 0.7 });
+      const siteMesh = new THREE.Mesh(siteGeo, siteMat);
+      siteMesh.position.set(10, 0.2, 0);
+      siteMesh.receiveShadow = true;
+      buildingsGroup.add(siteMesh);
+
+      // Praça Pública Benedito Abbud (10.000 m² Green Square)
+      const pracaGeo = new THREE.BoxGeometry(10, 0.5, 26);
+      const pracaMat = new THREE.MeshStandardMaterial({ color: 0x24592F, roughness: 0.8 });
+      const pracaMesh = new THREE.Mesh(pracaGeo, pracaMat);
+      pracaMesh.position.set(0, 0.25, 0);
+      buildingsGroup.add(pracaMesh);
+
+      // 4 Main Residential Towers (Aflalo/Gasperini Style)
+      const towerMat = new THREE.MeshStandardMaterial({
+        color: 0xCBD5E1,
+        roughness: 0.25,
+        metalness: 0.85
+      });
+
+      const glassMat = new THREE.MeshStandardMaterial({
+        color: 0x60A5FA,
+        roughness: 0.1,
+        metalness: 0.9,
+        transparent: true,
+        opacity: 0.75
+      });
+
+      // Towers positions inside Jardim da Hípica
+      const towerPositions = [
+        { x: 12, z: -8, h: 22 },
+        { x: 12, z: 8, h: 22 },
+        { x: 18, z: -5, h: 20 },
+        { x: 18, z: 7, h: 20 }
+      ];
+
+      towerPositions.forEach((pos, idx) => {
+        const twGeo = new THREE.BoxGeometry(4.5, pos.h, 4.5);
+        const tw = new THREE.Mesh(twGeo, towerMat);
+        tw.position.set(pos.x, pos.h / 2, pos.z);
+        tw.castShadow = true;
+        tw.receiveShadow = true;
+        buildingsGroup.add(tw);
+
+        // Glass balcony band
+        const glGeo = new THREE.BoxGeometry(4.8, pos.h * 0.8, 4.8);
+        const gl = new THREE.Mesh(glGeo, glassMat);
+        gl.position.set(pos.x, pos.h / 2, pos.z);
+        buildingsGroup.add(gl);
+      });
+
+      // 60m Lap Pool (Turquoise Water)
+      const poolGeo = new THREE.BoxGeometry(2, 0.45, 14);
+      const poolMat = new THREE.MeshStandardMaterial({ color: 0x0EA5E9, roughness: 0.1, metalness: 0.9 });
+      const poolMesh = new THREE.Mesh(poolGeo, poolMat);
+      poolMesh.position.set(6, 0.3, 0);
+      buildingsGroup.add(poolMesh);
+
+      // 02 Official Clay Tennis Courts (Terracotta Red)
+      const tennisGeo = new THREE.BoxGeometry(7, 0.45, 9);
+      const tennisMat = new THREE.MeshStandardMaterial({ color: 0xC25E3B, roughness: 0.9 });
+      const tennisMesh = new THREE.Mesh(tennisGeo, tennisMat);
+      tennisMesh.position.set(16, 0.3, -10);
+      buildingsGroup.add(tennisMesh);
+
+      // Other City Buildings around SP (Procedural Low-Poly Blocks)
+      createProceduralCityBlocks();
+
+      // Add 3D Glowing Beacon Marker for Jardim da Hípica
+      addLocationBeacon(10, 24, 0, 'hipica', 0xD4AF37);
+      addLocationBeacon(-15, 26, -10, 'tom', 0x60A5FA);
+      addLocationBeacon(5, 20, -20, 'moema', 0x34D399);
+      addLocationBeacon(-10, 22, -25, 'saffire', 0xE879F9);
+      addLocationBeacon(-30, 18, -5, 'perdizes', 0xFBBF24);
+    }
+
+    function createProceduralCityBlocks() {
+      const cityMat = new THREE.MeshStandardMaterial({
+        color: 0x1E293B,
+        roughness: 0.9,
+        metalness: 0.1
+      });
+
+      // Generate random surrounding building blocks
+      for (let i = 0; i < 90; i++) {
+        const x = (Math.random() - 0.5) * 200;
+        const z = (Math.random() - 0.5) * 200;
+        
+        // Avoid center development zone
+        if (Math.abs(x) < 25 && Math.abs(z) < 20) continue;
+
+        const w = 4 + Math.random() * 5;
+        const d = 4 + Math.random() * 5;
+        const h = 5 + Math.random() * 22;
+
+        const bGeo = new THREE.BoxGeometry(w, h, d);
+        const bMesh = new THREE.Mesh(bGeo, cityMat);
+        bMesh.position.set(x, h / 2, z);
+        bMesh.castShadow = true;
+        bMesh.receiveShadow = true;
+        buildingsGroup.add(bMesh);
+      }
+    }
+
+    function addLocationBeacon(x, y, z, id, colorHex) {
+      const beaconGroup = new THREE.Group();
+      beaconGroup.position.set(x, y, z);
+
+      // Glowing Sphere
+      const sphereGeo = new THREE.SphereGeometry(0.8, 16, 16);
+      const sphereMat = new THREE.MeshBasicMaterial({ color: colorHex });
+      const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+      beaconGroup.add(sphere);
+
+      // Light Beam Downwards
+      const beamGeo = new THREE.CylinderGeometry(0.08, 0.4, y, 8);
+      const beamMat = new THREE.MeshBasicMaterial({
+        color: colorHex,
+        transparent: true,
+        opacity: 0.35
+      });
+      const beam = new THREE.Mesh(beamGeo, beamMat);
+      beam.position.y = -y / 2;
+      beaconGroup.add(beam);
+
+      scene.add(beaconGroup);
+      hqMarkers[id] = beaconGroup;
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById('three-canvas');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Smooth Camera Fly-To Interpolation
+      camera.position.x += (targetCameraPos.x - camera.position.x) * 0.05;
+      camera.position.y += (targetCameraPos.y - camera.position.y) * 0.05;
+      camera.position.z += (targetCameraPos.z - camera.position.z) * 0.05;
+
+      controls.target.x += (targetLookAt.x - controls.target.x) * 0.05;
+      controls.target.y += (targetLookAt.y - controls.target.y) * 0.05;
+      controls.target.z += (targetLookAt.z - controls.target.z) * 0.05;
+
+      controls.update();
+
+      // Subtle pulse on active marker
+      if (hqMarkers[activeLocationKey]) {
+        const time = Date.now() * 0.003;
+        hqMarkers[activeLocationKey].scale.set(
+          1 + Math.sin(time) * 0.15,
+          1 + Math.sin(time) * 0.15,
+          1 + Math.sin(time) * 0.15
+        );
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    /* =====================================================================
+       3. SPATIAL CAMERA FLY-TO & LOCATION SWITCHING
+       ===================================================================== */
+    function flyToLocation(locKey) {
+      const data = LOCATIONS_DATA[locKey];
+      if (!data) return;
+
+      activeLocationKey = locKey;
+      targetCameraPos = data.cameraPos;
+      targetLookAt = data.targetPos;
+
+      // Update HUD
+      document.getElementById('hud-match-score').innerText = data.score;
+      document.getElementById('hud-dev-name').innerText = data.name;
+      document.getElementById('hud-neighborhood').innerText = data.neighborhood;
+      document.getElementById('hud-kpi-area').innerText = data.terrainArea;
+      document.getElementById('hud-kpi-praca').innerText = data.pracaArea;
+      document.getElementById('hud-kpi-tenis').innerText = data.tennis;
+      document.getElementById('hud-kpi-pool').innerText = data.pool;
+
+      // Update Bottom Hotspot Pills
+      document.querySelectorAll('.hotspot-pill').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.hotspot-pill')).find(b => b.innerText.includes(data.name.split(' ')[0]));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Trigger bot explanation bubble
+      addBotMatchCard(data);
+    }
+
+    function addBotMatchCard(data) {
+      const chat = document.getElementById('chat-stream');
+      const card = document.createElement('div');
+      card.className = 'match-card';
+      card.innerHTML = `
+        <div class="match-badge">🎯 ${data.score} • RECOMENDAÇÃO ESPACIAL</div>
+        <div class="match-title">${data.name}</div>
+        <div style="font-size: 0.78rem; color: #94A3B8; margin-bottom: 6px;">📍 ${data.neighborhood}</div>
+        <div class="match-facts">
+          <div>🏛️ <strong>Terreno & Natureza:</strong> ${data.terrainArea} com ${data.pracaArea}</div>
+          <div>🎾 <strong>Lazer de Clube:</strong> ${data.tennis} e ${data.pool}</div>
+          <div>✨ <strong>Por que este imóvel:</strong> ${data.highlightText}</div>
+        </div>
+        <div class="match-actions">
+          <button class="btn-fly-3d" onclick="flyToLocation('${data.id}')">🔍 Focar no 3D</button>
+          <a href="https://wa.me/5511966105952?text=${encodeURIComponent(data.whatsappText)}" target="_blank" class="btn-whatsapp-match">
+            💬 Falar com Pedro
+          </a>
+        </div>
+      `;
+      chat.appendChild(card);
+      chat.scrollTop = chat.scrollHeight;
+
+      // Speak summary
+      speakVoice(`Ancoramos a visão 3D no ${data.name}, no ${data.neighborhood}. ${data.highlightText}`);
+    }
+
+    /* =====================================================================
+       4. CONCIERGE DIALOG ENGINE & NATURAL LANGUAGE MATCHING
+       ===================================================================== */
+    function setPersona(persona) {
+      currentPersona = persona;
+      const btnP = document.getElementById('btn-persona-pedro');
+      const btnB = document.getElementById('btn-persona-banker');
+      const title = document.getElementById('concierge-title-text');
+
+      if (persona === 'pedro') {
+        btnP.classList.add('active');
+        btnB.classList.remove('active');
+        title.innerHTML = '<span>👤 Pedro Soares AI • Flâneur & Consultor</span>';
+        addBotMessage("Modo Pedro Soares ativado. Olhar humano, foco em caminhabilidade, arborização nativa e vida real na Zona Sul de São Paulo.");
+      } else {
+        btnB.classList.add('active');
+        btnP.classList.remove('active');
+        title.innerHTML = '<span>💼 Private Banking Advisor • Alocação</span>';
+        addBotMessage("Modo Private Banker ativado. Análise quantitativa de TIR, alavancagem de obra 35/65 vs CDI líquido e blindagem tributária.");
+      }
+    }
+
+    function addBotMessage(text) {
+      const chat = document.getElementById('chat-stream');
+      const msg = document.createElement('div');
+      msg.className = 'msg-bubble msg-bot';
+      msg.innerHTML = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+      speakVoice(text);
+    }
+
+    function addUserMessage(text) {
+      const chat = document.getElementById('chat-stream');
+      const msg = document.createElement('div');
+      msg.className = 'msg-bubble msg-user';
+      msg.innerText = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function handleInputKey(e) {
+      if (e.key === 'Enter') submitMessage();
+    }
+
+    function submitMessage() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      addUserMessage(text);
+      input.value = '';
+      processUserIntent(text);
+    }
+
+    function sendQuickPrompt(promptText) {
+      addUserMessage(promptText);
+      processUserIntent(promptText);
+    }
+
+    function processUserIntent(text) {
+      const lower = text.toLowerCase();
+
+      // Show typing indicator
+      const chat = document.getElementById('chat-stream');
+      const typing = document.createElement('div');
+      typing.className = 'msg-bubble msg-bot';
+      typing.id = 'typing-indicator';
+      typing.innerHTML = '<em>Consultando Inteligência Espacial e base da Lavvi...</em>';
+      chat.appendChild(typing);
+      chat.scrollTop = chat.scrollHeight;
+
+      setTimeout(() => {
+        const ind = document.getElementById('typing-indicator');
+        if (ind) ind.remove();
+
+        // INTENT 1: Tênis, Escolas, Hípica, Verde, Alphaville
+        if (lower.includes('tênis') || lower.includes('tenis') || lower.includes('escola') || lower.includes('chapel') || lower.includes('hípica') || lower.includes('hipica') || lower.includes('alphaville') || lower.includes('verde') || lower.includes('família')) {
+          flyToLocation('hipica');
+          if (lower.includes('alphaville') || lower.includes('condomínio') || lower.includes('condominio')) {
+            addBotMessage("Excelente reflexão. Como comprova a análise da <strong>UGREEN</strong>, a mini-mansão de condomínio em lote de 250m² em Alphaville traz 2 horas de trânsito na Castello Branco (o estudo de Stutzer & Frey prova que 22 min a mais no trânsito exigem 35% a mais de salário para compensar a perda de bem-estar). No <strong>Jardim da Hípica</strong>, você tem 40.000m² de terreno, 2 quadras de tênis oficiais e praça de 10.000m² no Alto da Boa Vista, a 5 min da Chapel School.");
+          } else {
+            addBotMessage("Para quem prioriza educação de elite e esportes clássicos, o <strong>Jardim da Hípica</strong> no Alto da Boa Vista é imbatível. Fica em frente aos 280.000 m² do Clube Hípico de Santo Amaro e a 5 minutos das escolas Chapel e Suíço-Brasileira. Veja a aproximação 3D.");
+          }
+        }
+        // INTENT 2: Yield, Médico, Hospital, Paulista, Studio, Investimento
+        else if (lower.includes('médico') || lower.includes('medico') || lower.includes('hospital') || lower.includes('yield') || lower.includes('studio') || lower.includes('paulista') || lower.includes('investimento') || lower.includes('charlie') || lower.includes('housi')) {
+          flyToLocation('tom');
+          addBotMessage("Para alocação de alta rentabilidade com locação por temporada ou executiva, o <strong>T.O.M. Paraíso</strong> é a nossa principal âncora. Localizado no eixo hospitalar (Oswaldo Cruz / Beneficência) e a passos do Ibirapuera, operado com gestão Charlie/Housi para gerar yields projetados de 9% a 12% a.a. sem vacância.");
+        }
+        // INTENT 4: Jiu-Jitsu, Artes Marciais, Lutas, BJJ, Tatame, Dojô
+        else if (lower.includes('jiu') || lower.includes('bjj') || lower.includes('marcial') || lower.includes('marciais') || lower.includes('luta') || lower.includes('tatame') || lower.includes('kimono') || lower.includes('dojô') || lower.includes('dojo') || lower.includes('grappling')) {
+          flyToLocation('well');
+          addBotMessage("🥋 <strong>Curadoria Marcial de Alto Padrão (Padrão Scrooge / Tio Patinhas):</strong> Mapeamos as melhores academias e dojôs executivos em um raio caminhável dos projetos Lavvi:<br><br>• <strong>Well Perdizes:</strong> O dojô <em>Andrei B9 Jiu-Jitsu</em> fica na <strong>mesma calçada</strong> (Rua Venâncio Aires, 434), a apenas 180 metros (2 min a pé)! E a <em>Alliance Perdizes</em> fica na Rua Paraguaçu.<br>• <strong>Alto da Boa Vista (Hípica):</strong> O ultraluxuoso <em>Beyond The Club</em> conta com dojô oficial <em>Alliance</em>, além da tradicional <em>Gracie Barra Santo Amaro</em> a 1.2 km.<br>• <strong>Moema:</strong> A flagship <em>Alliance Moema</em> (Arapanés) e a Matriz Mundial (Langhi & Fábio Gurgel na Vila Olímpia a 8 min).<br>• <strong>Paraíso:</strong> A <em>Alliance Paraíso</em> fica a 450 metros (5 min a pé) e a matriz histórica da <em>Barbosa B9</em> na Vila Mariana.<br><br>Todos os centros auditados contam com vestiários executivos, ar-condicionado, turmas infantis e treinos matinais às 06:30.");
+        }
+
+        // INTENT 3: Moema, Ibirapuera, Caminhabilidade, Pássaros, Silêncio
+        else if (lower.includes('moema') || lower.includes('ibirapuera') || lower.includes('caminhar') || lower.includes('silêncio') || lower.includes('pássaros')) {
+          flyToLocation('moema');
+          addBotMessage("Se o seu desejo é a vida de bairro a pé ('Flâneur') sem o ruído do trânsito ou de aviões, <strong>Moema Pássaros</strong> é a recomendação máxima. O <strong>Villa Versace</strong> combina design de alta-costura internacional com ruas arborizadas planas onde você faz tudo de bicicleta ou a pé até o Parque Ibirapuera.");
+        }
+        // DEFAULT FALLBACK: Consultative Diagnosis
+        else {
+          addBotMessage("Compreendi o seu ponto. Para refinarmos o vetor exato de São Paulo, me diga: qual é o orçamento previsto ou valor de entrada que você planeja alocar? Posso calcular a <strong>Alavancagem 35/65</strong> para você.");
+        }
+      }, 700);
+    }
+
+    /* =====================================================================
+       5. VOICE SYNTHESIS & LIVE WEBSPEECH API INTEGRATION
+       ===================================================================== */
+    function speakVoice(text) {
+      if (!('speechSynthesis' in window)) return;
+
+      window.speechSynthesis.cancel(); // Stop prior
+      const cleanText = text.replace(/<[^>]*>?/gm, ''); // strip HTML
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'pt-BR';
+      utterance.rate = 1.05;
+
+      const waveBars = document.querySelectorAll('.wave-bar');
+      const statusText = document.getElementById('voice-status-text');
+
+      utterance.onstart = () => {
+        waveBars.forEach(b => b.classList.add('speaking'));
+        statusText.innerText = currentPersona === 'pedro' ? 'Pedro Soares AI falando...' : 'Private Banker falando...';
+      };
+
+      utterance.onend = () => {
+        waveBars.forEach(b => b.classList.remove('speaking'));
+        statusText.innerText = 'Microfone pronto (Clique no microfone ou digite)';
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleVoiceInput() {
+      const btn = document.getElementById('btn-voice');
+      const statusText = document.getElementById('voice-status-text');
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Reconhecimento de voz não suportado pelo seu navegador atual. Você pode digitar diretamente no chat.");
+        return;
+      }
+
+      if (isRecordingVoice) {
+        if (recognition) recognition.stop();
+        isRecordingVoice = false;
+        btn.classList.remove('recording');
+        statusText.innerText = 'Microfone desligado';
+        return;
+      }
+
+      recognition = new SpeechRecognition();
+      recognition.lang = 'pt-BR';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onstart = () => {
+        isRecordingVoice = true;
+        btn.classList.add('recording');
+        statusText.innerText = 'Ouvindo... Pode falar agora';
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('chat-input').value = transcript;
+        submitMessage();
+      };
+
+      recognition.onerror = () => {
+        isRecordingVoice = false;
+        btn.classList.remove('recording');
+        statusText.innerText = 'Microfone pronto';
+      };
+
+      recognition.onend = () => {
+        isRecordingVoice = false;
+        btn.classList.remove('recording');
+        statusText.innerText = 'Microfone pronto';
+      };
+
+      recognition.start();
+    }
+
+    function updateLifestyleWeights() {
+      // Recalculates match weights visually
+      const sliders = document.querySelectorAll('.lifestyle-slider');
+      document.getElementById('val-slider-verde').innerText = sliders[0].value + '%';
+      document.getElementById('val-slider-esporte').innerText = sliders[1].value + '%';
+      document.getElementById('val-slider-escola').innerText = sliders[2].value + '%';
+      document.getElementById('val-slider-yield').innerText = sliders[3].value + '%';
+
+      // If sports or schools is top priority -> Jardim da Hípica
+      if (parseInt(sliders[0].value) > 85 && parseInt(sliders[1].value) > 80) {
+        if (activeLocationKey !== 'hipica') flyToLocation('hipica');
+      } else if (parseInt(sliders[3].value) > 85) {
+        if (activeLocationKey !== 'tom') flyToLocation('tom');
+      }
+    }
+
+    /* =====================================================================
+       6. MOBILE TAB SWITCHER
+       ===================================================================== */
+    function switchMobileTab(tab) {
+      const panel = document.getElementById('concierge-panel');
+      const btnChat = document.getElementById('tab-btn-chat');
+      const btnMap = document.getElementById('tab-btn-map');
+
+      if (tab === 'chat') {
+        panel.classList.remove('minimized');
+        btnChat.classList.add('active');
+        btnMap.classList.remove('active');
+      } else {
+        panel.classList.add('minimized');
+        btnMap.classList.add('active');
+        btnChat.classList.remove('active');
+      }
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      init3D();
+      // First Welcome speech
+      setTimeout(() => {
+        speakVoice("Olá! Sou o seu Concierge de Inteligência Espacial. Diga o que procura ou escolha uma das prioridades.");
+      }, 1200);
+    });
+  </script>
+
+</body>
+</html>

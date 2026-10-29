@@ -1,0 +1,83 @@
+{
+  "updated_at": "2026-10-27 13:24",
+  "images_count": 159,
+  "plantas_count": 92,
+  "videos_count": 42,
+  "duplicates_detected": [
+    {
+      "file": "assets/images/greenview_gallery_2.jpg",
+      "duplicate_of": "assets/images/greenview_gallery_1.jpg",
+      "hash": "7559278606498350"
+    },
+    {
+      "file": "assets/images/greenview_gallery_8.jpg",
+      "duplicate_of": "assets/images/greenview_gallery_6.jpg",
+      "hash": "5e98b4b07f8d77f6"
+    },
+    {
+      "file": "assets/images/hipica_gallery_6.jpg",
+      "duplicate_of": "assets/images/hipica_fachada_torre_d.jpg",
+      "hash": "b91707986a97f525"
+    },
+    {
+      "file": "assets/images/hipica_quadra_tenis.jpg",
+      "duplicate_of": "assets/images/hipica_gallery_3.jpg",
+      "hash": "5da3106d02a70b12"
+    },
+    {
+      "file": "assets/images/palace_gal_1.jpeg",
+      "duplicate_of": "assets/images/palace_gallery_1.jpg",
+      "hash": "e0838b062bb53ab1"
+    },
+    {
+      "file": "assets/images/palace_gal_3.jpeg",
+      "duplicate_of": "assets/images/palace_gallery_2.jpg",
+      "hash": "6d6491e210d7ea8c"
+    },
+    {
+      "file": "assets/images/petra_gal_3.jpg",
+      "duplicate_of": "assets/images/petra_gal_2.jpg",
+      "hash": "6aa7b06c90662c33"
+    },
+    {
+      "file": "assets/images/well_perdizes_gal_1.png",
+      "duplicate_of": "assets/images/novvo_gal_1.png",
+      "hash": "5ba0f585e7ae2a1e"
+    },
+    {
+      "file": "assets/images/well_perdizes_gal_2.jpg",
+      "duplicate_of": "assets/images/novvo_gal_3.jpg",
+      "hash": "956b88fa30f306d8"
+    },
+    {
+      "file": "assets/images/well_perdizes_gal_3.jpg",
+      "duplicate_of": "assets/images/novvo_gal_4.jpg",
+      "hash": "df1a64c1233f4340"
+    },
+    {
+      "file": "assets/images/well_perdizes_gal_4.jpg",
+      "duplicate_of": "assets/images/novvo_gal_2.jpg",
+      "hash": "6c81d3a3036c2b9d"
+    },
+    {
+      "file": "assets/plantas/novvo_vp_tipo_2dorms.jpg",
+      "duplicate_of": "assets/images/novvo_gal_4.jpg",
+      "hash": "df1a64c1233f4340"
+    },
+    {
+      "file": "assets/plantas/petra_199m_tipo.jpg",
+      "duplicate_of": "assets/plantas/petra_198m_tipo.jpg",
+      "hash": "b730cba2d6c844e2"
+    },
+    {
+      "file": "assets/videos/palace_decorado_142.mp4",
+      "duplicate_of": "assets/videos/jardim_hipica_decorado_84.mp4",
+      "hash": "ad1405078a1b734a"
+    },
+    {
+      "file": "assets/videos/palace_decorado_86.mp4",
+      "duplicate_of": "assets/videos/jardim_hipica_decorado_84.mp4",
+      "hash": "ad1405078a1b734a"
+    }
+  ]
+}

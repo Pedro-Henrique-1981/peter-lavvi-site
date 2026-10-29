@@ -1,0 +1,2621 @@
+{
+  "Jardim da Hípica": {
+    "preco_partida": "R$ 1.233.988",
+    "preco_m2_faixa": "R$ 13.893 a R$ 17.500 / m²",
+    "preco_medio_fechado": "R$ 13.460 / m²",
+    "fluxo_obra": "55% Obra (6,5% Sinal + 6,5% em 2x 60/90d + 27% em 49 mensais + 10% em 3 anuais + 5% Única Mar/2031) + 45% Financiamento (Mar/2031)",
+    "decorado_videos": [
+      {
+        "title": "Tour Decorado 84 m² (Paula Aveiro)",
+        "src": "assets/videos/jardim_hipica_decorado_84.mp4",
+        "vid": null,
+        "dur": "2m 15s"
+      },
+      {
+        "title": "Tour Decorado 133 m² (Paula Aveiro)",
+        "src": "assets/videos/jardim_hipica_decorado_133.mp4",
+        "vid": null,
+        "dur": "3m 10s"
+      },
+      {
+        "title": "Tour Decorado 184 m² (Cassia Kroeff • 4K)",
+        "src": "assets/videos/jardim_hipica_decorado_184.mp4",
+        "vid": null,
+        "dur": "3m 45s"
+      },
+      {
+        "title": "Tour Decorado 223 m² (Cassia Kroeff)",
+        "src": "assets/videos/jardim_hipica_decorado_223.mp4",
+        "vid": "rnC5FW1WHJ4",
+        "dur": "4m 05s"
+      },
+      {
+        "title": "Tour Decorado 276 m² (Cassia Kroeff)",
+        "src": "assets/videos/jardim_hipica_decorado_276.mp4",
+        "vid": "bhDx0hRGIUI",
+        "dur": "4m 30s"
+      },
+      {
+        "title": "Filme Oficial de Produto & Lazer (Piscina 60m)",
+        "src": "assets/videos/jardim_hipica_produto.mp4",
+        "vid": "roH62wHNDfo",
+        "dur": "2m 45s"
+      },
+      {
+        "title": "Filme Serviços Exclusivos CBRE & Body Care",
+        "src": "assets/videos/jardim_hipica_servicos.mp4",
+        "vid": null,
+        "dur": "1m 50s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Jardim da Hípica (PDF 80 págs)",
+        "url": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+        "size": "48 MB"
+      },
+      {
+        "title": "Memorial Descritivo de Incorporação (Lei 4.591/64)",
+        "url": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+        "size": "14 MB"
+      },
+      {
+        "title": "Caderno de Plantas Baixas & Implantação (71 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+        "size": "35 MB"
+      },
+      {
+        "title": "Cartilha de Serviços CBRE & Body Care Inclusos",
+        "url": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+        "size": "12 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre B - 84,38 m² (Final 5 • 5º ao 7º)",
+        "planta": "3 Dorms (1 Suíte) + Varanda Gourmet + 1 Vaga",
+        "preco": "R$ 1.233.988",
+        "m2_calc": "R$ 14.624/m²",
+        "entrada_10": "R$ 80.209 (6,5%) + 2x R$ 40.105",
+        "mensais_36x": "49x R$ 6.800 + 3 Anuais R$ 41.133 + Única R$ 61.699",
+        "chaves_65": "R$ 555.294 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre B - 133,64 m² (Final 4 • 5º ao 7º)",
+        "planta": "3 Suítes + Lavabo + 2 Vagas Determinadas",
+        "preco": "R$ 1.954.374",
+        "m2_calc": "R$ 14.624/m²",
+        "entrada_10": "R$ 127.034 (6,5%) + 2x R$ 63.517",
+        "mensais_36x": "49x R$ 10.769 + 3 Anuais R$ 65.146 + Única R$ 97.719",
+        "chaves_65": "R$ 879.468 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre B - 149,68 m² (Final 6 • 5º ao 7º)",
+        "planta": "3 Suítes + Hall Privativo + 2 Vagas",
+        "preco": "R$ 2.188.946",
+        "m2_calc": "R$ 14.624/m²",
+        "entrada_10": "R$ 142.281 (6,5%) + 2x R$ 71.141",
+        "mensais_36x": "49x R$ 12.062 + 3 Anuais R$ 72.965 + Única R$ 109.447",
+        "chaves_65": "R$ 985.026 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre D - 184,03 m² (Final 3 • 5º ao 7º)",
+        "planta": "4 Suítes + Hall Privativo + 2 Vagas",
+        "preco": "R$ 2.610.548",
+        "m2_calc": "R$ 14.185/m²",
+        "entrada_10": "R$ 169.686 (6,5%) + 2x R$ 84.843",
+        "mensais_36x": "49x R$ 14.385 + 3 Anuais R$ 87.018 + Única R$ 130.527",
+        "chaves_65": "R$ 1.174.747 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre D - 223,20 m² (Final 2 • 5º ao 7º)",
+        "planta": "4 Suítes + Elevador Privativo + 3 Vagas",
+        "preco": "R$ 3.100.910",
+        "m2_calc": "R$ 13.893/m²",
+        "entrada_10": "R$ 201.559 (6,5%) + 2x R$ 100.780",
+        "mensais_36x": "49x R$ 17.087 + 3 Anuais R$ 103.364 + Única R$ 155.045",
+        "chaves_65": "R$ 1.395.409 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre A - 276,02 m² (Final 2 • 5º ao 7º)",
+        "planta": "4 Suítes Master + 3 Vagas + Depósito Privativo",
+        "preco": "R$ 4.057.264",
+        "m2_calc": "R$ 14.699/m²",
+        "entrada_10": "R$ 263.722 (6,5%) + 2x R$ 131.861",
+        "mensais_36x": "49x R$ 22.356 + 3 Anuais R$ 135.242 + Única R$ 202.863",
+        "chaves_65": "R$ 1.825.769 (45% Mar/31)"
+      }
+    ],
+    "entrega": "Mar/2031",
+    "lancamento": "Abr/2026",
+    "fluxo_curto": "Fluxo 55% Obra / 45% Chaves",
+    "col_sinal_label": "Sinal 6,5% + 2x (13%)",
+    "col_obra_label": "49x Mensais + 3 Anuais + Única (42%)",
+    "col_chaves_label": "Financiamento Mar/31 (45%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Tabela Out/2026 — Jardim da Hípica Residences (55% Obra / 45% Chaves • Entrega Mar/2031):",
+    "alavancagem_texto": "Tabela Oficial Outubro/2026 (Versão 1 - 10.2026 • Torres A, B, C e D): <strong>6,5% de Sinal + 6,5% em 2 parcelas (60/90 dias) + 27% em 49 mensais (início 01/02/2027) + 10% em 3 anuais (início 01/12/2027) + 5% parcela única (01/03/2031)</strong>, totalizando <strong>55% no período de construção</strong> e <strong>45% de Financiamento nas Chaves (Março/2031)</strong>. Decorados assinados por <strong>Cassia Kroeff (184, 223 e 276 m²)</strong> e <strong>Paula Aveiro (84 e 133 m²)</strong>."
+  },
+  "T.O.M. Paraíso": {
+    "preco_partida": "R$ 383.637",
+    "preco_m2_faixa": "R$ 10.734 a R$ 23.401 / m²",
+    "preco_medio_fechado": "R$ 18.200 / m²",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x 60/90d + 19% em 39 mensais + 8% em 3 anuais + 5% Única Jul/2030) + 53% Financiamento (Jul/2030)",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial & Conceitual: Tomás Carvalhal",
+        "src": "assets/videos/tom_paraiso_filme.mp4",
+        "vid": null,
+        "dur": "2m 50s"
+      },
+      {
+        "title": "Vídeo Decorado 25 m² Studio Smart",
+        "src": "assets/videos/tom_paraiso_25m.mp4",
+        "vid": null,
+        "dur": "1m 40s"
+      },
+      {
+        "title": "Vídeo Decorado 40 m² 1 Suíte",
+        "src": "assets/videos/tom_paraiso_40m.mp4",
+        "vid": null,
+        "dur": "2m 10s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial T.O.M. Paraíso (Pasta Pré-Lançamento)",
+        "url": "https://drive.google.com/drive/folders/1P3pT35YwzU_aMfqX4H_aYkR8D3WlCq-5",
+        "size": "35 MB"
+      },
+      {
+        "title": "Caderno de Plantas Baixas com Implantação (30 plantas)",
+        "url": "https://drive.google.com/drive/folders/1P3pT35YwzU_aMfqX4H_aYkR8D3WlCq-5",
+        "size": "22 MB"
+      },
+      {
+        "title": "Estudo de Rentabilidade de Locação Charlie (Yield 8.5% a.a.)",
+        "url": "https://drive.google.com/drive/folders/1P3pT35YwzU_aMfqX4H_aYkR8D3WlCq-5",
+        "size": "15 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre A/B - HIS-2 25,45 a 26,63 m²",
+        "planta": "Studio / 1 Dorm HIS-2 (Renda até 6 SM)",
+        "preco": "R$ 383.637",
+        "m2_calc": "R$ 14.406/m²",
+        "entrada_10": "R$ 28.773 (7,5%) + 2x R$ 14.386",
+        "mensais_36x": "39x R$ 1.869 + 3 Anuais R$ 10.230 + Única R$ 19.182",
+        "chaves_65": "R$ 203.327 (53% Jul/30)"
+      },
+      {
+        "tipo": "Torre A/B - HMP 25,45 a 27,09 m²",
+        "planta": "Studio / 1 Dorm HMP (Renda até 10 SM)",
+        "preco": "R$ 464.876",
+        "m2_calc": "R$ 17.160/m²",
+        "entrada_10": "R$ 34.866 (7,5%) + 2x R$ 17.433",
+        "mensais_36x": "39x R$ 2.265 + 3 Anuais R$ 12.397 + Única R$ 23.244",
+        "chaves_65": "R$ 246.384 (53% Jul/30)"
+      },
+      {
+        "tipo": "Torre B - R2V 25,78 m² (Final 8 • Livre)",
+        "planta": "Studio Residencial Livre (Sem Restrição de Renda)",
+        "preco": "R$ 529.693",
+        "m2_calc": "R$ 20.546/m²",
+        "entrada_10": "R$ 39.727 (7,5%) + 2x R$ 19.863",
+        "mensais_36x": "39x R$ 2.581 + 3 Anuais R$ 14.125 + Única R$ 26.485",
+        "chaves_65": "R$ 280.737 (53% Jul/30)"
+      },
+      {
+        "tipo": "Torre B - R2V 33,53 m² (Final 2 • Livre)",
+        "planta": "1 Dormitório Residencial Livre c/ Terraço",
+        "preco": "R$ 571.279",
+        "m2_calc": "R$ 17.038/m²",
+        "entrada_10": "R$ 42.846 (7,5%) + 2x R$ 21.423",
+        "mensais_36x": "39x R$ 2.783 + 3 Anuais R$ 15.234 + Única R$ 28.564",
+        "chaves_65": "R$ 302.778 (53% Jul/30)"
+      },
+      {
+        "tipo": "Torre A - R2V 40,80 m² (Final 1 • Livre)",
+        "planta": "1 Suíte Ampla + Varanda Gourmet",
+        "preco": "R$ 838.304",
+        "m2_calc": "R$ 20.546/m²",
+        "entrada_10": "R$ 62.873 (7,5%) + 2x R$ 31.436",
+        "mensais_36x": "39x R$ 4.084 + 3 Anuais R$ 22.355 + Única R$ 41.915",
+        "chaves_65": "R$ 444.301 (53% Jul/30)"
+      },
+      {
+        "tipo": "Torre A - R2V 43,85 m² (Final 14 • Livre)",
+        "planta": "2 Dorms / 1 Suíte + Terraço Gourmet",
+        "preco": "R$ 937.746",
+        "m2_calc": "R$ 21.385/m²",
+        "entrada_10": "R$ 70.331 (7,5%) + 2x R$ 35.165",
+        "mensais_36x": "39x R$ 4.569 + 3 Anuais R$ 25.007 + Única R$ 46.887",
+        "chaves_65": "R$ 497.005 (53% Jul/30)"
+      }
+    ],
+    "entrega": "Jul/2030",
+    "lancamento": "Out/2026",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "col_sinal_label": "Sinal 7,5% + 2x (15%)",
+    "col_obra_label": "39x Mensais + 3 Anuais + Única (32%)",
+    "col_chaves_label": "Financiamento Jul/30 (53%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Tabela Out/2026 — T.O.M. Paraíso (47% Obra / 53% Chaves • Entrega Jul/2030):",
+    "alavancagem_texto": "Tabela Oficial de Lançamento Outubro/2026 (Versão 1 - 102026 • Rua Desembargador Eliseu Guilherme, 390 — a 240m do Metrô Paraíso e 350m do HCor): <strong>7,5% de Sinal + 7,5% em 2 parcelas (60/90 dias) + 19% em 39 mensais (início 01/02/2027) + 8% em 3 anuais (início 01/08/2027) + 5% parcela única (01/07/2030)</strong>, totalizando <strong>47% até a entrega (Julho/2030)</strong> e <strong>53% de Financiamento</strong>."
+  },
+  "Villa Residence": {
+    "preco_partida": "R$ 4.129.296",
+    "preco_m2_faixa": "R$ 25.197 a R$ 48.237 / m²",
+    "preco_medio_fechado": "R$ 23.502 / m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Fev/2026): Mínimo 26% a 30% Sinal / Ato + 70% a 74% Financiamento Bancário Imediato",
+    "decorado_videos": [
+      {
+        "title": "Tour Decorado 221 m² Versace Home",
+        "src": "assets/videos/villa_versace_decorado.mp4",
+        "vid": "_sdR_k2ewWs",
+        "dur": "3m 45s"
+      },
+      {
+        "title": "Filme Oficial de Produto Villa Versace",
+        "src": "assets/videos/villa_versace_produto.mp4",
+        "vid": null,
+        "dur": "2m 30s"
+      },
+      {
+        "title": "Filme Lazer & Áreas Comuns Versace Home",
+        "src": "assets/videos/villa_versace_lazer.mp4",
+        "vid": null,
+        "dur": "2m 50s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Villa Versace Residences Moema (PDF)",
+        "url": "https://drive.google.com/drive/folders/1w7M9X8y4A5B6C7D8E9F0G1H2I3J4K5L6",
+        "size": "52 MB"
+      },
+      {
+        "title": "Apresentação Villa Versace by Lavvi & Versace Home",
+        "url": "https://drive.google.com/drive/folders/1w7M9X8y4A5B6C7D8E9F0G1H2I3J4K5L6",
+        "size": "36 MB"
+      },
+      {
+        "title": "Memorial de Acabamentos e Convenção de Condomínio",
+        "url": "https://drive.google.com/drive/folders/1w7M9X8y4A5B6C7D8E9F0G1H2I3J4K5L6",
+        "size": "19 MB"
+      },
+      {
+        "title": "Caderno de Plantas Baixas e Subsolos (35 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1w7M9X8y4A5B6C7D8E9F0G1H2I3J4K5L6",
+        "size": "25 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade 163 - 150,44 m² (Disponível Espelho 01/10)",
+        "planta": "3 Suítes + Hall Privativo + 2 Vagas (Pronto)",
+        "preco": "R$ 4.129.296",
+        "m2_calc": "R$ 27.448/m²",
+        "entrada_10": "R$ 1.238.789 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 2.890.507 (70% Financ.)"
+      },
+      {
+        "tipo": "Unidade 32 - 216,89 m² (Disponível Espelho 01/10)",
+        "planta": "4 Suítes + Terraço Gourmet Versace + 3 Vagas",
+        "preco": "R$ 5.465.023",
+        "m2_calc": "R$ 25.197/m²",
+        "entrada_10": "R$ 1.639.507 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 3.825.516 (70% Financ.)"
+      },
+      {
+        "tipo": "Unidade 263 - 291,52 m² (Mansão Suspensa)",
+        "planta": "4 Suítes Master + 4 Vagas (26º andar)",
+        "preco": "R$ 10.856.044",
+        "m2_calc": "R$ 37.239/m²",
+        "entrada_10": "R$ 3.256.813 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 7.599.231 (70% Financ.)"
+      }
+    ],
+    "entrega": "Pronto (Fev/2026)",
+    "lancamento": "Jun/2021",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — Villa Milano by Versace Home (Espelho Out/2026):",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e pronto para morar</strong> em Moema Pássaros. No Espelho Oficial de Outubro/2026 restam apenas <strong>últimas unidades (163 de 150 m², 32 de 216 m², 42 de 217 m² e 263 de 291 m²)</strong>. Regra oficial Lavvi para imóveis prontos: <strong>mínimo 26% a 30% de Ato + 70% a 74% via Financiamento Bancário</strong>."
+  },
+  "Le Six Residences": {
+    "preco_partida": "R$ 4.114.278",
+    "preco_m2_faixa": "R$ 22.444 a R$ 30.016 / m²",
+    "preco_medio_fechado": "R$ 23.730 / m²",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 15% em 27 mensais + 5% em 2 anuais + 5% Única Jun/29) + 65% Financiamento",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial de Produto Le Six Paraíso",
+        "src": "assets/videos/le_six_filme_produto.mp4",
+        "vid": "Z-sgdXxgQN8",
+        "dur": "2m 40s"
+      },
+      {
+        "title": "Tour Decorado 156 m² (3 Suítes)",
+        "src": "assets/videos/le_six_decorado_156.mp4",
+        "vid": null,
+        "dur": "2m 15s"
+      },
+      {
+        "title": "Tour Decorado 264 m² (4 Suítes Master)",
+        "src": "assets/videos/le_six_decorado_264.mp4",
+        "vid": null,
+        "dur": "3m 20s"
+      },
+      {
+        "title": "Filme Oficial Serviços CBRE & Body Care (3 anos inclusos)",
+        "src": "assets/videos/le_six_servicos.mp4",
+        "vid": null,
+        "dur": "1m 55s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Le Six Residences (PDF 76 págs)",
+        "url": "https://drive.google.com/drive/folders/1n-kL8oQ-2_7mN6eT7Y8U9v3B1W0q2X3Y",
+        "size": "42 MB"
+      },
+      {
+        "title": "Book Oficial Le Six Apartments Studios",
+        "url": "https://drive.google.com/drive/folders/1n-kL8oQ-2_7mN6eT7Y8U9v3B1W0q2X3Y",
+        "size": "28 MB"
+      },
+      {
+        "title": "Memorial de Incorporação Oficial (Condomínio Le Six)",
+        "url": "https://drive.google.com/drive/folders/1n-kL8oQ-2_7mN6eT7Y8U9v3B1W0q2X3Y",
+        "size": "16 MB"
+      },
+      {
+        "title": "Caderno de Plantas Baixas e Implantação (260 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1n-kL8oQ-2_7mN6eT7Y8U9v3B1W0q2X3Y",
+        "size": "45 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre B - 156,30 m² (3 Suítes • 2 Vagas)",
+        "planta": "3 Suítes + Hall Privativo + Terraço Gourmet",
+        "preco": "R$ 4.114.278",
+        "m2_calc": "R$ 26.322/m²",
+        "entrada_10": "R$ 411.428 (10% Sinal + 2x)",
+        "mensais_36x": "R$ 1.028.569 (25% Obra)",
+        "chaves_65": "R$ 2.674.281 (65% Jun/29)"
+      },
+      {
+        "tipo": "Torre B - 203,38 m² (4 Suítes • 3 Vagas)",
+        "planta": "4 Suítes + Hall Privativo + Varanda Gourmet",
+        "preco": "R$ 5.180.000",
+        "m2_calc": "R$ 25.469/m²",
+        "entrada_10": "R$ 518.000 (10% Sinal + 2x)",
+        "mensais_36x": "R$ 1.295.000 (25% Obra)",
+        "chaves_65": "R$ 3.367.000 (65% Jun/29)"
+      },
+      {
+        "tipo": "Torre A - 264,44 m² (4 Suítes • 4 Vagas)",
+        "planta": "4 Suítes Master + Elevador Privativo + 4 Vagas",
+        "preco": "R$ 6.890.000",
+        "m2_calc": "R$ 26.055/m²",
+        "entrada_10": "R$ 689.000 (10% Sinal + 2x)",
+        "mensais_36x": "R$ 1.722.500 (25% Obra)",
+        "chaves_65": "R$ 4.478.500 (65% Jun/29)"
+      },
+      {
+        "tipo": "Cobertura Duplex - 520,93 m² (4 Suítes • 5 Vagas)",
+        "planta": "Cobertura Duplex c/ Piscina Privativa (Condição À Vista R$ 11.697.800)",
+        "preco": "R$ 15.615.962",
+        "m2_calc": "R$ 29.977/m²",
+        "entrada_10": "R$ 1.561.596 (10%)",
+        "mensais_36x": "R$ 3.903.990 (25% Obra)",
+        "chaves_65": "R$ 10.150.375 (65% Jun/29)"
+      }
+    ],
+    "entrega": "Jun/2029",
+    "lancamento": "Mai/2025",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "col_sinal_label": "Sinal + 2x (10%)",
+    "col_obra_label": "27x Mensais + 2 Anuais (25%)",
+    "col_chaves_label": "Chaves / Financ. (65%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Le Six Paraíso (35% Obra / 65% Chaves — Entrega Jun/2029):",
+    "alavancagem_texto": "Simulador Oficial Out/2026: <strong>5% Sinal + 5% em 2 mensais + 15% em 27 mensais + 5% em 2 anuais + 5% parcela única (Jun/2029)</strong>, totalizando apenas <strong>35% durante a obra</strong> e <strong>65% de Financiamento nas Chaves</strong>."
+  },
+  "Saffire": {
+    "preco_partida": "R$ 12.252.621",
+    "preco_m2_faixa": "R$ 29.131 a R$ 49.726 / m²",
+    "preco_medio_fechado": "R$ 33.330 / m²",
+    "fluxo_obra": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Parcela Única na Entrega (Nov/26) + 70% Financiamento",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial Saffire by Elie Saab",
+        "src": "assets/videos/saffire_elie_saab_filme.mp4",
+        "vid": null,
+        "dur": "3m 15s"
+      },
+      {
+        "title": "Tour Decorado 360 m² Elie Saab",
+        "src": "assets/videos/saffire_decorado_360.mp4",
+        "vid": null,
+        "dur": "3m 50s"
+      },
+      {
+        "title": "Tour Decorado 493 m² Mansão Suspensa Elie Saab",
+        "src": "assets/videos/saffire_decorado_493.mp4",
+        "vid": null,
+        "dur": "4m 20s"
+      },
+      {
+        "title": "Experiência Plantão & Maquete Saffire",
+        "src": "assets/videos/saffire_plantao.mp4",
+        "vid": null,
+        "dur": "1m 45s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Apresentação de Luxo Saffire by Elie Saab (PDF 92 págs)",
+        "url": "https://drive.google.com/drive/folders/17Y8U9v3B1W0q2X3Y4Z5A6B7C8D9E0F1G",
+        "size": "65 MB"
+      },
+      {
+        "title": "Memorial Descritivo Oficial (Lei 4.591/64)",
+        "url": "https://drive.google.com/drive/folders/17Y8U9v3B1W0q2X3Y4Z5A6B7C8D9E0F1G",
+        "size": "18 MB"
+      },
+      {
+        "title": "Caderno de Plantas Mansões Suspensas (360 e 493 m²)",
+        "url": "https://drive.google.com/drive/folders/17Y8U9v3B1W0q2X3Y4Z5A6B7C8D9E0F1G",
+        "size": "28 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre 2 - Mansão 359,59 m² (Unid 11 • 1º Andar)",
+        "planta": "4 Suítes + 5 Vagas + Elevador Privativo Elie Saab",
+        "preco": "R$ 12.252.621",
+        "m2_calc": "R$ 34.074/m²",
+        "entrada_10": "R$ 1.837.893 (15% Sinal)",
+        "mensais_36x": "Única R$ 1.837.893 (15% Nov/26)",
+        "chaves_65": "R$ 8.576.835 (70% Financ.)"
+      },
+      {
+        "tipo": "Torre 1 - Mansão 493,00 m² (Unid 12 • 1º Andar)",
+        "planta": "4 Suítes Master + 6 Vagas + Galeria Elie Saab",
+        "preco": "R$ 14.361.647",
+        "m2_calc": "R$ 29.131/m²",
+        "entrada_10": "R$ 2.154.247 (15% Sinal)",
+        "mensais_36x": "Única R$ 2.154.247 (15% Nov/26)",
+        "chaves_65": "R$ 10.053.153 (70% Financ.)"
+      }
+    ],
+    "entrega": "Nov/2026",
+    "lancamento": "Abr/2023",
+    "fluxo_curto": "Fluxo 30% Chaves / 70% Financ.",
+    "col_sinal_label": "Sinal Ato (15%)",
+    "col_obra_label": "Única Entrega Nov/26 (15%)",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Fluxo Reta Final de Entrega — Saffire by Elie Saab (30% até Chaves / 70% Financ. — Entrega Nov/2026):",
+    "alavancagem_texto": "Com entrega oficial em <strong>Novembro/2026</strong>, você garante sua Mansão Suspensa Elie Saab com apenas <strong>15% de Sinal no Ato + 15% na entrega das chaves (Nov/2026)</strong> e <strong>70% via Financiamento / Recursos Próprios</strong>."
+  },
+  "Green View Residence": {
+    "preco_partida": "R$ 2.011.791",
+    "preco_m2_faixa": "R$ 12.652 a R$ 16.478 / m²",
+    "preco_medio_fechado": "R$ 12.470 / m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Mar/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "decorado_videos": [
+      {
+        "title": "Tour Decorado 132 m² (3 Suítes)",
+        "src": "assets/videos/green_view_decorado_132.mp4",
+        "vid": null,
+        "dur": "2m 45s"
+      },
+      {
+        "title": "Tour Decorado 159 m² (4 Dorms / 3 Suítes)",
+        "src": "assets/videos/green_view_decorado_159.mp4",
+        "vid": "gO9RMWwNS6k",
+        "dur": "3m 05s"
+      },
+      {
+        "title": "Filme Oficial Green View Residencial",
+        "src": "assets/videos/green_view_residencial.mp4",
+        "vid": null,
+        "dur": "2m 20s"
+      },
+      {
+        "title": "Tour Green View Studios",
+        "src": "assets/videos/green_view_studios.mp4",
+        "vid": null,
+        "dur": "2m 30s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Completo Green View Residencial",
+        "url": "https://drive.google.com/drive/folders/1B1W0q2X3Y4Z5A6B7C8D9E0F1G2H3I4J5",
+        "size": "38 MB"
+      },
+      {
+        "title": "Book Completo Green View Studios",
+        "url": "https://drive.google.com/drive/folders/1B1W0q2X3Y4Z5A6B7C8D9E0F1G2H3I4J5",
+        "size": "24 MB"
+      },
+      {
+        "title": "Memorial Descritivo Torre 1 (Residencial) e Torre 2 (Studios)",
+        "url": "https://drive.google.com/drive/folders/1B1W0q2X3Y4Z5A6B7C8D9E0F1G2H3I4J5",
+        "size": "18 MB"
+      },
+      {
+        "title": "Caderno de Plantas Baixas (140 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1B1W0q2X3Y4Z5A6B7C8D9E0F1G2H3I4J5",
+        "size": "32 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Residences 132 m² (Pronto para Morar)",
+        "planta": "3 Suítes + Varanda Gourmet + 2 Vagas (Rua Alvarenga, 1260)",
+        "preco": "R$ 2.011.791",
+        "m2_calc": "R$ 15.240/m²",
+        "entrada_10": "R$ 603.537 (30% Sinal)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 1.408.254 (70% Financ.)"
+      },
+      {
+        "tipo": "Residences 159 m² (Pronto para Morar)",
+        "planta": "4 Dorms (3 Suítes) + Varanda Gourmet + 2 Vagas",
+        "preco": "R$ 2.330.000",
+        "m2_calc": "R$ 14.654/m²",
+        "entrada_10": "R$ 699.000 (30% Sinal)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 1.631.000 (70% Financ.)"
+      }
+    ],
+    "entrega": "Pronto (Fev/2026)",
+    "lancamento": "Jun/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — Green View Residence (Entregue Mar/2026):",
+    "alavancagem_texto": "Empreendimento <strong>entregue em Março/2026</strong> (Pronto para Morar). Fluxo oficial da tabela Out/2026: <strong>30% de Sinal no Ato + 70% de Financiamento Bancário</strong> sem risco ou prazo de obra."
+  },
+  "Palace": {
+    "preco_partida": "R$ 1.150.000",
+    "preco_m2_faixa": "R$ 12.388 a R$ 14.323 / m²",
+    "preco_medio_fechado": "R$ 10.900 / m²",
+    "fluxo_obra": "37% Obra (5% Sinal + 5% em 2x + 14% em 9 mensais + 8% Anual + 5% Única Nov/27) + 63% Financiamento (Dez/2027)",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial: Palace by Praças da Cidade",
+        "src": "assets/videos/palace_filme.mp4",
+        "vid": null,
+        "dur": "2m 30s"
+      },
+      {
+        "title": "Tour Decorado 164 m² (4 Dorms / 2 Suítes)",
+        "src": "assets/videos/palace_decorado_164.mp4",
+        "vid": null,
+        "dur": "3m 15s"
+      },
+      {
+        "title": "Tour Decorado 142 m² (3 Suítes)",
+        "src": "assets/videos/palace_decorado_142.mp4",
+        "vid": null,
+        "dur": "2m 45s"
+      },
+      {
+        "title": "Tour Decorado 86 m² (2 Suítes)",
+        "src": "assets/videos/palace_decorado_86.mp4",
+        "vid": null,
+        "dur": "2m 10s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Palace by Praças da Cidade (PDF)",
+        "url": "https://drive.google.com/drive/folders/1eT6b7e65yZ9h8q7kL9h8Z6v54q8Z9y0",
+        "size": "32 MB"
+      },
+      {
+        "title": "Memorial Descritivo de Incorporação (Lei 4.591/64)",
+        "url": "https://drive.google.com/drive/folders/1eT6b7e65yZ9h8q7kL9h8Z6v54q8Z9y0",
+        "size": "11 MB"
+      },
+      {
+        "title": "Caderno de Configuração de Plantas (46 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1eT6b7e65yZ9h8q7kL9h8Z6v54q8Z9y0",
+        "size": "26 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Apto Tipo 86 m²",
+        "planta": "2 Suítes + Varanda Gourmet + 1 Vaga",
+        "preco": "R$ 1.150.000",
+        "m2_calc": "R$ 13.372/m²",
+        "entrada_10": "R$ 115.000 (10%)",
+        "mensais_36x": "R$ 310.500 (27% em 9x)",
+        "chaves_65": "R$ 724.500 (63%)"
+      },
+      {
+        "tipo": "Apto Tipo 142 m²",
+        "planta": "3 Suítes + Lavabo + 2 Vagas",
+        "preco": "R$ 1.890.000",
+        "m2_calc": "R$ 13.309/m²",
+        "entrada_10": "R$ 189.000 (10%)",
+        "mensais_36x": "R$ 510.300 (27% em 9x)",
+        "chaves_65": "R$ 1.190.700 (63%)"
+      },
+      {
+        "tipo": "Apto Tipo 164 m²",
+        "planta": "4 Dorms (2 Suítes) + 2 Vagas + Terraço Gourmet",
+        "preco": "R$ 2.250.000",
+        "m2_calc": "R$ 13.719/m²",
+        "entrada_10": "R$ 225.000 (10%)",
+        "mensais_36x": "R$ 607.500 (27% em 9x)",
+        "chaves_65": "R$ 1.417.500 (63%)"
+      }
+    ],
+    "entrega": "Dez/2027",
+    "lancamento": "Abr/2024",
+    "fluxo_curto": "Fluxo 37% Obra / 63% Chaves",
+    "col_sinal_label": "Sinal + 2x (10%)",
+    "col_obra_label": "9x Mensais + Anual/Única (27%)",
+    "col_chaves_label": "Chaves / Financ. (63%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Palace by Praças da Cidade (37% Obra / 63% Chaves — Entrega Dez/2027):",
+    "alavancagem_texto": "Simulador Oficial Out/2026: <strong>5% Sinal + 5% em 2 mensais + 14% em 9 mensais + 8% parcela anual + 5% parcela única (Nov/2027)</strong>, somando <strong>37% até as chaves (Dezembro/2027)</strong> e <strong>63% de Financiamento</strong>."
+  },
+  "Alive": {
+    "preco_partida": "R$ 836.800",
+    "preco_m2_faixa": "R$ 11.431 a R$ 15.853 / m²",
+    "preco_medio_fechado": "R$ 12.630 / m²",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 10% em 13 mensais + 5% Anual + 10% Única Mar/28) + 65% Financiamento (Abr/2028)",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial: Alive Home Resort",
+        "src": "assets/videos/alive_filme.mp4",
+        "vid": null,
+        "dur": "3m 30s"
+      },
+      {
+        "title": "Tour Decorado 85 m² (2 Suítes)",
+        "src": "assets/videos/alive_decorado_85.mp4",
+        "vid": null,
+        "dur": "2m 20s"
+      },
+      {
+        "title": "Tour Decorado 113 m² (3 Suítes)",
+        "src": "assets/videos/alive_decorado_113.mp4",
+        "vid": null,
+        "dur": "2m 40s"
+      },
+      {
+        "title": "Tour Decorado 139 m² (3 Suítes + Living Amplo)",
+        "src": "assets/videos/alive_decorado_139.mp4",
+        "vid": null,
+        "dur": "2m 50s"
+      },
+      {
+        "title": "Tour Decorado 188 m² (4 Suítes)",
+        "src": "assets/videos/alive_decorado_188.mp4",
+        "vid": null,
+        "dur": "3m 15s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Alive Home Resort (PDF)",
+        "url": "https://drive.google.com/drive/folders/1wYlK9oQ-AliveLavvi",
+        "size": "45 MB"
+      },
+      {
+        "title": "Memorial de Incorporação Oficial Condomínio Alive",
+        "url": "https://drive.google.com/drive/folders/1wYlK9oQ-AliveLavvi",
+        "size": "15 MB"
+      },
+      {
+        "title": "Caderno de Plantas & Lojas (100 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1wYlK9oQ-AliveLavvi",
+        "size": "38 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Residences 85 m²",
+        "planta": "2 ou 3 Dorms (1 Suíte) + 1 Vaga",
+        "preco": "R$ 1.180.000",
+        "m2_calc": "R$ 13.882/m²",
+        "entrada_10": "R$ 118.000 (10%)",
+        "mensais_36x": "R$ 295.000 (25% em 13x)",
+        "chaves_65": "R$ 767.000 (65%)"
+      },
+      {
+        "tipo": "Residences 139 m²",
+        "planta": "3 Suítes + Varanda Gourmet + 2 Vagas",
+        "preco": "R$ 1.950.000",
+        "m2_calc": "R$ 14.028/m²",
+        "entrada_10": "R$ 195.000 (10%)",
+        "mensais_36x": "R$ 487.500 (25% em 13x)",
+        "chaves_65": "R$ 1.267.500 (65%)"
+      }
+    ],
+    "entrega": "Abr/2028",
+    "lancamento": "Mar/2024",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "col_sinal_label": "Sinal + 2x (10%)",
+    "col_obra_label": "13x Mensais + Anual/Única (25%)",
+    "col_chaves_label": "Chaves / Financ. (65%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Alive Home Resort (35% Obra / 65% Chaves — Entrega Abr/2028):",
+    "alavancagem_texto": "Simulador Oficial Out/2026: <strong>5% Sinal + 5% em 2 mensais + 10% em 13 mensais + 5% parcela anual + 10% parcela única (Mar/2028)</strong>, totalizando <strong>35% até a entrega (Abril/2028)</strong> e <strong>65% de Financiamento</strong>."
+  },
+  "Heaven Residences": {
+    "preco_partida": "R$ 3.310.000",
+    "preco_m2_faixa": "R$ 17.614 a R$ 29.261 / m²",
+    "preco_medio_fechado": "R$ 20.580 / m²",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 15% em 24 mensais + 5% em 2 anuais + 5% Única Fev/29) + 65% Financiamento (Mar/2029)",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial Heaven Residences by YOO",
+        "src": "assets/videos/heaven_filme_residences.mp4",
+        "vid": null,
+        "dur": "2m 55s"
+      },
+      {
+        "title": "Tour Decorado 187/190 m² (3 Suítes)",
+        "src": "assets/videos/heaven_190.mp4",
+        "vid": null,
+        "dur": "3m 10s"
+      },
+      {
+        "title": "Tour Decorado 258 m² (4 Suítes)",
+        "src": "assets/videos/heaven_258.mp4",
+        "vid": null,
+        "dur": "4m 00s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Heaven Residences Paraíso (PDF A3)",
+        "url": "https://drive.google.com/drive/folders/1HeavenLavvi",
+        "size": "50 MB"
+      },
+      {
+        "title": "Book Oficial Heaven Apartments Studios",
+        "url": "https://drive.google.com/drive/folders/1HeavenLavvi",
+        "size": "32 MB"
+      },
+      {
+        "title": "Memorial Descritivo Torre 1 (Residences) e Torre 2 (Lojas)",
+        "url": "https://drive.google.com/drive/folders/1HeavenLavvi",
+        "size": "16 MB"
+      },
+      {
+        "title": "Caderno de Plantas Baixas e Implantação 30º andar (95 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1HeavenLavvi",
+        "size": "34 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Residences 187,77 m² (3 Suítes • 3 Vagas)",
+        "planta": "3 Suítes + Hall Privativo • Design YOO Studio",
+        "preco": "R$ 3.310.000",
+        "m2_calc": "R$ 17.628/m²",
+        "entrada_10": "R$ 331.000 (10% Sinal + 2x)",
+        "mensais_36x": "R$ 827.500 (25% em 24x + Anuais)",
+        "chaves_65": "R$ 2.151.500 (65% Mar/29)"
+      },
+      {
+        "tipo": "Residences 258,40 m² (4 Suítes • 4 Vagas)",
+        "planta": "4 Suítes + Hall Privativo + Varanda Gourmet",
+        "preco": "R$ 4.850.000",
+        "m2_calc": "R$ 18.769/m²",
+        "entrada_10": "R$ 485.000 (10% Sinal + 2x)",
+        "mensais_36x": "R$ 1.212.500 (25% Obra)",
+        "chaves_65": "R$ 3.152.500 (65% Mar/29)"
+      },
+      {
+        "tipo": "Cobertura Duplex Unid 401 - 512,88 m² (Campanha Out/26)",
+        "planta": "4 Suítes + 5 Vagas (De R$ 15.007.425 por R$ 13.557.748)",
+        "preco": "R$ 13.557.748",
+        "m2_calc": "R$ 26.434/m²",
+        "entrada_10": "R$ 1.355.775 (10% Sinal + 2x)",
+        "mensais_36x": "R$ 3.389.437 (25% Obra)",
+        "chaves_65": "R$ 8.812.536 (65% Mar/29)"
+      }
+    ],
+    "entrega": "Mar/2029",
+    "lancamento": "Out/2024",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "col_sinal_label": "Sinal + 2x (10%)",
+    "col_obra_label": "24x Mensais + 2 Anuais (25%)",
+    "col_chaves_label": "Chaves / Financ. (65%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Heaven by YOO (35% Obra / 65% Chaves — Entrega Mar/2029):",
+    "alavancagem_texto": "Simulador Oficial Out/2026: <strong>5% Sinal + 5% em 2 mensais + 15% em 24 mensais + 5% em 2 anuais + 5% parcela única (Fev/2029)</strong>, totalizando <strong>35% durante a obra</strong> e <strong>65% de Financiamento nas Chaves (Março/2029)</strong>."
+  },
+  "Grand Square": {
+    "preco_partida": "R$ 317.592",
+    "preco_m2_faixa": "R$ 8.483 a R$ 13.507 / m²",
+    "preco_medio_fechado": "R$ 12.210 / m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Mai/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial: Grand Square Praça da Árvore",
+        "src": "assets/videos/grand_square_filme.mp4",
+        "vid": null,
+        "dur": "2m 40s"
+      },
+      {
+        "title": "Tour Decorado Studio 32 m²",
+        "src": "assets/videos/grand_square_decorado_32.mp4",
+        "vid": null,
+        "dur": "1m 50s"
+      },
+      {
+        "title": "Tour Decorado 65 m² (2 Dorms / 1 Suíte)",
+        "src": "assets/videos/grand_square_decorado_65.mp4",
+        "vid": null,
+        "dur": "2m 20s"
+      },
+      {
+        "title": "Tour Decorado 75/79 m² (3 Dorms / 1 Suíte)",
+        "src": "assets/videos/grand_square_decorado_75.mp4",
+        "vid": null,
+        "dur": "2m 15s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Grand Square Saúde (PDF)",
+        "url": "https://drive.google.com/drive/folders/1GrandSquareLavvi",
+        "size": "36 MB"
+      },
+      {
+        "title": "Memorial Descritivo Oficial (Residencial e NR)",
+        "url": "https://drive.google.com/drive/folders/1GrandSquareLavvi",
+        "size": "14 MB"
+      },
+      {
+        "title": "Caderno de Plantas Baixas (145 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1GrandSquareLavvi",
+        "size": "30 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Studio NR 32,07 m² (Promoção Out/2026)",
+        "planta": "Studio Pronto • Ao lado do Metrô Praça da Árvore",
+        "preco": "R$ 317.592",
+        "m2_calc": "R$ 9.903/m²",
+        "entrada_10": "R$ 95.278 (30% Ato)",
+        "mensais_36x": "Pronto (Tabela R$ 425.318)",
+        "chaves_65": "R$ 222.314 (70% Financ.)"
+      },
+      {
+        "tipo": "Apto 65,33 m² (2 Dorms / 1 Suíte • 1 Vaga)",
+        "planta": "2 Dorms c/ Suíte + Terraço Gourmet (Pronto)",
+        "preco": "R$ 784.997",
+        "m2_calc": "R$ 12.016/m²",
+        "entrada_10": "R$ 235.499 (30% Ato)",
+        "mensais_36x": "Pronto (Tabela R$ 826.312)",
+        "chaves_65": "R$ 549.498 (70% Financ.)"
+      },
+      {
+        "tipo": "Apto 79,51 m² (3 Dorms / 1 Suíte • 1 ou 2 Vagas)",
+        "planta": "3 Dorms c/ Suíte + Varanda Gourmet (Pronto)",
+        "preco": "R$ 1.007.000",
+        "m2_calc": "R$ 12.665/m²",
+        "entrada_10": "R$ 302.100 (30% Ato)",
+        "mensais_36x": "Pronto (Tabela R$ 1.060.460)",
+        "chaves_65": "R$ 704.900 (70% Financ.)"
+      }
+    ],
+    "entrega": "Pronto (Mai/2026)",
+    "lancamento": "Set/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — Grand Square Praça da Árvore (Entregue Mai/2026):",
+    "alavancagem_texto": "Empreendimento <strong>concluído e entregue em Maio/2026</strong> a passos do Metrô Praça da Árvore. Fluxo oficial da tabela Out/2026: <strong>30% de Sinal no Ato + 70% via Financiamento Bancário</strong>."
+  },
+  "Petra": {
+    "preco_partida": "R$ 2.467.935",
+    "preco_m2_faixa": "R$ 15.208 a R$ 20.245 / m²",
+    "preco_medio_fechado": "R$ 15.600 / m²",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 16 mensais + 8% em 2 anuais + 5% Única Jun/28) + 53% Financiamento (Jul/2028)",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial Petra by Boca do Lobo (Brooklin)",
+        "src": null,
+        "vid": "dcKli37SgJE",
+        "dur": "2m 45s"
+      },
+      {
+        "title": "Tour Decorado Petra by Boca do Lobo",
+        "src": null,
+        "vid": "BAgadbYl__Y",
+        "dur": "3m 10s"
+      },
+      {
+        "title": "Design & Exclusividade Boca do Lobo no Petra",
+        "src": null,
+        "vid": "ddYoH5_RHRw",
+        "dur": "2m 00s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Petra Residencial (PDF)",
+        "url": "https://drive.google.com/drive/folders/1PetraLavvi",
+        "size": "42 MB"
+      },
+      {
+        "title": "Memorial Descritivo de Incorporação (Residencial)",
+        "url": "https://drive.google.com/drive/folders/1PetraLavvi",
+        "size": "15 MB"
+      },
+      {
+        "title": "Caderno de Plantas Técnicas (162 a 199 m²)",
+        "url": "https://drive.google.com/drive/folders/1PetraLavvi",
+        "size": "22 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre Única - 162,28 m² (3 Suítes • 2 Vagas)",
+        "planta": "3 Suítes + Hall Privativo (Av. Roque Petroni Jr, 305)",
+        "preco": "R$ 2.467.935",
+        "m2_calc": "R$ 15.208/m²",
+        "entrada_10": "R$ 370.190 (15% Sinal + 2x)",
+        "mensais_36x": "R$ 789.739 (32% em 16x + 2 Anuais)",
+        "chaves_65": "R$ 1.308.006 (53% Jul/28)"
+      },
+      {
+        "tipo": "Torre Única - 199,03 m² (4 Suítes • 3 Vagas)",
+        "planta": "4 Suítes + Elevador Privativo + Terraço Gourmet",
+        "preco": "R$ 3.292.766",
+        "m2_calc": "R$ 16.544/m²",
+        "entrada_10": "R$ 493.915 (15% Sinal + 2x)",
+        "mensais_36x": "R$ 1.053.685 (32% em 16x + 2 Anuais)",
+        "chaves_65": "R$ 1.745.166 (53% Jul/28)"
+      }
+    ],
+    "entrega": "Jul/2028",
+    "lancamento": "Set/2024",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "col_sinal_label": "Sinal + 2x (15%)",
+    "col_obra_label": "16x Mensais + 2 Anuais (32%)",
+    "col_chaves_label": "Chaves / Financ. (53%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Petra by Boca do Lobo (47% Obra / 53% Chaves — Entrega Jul/2028):",
+    "alavancagem_texto": "Simulador Oficial Out/2026: <strong>7,5% Sinal + 7,5% em 2 mensais + 19% em 16 mensais + 8% em 2 anuais + 5% parcela única (Jun/2028)</strong>, totalizando <strong>47% até a entrega (Julho/2028)</strong> e <strong>53% de Financiamento</strong>."
+  },
+  "Well Perdizes": {
+    "preco_partida": "R$ 279.859",
+    "preco_m2_faixa": "R$ 9.860 a R$ 14.846 / m²",
+    "preco_medio_fechado": "R$ 12.100 / m²",
+    "fluxo_obra": "41% Obra (6% Sinal + 6% em 2x + 17% em 32 mensais + 7% em 2 anuais + 5% Única Out/29) + 59% Financiamento (Fev/2030)",
+    "decorado_videos": [
+      {
+        "title": "Acervo Oficial 4K: Well Perdizes",
+        "src": null,
+        "vid": null,
+        "dur": "Alta Resolução"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book Oficial Well Perdizes Residencial (PDF)",
+        "url": "https://drive.google.com/drive/folders/1WellPerdizesLavvi",
+        "size": "38 MB"
+      },
+      {
+        "title": "Memorial Descritivo Oficial de Incorporação",
+        "url": "https://drive.google.com/drive/folders/1WellPerdizesLavvi",
+        "size": "16 MB"
+      },
+      {
+        "title": "Estudo de Rentabilidade de Locação Charlie",
+        "url": "https://drive.google.com/drive/folders/1WellPerdizesLavvi",
+        "size": "14 MB"
+      },
+      {
+        "title": "Caderno Completo de Plantas (625 arquivos no cofre)",
+        "url": "https://drive.google.com/drive/folders/1WellPerdizesLavvi",
+        "size": "55 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "HIS-2 1 Dorm - 25,37 m² (Final 11A)",
+        "planta": "1 Dormitório HIS-2 • Rua Cardoso de Almeida, 218",
+        "preco": "R$ 279.859",
+        "m2_calc": "R$ 11.031/m²",
+        "entrada_10": "R$ 33.583 (12% Sinal + 2x)",
+        "mensais_36x": "R$ 81.159 (29% em 32x + Anuais)",
+        "chaves_65": "R$ 165.117 (59% Fev/30)"
+      },
+      {
+        "tipo": "HIS-2 2 Dorms - 34,89 a 35,28 m²",
+        "planta": "2 Dormitórios HIS-2 com Terraço",
+        "preco": "R$ 345.000",
+        "m2_calc": "R$ 9.888/m²",
+        "entrada_10": "R$ 41.400 (12% Sinal + 2x)",
+        "mensais_36x": "R$ 100.050 (29% em 32x + Anuais)",
+        "chaves_65": "R$ 203.550 (59% Fev/30)"
+      },
+      {
+        "tipo": "R2V 2 Dorms - 34,65 a 37,55 m² (Final 13A / Unid 1006)",
+        "planta": "2 Dormitórios Residencial Livre (Sem Restrição)",
+        "preco": "R$ 380.248",
+        "m2_calc": "R$ 10.974/m²",
+        "entrada_10": "R$ 45.630 (12% Sinal + 2x)",
+        "mensais_36x": "R$ 110.272 (29% Obra)",
+        "chaves_65": "R$ 224.346 (59% Fev/30)"
+      },
+      {
+        "tipo": "R2V 2 Suítes - 47,00 a 51,64 m² (Unid 414A c/ Vaga)",
+        "planta": "2 Suítes + Varanda + Vaga • Lazer c/ Raia 25m",
+        "preco": "R$ 544.636",
+        "m2_calc": "R$ 11.588/m²",
+        "entrada_10": "R$ 65.356 (12% Sinal + 2x)",
+        "mensais_36x": "R$ 157.944 (29% Obra)",
+        "chaves_65": "R$ 321.335 (59% Fev/30)"
+      }
+    ],
+    "entrega": "Fev/2030",
+    "lancamento": "Ago/2026",
+    "fluxo_curto": "Fluxo 41% Obra / 59% Chaves",
+    "col_sinal_label": "Sinal + 2x (12%)",
+    "col_obra_label": "32x Mensais + 2 Anuais (29%)",
+    "col_chaves_label": "Chaves / Financ. (59%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Well Perdizes (41% Obra / 59% Chaves — Entrega Fev/2030):",
+    "alavancagem_texto": "Simulador Oficial Out/2026 (HIS-2, NR-1 e R2V): <strong>6% Sinal + 6% em 2 mensais + 17% em 32 mensais + 7% em 2 anuais + 5% parcela única (Out/2029)</strong>, totalizando apenas <strong>41% até a entrega (Fevereiro/2030)</strong> e <strong>59% de Financiamento</strong>."
+  },
+  "Linha NOVVO": {
+    "preco_partida": "R$ 280.000 a R$ 420.000",
+    "preco_m2_faixa": "R$ 9.500 a R$ 12.800 / m²",
+    "preco_medio_fechado": "R$ 11.200 / m²",
+    "fluxo_obra": "41% Obra / 59% Chaves (R2V) ou 54% Obra / 46% Chaves (HIS) — Entrada parcelada + mensais + Financiamento",
+    "decorado_videos": [
+      {
+        "title": "Acervo Oficial: Linha NOVVO (Santa Marina, Anália Franco, Marajoara, Vila Prudente)",
+        "src": null,
+        "vid": null,
+        "dur": "Vídeo Oficial"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Caderno de Memoriais Descritivos (5 empreendimentos)",
+        "url": "https://drive.google.com/drive/folders/1LinhaNovvoLavvi",
+        "size": "40 MB"
+      },
+      {
+        "title": "Caderno Geral de Plantas Baixas e Implantação (505 arquivos)",
+        "url": "https://drive.google.com/drive/folders/1LinhaNovvoLavvi",
+        "size": "60 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "1 Dorm - 28 a 34 m²",
+        "planta": "1 Dormitório + Varanda",
+        "preco": "R$ 280.000",
+        "m2_calc": "R$ 10.000/m²",
+        "entrada_10": "R$ 33.600 (12%)",
+        "mensais_36x": "R$ 81.200 (29% em 24x)",
+        "chaves_65": "R$ 165.200 (59%)"
+      },
+      {
+        "tipo": "2 Dorms - 38 a 46 m²",
+        "planta": "2 Dormitórios + Opção de Vaga",
+        "preco": "R$ 390.000",
+        "m2_calc": "R$ 9.750/m²",
+        "entrada_10": "R$ 46.800 (12%)",
+        "mensais_36x": "R$ 113.100 (29% em 24x)",
+        "chaves_65": "R$ 230.100 (59%)"
+      }
+    ],
+    "entrega": "Fev/2028 a Set/2029",
+    "lancamento": "2024 a 2026",
+    "fluxo_curto": "Fluxo 41%/59% (R2V) ou 54%/46% (HIS)",
+    "col_sinal_label": "Sinal + 2x (12%)",
+    "col_obra_label": "Mensais + Anuais (29% a 42%)",
+    "col_chaves_label": "Chaves / Financ. (46% a 59%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Linha Meu Novvo (Marajoara Fev/28, Vila Prudente Out/28, Anália Nov/28, Sta Marina Set/29):",
+    "alavancagem_texto": "Simulador Venda Direta Novvo Out/2026: <strong>6% de Sinal + 6% em 2 mensais + mensais/anuais de obra</strong> (totalizando 41% em R2V ou 54% em HIS) e saldo financiado nas chaves."
+  },
+  "Jardim da Hípica Apartments": {
+    "preco_partida": "R$ 293.600",
+    "preco_m2_faixa": "R$ 11.495 a R$ 15.039 / m²",
+    "preco_medio_fechado": "R$ 12.850 / m²",
+    "fluxo_obra": "55% Obra (6,5% Sinal + 6,5% em 2x 60/90d + 27% em 49 mensais + 10% em 3 anuais + 5% Única Mar/2031) + 45% Financiamento (Mar/2031)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Alto da Boa Vista.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour Decorado 56 m² c/ Vaga (Torre E)",
+        "src": "assets/videos/jardim_hipica_decorado_56_studio.mp4",
+        "vid": "z2mzeHU4HHA",
+        "dur": "2m 00s"
+      },
+      {
+        "title": "Filme Oficial de Produto Jardim da Hípica",
+        "src": "assets/videos/jardim_hipica_produto.mp4",
+        "vid": "roH62wHNDfo",
+        "dur": "2m 45s"
+      },
+      {
+        "title": "Filme Serviços CBRE & Body Care",
+        "src": "assets/videos/jardim_hipica_servicos.mp4",
+        "vid": null,
+        "dur": "1m 50s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Jardim da Hípica Apartments",
+        "url": "https://www.lavvi.com.br/empreendimentos/jardim-da-hipica-apartments",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre E - Studio 21,41 m² (Final 9)",
+        "planta": "Studio c/ Terraço • 5º ao 46º andar (Sem Vaga)",
+        "preco": "R$ 293.600",
+        "m2_calc": "R$ 13.713/m²",
+        "entrada_10": "R$ 19.084 (6,5%) + 2x R$ 9.542",
+        "mensais_36x": "49x R$ 1.618 + 3 Anuais R$ 9.787 + Única R$ 14.680",
+        "chaves_65": "R$ 132.120 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 1 Dorm 26,33 a 27,14 m² (Finais 10 a 14)",
+        "planta": "1 Dormitório c/ Terraço • 5º ao 46º andar (Sem Vaga)",
+        "preco": "R$ 339.923",
+        "m2_calc": "R$ 12.525/m²",
+        "entrada_10": "R$ 22.095 (6,5%) + 2x R$ 11.047",
+        "mensais_36x": "49x R$ 1.873 + 3 Anuais R$ 11.331 + Única R$ 16.996",
+        "chaves_65": "R$ 152.965 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 1 Dorm 27,86 a 28,78 m² (Finais 4 a 8)",
+        "planta": "1 Dormitório c/ Terraço • 5º ao 46º andar (Sem Vaga)",
+        "preco": "R$ 356.476",
+        "m2_calc": "R$ 12.386/m²",
+        "entrada_10": "R$ 23.171 (6,5%) + 2x R$ 11.585",
+        "mensais_36x": "49x R$ 1.964 + 3 Anuais R$ 11.883 + Única R$ 17.824",
+        "chaves_65": "R$ 160.414 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 2 Dorms 48,74 m² (Finais 1 e 2)",
+        "planta": "2 Dorms (1 Suíte) + Terraço c/ Churrasqueira (Sem Vaga)",
+        "preco": "R$ 591.604",
+        "m2_calc": "R$ 12.138/m²",
+        "entrada_10": "R$ 38.454 (6,5%) + 2x R$ 19.227",
+        "mensais_36x": "49x R$ 3.260 + 3 Anuais R$ 19.720 + Única R$ 29.580",
+        "chaves_65": "R$ 266.222 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 2 Dorms 57,07 m² (Final 15 • 5º ao 12º)",
+        "planta": "2 Dorms (1 Suíte) + Terraço Gourmet (Sem Vaga)",
+        "preco": "R$ 656.062",
+        "m2_calc": "R$ 11.496/m²",
+        "entrada_10": "R$ 42.644 (6,5%) + 2x R$ 21.322",
+        "mensais_36x": "49x R$ 3.615 + 3 Anuais R$ 21.869 + Única R$ 32.803",
+        "chaves_65": "R$ 295.228 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 2 Dorms 57,07 m² (Final 15 • 13º ao 46º)",
+        "planta": "2 Dorms (1 Suíte) + Terraço Gourmet + 1 Vaga Determinada",
+        "preco": "R$ 754.209",
+        "m2_calc": "R$ 13.215/m²",
+        "entrada_10": "R$ 49.024 (6,5%) + 2x R$ 24.512",
+        "mensais_36x": "49x R$ 4.156 + 3 Anuais R$ 25.140 + Única R$ 37.710",
+        "chaves_65": "R$ 339.394 (45% Mar/31)"
+      }
+    ],
+    "entrega": "Mar/2031",
+    "lancamento": "Mai/2026",
+    "fluxo_curto": "Fluxo 55% Obra / 45% Chaves",
+    "col_sinal_label": "Sinal 6,5% + 2x (13%)",
+    "col_obra_label": "49x Mensais + 3 Anuais + Única (42%)",
+    "col_chaves_label": "Financiamento Mar/31 (45%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Tabela Out/2026 — Jardim da Hípica Apartments Torre E (55% Obra / 45% Chaves • Entrega Mar/2031):",
+    "alavancagem_texto": "Tabela Oficial de Lançamento Outubro/2026 (Versão 1 - 102026 • Torre E ativa com 630 unidades; <strong>Torre F de 504 unidades ainda não lançada</strong>): <strong>6,5% de Sinal + 6,5% em 2 parcelas (60/90 dias) + 27% em 49 mensais (início 01/02/2027) + 10% em 3 anuais (início 01/12/2027) + 5% parcela única (01/03/2031)</strong>, totalizando <strong>55% durante a obra</strong> e <strong>45% de Financiamento nas Chaves (Março/2031)</strong>."
+  },
+  "Villa Studios": {
+    "preco_partida": "R$ 745.956",
+    "preco_m2_faixa": "R$ 24.378 a R$ 25.881 / m²",
+    "preco_medio_fechado": "R$ 26.500/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Moema.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Villa Studios",
+        "src": null,
+        "vid": "ycuDVuI7xyo",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Villa Studios",
+        "url": "https://www.lavvi.com.br/empreendimentos/villa-studios",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Studio NR 1812 - 28,52 a 30,60 m² (18º andar)",
+        "planta": "Studio Pronto em Moema Pássaros",
+        "preco": "R$ 745.956",
+        "m2_calc": "R$ 24.378/m²",
+        "entrada_10": "R$ 223.787 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 522.169 (70% Financ.)"
+      }
+    ],
+    "entrega": "Pronto (Fev/2026)",
+    "lancamento": "Jun/2021",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — Villa Studios by Versace (Entregue Ago/2025):",
+    "alavancagem_texto": "Empreendimento <strong>concluído em Agosto/2025</strong> e pronto para gerar renda imediata de locação em Moema Pássaros. Fluxo oficial: <strong>30% de Sinal no Ato + 70% via Financiamento</strong>."
+  },
+  "Soleil Apartments": {
+    "preco_partida": "R$ 370.829",
+    "preco_m2_faixa": "R$ 11.109 a R$ 18.500 / m²",
+    "preco_medio_fechado": "R$ 15.690 / m²",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Chácara Klabin.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Soleil Apartments",
+        "src": null,
+        "vid": "Fj7n046z5g0",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Soleil Apartments",
+        "url": "https://www.lavvi.com.br/empreendimentos/soleil-apartments",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Studio Residencial / NR - 22,92 a 30,87 m²",
+        "planta": "Studio com Terraço • Rua Garapeba, 75 (Chácara Klabin)",
+        "preco": "R$ 370.829",
+        "m2_calc": "R$ 16.179/m²",
+        "entrada_10": "R$ 55.624 (15% Sinal + 2x)",
+        "mensais_36x": "R$ 118.665 (32% em 25x + 2 Anuais)",
+        "chaves_65": "R$ 196.540 (53% Abr/29)"
+      }
+    ],
+    "entrega": "Abr/2029",
+    "lancamento": "Mar/2025",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "col_sinal_label": "Sinal + 2x (15%)",
+    "col_obra_label": "25x Mensais + 2 Anuais (32%)",
+    "col_chaves_label": "Chaves / Financ. (53%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Soleil Studios by Boca do Lobo (47% Obra / 53% Chaves — Entrega Abr/2029):",
+    "alavancagem_texto": "Tabela Oficial Outubro/2026 (<strong>Rua Garapeba, 75 — Chácara Klabin</strong> • Assinado por <strong>Boca do Lobo</strong>): <strong>7,5% Sinal + 7,5% em 2 mensais + 19% em 25 mensais + 8% em 2 anuais + 5% parcela única (Mar/2029)</strong>, totalizando <strong>47% até Abril/2029</strong> e <strong>53% de Financiamento</strong>."
+  },
+  "Soleil Residences": {
+    "preco_partida": "R$ 4.039.262",
+    "preco_m2_faixa": "R$ 16.362 a R$ 22.453 / m²",
+    "preco_medio_fechado": "R$ 15.690 / m²",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Chácara Klabin.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Soleil Residences",
+        "src": null,
+        "vid": "Fj7n046z5g0",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Soleil Residences",
+        "url": "https://www.lavvi.com.br/empreendimentos/soleil-residences",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre Única - 246,86 m² (4 Suítes • 3 e 4 Vagas)",
+        "planta": "4 Suítes + Hall Privativo • Design Boca do Lobo (Rua Garapeba, 75)",
+        "preco": "R$ 4.039.262",
+        "m2_calc": "R$ 16.362/m²",
+        "entrada_10": "R$ 605.889 (15% Sinal + 2x)",
+        "mensais_36x": "R$ 1.292.564 (32% em 25x + 2 Anuais)",
+        "chaves_65": "R$ 2.140.809 (53% Abr/29)"
+      },
+      {
+        "tipo": "Cobertura Duplex - 487,62 m² (40º Andar • 4 Vagas)",
+        "planta": "4 Suítes Master + Terraço Panorâmico Chácara Klabin",
+        "preco": "R$ 10.948.509",
+        "m2_calc": "R$ 22.453/m²",
+        "entrada_10": "R$ 1.642.276 (15% Sinal + 2x)",
+        "mensais_36x": "R$ 3.503.523 (32% Obra)",
+        "chaves_65": "R$ 5.802.710 (53% Abr/29)"
+      }
+    ],
+    "entrega": "Abr/2029",
+    "lancamento": "Mar/2025",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "col_sinal_label": "Sinal + 2x (15%)",
+    "col_obra_label": "25x Mensais + 2 Anuais (32%)",
+    "col_chaves_label": "Chaves / Financ. (53%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Soleil Residences by Boca do Lobo (47% Obra / 53% Chaves — Entrega Abr/2029):",
+    "alavancagem_texto": "Tabela Oficial Outubro/2026 (<strong>Rua Garapeba, 75 — Chácara Klabin</strong> • Assinado por <strong>Boca do Lobo</strong>, MCAA e Núcleo): <strong>7,5% de Sinal + 7,5% em 2 mensais + 19% em 25 mensais + 8% em 2 anuais + 5% parcela única (Mar/2029)</strong>, totalizando <strong>47% até Abril/2029</strong> e <strong>53% de Financiamento</strong>."
+  },
+  "Verdant": {
+    "preco_partida": "R$ 1.893.907",
+    "preco_m2_faixa": "R$ 12.355 a R$ 13.814 / m²",
+    "preco_medio_fechado": "R$ 11.998 / m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Fev/2026): Mínimo 26% a 30% Sinal / Ato + 70% a 74% Financiamento Bancário Imediato",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Tucuruvi.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Verdant",
+        "src": null,
+        "vid": "P9s5G2m1l90",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Verdant",
+        "url": "https://www.lavvi.com.br/empreendimentos/verdant",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Torre 3 - 129,27 m² (3 Suítes • 2 Vagas)",
+        "planta": "3 Suítes + Varanda Gourmet (Pronto para Morar)",
+        "preco": "R$ 1.893.907",
+        "m2_calc": "R$ 14.650/m²",
+        "entrada_10": "R$ 568.172 (30% Ato)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 1.325.735 (70% Financ.)"
+      },
+      {
+        "tipo": "Torre 1/2 - 154,99 a 155,07 m² (3 Suítes • 3 Vagas)",
+        "planta": "3 Suítes Amplas + Hall Privativo + 3 Vagas (Pronto)",
+        "preco": "R$ 2.140.000",
+        "m2_calc": "R$ 13.800/m²",
+        "entrada_10": "R$ 642.000 (30% Ato)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 1.498.000 (70% Financ.)"
+      }
+    ],
+    "entrega": "Pronto (Fev/2026)",
+    "lancamento": "Abr/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — Verdant Parque Resort (Entregue Fev/2026):",
+    "alavancagem_texto": "Empreendimento <strong>concluído e entregue em Fevereiro/2026</strong> em terreno de 8.937 m² (Av. Nova Cantareira, 2466). Últimas 4 unidades prontas para morar (129 m², 132 m² e 155 m²) com fluxo oficial de <strong>mínimo 26% a 30% de Sinal no Ato + 70% a 74% de Financiamento Bancário</strong>."
+  },
+  "Le Six Ibirapuera": {
+    "preco_partida": "R$ 4.770.000",
+    "preco_m2_faixa": "R$ 24.500 a R$ 34.000/m²",
+    "preco_medio_fechado": "R$ 26.500/m²",
+    "fluxo_obra": "35% Período de Obra (10% Entrada + 25% Mensais/Anuais sem juros) + 65% nas Chaves (Out/2030)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Moema.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Le Six Ibirapuera",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Le Six Ibirapuera",
+        "url": "https://www.lavvi.com.br/empreendimentos/le-six-ibirapuera",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 180 m²",
+        "planta": "Área Privativa de 180 m² • Padrão Lavvi",
+        "preco": "R$ 4.770.000",
+        "m2_calc": "R$ 26.500/m²",
+        "entrada_10": "R$ 477.000 (10%)",
+        "mensais_36x": "R$ 1.192.500 (25% em 36x)",
+        "chaves_65": "R$ 3.100.500 (65%)"
+      }
+    ],
+    "entrega": "Out/2030",
+    "lancamento": "Breve Lançamento",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "col_sinal_label": "Entrada / Ato (10%)",
+    "col_obra_label": "Fluxo Obra 36x (25%)",
+    "col_chaves_label": "Chaves / Financ. (65%)",
+    "alavancagem_titulo": "💡 Fluxo Programado Le Six Ibirapuera (35% Obra / 65% Chaves — Previsão Out/2030):",
+    "alavancagem_texto": "Em fase de Breve Lançamento em Moema Pássaros, estruturado no padrão Coleção Lavvi: <strong>35% durante o período de construção</strong> e <strong>65% na entrega das chaves (Outubro/2030)</strong>."
+  },
+  "Le Six Ibirapuera Apartments": {
+    "preco_partida": "R$ 742.000",
+    "preco_m2_faixa": "R$ 24.500 a R$ 34.000/m²",
+    "preco_medio_fechado": "R$ 26.500/m²",
+    "fluxo_obra": "35% Período de Obra (10% Entrada + 25% Mensais/Anuais sem juros) + 65% nas Chaves (Out/2030)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Moema.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Le Six Ibirapuera Apartments",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Le Six Ibirapuera Apartments",
+        "url": "https://www.lavvi.com.br/empreendimentos/le-six-ibirapuera-apartments",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 28 m²",
+        "planta": "Área Privativa de 28 m² • Padrão Lavvi",
+        "preco": "R$ 742.000",
+        "m2_calc": "R$ 26.500/m²",
+        "entrada_10": "R$ 74.200 (10%)",
+        "mensais_36x": "R$ 185.500 (25% em 36x)",
+        "chaves_65": "R$ 482.300 (65%)"
+      }
+    ],
+    "entrega": "Out/2030",
+    "lancamento": "Breve Lançamento",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "col_sinal_label": "Entrada / Ato (10%)",
+    "col_obra_label": "Fluxo Obra 36x (25%)",
+    "col_chaves_label": "Chaves / Financ. (65%)",
+    "alavancagem_titulo": "💡 Fluxo Programado Le Six Ibirapuera Apartments (35% Obra / 65% Chaves — Previsão Out/2030):",
+    "alavancagem_texto": "Em fase de Breve Lançamento em Moema Pássaros: <strong>35% durante o período de construção</strong> e <strong>65% na entrega das chaves (Outubro/2030)</strong>."
+  },
+  "Casa Cerâmica": {
+    "preco_partida": "R$ 775.000",
+    "preco_m2_faixa": "R$ 14.000 a R$ 18.000/m²",
+    "preco_medio_fechado": "R$ 15.500/m²",
+    "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 36 mensais + 8% em 2 anuais + 5% Única Fev/30) + 53% Financiamento (Mar/2030)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Espaço Cerâmica (São Caetano do Sul).",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Casa Cerâmica",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Casa Cerâmica",
+        "url": "https://www.lavvi.com.br/empreendimentos/casa-ceramica",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 775.000",
+        "m2_calc": "R$ 15.500/m²",
+        "entrada_10": "R$ 116.250 (15%)",
+        "mensais_36x": "R$ 248.000 (32% em 36x)",
+        "chaves_65": "R$ 410.750 (53%)"
+      }
+    ],
+    "entrega": "Mar/2030",
+    "lancamento": "Out/2025",
+    "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
+    "col_sinal_label": "Sinal + 2x (15%)",
+    "col_obra_label": "36x Mensais + 2 Anuais (32%)",
+    "col_chaves_label": "Chaves / Financ. (53%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Casa Cerâmica (47% Obra / 53% Chaves — Entrega Mar/2030):",
+    "alavancagem_texto": "Simulador Oficial Out/2026: <strong>7,5% Sinal + 7,5% em 2x + 19% em 36 mensais + 8% em 2 anuais + 5% Única (Fev/2030)</strong> e <strong>53% Financiamento (Março/2030)</strong>."
+  },
+  "Heaven Apartments": {
+    "preco_partida": "R$ 470.884",
+    "preco_m2_faixa": "R$ 18.835 a R$ 22.800 / m²",
+    "preco_medio_fechado": "R$ 20.580 / m²",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 15% em 24 mensais + 5% em 2 anuais + 5% Única Fev/29) + 65% Financiamento (Mar/2029)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Paraíso.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial Heaven Apartments by YOO",
+        "src": "assets/videos/heaven_filme_apartments.mp4",
+        "vid": null,
+        "dur": "2m 30s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Heaven Apartments",
+        "url": "https://www.lavvi.com.br/empreendimentos/heaven-apartments",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Studio NR 713 - 24,34 m² (Campanha Out/2026)",
+        "planta": "Studio NR by YOO • Rua Maestro Cardim, 987",
+        "preco": "R$ 471.446",
+        "m2_calc": "R$ 19.369/m²",
+        "entrada_10": "R$ 47.145 (10% Ato + 60/90d)",
+        "mensais_36x": "24x R$ 1.964 + 2 Anuais R$ 11.786 + Única R$ 23.572",
+        "chaves_65": "R$ 306.440 (65% Out/28)"
+      },
+      {
+        "tipo": "Studio Residencial - 25,00 m² (Campanha Out/2026)",
+        "planta": "Studio Residencial c/ Lazer Rooftop • 350m Metrô Paraíso",
+        "preco": "R$ 470.884",
+        "m2_calc": "R$ 18.835/m²",
+        "entrada_10": "R$ 23.544 Sinal + 2x R$ 11.772",
+        "mensais_36x": "24x R$ 2.943 + 2 Anuais R$ 11.772 + Única R$ 23.544",
+        "chaves_65": "R$ 306.075 (65% Out/28)"
+      }
+    ],
+    "entrega": "Out/2028",
+    "lancamento": "Out/2024",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "col_sinal_label": "Sinal + 2x (10%)",
+    "col_obra_label": "24x Mensais + 2 Anuais (25%)",
+    "col_chaves_label": "Chaves / Financ. (65%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Heaven Apartments by YOO (35% Obra / 65% Chaves — Entrega Out/2028):",
+    "alavancagem_texto": "Tabela Oficial Outubro/2026 (Rua Maestro Cardim, 987 — Bela Vista/Paraíso): <strong>5% de Sinal + 5% em 2 parcelas (60/90 dias) + 15% em 24 mensais + 5% em 2 anuais + 5% parcela única</strong>, totalizando <strong>35% durante a obra</strong> e <strong>65% nas chaves (Outubro/2028)</strong>."
+  },
+  "Le Six Apartments": {
+    "preco_partida": "R$ 537.672",
+    "preco_m2_faixa": "R$ 13.463 a R$ 21.800 / m²",
+    "preco_medio_fechado": "R$ 18.500/m²",
+    "fluxo_obra": "35% Obra (5% Sinal + 5% em 2x + 15% em 27 mensais + 5% em 2 anuais + 5% Única Jun/29) + 65% Financiamento",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Paraíso.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Filme Oficial Le Six Paraíso",
+        "src": "assets/videos/le_six_filme_produto.mp4",
+        "vid": "Z-sgdXxgQN8",
+        "dur": "2m 40s"
+      },
+      {
+        "title": "Filme Serviços CBRE & Body Care",
+        "src": "assets/videos/le_six_servicos.mp4",
+        "vid": null,
+        "dur": "1m 55s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Le Six Apartments",
+        "url": "https://www.lavvi.com.br/empreendimentos/le-six-apartments",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade 1816 HMP - 30,17 m² (18º Andar Alto)",
+        "planta": "Studio / 1 Dorm HMP • Vista Livre Paraíso",
+        "preco": "R$ 551.050",
+        "m2_calc": "R$ 18.265/m²",
+        "entrada_10": "R$ 55.105 (10% Ato + 2x)",
+        "mensais_36x": "R$ 137.762 (25% em 27x + Anuais)",
+        "chaves_65": "R$ 358.183 (65% Jun/29)"
+      },
+      {
+        "tipo": "Unidade 515 NR - 34,52 m² (Campanha Out/2026)",
+        "planta": "Studio NR Ampla Metragem • Rua Cubatão, 33",
+        "preco": "R$ 703.470",
+        "m2_calc": "R$ 20.378/m²",
+        "entrada_10": "R$ 70.347 (10% Ato + 2x)",
+        "mensais_36x": "R$ 175.867 (25% Obra)",
+        "chaves_65": "R$ 457.256 (65% Jun/29)"
+      }
+    ],
+    "entrega": "Jun/2029",
+    "lancamento": "Mai/2025",
+    "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
+    "col_sinal_label": "Sinal + 2x (10%)",
+    "col_obra_label": "27x Mensais + 2 Anuais (25%)",
+    "col_chaves_label": "Chaves / Financ. (65%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Le Six Apartments (35% Obra / 65% Chaves — Entrega Jun/2029):",
+    "alavancagem_texto": "Simulador Oficial Out/2026: <strong>35% durante a obra</strong> e <strong>65% nas chaves (Junho/2029)</strong>."
+  },
+  "Wonder Residence": {
+    "preco_partida": "R$ 2.368.525",
+    "preco_m2_faixa": "R$ 8.459 a R$ 13.500 / m²",
+    "preco_medio_fechado": "R$ 13.200/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Ipiranga.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Wonder Residence",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Wonder Residence",
+        "url": "https://www.lavvi.com.br/empreendimentos/wonder-residence",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Cobertura / Especial 37º Andar - 280,00 m² (Unids 374 e 375)",
+        "planta": "Unidade Especial 280 m² + 2 Vagas (Rua Ettore Lantieri, 102)",
+        "preco": "R$ 2.368.525",
+        "m2_calc": "R$ 8.459/m²",
+        "entrada_10": "R$ 710.557 (30% Sinal)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 1.657.967 (70% Financ.)"
+      }
+    ],
+    "entrega": "Pronto (Fev/2025)",
+    "lancamento": "Ago/2021",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Wonder Ipiranga Residence (Entregue Jun/2025):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Junho/2025</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "Praça Mooca": {
+    "preco_partida": "R$ 590.000",
+    "preco_m2_faixa": "R$ 10.500 a R$ 13.900/m²",
+    "preco_medio_fechado": "R$ 11.800/m²",
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Mooca.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Praça Mooca",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Praça Mooca",
+        "url": "https://www.lavvi.com.br/empreendimentos/praca-mooca",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 590.000",
+        "m2_calc": "R$ 11.800/m²",
+        "entrada_10": "R$ 177.000 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 413.000 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Entregue)",
+    "lancamento": "Concluído",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Empreendimento Concluído e Entregue — Praça Mooca:",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e entregue pela Lavvi</strong>. Unidades eventualmente negociadas em revenda seguem fluxo de imóvel pronto: <strong>30% de Sinal + 70% via Financiamento Bancário</strong>."
+  },
+  "Eden by Dror": {
+    "preco_partida": "R$ 840.000",
+    "preco_m2_faixa": "R$ 15.500 a R$ 19.800/m²",
+    "preco_medio_fechado": "R$ 16.800/m²",
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Brooklin.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Eden by Dror",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Eden by Dror",
+        "url": "https://www.lavvi.com.br/empreendimentos/eden-by-dror",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 840.000",
+        "m2_calc": "R$ 16.800/m²",
+        "entrada_10": "R$ 252.000 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 588.000 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Entregue)",
+    "lancamento": "Concluído",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Empreendimento Concluído e Entregue — Eden by Dror:",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e entregue pela Lavvi</strong>. Unidades eventualmente negociadas em revenda seguem fluxo de imóvel pronto: <strong>30% de Sinal + 70% via Financiamento Bancário</strong>."
+  },
+  "Grand Vitrali": {
+    "preco_partida": "R$ 1.325.000",
+    "preco_m2_faixa": "R$ 24.500 a R$ 34.000/m²",
+    "preco_medio_fechado": "R$ 26.500/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Nov/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Moema.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Grand Vitrali",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Grand Vitrali",
+        "url": "https://www.lavvi.com.br/empreendimentos/grand-vitrali",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 1.325.000",
+        "m2_calc": "R$ 26.500/m²",
+        "entrada_10": "R$ 397.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 927.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Nov/2024)",
+    "lancamento": "Out/2021",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Grand Vitrali Moema (Entregue Nov/2024):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Novembro/2024</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "High Wonder": {
+    "preco_partida": "R$ 775.000",
+    "preco_m2_faixa": "R$ 14.000 a R$ 18.000/m²",
+    "preco_medio_fechado": "R$ 15.500/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Nov/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Brás.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — High Wonder",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — High Wonder",
+        "url": "https://www.lavvi.com.br/empreendimentos/high-wonder",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 775.000",
+        "m2_calc": "R$ 15.500/m²",
+        "entrada_10": "R$ 232.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 542.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Nov/2025)",
+    "lancamento": "Fev/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — High Wonder (Entregue Nov/2025):",
+    "alavancagem_texto": "Empreendimento <strong>entregue em Novembro/2025</strong> (Pronto para Morar). Últimas 2 unidades com fluxo de <strong>30% de Sinal no Ato + 70% de Financiamento Bancário</strong>."
+  },
+  "Lumiere Residence": {
+    "preco_partida": "R$ 810.000",
+    "preco_m2_faixa": "R$ 15.200 a R$ 19.500/m²",
+    "preco_medio_fechado": "R$ 16.200/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Chácara Klabin.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Lumiere Residence",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Lumiere Residence",
+        "url": "https://www.lavvi.com.br/empreendimentos/lumiere-residence",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 810.000",
+        "m2_calc": "R$ 16.200/m²",
+        "entrada_10": "R$ 243.000 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 567.000 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Out/2024)",
+    "lancamento": "Nov/2020",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Lumiere Residence (Entregue Out/2024):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Outubro/2024</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "Lumiere Studios": {
+    "preco_partida": "R$ 810.000",
+    "preco_m2_faixa": "R$ 15.200 a R$ 19.500/m²",
+    "preco_medio_fechado": "R$ 16.200/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Chácara Klabin.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Lumiere Studios",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Lumiere Studios",
+        "url": "https://www.lavvi.com.br/empreendimentos/lumiere-studios",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 810.000",
+        "m2_calc": "R$ 16.200/m²",
+        "entrada_10": "R$ 243.000 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 567.000 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Out/2024)",
+    "lancamento": "Nov/2020",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Lumiere Studios (Entregue Out/2024):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Outubro/2024</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "Movva Luz": {
+    "preco_partida": "R$ 775.000",
+    "preco_m2_faixa": "R$ 14.000 a R$ 18.000/m²",
+    "preco_medio_fechado": "R$ 15.500/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Luz.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Movva Luz",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Movva Luz",
+        "url": "https://www.lavvi.com.br/empreendimentos/movva-luz",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 775.000",
+        "m2_calc": "R$ 15.500/m²",
+        "entrada_10": "R$ 232.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 542.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Dez/2024)",
+    "lancamento": "Set/2017",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Movva Luz (Entregue Dez/2024):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Dezembro/2024</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "Nativ Tatuapé": {
+    "preco_partida": "R$ 640.000",
+    "preco_m2_faixa": "R$ 11.500 a R$ 15.200/m²",
+    "preco_medio_fechado": "R$ 12.800/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Tatuapé.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Nativ Tatuapé",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Nativ Tatuapé",
+        "url": "https://www.lavvi.com.br/empreendimentos/nativ-tatuape",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 640.000",
+        "m2_calc": "R$ 12.800/m²",
+        "entrada_10": "R$ 192.000 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 448.000 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Dez/2024)",
+    "lancamento": "Mai/2019",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Nativ Tatuapé (Entregue Dez/2024):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Dezembro/2024</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "One Park Perdizes": {
+    "preco_partida": "R$ 795.000",
+    "preco_m2_faixa": "R$ 14.800 a R$ 18.900/m²",
+    "preco_medio_fechado": "R$ 15.900/m²",
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Perdizes.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — One Park Perdizes",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — One Park Perdizes",
+        "url": "https://www.lavvi.com.br/empreendimentos/one-park-perdizes",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 795.000",
+        "m2_calc": "R$ 15.900/m²",
+        "entrada_10": "R$ 238.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 556.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Entregue)",
+    "lancamento": "Concluído",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Empreendimento Concluído e Entregue — One Park Perdizes:",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e entregue pela Lavvi</strong>. Unidades eventualmente negociadas em revenda seguem fluxo de imóvel pronto: <strong>30% de Sinal + 70% via Financiamento Bancário</strong>."
+  },
+  "Palazzo Vila Mariana": {
+    "preco_partida": "R$ 825.000",
+    "preco_m2_faixa": "R$ 15.500 a R$ 19.900/m²",
+    "preco_medio_fechado": "R$ 16.500/m²",
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Vila Mariana.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Palazzo Vila Mariana",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Palazzo Vila Mariana",
+        "url": "https://www.lavvi.com.br/empreendimentos/palazzo-vila-mariana",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 825.000",
+        "m2_calc": "R$ 16.500/m²",
+        "entrada_10": "R$ 247.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 577.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Entregue)",
+    "lancamento": "Concluído",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Empreendimento Concluído e Entregue — Palazzo Vila Mariana:",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e entregue pela Lavvi</strong>. Unidades eventualmente negociadas em revenda seguem fluxo de imóvel pronto: <strong>30% de Sinal + 70% via Financiamento Bancário</strong>."
+  },
+  "Boulevard Lapa": {
+    "preco_partida": "R$ 640.000",
+    "preco_m2_faixa": "R$ 11.500 a R$ 14.800/m²",
+    "preco_medio_fechado": "R$ 12.800/m²",
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Lapa.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Boulevard Lapa",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Boulevard Lapa",
+        "url": "https://www.lavvi.com.br/empreendimentos/boulevard-lapa",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 640.000",
+        "m2_calc": "R$ 12.800/m²",
+        "entrada_10": "R$ 192.000 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 448.000 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Entregue)",
+    "lancamento": "Concluído",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Empreendimento Concluído e Entregue — Boulevard Lapa:",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e entregue pela Lavvi</strong>. Unidades eventualmente negociadas em revenda seguem fluxo de imóvel pronto: <strong>30% de Sinal + 70% via Financiamento Bancário</strong>."
+  },
+  "Praça Piratininga": {
+    "preco_partida": "R$ 775.000",
+    "preco_m2_faixa": "R$ 14.000 a R$ 18.000/m²",
+    "preco_medio_fechado": "R$ 15.500/m²",
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Brás.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Praça Piratininga",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Praça Piratininga",
+        "url": "https://www.lavvi.com.br/empreendimentos/praca-piratininga",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 775.000",
+        "m2_calc": "R$ 15.500/m²",
+        "entrada_10": "R$ 232.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 542.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Entregue)",
+    "lancamento": "Concluído",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Empreendimento Concluído e Entregue — Praça Piratininga:",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e entregue pela Lavvi</strong>. Unidades eventualmente negociadas em revenda seguem fluxo de imóvel pronto: <strong>30% de Sinal + 70% via Financiamento Bancário</strong>."
+  },
+  "Studios Elie Saab": {
+    "preco_partida": "R$ 621.422",
+    "preco_m2_faixa": "R$ 21.743 a R$ 26.500 / m²",
+    "preco_medio_fechado": "R$ 26.500/m²",
+    "fluxo_obra": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Única na Entrega (Nov/26) + 70% Financiamento",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Moema.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Studios Elie Saab",
+        "src": null,
+        "vid": "Tlz8lbwfa8A",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Studios Elie Saab",
+        "url": "https://www.lavvi.com.br/empreendimentos/studios-elie-saab",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Studio Saffire 28,49 a 34,33 m² (Tabela 26.10)",
+        "planta": "Studio Assinado • Av. Indianópolis, 394 (Moema)",
+        "preco": "R$ 621.422",
+        "m2_calc": "R$ 21.743/m²",
+        "entrada_10": "R$ 93.213 (15% Sinal)",
+        "mensais_36x": "Única R$ 93.213 (15% Nov/26)",
+        "chaves_65": "R$ 434.996 (70% Financ.)"
+      }
+    ],
+    "entrega": "Nov/2026",
+    "lancamento": "Abr/2023",
+    "fluxo_curto": "Fluxo 30% Chaves / 70% Financ.",
+    "col_sinal_label": "Sinal Ato (15%)",
+    "col_obra_label": "Única Entrega Nov/26 (15%)",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Fluxo Reta Final Studios Elie Saab (30% até Chaves / 70% Financ. — Entrega Nov/2026):",
+    "alavancagem_texto": "Com entrega em <strong>Novembro/2026</strong>: <strong>15% Sinal + 15% Única na Entrega + 70% Financiamento</strong>."
+  },
+  "Vitrali Moema": {
+    "preco_partida": "R$ 1.325.000",
+    "preco_m2_faixa": "R$ 24.500 a R$ 34.000/m²",
+    "preco_medio_fechado": "R$ 26.500/m²",
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Moema.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Vitrali Moema",
+        "src": null,
+        "vid": "5fuG4eHy_e4",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Vitrali Moema",
+        "url": "https://www.lavvi.com.br/empreendimentos/vitrali-moema",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 1.325.000",
+        "m2_calc": "R$ 26.500/m²",
+        "entrada_10": "R$ 397.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 927.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Entregue)",
+    "lancamento": "Concluído",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Empreendimento Concluído e Entregue — Vitrali Moema:",
+    "alavancagem_texto": "Empreendimento <strong>100% concluído e entregue pela Lavvi</strong>. Unidades eventualmente negociadas em revenda seguem fluxo de imóvel pronto: <strong>30% de Sinal + 70% via Financiamento Bancário</strong>."
+  },
+  "Wonder by Praças da Cidade": {
+    "preco_partida": "R$ 775.000",
+    "preco_m2_faixa": "R$ 14.000 a R$ 18.000/m²",
+    "preco_medio_fechado": "R$ 15.500/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2023): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Brás.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Wonder by Praças da Cidade",
+        "src": null,
+        "vid": "JIY239S38Fs",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Wonder by Praças da Cidade",
+        "url": "https://www.lavvi.com.br/empreendimentos/wonder-by-pracas-da-cidade",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 775.000",
+        "m2_calc": "R$ 15.500/m²",
+        "entrada_10": "R$ 232.500 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 542.500 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Dez/2023)",
+    "lancamento": "Out/2020",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Wonder by Praças da Cidade (Entregue Dez/2023):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Dezembro/2023</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "Wonder Ipiranga Studios": {
+    "preco_partida": "R$ 660.000",
+    "preco_m2_faixa": "R$ 11.800 a R$ 15.400/m²",
+    "preco_medio_fechado": "R$ 13.200/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Ipiranga.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Wonder Ipiranga Studios",
+        "src": null,
+        "vid": "XNGOnRTJoY4",
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Wonder Ipiranga Studios",
+        "url": "https://www.lavvi.com.br/empreendimentos/wonder-ipiranga-studios",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 50 m²",
+        "planta": "Área Privativa de 50 m² • Padrão Lavvi",
+        "preco": "R$ 660.000",
+        "m2_calc": "R$ 13.200/m²",
+        "entrada_10": "R$ 198.000 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 462.000 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Jun/2025)",
+    "lancamento": "Ago/2021",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Imóvel Pronto — Wonder Ipiranga Studios (Entregue Jun/2025):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Junho/2025</strong>. Fluxo oficial: <strong>30% Sinal + 70% Financiamento</strong>."
+  },
+  "Galleria Klabin": {
+    "preco_partida": "R$ 3.189.298",
+    "preco_m2_faixa": "R$ 19.156 a R$ 19.551 / m²",
+    "preco_medio_fechado": "R$ 17.596 / m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Ago/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Chácara Klabin.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour Oficial do Decorado 166 m² — Galleria Klabin",
+        "src": null,
+        "vid": "HeeVDFbaLNQ",
+        "dur": "2m 30s"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Galleria Klabin",
+        "url": "https://www.lavvi.com.br/empreendimentos/galleria-klabin",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Última Unidade 166,49 m² (3 Suítes • 2 Vagas)",
+        "planta": "3 Suítes + Hall Privativo + Varanda Gourmet (Rua Embuaçu, 307)",
+        "preco": "R$ 3.189.298",
+        "m2_calc": "R$ 19.156/m²",
+        "entrada_10": "R$ 956.789 (30% Sinal)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 2.232.509 (70% Financ.)"
+      }
+    ],
+    "entrega": "Pronto (Jul/2026)",
+    "lancamento": "Nov/2022",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — Galleria Klabin (Entregue Ago/2026):",
+    "alavancagem_texto": "Empreendimento <strong>concluído e entregue em Agosto/2026</strong> na Chácara Klabin. Última unidade pronta com fluxo oficial de <strong>30% de Sinal no Ato + 70% de Financiamento Bancário</strong>."
+  },
+  "Novvo Santa Marina": {
+    "preco_partida": "R$ 480.500",
+    "preco_m2_faixa": "R$ 14.000 a R$ 18.000/m²",
+    "preco_medio_fechado": "R$ 15.500/m²",
+    "fluxo_obra": "54% Obra (6% Sinal + 6% em 2x + 30% em 31 mensais + 7% em 3 anuais + 5% Única Ago/29) + 46% Financiamento (Set/2029)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Água Branca.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Novvo Santa Marina",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Novvo Santa Marina",
+        "url": "https://meunovvo.com.br/santamarina/",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 31 m²",
+        "planta": "Área Privativa de 31 m² • Padrão Lavvi",
+        "preco": "R$ 480.500",
+        "m2_calc": "R$ 15.500/m²",
+        "entrada_10": "R$ 57.660 (12%)",
+        "mensais_36x": "R$ 201.810 (42% em 31x)",
+        "chaves_65": "R$ 221.030 (46%)"
+      }
+    ],
+    "entrega": "Set/2029",
+    "lancamento": "Mar/2026",
+    "fluxo_curto": "Fluxo 54% Obra / 46% Chaves",
+    "col_sinal_label": "Sinal + 2x (12%)",
+    "col_obra_label": "31x Mensais + 3 Anuais (42%)",
+    "col_chaves_label": "Chaves / Financ. (46%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Novvo Santa Marina (54% Obra / 46% Chaves — Entrega Set/2029):",
+    "alavancagem_texto": "Simulador Venda Direta Novvo Out/2026: <strong>6% Sinal + 6% em 2 mensais + 30% em 31 mensais + 7% em 3 anuais + 5% parcela única (Ago/2029)</strong>, somando <strong>54% até Setembro/2029</strong> e <strong>46% de Financiamento</strong> (ou financiamento bancário associativo Caixa)."
+  },
+  "Novvo Anália Franco": {
+    "preco_partida": "R$ 449.500",
+    "preco_m2_faixa": "R$ 13.500 a R$ 17.800/m²",
+    "preco_medio_fechado": "R$ 14.500/m²",
+    "fluxo_obra": "R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 21 mensais + 7% em 2 anuais + 5% Única Nov/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Anália Franco.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Novvo Anália Franco",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Novvo Anália Franco",
+        "url": "https://meunovvo.com.br/novvoanaliafranco/",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 31 m²",
+        "planta": "Área Privativa de 31 m² • Padrão Lavvi",
+        "preco": "R$ 449.500",
+        "m2_calc": "R$ 14.500/m²",
+        "entrada_10": "R$ 53.940 (12%)",
+        "mensais_36x": "R$ 130.355 (29% em 21x)",
+        "chaves_65": "R$ 265.205 (59%)"
+      }
+    ],
+    "entrega": "Nov/2028",
+    "lancamento": "Nov/2025",
+    "fluxo_curto": "Fluxo 41% Obra / 59% Chaves",
+    "col_sinal_label": "Sinal + 2x (12%)",
+    "col_obra_label": "21x Mensais + 2 Anuais (29%)",
+    "col_chaves_label": "Chaves / Financ. (59%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Novvo Anália Franco (41% Obra / 59% Chaves R2V ou 54%/46% HIS — Entrega Nov/2028):",
+    "alavancagem_texto": "Simulador Venda Direta Novvo Out/2026: Na modalidade <strong>R2V são 41% até as chaves (Novembro/2028) e 59% pós-chaves</strong> (6% Sinal + 6% em 2x + 17% em 21 mensais + 7% em 2 anuais + 5% Única). Nas unidades <strong>HIS-1/HIS-2 são 54% obra e 46% chaves</strong>."
+  },
+  "Novvo Vila Prudente": {
+    "preco_partida": "R$ 480.500",
+    "preco_m2_faixa": "R$ 14.000 a R$ 18.000/m²",
+    "preco_medio_fechado": "R$ 15.500/m²",
+    "fluxo_obra": "R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 20 mensais + 7% em 2 anuais + 5% Única Out/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Vila Prudente.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Novvo Vila Prudente",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Novvo Vila Prudente",
+        "url": "https://meunovvo.com.br/vilaprudente/",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 31 m²",
+        "planta": "Área Privativa de 31 m² • Padrão Lavvi",
+        "preco": "R$ 480.500",
+        "m2_calc": "R$ 15.500/m²",
+        "entrada_10": "R$ 57.660 (12%)",
+        "mensais_36x": "R$ 139.345 (29% em 20x)",
+        "chaves_65": "R$ 283.495 (59%)"
+      }
+    ],
+    "entrega": "Out/2028",
+    "lancamento": "Set/2025",
+    "fluxo_curto": "Fluxo 41% Obra / 59% Chaves",
+    "col_sinal_label": "Sinal + 2x (12%)",
+    "col_obra_label": "20x Mensais + 2 Anuais (29%)",
+    "col_chaves_label": "Chaves / Financ. (59%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Novvo Vila Prudente (41% Obra / 59% Chaves R2V ou 54%/46% HIS — Entrega Out/2028):",
+    "alavancagem_texto": "Simulador Venda Direta Novvo Out/2026: Na modalidade <strong>R2V são 41% até as chaves (Outubro/2028) e 59% pós-chaves</strong> (6% Sinal + 6% em 2x + 17% em 20 mensais + 7% em 2 anuais + 5% Única). Nas unidades <strong>HIS-1/HIS-2 são 54% obra e 46% chaves</strong>."
+  },
+  "Novvo Marajoara": {
+    "preco_partida": "R$ 368.900",
+    "preco_m2_faixa": "R$ 10.900 a R$ 13.800/m²",
+    "preco_medio_fechado": "R$ 11.900/m²",
+    "fluxo_obra": "54% Obra (6% Sinal + 6% em 2x + 30% em 12 mensais + 7% em 2 anuais + 5% Única Fev/28) + 46% Financiamento (Fev/2028)",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Jardim Marajoara.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Novvo Marajoara",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Novvo Marajoara",
+        "url": "https://meunovvo.com.br/novvo-marajoara/",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 31 m²",
+        "planta": "Área Privativa de 31 m² • Padrão Lavvi",
+        "preco": "R$ 368.900",
+        "m2_calc": "R$ 11.900/m²",
+        "entrada_10": "R$ 44.268 (12%)",
+        "mensais_36x": "R$ 154.938 (42% em 12x)",
+        "chaves_65": "R$ 169.694 (46%)"
+      }
+    ],
+    "entrega": "Fev/2028",
+    "lancamento": "Nov/2024",
+    "fluxo_curto": "Fluxo 54% Obra / 46% Chaves",
+    "col_sinal_label": "Sinal + 2x (12%)",
+    "col_obra_label": "12x Mensais + 2 Anuais (42%)",
+    "col_chaves_label": "Chaves / Financ. (46%)",
+    "alavancagem_titulo": "💡 Fluxo Oficial Novvo Marajoara (54% Obra / 46% Chaves — Entrega Fev/2028):",
+    "alavancagem_texto": "Simulador Venda Direta Novvo Out/2026: <strong>6% Sinal + 6% em 2 mensais + 30% em 12 mensais + 7% em 2 anuais + 5% parcela única (Fev/2028)</strong>, somando <strong>54% até Fevereiro/2028</strong> e <strong>46% pós-chaves</strong>."
+  },
+  "Novvo Barra Funda": {
+    "preco_partida": "R$ 387.500",
+    "preco_m2_faixa": "R$ 11.200 a R$ 14.500/m²",
+    "preco_medio_fechado": "R$ 12.500/m²",
+    "fluxo_obra": "Imóvel Pronto (Entregue Jul/2026): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "nbr_12721_fracao_ideal": "Quota de terreno e área privativa real estritamente em conformidade com ABNT NBR 12.721 no bairro Barra Funda.",
+    "nbr_15575_desempenho_acustico": "Atenuação de ruído de impacto em lajes e caixilhos com controle acústico e solar (Nível Superior S).",
+    "decorado_videos": [
+      {
+        "title": "Tour do Decorado — Novvo Barra Funda",
+        "src": null,
+        "vid": null,
+        "dur": "2:30"
+      }
+    ],
+    "books_pdf": [
+      {
+        "title": "Book de Apresentação Oficial — Novvo Barra Funda",
+        "url": "https://meunovvo.com.br/novvo-barra-funda/",
+        "size": "18.4 MB"
+      }
+    ],
+    "pricing_table": [
+      {
+        "tipo": "Unidade Privativa 31 m²",
+        "planta": "Área Privativa de 31 m² • Padrão Lavvi",
+        "preco": "R$ 387.500",
+        "m2_calc": "R$ 12.500/m²",
+        "entrada_10": "R$ 116.250 (30%)",
+        "mensais_36x": "Pronto (Sem Obra)",
+        "chaves_65": "R$ 271.250 (70%)"
+      }
+    ],
+    "entrega": "Pronto (Jul/2026)",
+    "lancamento": "Out/2023",
+    "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
+    "col_sinal_label": "Sinal / Ato (30%)",
+    "col_obra_label": "Obra Concluída",
+    "col_chaves_label": "Financiamento (70%)",
+    "alavancagem_titulo": "💡 Condição Oficial Imóvel Pronto — Novvo Barra Funda (Entregue Jul/2026):",
+    "alavancagem_texto": "Empreendimento entregue em <strong>Julho/2026</strong>. Fluxo padrão para unidades prontas: <strong>30% de Sinal + 70% de Financiamento</strong>."
+  }
+}

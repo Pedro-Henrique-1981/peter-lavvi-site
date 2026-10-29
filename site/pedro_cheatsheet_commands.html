@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedro Soares | Guia Executivo de Comandos & Operação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm;
+    }
+    :root {
+      --gold: #C5A059;
+      --gold-dark: #8C6D2D;
+      --bg-dark: #0A0F1D;
+      --card-bg: #111827;
+      --border: #2D3748;
+      --text-main: #F1F5F9;
+      --text-muted: #94A3B8;
+      --code-bg: #1E293B;
+      --accent-blue: #38BDF8;
+      --accent-green: #10B981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #FFFFFF;
+      color: #0F172A;
+      font-family: 'Inter', sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.45;
+      padding: 0;
+    }
+    .header {
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .title-area h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20pt;
+      color: #0F172A;
+      letter-spacing: -0.5px;
+    }
+    .title-area p {
+      font-size: 9pt;
+      color: #64748B;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .badge-area {
+      text-align: right;
+      font-size: 8pt;
+      color: #64748B;
+    }
+    .badge {
+      display: inline-block;
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gold-dark);
+      border-left: 3px solid var(--gold);
+      padding-left: 8px;
+      margin: 14px 0 8px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 9px 12px;
+      background: #F8FAFC;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 9.5pt;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .cmd-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      font-weight: 700;
+      background: #0F172A;
+      color: #38BDF8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .card p {
+      font-size: 8.5pt;
+      color: #475569;
+      margin-top: 3px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 10px 0;
+      font-size: 8.5pt;
+    }
+    th {
+      background: #0F172A;
+      color: #FFFFFF;
+      text-align: left;
+      padding: 6px 8px;
+      font-weight: 700;
+      font-size: 8pt;
+    }
+    td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #E2E8F0;
+      color: #334155;
+    }
+    tr:nth-child(even) td {
+      background: #F8FAFC;
+    }
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #0369A1;
+      background: #E0F2FE;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 8pt;
+    }
+
+    .tip-box {
+      background: #FEFCE8;
+      border: 1px solid #FEF08A;
+      border-left: 3px solid #CA8A04;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      color: #713F12;
+      margin-top: 10px;
+    }
+
+    .footer {
+      border-top: 1px solid #E2E8F0;
+      margin-top: 14px;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8pt;
+      color: #94A3B8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="title-area">
+      <h1>PEDRO SOARES | CHEATSHEET OPERACIONAL</h1>
+      <p>Lavvi Private Wealth • Os Comandos Mais Poderosos do Seu Ecossistema</p>
+    </div>
+    <div class="badge-area">
+      <span class="badge">COCKPIT 2026</span><br>
+      <span>Atualizado: 26/10/2026</span>
+    </div>
+  </div>
+
+  <div class="section-title">1. Slash Commands no Chat (Controle do Agente)</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">Comando</th>
+        <th style="width: 38%;">O que Faz na Prática</th>
+        <th style="width: 40%;">Quando Você Deve Usar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="code">/grill-me</span></td>
+        <td>O agente te entrevista pergunta por pergunta com opções antes de criar algo.</td>
+        <td>Antes de tarefas complexas, novas campanhas ou decisões de design sensíveis.</td>
+      </tr>
+      <tr>
+        <td><span class="code">/plan</span></td>
+        <td>Cria um plano técnico detalhado com arquitetura e testes para você aprovar.</td>
+        <td>Sempre que você quiser ver o rascunho de engenharia antes do agente mexer no código.</td>
+      </tr>
+      <tr>
+        <td><span class="code">/goal</span></td>
+        <td>Modo maratona autônoma (overnight). O agente só para quando o objetivo for 100% batido.</td>
+        <td>Antes de você ir dormir ou sair para reuniões de várias horas.</td>
+      </tr>
+      <tr>
+        <td><span class="code">/learn</span></td>
+        <td>Extrai regras definitivas e aprendizados de erros para atualizar a constituição da agência.</td>
+        <td>Após corrigir um comportamento da IA para que o erro <b>nunca mais se repita</b>.</td>
+      </tr>
+      <tr>
+        <td><span class="code">/compact</span></td>
+        <td>Limpa a memória RAM e resume o histórico recente da conversa.</td>
+        <td>Quando o chat estiver longo, lento ou gastando muitos tokens.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">2. Atalhos Rápidos no Terminal Windows (CLI)</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="cmd-pill">.\sentinel.cmd</span> 🛡️ Cosimo Sentinel</div>
+      <p><b>Auditoria Instantânea:</b> Varre os 970+ arquivos da agência e a barra do Chrome em 2 segundos. Bloqueia qualquer homônimo, CRECI falso ou desvio de specs.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="cmd-pill">.\notify.cmd "msg"</span> 🔔 Push ntfy</div>
+      <p><b>Disparo de Sirene:</b> Manda uma notificação push com som e prioridade para o app ntfy do seu celular em menos de 1 segundo.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="cmd-pill">.\oracle.cmd</span> 🗄️ CVM & Master DB</div>
+      <p><b>Consulta de Inteligência:</b> Abre a base SQLite de Insiders de Alta Liquidez (> R$ 2M) e holdings patrimoniais de São Paulo.</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="cmd-pill">.\telegram.cmd</span> 🤖 Ponte @VitoAntiBot</div>
+      <p><b>Canal Bidirecional:</b> Gerencia os testes e o envio de perguntas com botões de aprovação direto para o seu Telegram.</p>
+    </div>
+  </div>
+
+  <div class="section-title">3. Atalhos de Produtividade no Google Chrome</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Atalho</th>
+        <th style="width: 45%;">Função no Seu Dia a Dia</th>
+        <th style="width: 30%;">Aplicação Prática</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="code">Ctrl + Shift + O</span></td>
+        <td>Gerenciador de Favoritos do Chrome</td>
+        <td>Abre a pasta <b>👑 LAVVI PRIVATE WEALTH</b> com os 130 links auditados.</td>
+      </tr>
+      <tr>
+        <td><span class="code">Ctrl + P</span></td>
+        <td>Exportação de PDF / Impressão Nativa</td>
+        <td>Exporta qualquer Dossiê 360° ou o Deck Executivo em PDF de alta resolução.</td>
+      </tr>
+      <tr>
+        <td><span class="code">Ctrl + F5</span></td>
+        <td>Hard Refresh (Limpa Cache)</td>
+        <td>Recarrega o Portal Lavvi ou simuladores limpando versões antigas do navegador.</td>
+      </tr>
+      <tr>
+        <td><span class="code">Ctrl + Shift + I</span></td>
+        <td>Chrome DevTools (Inspecionar)</td>
+        <td>Permite ver a visualização mobile (iPhone/Pixel) para simular WhatsApp de cliente.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">4. Frases-Mestras de Comando para Instruir o Agente</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 30%;">Gatilho / Frase</th>
+        <th style="width: 70%;">O que o Agente Faz Automaticamente</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="code">"Modo Estrito: use apenas specs oficiais"</span></td>
+        <td>O agente trava a escrita, lê <code>LAVVI_OFFICIAL_SPECS_TRUTH.md</code> e bloqueia estimativas livres.</td>
+      </tr>
+      <tr>
+        <td><span class="code">"Crie o Battlecard de 1 clique para..."</span></td>
+        <td>Gera o texto curto no formato Spoken 3 Beats (Hook, Geografia, Lavvi CTA) pronto para WhatsApp.</td>
+      </tr>
+      <tr>
+        <td><span class="code">"Rode o Sentinel antes de finalizar"</span></td>
+        <td>Garante auditoria determinística automática com 0% de risco de alucinação antes de te responder.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tip-box">
+    <b>💡 Regra de Ouro da Parceria:</b> Você é o piloto (visão de mercado, empatia e relacionamento humano); o agente é a sua equipe de retaguarda de alta velocidade. Quando quiser precisão cirúrgica, use <code>/grill-me</code>; quando quiser produção em massa enquanto dorme, use <code>/goal</code>.
+  </div>
+
+  <div class="footer">
+    <span>Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952</span>
+    <span>Documento Canônico Gerado Localmente via Antigravity Agency</span>
+  </div>
+
+</body>
+</html>

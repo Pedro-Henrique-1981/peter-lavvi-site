@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOUCHER LINKEDIN STUDIO | Infográficos & Geração de Leads Pedro Soares</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070B14;
+      --surface-dark: #0F172A;
+      --card-bg: #1E293B;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --lavvi-gold: #D4AF37;
+      --lavvi-gold-bright: #F3DC8A;
+      --emerald-green: #10B981;
+      --accent-blue: #38BDF8;
+      --crimson-red: #EF4444;
+      --text-white: #F8FAFC;
+      --text-muted: #94A3B8;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-sans);
+      padding: 30px 20px;
+      line-height: 1.5;
+    }
+    .studio-header {
+      max-width: 1400px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .studio-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .studio-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+    .author-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface-dark);
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+    }
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--lavvi-gold);
+      color: #000;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+    .grid-options {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
+      gap: 30px;
+    }
+    .option-card {
+      background: var(--surface-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .option-card-header {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .option-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--lavvi-gold-bright);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .option-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .option-persona {
+      font-size: 0.8rem;
+      color: var(--accent-blue);
+      margin-top: 4px;
+    }
+    .option-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+      flex: 1;
+    }
+    /* The 4:5 Infographic Preview Canvas */
+    .infographic-canvas {
+      background: #0B132B;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      aspect-ratio: 4 / 5;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .canvas-top {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+    .canvas-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--lavvi-gold);
+      letter-spacing: 0.08em;
+    }
+    .canvas-headline {
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-top: 4px;
+      color: #fff;
+    }
+    .canvas-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 0.68rem;
+    }
+    .canvas-table th {
+      text-align: left;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.62rem;
+    }
+    .canvas-table td {
+      padding: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .canvas-highlight {
+      color: var(--emerald-green);
+      font-weight: 700;
+    }
+    .canvas-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 8px;
+      font-size: 0.62rem;
+    }
+    .canvas-author {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .canvas-cta {
+      color: var(--lavvi-gold);
+      font-weight: 700;
+    }
+    /* The Copywriting Inspector */
+    .copy-inspector {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .copy-text {
+      white-space: pre-line;
+      color: #E2E8F0;
+      max-height: 280px;
+      overflow-y: auto;
+      padding-right: 8px;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    .btn-copy {
+      background: var(--lavvi-gold);
+      color: #070B14;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      margin-top: 12px;
+    }
+    .btn-copy:hover {
+      background: var(--lavvi-gold-bright);
+    }
+    .btn-wa {
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="studio-header">
+    <div>
+      <div class="studio-title">📈 BOUCHER LINKEDIN STUDIO</div>
+      <div class="studio-subtitle">Engenharia Reversa "Business Infographics" • 4 Opções Prontas para Postagem & Captação de Leads HNW</div>
+    </div>
+    <div class="author-badge">
+      <div class="author-avatar">PS</div>
+      <div>
+        <div style="font-weight: 700; font-size: 0.85rem;">Pedro Soares</div>
+        <div style="font-size: 0.72rem; color: var(--text-muted);">CRECI 30.906 • Lavvi Private Wealth</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-options">
+
+    <!-- OPÇÃO 1 -->
+    <div class="option-card">
+      <div class="option-card-header">
+        <div>
+          <span class="option-badge">OPÇÃO 1 • PATRIMONIAL CHEAT SHEET</span>
+          <h2 class="option-title">O Confronto de Alocação: CDI Líquido vs. Obra 35/65 Lavvi</h2>
+          <div class="option-persona">🎯 Persona: Private Banking, C-Levels e Alocadores Faria Lima</div>
+        </div>
+      </div>
+      <div class="option-body">
+        
+        <!-- Canvas Visual 4:5 -->
+        <div class="infographic-canvas" id="canvas-card-1">
+          <div class="canvas-top">
+            <span class="canvas-tag">[ PATRIMONIAL CHEAT SHEET ]</span>
+            <div class="canvas-headline">O Confronto de Alocação: CDI Líquido vs. Obra 35/65 Lavvi</div>
+          </div>
+
+          <table class="canvas-table">
+            <thead>
+              <tr>
+                <th>VARIÁVEL</th>
+                <th>MERCADO / TRADICIONAL</th>
+                <th style="color: var(--lavvi-gold);">ESTRATÉGIA LAVVI</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Capital Inicial Aportado</td>
+                <td style="color: #CBD5E1;">100% à vista no banco</td>
+                <td><span class='canvas-highlight'>Apenas 35% parcelado em 36 meses</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Base de Valorização</td>
+                <td style="color: #CBD5E1;">Rende apenas sobre o valor aplicado</td>
+                <td><span class='canvas-highlight'>Valoriza sobre 100% do valor do imóvel</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Tributação sobre Rendimentos</td>
+                <td style="color: #CBD5E1;">15% a 22.5% de IRPF + Come-Cotas</td>
+                <td><span class='canvas-highlight'>Ganho diferido / 11.3% via Holding</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Impacto da Queda da Selic</td>
+                <td style="color: #CBD5E1;">Rendimento cai mês a mês</td>
+                <td><span class='canvas-highlight'>Queda da taxa valoriza os imóveis em até +30%</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Retorno sobre Capital Próprio (ROE)</td>
+                <td style="color: #CBD5E1;">~34% acumulado em 3 anos</td>
+                <td><span class='canvas-highlight'>~78% a 115% sobre o capital desembolsado</span></td>
+              </tr>
+            
+            </tbody>
+          </table>
+
+          <div class="canvas-footer">
+            <div class="canvas-author">
+              <span style="color: #fff; font-weight: 700;">Pedro Soares</span>
+              <span style="color: #64748B;">| Lavvi Real Estate</span>
+            </div>
+            <div class="canvas-cta">💬 Comente para receber em PDF</div>
+          </div>
+        </div>
+
+        <!-- Copywriting & Ação -->
+        <div class="copy-inspector">
+          <div>
+            <div style="font-size: 0.72rem; font-weight: 700; color: var(--lavvi-gold); margin-bottom: 6px;">COPY DO POST (COM HOOK DE 2 LINHAS):</div>
+            <div class="copy-text" id="copy-text-1">O investidor tradicional comemora 100% do CDI. O investidor de elite usa o CDI para financiar patrimônio de luxo em São Paulo sem pagar 1 real de juros bancários.
+
+A maioria dos executivos não percebe como a assimetria do fluxo de obra (35% desembolsados / 65% preservados no banco) bate a renda fixa em qualquer ciclo econômico.
+
+📌 Alavancagem Limpa: Você desembolsa apenas 35% ao longo de 3 anos de obra, mas captura 100% da valorização do imóvel inteiro.
+📌 O Banco Paga a Planta: Os 65% que você NÃO pagou continuam rendendo juros líquidos no banco, gerando renda que cobre o próprio fluxo da construtora.
+📌 Zero Juros Bancários: Durante a construção, não existe cobrança de taxa de evolução de obra bancária nem SAC/Price.
+📌 Blindagem Real: Ativo escasso na Zona Sul de SP (terreno de 40.000m² no Alto da Boa Vista / Moema) indexado à inflação da terra.
+
+No seu portfólio hoje, quanto do seu patrimônio está exposto à tributação de 15% a 22,5% da renda fixa vs. ativos reais protegidos?
+
+---
+👇 Comente 'ALOCACAO' abaixo para receber o Dossiê Financeiro Comparativo em PDF de Alta Resolução + o Modelo de Sensibilidade em Excel direto no seu Inbox/WhatsApp.</div>
+          </div>
+          <div>
+            <button class="btn-copy" onclick="copyPostText('1')">📋 Copiar Texto do Post para LinkedIn</button>
+            <div style="margin-top: 10px; font-size: 0.7rem; color: var(--text-muted);">
+              Gatilho de Conversão WhatsApp:
+              <br>
+              <a href="https://wa.me/5511966105952?text=Olá%20Pedro!%20Vi%20seu%20infográfico%20no%20LinkedIn%20sobre%20'CDI%20vs%20Obra%2035/65'%20e%20gostaria%20de%20receber%20o%20Dossiê%20de%20Alocação%20e%20as%20simulações%20oficiais." target="_blank" class="btn-wa">💬 Testar Resposta WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OPÇÃO 2 -->
+    <div class="option-card">
+      <div class="option-card-header">
+        <div>
+          <span class="option-badge">OPÇÃO 2 • TACTICAL CHEAT SHEET</span>
+          <h2 class="option-title">O Escudo Anti-INCC: A Matemática que Desarma o Medo da Planta</h2>
+          <div class="option-persona">🎯 Persona: Compradores Céticos & Investidores Reddit / Fóruns</div>
+        </div>
+      </div>
+      <div class="option-body">
+        
+        <!-- Canvas Visual 4:5 -->
+        <div class="infographic-canvas" id="canvas-card-2">
+          <div class="canvas-top">
+            <span class="canvas-tag">[ TACTICAL CHEAT SHEET ]</span>
+            <div class="canvas-headline">O Escudo Anti-INCC: A Matemática que Desarma o Medo da Planta</div>
+          </div>
+
+          <table class="canvas-table">
+            <thead>
+              <tr>
+                <th>VARIÁVEL</th>
+                <th>MERCADO / TRADICIONAL</th>
+                <th style="color: var(--lavvi-gold);">ESTRATÉGIA LAVVI</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Base de Correção</td>
+                <td style="color: #CBD5E1;">Saldo devedor decrescente de obra</td>
+                <td><span class='canvas-highlight'>Valor total do ativo valoriza 100%</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Correção Histórica Média</td>
+                <td style="color: #CBD5E1;">INCC: ~5.2% a.a.</td>
+                <td><span class='canvas-highlight'>Valorização M² Nobre SP: ~12% a 15% a.a.</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Rendimento do Caixa Preservado</td>
+                <td style="color: #CBD5E1;">CDI Líquido: ~11.5% a.a.</td>
+                <td><span class='canvas-highlight'>Spread Positivo a favor do comprador</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Proteção Contratual</td>
+                <td style="color: #CBD5E1;">Patrimônio de Afetação (Lei 4.591/64)</td>
+                <td><span class='canvas-highlight'>Conta bancária segregada por obra</span></td>
+              </tr>
+            
+            </tbody>
+          </table>
+
+          <div class="canvas-footer">
+            <div class="canvas-author">
+              <span style="color: #fff; font-weight: 700;">Pedro Soares</span>
+              <span style="color: #64748B;">| Lavvi Real Estate</span>
+            </div>
+            <div class="canvas-cta">💬 Comente para receber em PDF</div>
+          </div>
+        </div>
+
+        <!-- Copywriting & Ação -->
+        <div class="copy-inspector">
+          <div>
+            <div style="font-size: 0.72rem; font-weight: 700; color: var(--lavvi-gold); margin-bottom: 6px;">COPY DO POST (COM HOOK DE 2 LINHAS):</div>
+            <div class="copy-text" id="copy-text-2">O maior terror do comprador na planta é ver o INCC subir e achar que o saldo devedor vai engolir o lucro do negócio.
+
+Aqui está a matemática que as incorporadoras não explicam e que os bancos preferem que você não saiba:
+
+📌 O INCC incide APENAS sobre o saldo devedor restante da obra, NUNCA sobre o valor integral do apartamento.
+📌 Enquanto o INCC corrige a mão de obra da construção (~4.5% a 6% a.a.), o valor de mercado do metro quadrado em São Paulo valoriza pela escassez da região nobre.
+📌 Nos projetos Triple A da Lavvi (Jardim da Hípica, Villa Versace, Le Six), o spread histórico entre valorização de mercado e INCC gerou ganho real de +6.8% a.a. acima da inflação.
+📌 A retenção de capital no Tesouro Selic paga com folga a variação do saldo devedor.
+
+Você já fez a conta real de quanto o INCC representa sobre o seu desembolso efetivo em 36 meses?
+
+---
+👇 Comente 'INCC' para receber o simulador interativo em planilha Excel que calcula o saldo exato mês a mês até a entrega das chaves.</div>
+          </div>
+          <div>
+            <button class="btn-copy" onclick="copyPostText('2')">📋 Copiar Texto do Post para LinkedIn</button>
+            <div style="margin-top: 10px; font-size: 0.7rem; color: var(--text-muted);">
+              Gatilho de Conversão WhatsApp:
+              <br>
+              <a href="https://wa.me/5511966105952?text=Olá%20Pedro!%20Gostaria%20de%20receber%20a%20planilha%20de%20cálculo%20de%20INCC%20e%20o%20Dossiê%20de%20Blindagem%20Financeira%20para%20os%20lançamentos%20Lavvi." target="_blank" class="btn-wa">💬 Testar Resposta WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OPÇÃO 3 -->
+    <div class="option-card">
+      <div class="option-card-header">
+        <div>
+          <span class="option-badge">OPÇÃO 3 • NEIGHBORHOOD ARBITRAGE</span>
+          <h2 class="option-title">A Matriz dos Bairros Nobres SP: Moema vs. Alto da Boa Vista vs. Paraíso</h2>
+          <div class="option-persona">🎯 Persona: Famílias, Médicos e Compradores em Transição de Moradia</div>
+        </div>
+      </div>
+      <div class="option-body">
+        
+        <!-- Canvas Visual 4:5 -->
+        <div class="infographic-canvas" id="canvas-card-3">
+          <div class="canvas-top">
+            <span class="canvas-tag">[ NEIGHBORHOOD ARBITRAGE ]</span>
+            <div class="canvas-headline">A Matriz dos Bairros Nobres SP: Moema vs. Alto da Boa Vista vs. Paraíso</div>
+          </div>
+
+          <table class="canvas-table">
+            <thead>
+              <tr>
+                <th>VARIÁVEL</th>
+                <th>MERCADO / TRADICIONAL</th>
+                <th style="color: var(--lavvi-gold);">ESTRATÉGIA LAVVI</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Preço Médio de Lançamento / M²</td>
+                <td style="color: #CBD5E1;">Moema: R$ 32.000 - 38.000</td>
+                <td><span class='canvas-highlight'>Alto da Boa Vista: R$ 14.500 - 17.500</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Tamanho Médio do Terreno</td>
+                <td style="color: #CBD5E1;">Moema: 2.500 a 4.000 m²</td>
+                <td><span class='canvas-highlight'>Hípica: ~40.000 m² (Resort Privado)</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Estrutura de Raquete & Esportes</td>
+                <td style="color: #CBD5E1;">Quadra poliesportiva / fitness comum</td>
+                <td><span class='canvas-highlight'>02 Quadras de Saibro Oficiais + Beach Tennis</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Público & Liquidez</td>
+                <td style="color: #CBD5E1;">Famílias tradicionais / Faria Lima</td>
+                <td><span class='canvas-highlight'>Médicos, executivos e expatriados</span></td>
+              </tr>
+            
+            </tbody>
+          </table>
+
+          <div class="canvas-footer">
+            <div class="canvas-author">
+              <span style="color: #fff; font-weight: 700;">Pedro Soares</span>
+              <span style="color: #64748B;">| Lavvi Real Estate</span>
+            </div>
+            <div class="canvas-cta">💬 Comente para receber em PDF</div>
+          </div>
+        </div>
+
+        <!-- Copywriting & Ação -->
+        <div class="copy-inspector">
+          <div>
+            <div style="font-size: 0.72rem; font-weight: 700; color: var(--lavvi-gold); margin-bottom: 6px;">COPY DO POST (COM HOOK DE 2 LINHAS):</div>
+            <div class="copy-text" id="copy-text-3">Pagar R$ 35.000 no metro quadrado de Moema faz sentido quando você pode ter um terreno de 40.000 m² no Alto da Boa Vista por R$ 16.000/m²?
+
+Colocamos a geografia, a acústica e a matemática de três eixos nobres de São Paulo lado a lado em um infográfico executivo:
+
+📌 Alto da Boa Vista (Jardim da Hípica): Terreno monumental de 40.000m², praça pública verde de 10.000m² por Benedito Abbud, 2 quadras de tênis de saibro oficiais, piscina de 60m e condomínio com Body Care e CBRE inclusos.
+📌 Moema Pássaros (Villa Versace): Cone de voo protegido, walkability máxima, restaurantes a pé e a assinatura internacional Versace Home.
+📌 Paraíso (T.O.M. & Le Six): Eixo médico e hospitalar de maior densidade de São Paulo (HCor, Santa Catarina, Beneficência), com altíssima demanda de locação para executivos e residentes.
+
+Qual fator pesa mais na sua decisão hoje: arborização e silêncio acústico ou proximidade imediata ao polo de trabalho?
+
+---
+👇 Comente 'BAIRROS' para receber o Radar Comparativo de Bairros em PDF com as distâncias a pé de colégios, clubes e hospitais.</div>
+          </div>
+          <div>
+            <button class="btn-copy" onclick="copyPostText('3')">📋 Copiar Texto do Post para LinkedIn</button>
+            <div style="margin-top: 10px; font-size: 0.7rem; color: var(--text-muted);">
+              Gatilho de Conversão WhatsApp:
+              <br>
+              <a href="https://wa.me/5511966105952?text=Olá%20Pedro!%20Vi%20seu%20infográfico%20comparativo%20de%20bairros%20e%20gostaria%20de%20receber%20o%20relatório%20completo%20de%20Moema,%20Hípica%20e%20Paraíso." target="_blank" class="btn-wa">💬 Testar Resposta WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- OPÇÃO 4 -->
+    <div class="option-card">
+      <div class="option-card-header">
+        <div>
+          <span class="option-badge">OPÇÃO 4 • LEGAL & TAX FRAMEWORK</span>
+          <h2 class="option-title">Pessoa Física (27,5%) vs. Holding Familiar (11,3%): O Escudo Tributário Imobiliário</h2>
+          <div class="option-persona">🎯 Persona: Investidores com Múltiplos Imóveis & Planejamento Sucessório</div>
+        </div>
+      </div>
+      <div class="option-body">
+        
+        <!-- Canvas Visual 4:5 -->
+        <div class="infographic-canvas" id="canvas-card-4">
+          <div class="canvas-top">
+            <span class="canvas-tag">[ LEGAL & TAX FRAMEWORK ]</span>
+            <div class="canvas-headline">Pessoa Física (27,5%) vs. Holding Familiar (11,3%): O Escudo Tributário Imobiliário</div>
+          </div>
+
+          <table class="canvas-table">
+            <thead>
+              <tr>
+                <th>VARIÁVEL</th>
+                <th>MERCADO / TRADICIONAL</th>
+                <th style="color: var(--lavvi-gold);">ESTRATÉGIA LAVVI</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Tributação sobre Locação</td>
+                <td style="color: #CBD5E1;">Até 27.5% no IRPF mensal</td>
+                <td><span class='canvas-highlight'>11.33% a 14.53% no Lucro Presumido</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Ganho de Capital na Venda</td>
+                <td style="color: #CBD5E1;">15% a 22.5% progressivo na PF</td>
+                <td><span class='canvas-highlight'>6.73% a 8.93% estruturado em PJ</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Custos e Tempo de Inventário</td>
+                <td style="color: #CBD5E1;">ITCMD 4-8% + Advogado + 2 a 5 anos</td>
+                <td><span class='canvas-highlight'>Sucessão imediata sem paralisação de caixa</span></td>
+              </tr>
+            
+              <tr>
+                <td style="color: #94A3B8; font-weight: 600;">Proteção contra Credores</td>
+                <td style="color: #CBD5E1;">Bens expostos no CPF</td>
+                <td><span class='canvas-highlight'>Separação de esferas com usufruto</span></td>
+              </tr>
+            
+            </tbody>
+          </table>
+
+          <div class="canvas-footer">
+            <div class="canvas-author">
+              <span style="color: #fff; font-weight: 700;">Pedro Soares</span>
+              <span style="color: #64748B;">| Lavvi Real Estate</span>
+            </div>
+            <div class="canvas-cta">💬 Comente para receber em PDF</div>
+          </div>
+        </div>
+
+        <!-- Copywriting & Ação -->
+        <div class="copy-inspector">
+          <div>
+            <div style="font-size: 0.72rem; font-weight: 700; color: var(--lavvi-gold); margin-bottom: 6px;">COPY DO POST (COM HOOK DE 2 LINHAS):</div>
+            <div class="copy-text" id="copy-text-4">Deixar imóveis de aluguel registrados no CPF de Pessoa Física é o erro tributário mais caro que uma família com mais de R$ 2M de patrimônio pode cometer.
+
+Com a Reforma Tributária batendo à porta, veja a diferença brutal entre alugar e vender imóveis na Pessoa Física vs. Holding de Bens Próprios:
+
+📌 Economia de 58% no Imposto sobre Aluguel: No Carnê-Leão da PF você paga 27,5%. Na Holding no Lucro Presumido (CNAE 6810-2/01), a carga total gira entre 11,33% e 14,53%.
+📌 Imunidade de ITBI: Integralização de capital com imóveis sob o abrigo do Tema 796 do STF para empresas sem atividade preponderante de compra e venda.
+📌 Sucessão em Vida sem Inventário: Doação de quotas com reserva de usufruto e cláusulas restritivas (incomunicabilidade, impenhorabilidade, reversão).
+📌 Proteção dos Lançamentos Lavvi: 100% de Patrimônio de Afetação blindando os recebíveis e o contrato da planta contra qualquer penhora externa.
+
+A sua carteira imobiliária já foi estruturada sob CNPJ de holding ou ainda está sofrendo o Carnê-Leão?
+
+---
+👇 Comente 'HOLDING' para receber o Guia de Blindagem Patrimonial & Simulador de Economia Tributária em PDF.</div>
+          </div>
+          <div>
+            <button class="btn-copy" onclick="copyPostText('4')">📋 Copiar Texto do Post para LinkedIn</button>
+            <div style="margin-top: 10px; font-size: 0.7rem; color: var(--text-muted);">
+              Gatilho de Conversão WhatsApp:
+              <br>
+              <a href="https://wa.me/5511966105952?text=Olá%20Pedro!%20Gostaria%20de%20receber%20o%20Guia%20Tributário%20da%20Holding%20Familiar%20e%20entender%20como%20estruturar%20meus%20aportes%20na%20planta." target="_blank" class="btn-wa">💬 Testar Resposta WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function copyPostText(id) {
+      const el = document.getElementById('copy-text-' + id);
+      navigator.clipboard.writeText(el.innerText).then(() => {
+        alert('✅ Copy da Opção ' + id + ' copiada com sucesso! Pronto para colar no LinkedIn.');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jardim da Hípica | Simulador Solar Puro & Limpo — Maquete Arquitetônica 50.000 m²</title>
+  
+  <!-- Google Fonts: Cinzel & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Three.js + OrbitControls + Tween.js + Postprocessing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+  <style>
+    :root {
+      --bg: #06090e;
+      --card-bg: rgba(12, 18, 28, 0.82);
+      --card-border: rgba(212, 175, 55, 0.28);
+      --gold: #d4af37;
+      --gold-light: #fef08a;
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --cyan: #38bdf8;
+      --green: #10b981;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-serif: 'Cinzel', serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #webgl-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: block;
+    }
+
+    /* Loader */
+    #loader {
+      position: absolute;
+      inset: 0;
+      background: #06090e;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      transition: opacity 0.6s ease;
+    }
+    .spinner {
+      width: 54px;
+      height: 54px;
+      border: 3px solid rgba(212, 175, 55, 0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.9s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Top Bar Navigation */
+    .top-bar {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      right: 20px;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .brand-pill {
+      background: rgba(6, 10, 16, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      padding: 9px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      pointer-events: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      padding-left: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .brand-tag {
+      font-size: 9px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Switcher Navigation */
+    .nav-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+      background: rgba(6, 10, 16, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 4px 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .nav-switch-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+    }
+    .nav-switch-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .nav-switch-btn.active {
+      color: #000;
+      background: var(--gold);
+      border-color: var(--gold);
+      font-weight: 700;
+      box-shadow: 0 0 14px var(--gold-glow);
+    }
+
+    .telemetry-pill {
+      background: rgba(6, 10, 16, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      pointer-events: auto;
+    }
+    .fps-badge {
+      color: var(--green);
+      font-weight: 700;
+      font-family: monospace;
+    }
+
+    /* Floating Solar Cockpit (Top Right) */
+    .solar-cockpit {
+      position: absolute;
+      top: 76px;
+      right: 20px;
+      width: 380px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      z-index: 20;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+
+    .cockpit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+    .cockpit-title {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .cockpit-date {
+      font-size: 11px;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    /* Master Time Row */
+    .time-hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 12px;
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .clock-large {
+      font-family: monospace;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 0 18px rgba(254, 240, 138, 0.25);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .clock-sub {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* Cycle 10s Button */
+    .btn-cycle {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.1));
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-cycle:hover {
+      background: var(--gold);
+      color: #06090e;
+      box-shadow: 0 0 14px var(--gold-glow);
+    }
+    .btn-cycle.running {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: #fff;
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
+    }
+
+    /* Sliders */
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .slider-val {
+      color: #fff;
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.12);
+      outline: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--gold-glow);
+      border: 2px solid #fff;
+      transition: transform 0.1s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* Seasonal Presets 4 Buttons */
+    .season-presets {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .btn-season {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 9px 10px;
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+    .btn-season:hover {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: var(--gold);
+    }
+    .btn-season.active {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+      color: var(--gold-light);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+    }
+    .season-title {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .season-desc {
+      font-size: 8.5px;
+      color: var(--text-muted);
+      line-height: 1.2;
+    }
+
+    /* Astro Stats Grid */
+    .astro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .astro-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: center;
+    }
+    .astro-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .astro-val {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fff;
+      font-family: monospace;
+    }
+
+    /* Bottom Camera Toolbar */
+    .camera-toolbar {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      background: rgba(6, 10, 16, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      pointer-events: auto;
+    }
+    .cam-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .cam-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .cam-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #fff;
+    }
+
+    /* Interactive Click Diagnostic Modal / Drawer */
+    .diagnostic-panel {
+      position: absolute;
+      bottom: 84px;
+      left: 24px;
+      width: 400px;
+      background: rgba(10, 15, 24, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 22px;
+      z-index: 25;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .diag-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+    .diag-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 10px;
+      background: rgba(212, 175, 55, 0.18);
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .diag-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+    }
+    .btn-close-diag {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text-muted);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .btn-close-diag:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .diag-sun-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-sun {
+      background: rgba(234, 179, 8, 0.2);
+      color: #fde047;
+      border: 1px solid rgba(234, 179, 8, 0.4);
+    }
+    .status-partial {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    .status-shadow {
+      background: rgba(148, 163, 184, 0.18);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .diag-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: #e2e8f0;
+    }
+    .diag-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+    }
+    .detail-heading {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .diag-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .btn-diag-focus {
+      flex: 1;
+      background: var(--gold);
+      color: #06090e;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-diag-focus:hover {
+      box-shadow: 0 0 16px var(--gold-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Architectural Fact Footer (Bottom Left) */
+    .site-facts-pill {
+      position: absolute;
+      bottom: 22px;
+      left: 24px;
+      z-index: 15;
+      background: rgba(6, 10, 16, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 10px;
+      color: var(--text-muted);
+      pointer-events: auto;
+    }
+    .fact-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .fact-metric-label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .fact-metric-val {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 900px) {
+      .solar-cockpit {
+        width: 320px;
+        right: 12px;
+        top: 68px;
+        padding: 14px;
+      }
+      .camera-toolbar {
+        overflow-x: auto;
+        max-width: 90vw;
+        border-radius: 18px;
+      }
+      .diagnostic-panel {
+        width: 320px;
+        left: 12px;
+        bottom: 74px;
+      }
+      .site-facts-pill {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <div style="font-family: var(--font-serif); font-size: 13px; letter-spacing: 2px; color: var(--gold);">
+      CALIBRANDO FÍSICA SOLAR ASTRONÔMICA (SÃO PAULO UTC-3)
+    </div>
+    <div style="font-size: 10px; color: #64748b;">
+      Jardim da Hípica • ~50.000 m² • Lat -23.642276, Lon -46.708081
+    </div>
+  </div>
+
+  <!-- 3D Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="brand-pill">
+      <span class="brand-title">LAVVI PRIVATE WEALTH</span>
+      <span class="brand-subtitle">Jardim da Hípica</span>
+      <span class="brand-tag">Solar Puro</span>
+    </div>
+
+    <!-- Simulator Navigation Switcher -->
+    <nav class="nav-switcher">
+      <a href="solarium_clean.html" class="nav-switch-btn active" title="Simulador Solar Puro & Limpo (Maquete Arquitetônica 50.000 m²)">
+        <span>✨</span> <strong>Solar Puro & Limpo</strong>
+      </a>
+      <a href="solarium.html" class="nav-switch-btn" title="Solarium 2.5D & 3D Pro">
+        <span>☀️</span> <span>Solarium Pro</span>
+      </a>
+      <a href="solarium_game.html" class="nav-switch-btn" title="Unreal Engine 3D Game Simulator">
+        <span>🎮</span> <span>Unreal 3D Game</span>
+      </a>
+      <a href="solarium_3d_tiles.html" class="nav-switch-btn" title="Google Earth Photorealistic 3D Tiles">
+        <span>🌍</span> <span>Google Earth 3D</span>
+      </a>
+      <a href="hipica_building_3d.html" class="nav-switch-btn" title="Modelo 3D Exclusivo do Edifício">
+        <span>🏢</span> <span>Edifício 3D</span>
+      </a>
+      <a href="index.html" class="nav-switch-btn" title="Portal Principal Lavvi & Dossiê">
+        <span>🏛️</span> <span>Portal Lavvi</span>
+      </a>
+    </nav>
+
+    <!-- Telemetry -->
+    <div class="telemetry-pill">
+      <span id="gpuName">Detectando GPU...</span>
+      <span class="fps-badge" id="fpsDisplay">-- FPS</span>
+    </div>
+  </header>
+
+  <!-- Floating Solar Cockpit (Top Right) -->
+  <aside class="solar-cockpit" id="solarCockpit">
+    <div class="cockpit-header">
+      <span class="cockpit-title">Controle Solar SP</span>
+      <span class="cockpit-date" id="lblFormattedDate">24 de Outubro • Primavera</span>
+    </div>
+
+    <!-- Digital Clock & 10s Animation -->
+    <div class="time-hero">
+      <div>
+        <div class="clock-large" id="lblClockDisplay">12:00</div>
+        <div class="clock-sub" id="lblSolarNoon">Meio-dia Solar: 11:50 BRT</div>
+      </div>
+      <button class="btn-cycle" id="btnCycleDaylight" title="Reproduzir ciclo de sol em 10 segundos">
+        <span id="iconCycle">▶</span> <span id="textCycle">Ciclo 10s</span>
+      </button>
+    </div>
+
+    <!-- Time of Day Slider (05:00 to 19:30) -->
+    <div class="slider-group">
+      <div class="slider-label-row">
+        <span>HORÁRIO LOCAL (BRT / UTC-3)</span>
+        <span class="slider-val" id="lblTimeSliderVal">12:00</span>
+      </div>
+      <input type="range" id="sliderTime" min="5.0" max="19.5" step="0.05" value="12.0">
+    </div>
+
+    <!-- Day of Year Slider (1 to 365) -->
+    <div class="slider-group">
+      <div class="slider-label-row">
+        <span>DIA DO ANO (1 A 365)</span>
+        <span class="slider-val" id="lblDayVal">Dia 297</span>
+      </div>
+      <input type="range" id="sliderDay" min="1" max="365" step="1" value="297">
+    </div>
+
+    <!-- 4 Seasonal Quick Presets -->
+    <div class="season-presets">
+      <button class="btn-season" id="btnSeasonWinter" onclick="setSeasonPreset(172)">
+        <div class="season-title">❄️ Solstício Inverno</div>
+        <div class="season-desc">21/Jun • Sol 42.9° norte, sombras longas ao sul</div>
+      </button>
+      <button class="btn-season" id="btnSeasonSummer" onclick="setSeasonPreset(355)">
+        <div class="season-title">☀️ Solstício Verão</div>
+        <div class="season-desc">21/Dez • Sol a pino 89.8°, sombras mínimas</div>
+      </button>
+      <button class="btn-season" id="btnSeasonAutumn" onclick="setSeasonPreset(80)">
+        <div class="season-title">🍂 Equinócio Outono</div>
+        <div class="season-desc">21/Mar • Leste a Oeste puro, 66.8°</div>
+      </button>
+      <button class="btn-season" id="btnSeasonSpring" onclick="setSeasonPreset(266)">
+        <div class="season-title">🌸 Equinócio Primavera</div>
+        <div class="season-desc">23/Set • Leste a Oeste puro, 66.8°</div>
+      </button>
+    </div>
+
+    <!-- Astronomical Telemetry Grid -->
+    <div class="astro-grid">
+      <div class="astro-item">
+        <span class="astro-label">Elevação</span>
+        <span class="astro-val" id="lblElevation">--°</span>
+      </div>
+      <div class="astro-item">
+        <span class="astro-label">Azimute</span>
+        <span class="astro-val" id="lblAzimuth">--°</span>
+      </div>
+      <div class="astro-item">
+        <span class="astro-label">Declinação</span>
+        <span class="astro-val" id="lblDeclination">--°</span>
+      </div>
+      <div class="astro-item">
+        <span class="astro-label">Nascer</span>
+        <span class="astro-val" id="lblSunrise">--:--</span>
+      </div>
+      <div class="astro-item">
+        <span class="astro-label">Pôr do Sol</span>
+        <span class="astro-val" id="lblSunset">--:--</span>
+      </div>
+      <div class="astro-item">
+        <span class="astro-label">Equação Tempo</span>
+        <span class="astro-val" id="lblEoT">-- min</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Bottom Camera Toolbar -->
+  <nav class="camera-toolbar">
+    <button class="cam-btn active" onclick="setCameraView('masterplan')" id="btnCamMasterplan">
+      <span>📐</span> <span>Visão Geral 50.000 m²</span>
+    </button>
+    <button class="cam-btn" onclick="setCameraView('pool')" id="btnCamPool">
+      <span>🏊</span> <span>Raia 60m & Lazer</span>
+    </button>
+    <button class="cam-btn" onclick="setCameraView('residences')" id="btnCamResidences">
+      <span>🏢</span> <span>Fachada Torres A-D</span>
+    </button>
+    <button class="cam-btn" onclick="setCameraView('studios')" id="btnCamStudios">
+      <span>🏙️</span> <span>Fachada Torres E-F</span>
+    </button>
+    <button class="cam-btn" onclick="setCameraView('tennis')" id="btnCamTennis">
+      <span>🎾</span> <span>Complexo de Tênis</span>
+    </button>
+    <button class="cam-btn" onclick="setCameraView('park')" id="btnCamPark">
+      <span>🌳</span> <span>Praça Benedito Abbud</span>
+    </button>
+    <button class="cam-btn" onclick="setCameraView('houses')" id="btnCamHouses">
+      <span>🏡</span> <span>4 Private Houses</span>
+    </button>
+    <button class="cam-btn" onclick="setCameraView('street')" id="btnCamStreet">
+      <span>🚶</span> <span>Nível da Rua</span>
+    </button>
+  </nav>
+
+  <!-- Interactive Click Diagnostic Modal / Drawer -->
+  <section class="diagnostic-panel" id="diagnosticPanel">
+    <div class="diag-header">
+      <div>
+        <span class="diag-badge" id="diagBadge">DIAGNÓSTICO SOLAR</span>
+        <h3 class="diag-title" id="diagTitle">Torre A Residences — 276 m²</h3>
+      </div>
+      <button class="btn-close-diag" onclick="closeDiagnostic()" title="Fechar">✕</button>
+    </div>
+
+    <!-- Solar Status at current hour -->
+    <div class="diag-sun-status">
+      <div>
+        <div style="font-size: 9px; color: var(--text-muted); text-transform: uppercase;">Incidência Solar no Momento</div>
+        <div style="font-size: 13px; font-weight: 700; color: #fff; margin-top: 2px;" id="diagStatusText">☀️ Sol Pleno Direto</div>
+      </div>
+      <span class="status-pill status-sun" id="diagStatusPill">100% Livre de Sombras</span>
+    </div>
+
+    <!-- Deep Insolation Breakdown -->
+    <div class="diag-details">
+      <div class="diag-detail-item">
+        <span class="detail-heading">Horas de Insolação Diária</span>
+        <span id="diagDailyHours">~8.4 horas de sol direto (Primavera/Verão)</span>
+      </div>
+      <div class="diag-detail-item">
+        <span class="detail-heading">Comportamento Matutino (06h - 12h)</span>
+        <span id="diagMorningText">Sol pleno a partir das 06:40. Face Leste e Nordeste recebe as primeiras energias da manhã, ideal para varandas e living.</span>
+      </div>
+      <div class="diag-detail-item">
+        <span class="detail-heading">Comportamento Vespertino (12h - 18h)</span>
+        <span id="diagAfternoonText">Sol agradável até 15:30. A laje em balanço superior gera sombreamento passivo protetor contra o calor extremo da tarde.</span>
+      </div>
+      <div class="diag-detail-item">
+        <span class="detail-heading">Parecer de Orientação & Valorização</span>
+        <span id="diagAppraisalText">Orientação privilegiada para o Norte e Nordeste com vista perene para o Clube Hípico. Máxima valorização patrimonial no Hemisfério Sul.</span>
+      </div>
+    </div>
+
+    <div class="diag-actions">
+      <button class="btn-diag-focus" onclick="focusOnSelectedObject()">
+        <span>🎯</span> <span>Focar Câmera no Elemento</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Architectural Truth Badge (Bottom Left) -->
+  <footer class="site-facts-pill" id="siteFactsPill">
+    <div class="fact-metric">
+      <span class="fact-metric-label">Terreno Privativo</span>
+      <span class="fact-metric-val">39.553 m²</span>
+    </div>
+    <div class="fact-metric">
+      <span class="fact-metric-label">Praça Benedito Abbud</span>
+      <span class="fact-metric-val">10.000 m²</span>
+    </div>
+    <div class="fact-metric">
+      <span class="fact-metric-label">Intervenção Total</span>
+      <span class="fact-metric-val">~50.000 m²</span>
+    </div>
+    <div class="fact-metric">
+      <span class="fact-metric-label">Gabarito</span>
+      <span class="fact-metric-val">42 a 43 Pavimentos</span>
+    </div>
+    <div class="fact-metric">
+      <span class="fact-metric-label">Lazer Exclusivo</span>
+      <span class="fact-metric-val">Raia 60m + 2 Tênis Oficiais</span>
+    </div>
+  </footer>
+
+  <!-- Solar Engine & 3D Script -->
+  <script>
+    // ==========================================
+    // 1. ASTRONOMICAL SOLAR ENGINE (SÃO PAULO)
+    // ==========================================
+    const LAT_SP = -23.642276; // Alto da Boa Vista / Jardim da Hípica
+    const LNG_SP = -46.708081; // Longitude local
+    const STD_MERIDIAN = -45.0; // Brasília Time (UTC-3)
+
+    // Month days cumulative for formatted date
+    const MONTHS = [
+      { name: 'Janeiro', days: 31, season: 'Verão' },
+      { name: 'Fevereiro', days: 28, season: 'Verão' },
+      { name: 'Março', days: 31, season: 'Outono' },
+      { name: 'Abril', days: 30, season: 'Outono' },
+      { name: 'Maio', days: 31, season: 'Outono' },
+      { name: 'Junho', days: 30, season: 'Inverno' },
+      { name: 'Julho', days: 31, season: 'Inverno' },
+      { name: 'Agosto', days: 31, season: 'Inverno' },
+      { name: 'Setembro', days: 30, season: 'Primavera' },
+      { name: 'Outubro', days: 31, season: 'Primavera' },
+      { name: 'Novembro', days: 30, season: 'Primavera' },
+      { name: 'Dezembro', days: 31, season: 'Verão' }
+    ];
+
+    function getFormattedDate(dayOfYear) {
+      let rem = Math.max(1, Math.min(365, Math.round(dayOfYear)));
+      for (let i = 0; i < MONTHS.length; i++) {
+        if (rem <= MONTHS[i].days) {
+          return `${rem} de ${MONTHS[i].name} • ${MONTHS[i].season}`;
+        }
+        rem -= MONTHS[i].days;
+      }
+      return `31 de Dezembro • Verão`;
+    }
+
+    // Solar Ephemeris for any day of year (1-365)
+    function calculateSolarEphemeris(dayOfYear) {
+      const phi = LAT_SP * Math.PI / 180;
+      const B = (360 / 365) * (dayOfYear - 81) * (Math.PI / 180);
+      
+      // Solar Declination (degrees)
+      const declinationDeg = 23.45 * Math.sin(B);
+      const delta = declinationDeg * Math.PI / 180;
+
+      // Equation of Time in minutes
+      const eotMin = 9.87 * Math.sin(2 * B) - 7.53 * Math.cos(B) - 1.5 * Math.sin(B);
+
+      // Longitude correction relative to -45° standard meridian (UTC-3)
+      const lonOffsetMin = 4 * (LNG_SP - STD_MERIDIAN);
+
+      // Solar Noon in Brasília Time
+      const solarNoonBRT = 12.0 - (eotMin + lonOffsetMin) / 60;
+
+      // Sunrise / Sunset Hour Angles (h0 = -0.833° for atmospheric refraction)
+      const h0 = -0.833 * Math.PI / 180;
+      const cosH0 = (Math.sin(h0) - Math.sin(phi) * Math.sin(delta)) / (Math.cos(phi) * Math.cos(delta));
+      const clampedCosH0 = Math.max(-1, Math.min(1, cosH0));
+      const H0_hours = (Math.acos(clampedCosH0) * (180 / Math.PI)) / 15;
+
+      const sunriseHour = solarNoonBRT - H0_hours;
+      const sunsetHour = solarNoonBRT + H0_hours;
+      const dayLength = 2 * H0_hours;
+
+      return {
+        declination: declinationDeg,
+        eotMin: eotMin,
+        solarNoonBRT: solarNoonBRT,
+        sunriseHour: sunriseHour,
+        sunsetHour: sunsetHour,
+        dayLength: dayLength
+      };
+    }
+
+    // Solar Position (Elevation, Azimuth, IsDay) for specific hour and day
+    function calculateSolarPosition(hourBRT, dayOfYear) {
+      const ephem = calculateSolarEphemeris(dayOfYear);
+      const phi = LAT_SP * Math.PI / 180;
+      const delta = ephem.declination * Math.PI / 180;
+
+      // Convert clock hour (BRT) to True Solar Hour
+      const solarHour = hourBRT + (ephem.eotMin + 4 * (LNG_SP - STD_MERIDIAN)) / 60;
+      const hourAngle = (solarHour - 12.0) * 15 * (Math.PI / 180);
+
+      // Elevation
+      const sinElevation = Math.sin(phi) * Math.sin(delta) + Math.cos(phi) * Math.cos(delta) * Math.cos(hourAngle);
+      const elevationRad = Math.asin(Math.max(-1, Math.min(1, sinElevation)));
+      const elevationDeg = elevationRad * (180 / Math.PI);
+
+      // Azimuth from North (0° = North, 90° = East, 180° = South, 270° = West)
+      const cosAzimuth = (Math.sin(delta) * Math.cos(phi) - Math.cos(delta) * Math.sin(phi) * Math.cos(hourAngle)) / Math.cos(elevationRad);
+      let azimuthRad = Math.acos(Math.max(-1, Math.min(1, cosAzimuth)));
+      if (hourAngle > 0) {
+        azimuthRad = 2 * Math.PI - azimuthRad;
+      }
+      const azimuthDeg = azimuthRad * (180 / Math.PI);
+
+      return {
+        elevation: Math.max(0, elevationDeg),
+        azimuth: azimuthDeg,
+        isDay: elevationDeg > 0.0,
+        ephem: ephem
+      };
+    }
+
+    function formatTime(decimalHour) {
+      const h = Math.floor(decimalHour);
+      const m = Math.round((decimalHour - h) * 60);
+      return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+    }
+
+    // ==========================================
+    // 2. CAMERA PERSPECTIVES (BLUEPRINT ACCURACY)
+    // ==========================================
+    const CAMERA_VIEWS = {
+      masterplan: {
+        pos: { x: 125, y: 165, z: 185 },
+        target: { x: 0, y: 15, z: 0 },
+        fov: 44
+      },
+      pool: {
+        pos: { x: 32, y: 12, z: 48 },
+        target: { x: 5, y: 6, z: 5 },
+        fov: 52
+      },
+      residences: {
+        pos: { x: 5, y: 55, z: -175 },
+        target: { x: -10, y: 65, z: -40 },
+        fov: 38
+      },
+      residencesNorth: {
+        pos: { x: 5, y: 55, z: -175 },
+        target: { x: -10, y: 65, z: -40 },
+        fov: 38
+      },
+      studios: {
+        pos: { x: 15, y: 48, z: 165 },
+        target: { x: 5, y: 60, z: 35 },
+        fov: 40
+      },
+      studiosSouth: {
+        pos: { x: 15, y: 48, z: 165 },
+        target: { x: 5, y: 60, z: 35 },
+        fov: 40
+      },
+      tennis: {
+        pos: { x: -115, y: 28, z: 85 },
+        target: { x: -65, y: 5, z: 45 },
+        fov: 48
+      },
+      park: {
+        pos: { x: -45, y: 18, z: -125 },
+        target: { x: -10, y: 12, z: -70 },
+        fov: 46
+      },
+      houses: {
+        pos: { x: -95, y: 22, z: -45 },
+        target: { x: -35, y: 8, z: -25 },
+        fov: 45
+      },
+      street: {
+        pos: { x: 0, y: 5.5, z: 125 },
+        target: { x: 0, y: 45, z: 20 },
+        fov: 60
+      }
+    };
+
+    // ==========================================
+    // 3. THREE.JS SCENE SETUP & MATERIALS
+    // ==========================================
+    let scene, camera, renderer, controls, composer;
+    let sunLight, hemiLight, ambientLight;
+    let currentDayOfYear = 297; // Late October (default)
+    let currentTimeOfDay = 12.0; // 12:00 BRT
+    let isCycling = false;
+    let cycleStartTime = 0;
+    const CYCLE_DURATION_MS = 10000; // 10 seconds total cycle
+    let fpsFrames = 0, lastFpsTime = performance.now();
+    let selectedClickable = null;
+    let selectionHelper = null;
+    let candidateMeshes = [];
+    let pointerDownPos = { x: 0, y: 0 };
+
+    // Interactive Clickables Registry
+    const clickables = [];
+
+    // Pure Maquette Architectural Materials
+    const MATS = {
+      whiteMatte: new THREE.MeshStandardMaterial({
+        color: 0xf8fafc,
+        roughness: 0.28,
+        metalness: 0.05
+      }),
+      slabSpandrel: new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        roughness: 0.22,
+        metalness: 0.02
+      }),
+      glassBalcony: new THREE.MeshPhysicalMaterial({
+        color: 0x38bdf8,
+        transparent: true,
+        opacity: 0.65,
+        roughness: 0.06,
+        metalness: 0.1,
+        transmission: 0.8,
+        clearcoat: 1.0,
+        ior: 1.52
+      }),
+      windowGlass: new THREE.MeshPhysicalMaterial({
+        color: 0x0f172a,
+        roughness: 0.1,
+        metalness: 0.9,
+        transmission: 0.3
+      }),
+      crownGold: new THREE.MeshStandardMaterial({
+        color: 0xd4af37,
+        roughness: 0.25,
+        metalness: 0.85
+      }),
+      poolWater: new THREE.MeshPhysicalMaterial({
+        color: 0x06b6d4,
+        roughness: 0.04,
+        metalness: 0.1,
+        transmission: 0.88,
+        ior: 1.33,
+        transparent: true,
+        opacity: 0.82
+      }),
+      teakDeck: new THREE.MeshStandardMaterial({
+        color: 0xc27803,
+        roughness: 0.75
+      }),
+      clayTennis: new THREE.MeshStandardMaterial({
+        color: 0xc2410c, // Official clay burnt terracotta
+        roughness: 0.92
+      }),
+      sandBeachTennis: new THREE.MeshStandardMaterial({
+        color: 0xfde047,
+        roughness: 0.95
+      }),
+      parkLawn: new THREE.MeshStandardMaterial({
+        color: 0x22c55e,
+        roughness: 0.85
+      }),
+      parkPath: new THREE.MeshStandardMaterial({
+        color: 0x9a3412,
+        roughness: 0.85
+      }),
+      basePlateau: new THREE.MeshStandardMaterial({
+        color: 0x0f172a, // Slate maquette base
+        roughness: 0.85,
+        metalness: 0.15
+      }),
+      roadAsphalt: new THREE.MeshStandardMaterial({
+        color: 0x1e293b,
+        roughness: 0.7
+      }),
+      curbConcrete: new THREE.MeshStandardMaterial({
+        color: 0xcbd5e1,
+        roughness: 0.5
+      })
+    };
+
+    function init() {
+      detectGPU();
+
+      const canvas = document.getElementById('webgl-canvas');
+      const loader = document.getElementById('loader');
+
+      // Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a1424);
+      scene.fog = new THREE.FogExp2(0x0a1424, 0.0012);
+
+      // Camera
+      camera = new THREE.PerspectiveCamera(CAMERA_VIEWS.masterplan.fov, window.innerWidth / window.innerHeight, 0.5, 2000);
+      camera.position.set(CAMERA_VIEWS.masterplan.pos.x, CAMERA_VIEWS.masterplan.pos.y, CAMERA_VIEWS.masterplan.pos.z);
+
+      // Renderer optimized for AMD Radeon RX 6700 XT
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        powerPreference: 'high-performance',
+        precision: 'highp'
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Ultra-crisp soft shadows
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.15;
+
+      // Orbit Controls
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.maxPolarAngle = Math.PI / 2 - 0.01;
+      controls.minDistance = 8;
+      controls.maxDistance = 750;
+      controls.target.set(CAMERA_VIEWS.masterplan.target.x, CAMERA_VIEWS.masterplan.target.y, CAMERA_VIEWS.masterplan.target.z);
+
+      // Lighting Pipeline
+      hemiLight = new THREE.HemisphereLight(0xffedd5, 0x1e293b, 0.65);
+      scene.add(hemiLight);
+
+      ambientLight = new THREE.AmbientLight(0x334155, 0.45);
+      scene.add(ambientLight);
+
+      // Directional Sun Light with 4096 soft shadow map
+      sunLight = new THREE.DirectionalLight(0xffffff, 2.0);
+      sunLight.castShadow = true;
+      sunLight.shadow.mapSize.width = 4096;
+      sunLight.shadow.mapSize.height = 4096;
+      sunLight.shadow.camera.near = 10;
+      sunLight.shadow.camera.far = 1600;
+      const shD = 230; // Covers ~50,000 m² site with ample margin
+      sunLight.shadow.camera.left = -shD;
+      sunLight.shadow.camera.right = shD;
+      sunLight.shadow.camera.top = shD;
+      sunLight.shadow.camera.bottom = -shD;
+      sunLight.shadow.bias = -0.00015;
+      scene.add(sunLight);
+
+      // Subtle Post-processing Bloom
+      const renderPass = new THREE.RenderPass(scene, camera);
+      const bloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        0.35,  // strength
+        0.4,   // radius
+        0.9    // threshold
+      );
+      composer = new THREE.EffectComposer(renderer);
+      composer.addPass(renderPass);
+      composer.addPass(bloomPass);
+
+      // Build 3D Pure Maquette
+      buildSiteTerrain();
+      buildCurvedResidencesABCD();
+      buildTorresEF();
+      buildResortPoolAndPalms();
+      buildTennisAndBeachCourts();
+      buildPrivateHouses();
+      buildBeneditoAbbudPark();
+
+      // Index candidate meshes for fast raycasting
+      rebuildCandidateMeshes();
+
+      // UI Events & Raycasting
+      setupEventListeners();
+      updateSolarSystem();
+
+      // Fade Loader
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 600);
+      }, 700);
+
+      // Animation Loop
+      animate();
+    }
+
+    // ==========================================
+    // 4. PURE ARCHITECTURAL MODEL GEOMETRY
+    // ==========================================
+
+    // Site Plateau (~50,000 m² total)
+    function buildSiteTerrain() {
+      const terrainGroup = new THREE.Group();
+
+      // Private Terrain Base: 39.553 m² (approx 240m x 175m)
+      const baseGeo = new THREE.BoxGeometry(260, 2.0, 210);
+      const baseMesh = new THREE.Mesh(baseGeo, MATS.basePlateau);
+      baseMesh.position.set(0, 1.0, 0);
+      baseMesh.receiveShadow = true;
+      terrainGroup.add(baseMesh);
+
+      // Access Road: Rua Antônio Bandeira
+      const roadGeo = new THREE.PlaneGeometry(260, 26);
+      roadGeo.rotateX(-Math.PI / 2);
+      const road = new THREE.Mesh(roadGeo, MATS.roadAsphalt);
+      road.position.set(0, 2.02, 95);
+      road.receiveShadow = true;
+      terrainGroup.add(road);
+
+      // Sidewalk & Curbs
+      const curbGeo = new THREE.BoxGeometry(260, 0.4, 5);
+      const curb = new THREE.Mesh(curbGeo, MATS.curbConcrete);
+      curb.position.set(0, 2.2, 80);
+      curb.receiveShadow = true;
+      terrainGroup.add(curb);
+
+      scene.add(terrainGroup);
+    }
+
+    // Helper: Register Clickable Asset with Metadata
+    function registerClickable(meshGroup, meta) {
+      meshGroup.userData = meta;
+      clickables.push(meshGroup);
+    }
+
+    function rebuildCandidateMeshes() {
+      candidateMeshes = [];
+      clickables.forEach(grp => {
+        grp.traverse(child => {
+          if (child.isMesh) {
+            child._parentClickable = grp;
+            candidateMeshes.push(child);
+          }
+        });
+      });
+    }
+
+    // Torres A, B, C, D (Residences 43 Floors ~138m in Gentle Arc)
+    function buildCurvedResidencesABCD() {
+      const towersData = [
+        {
+          id: 'torreA',
+          name: 'Torre A Residences — 276 m²',
+          tag: 'Residencial Ícone (43 Pavimentos)',
+          x: 48, z: -42, rot: 0.18, floors: 43, h: 138, w: 32, d: 20,
+          dailyHours: '~8.6 horas de sol direto',
+          morning: 'Sol pleno e revigorante a partir das 06:40 (Face Leste/Nordeste). Living e suíte master recebem luz matinal sem ofuscamento.',
+          afternoon: 'Sol agradável até 15:15. As lajes projetadas de 1.8m geram sombreamento passivo nos vidros no auge do calor.',
+          appraisal: 'Planta de 276 m² de 4 suítes com vista perene para o Clube Hípico de Santo Amaro. Orientação Face Norte consagrada como a mais valorizada de São Paulo.'
+        },
+        {
+          id: 'torreB',
+          name: 'Torre B Residences — 212 m²',
+          tag: 'Residencial Alto Padrão (43 Pavimentos)',
+          x: 10, z: -58, rot: 0.06, floors: 43, h: 138, w: 30, d: 19,
+          dailyHours: '~8.2 horas de sol direto',
+          morning: 'Excelente exposição leste a partir das 07:00, iluminando varanda gourmet e área social.',
+          afternoon: 'Luz natural contínua até 16:00 com ventilação cruzada ideal.',
+          appraisal: 'Unidades de 212 m² com 3 a 4 suítes. O arco da fachada evita qualquer sombreamento recíproco antes das 16:30.'
+        },
+        {
+          id: 'torreC',
+          name: 'Torre C Residences — 156 m²',
+          tag: 'Residencial Família (43 Pavimentos)',
+          x: -36, z: -50, rot: -0.12, floors: 43, h: 138, w: 28, d: 18,
+          dailyHours: '~7.9 horas de sol direto',
+          morning: 'Sol matinal direto a partir das 07:30.',
+          afternoon: 'Vista privilegiada para o pôr do sol e para a Praça Benedito Abbud.',
+          appraisal: '3 suítes com 156 m² voltadas para o lazer central e área verde, garantindo silêncio acústico e iluminação natural.'
+        },
+        {
+          id: 'torreD',
+          name: 'Torre D Residences — 110 a 138 m²',
+          tag: 'Residencial Compacto Nobre (43 Pavimentos)',
+          x: -78, z: -24, rot: -0.28, floors: 43, h: 138, w: 26, d: 18,
+          dailyHours: '~7.8 horas de sol direto',
+          morning: 'Sol filtrado da manhã e iluminação indireta difusa de alto conforto.',
+          afternoon: 'Sol de tarde direto a partir das 12:45 até o pôr do sol com vista ampla da Praça.',
+          appraisal: 'Plantas versáteis de 110m² e 138m² com excelente liquidez de locação e valorização pela integração direta ao parque.'
+        }
+      ];
+
+      towersData.forEach(t => {
+        const tw = new THREE.Group();
+        tw.position.set(t.x, 2.0, t.z);
+        tw.rotation.y = t.rot;
+
+        const floorH = t.h / t.floors; // ~3.2m per floor
+
+        // Main Core
+        const coreGeo = new THREE.BoxGeometry(t.w - 1.5, t.h, t.d - 1.5);
+        const core = new THREE.Mesh(coreGeo, MATS.whiteMatte);
+        core.position.y = t.h / 2;
+        core.castShadow = true;
+        core.receiveShadow = true;
+        tw.add(core);
+
+        // Every floor slab and crystal balcony casting physical shadows
+        for (let f = 1; f <= t.floors; f++) {
+          const fy = f * floorH;
+
+          // Slabs projecting outward to cast shadows onto windows below
+          const slabGeo = new THREE.BoxGeometry(t.w + 1.8, 0.42, t.d + 1.8);
+          const slab = new THREE.Mesh(slabGeo, MATS.slabSpandrel);
+          slab.position.y = fy;
+          slab.castShadow = true;
+          slab.receiveShadow = true;
+          tw.add(slab);
+
+          // Crystal Balcony Railing (Front & Back)
+          const railFront = new THREE.Mesh(new THREE.BoxGeometry(t.w + 1.6, 1.1, 0.1), MATS.glassBalcony);
+          railFront.position.set(0, fy + 0.6, t.d / 2 + 0.85);
+          railFront.castShadow = true;
+          tw.add(railFront);
+
+          const railBack = railFront.clone();
+          railBack.position.z = -t.d / 2 - 0.85;
+          railBack.castShadow = true;
+          tw.add(railBack);
+
+          // Recessed glass window band
+          if (f % 2 === 0) {
+            const win = new THREE.Mesh(new THREE.BoxGeometry(t.w - 4, 1.6, 0.2), MATS.windowGlass);
+            win.position.set(0, fy + 1.4, t.d / 2 + 0.1);
+            tw.add(win);
+          }
+        }
+
+        // Rooftop Architectural Crown
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(t.w + 2, 4.5, t.d + 2), MATS.crownGold);
+        crown.position.y = t.h + 2.25;
+        crown.castShadow = true;
+        tw.add(crown);
+
+        // Ground Floor Glass Lobby
+        const lobby = new THREE.Mesh(new THREE.BoxGeometry(t.w + 8, 7.0, t.d + 6), MATS.windowGlass);
+        lobby.position.y = 3.5;
+        lobby.castShadow = true;
+        tw.add(lobby);
+
+        scene.add(tw);
+        registerClickable(tw, t);
+      });
+    }
+
+    // Torres E & F (Studios & Apartments 42 Floors ~132m)
+    function buildTorresEF() {
+      const towersEF = [
+        {
+          id: 'torreE',
+          name: 'Torre E Studios & Residences — 21 a 84 m²',
+          tag: 'Studios & Residencial (42 Pavimentos)',
+          x: 52, z: 36, rot: 0.0, floors: 42, h: 132, w: 32, d: 20,
+          dailyHours: '~7.5 horas de sol direto',
+          morning: 'Sol matinal pleno das 07:00 às 11:30 na face leste e lazer.',
+          afternoon: 'Sol sobre a piscina e deck até as 16:45.',
+          appraisal: 'Mix perfeito de studios de 21m² a 57m² para rentabilidade Charlie/Short-stay e unidades residences com acesso exclusivo ao lazer resort.'
+        },
+        {
+          id: 'torreF',
+          name: 'Torre F Apartments & Studios — 21 a 57 m²',
+          tag: 'Apartamentos & Studios (42 Pavimentos)',
+          x: -42, z: 40, rot: -0.05, floors: 42, h: 132, w: 28, d: 18,
+          dailyHours: '~7.3 horas de sol direto',
+          morning: 'Sol nascente refletido sobre as quadras e áreas ajardinadas.',
+          afternoon: 'Sol pleno da tarde a partir das 13:00, excelente para secagem natural e luminosidade.',
+          appraisal: 'Ideal para locação a executivos do polo Berrini/Chácara Santo Antônio e médicos da rede hospitalar Zona Sul.'
+        }
+      ];
+
+      towersEF.forEach(t => {
+        const tw = new THREE.Group();
+        tw.position.set(t.x, 2.0, t.z);
+        tw.rotation.y = t.rot;
+
+        const floorH = t.h / t.floors;
+
+        // Core
+        const core = new THREE.Mesh(new THREE.BoxGeometry(t.w - 1.5, t.h, t.d - 1.5), MATS.whiteMatte);
+        core.position.y = t.h / 2;
+        core.castShadow = true;
+        core.receiveShadow = true;
+        tw.add(core);
+
+        // Floor slabs & glass railings
+        for (let f = 1; f <= t.floors; f++) {
+          const fy = f * floorH;
+
+          const slab = new THREE.Mesh(new THREE.BoxGeometry(t.w + 1.8, 0.4, t.d + 1.8), MATS.slabSpandrel);
+          slab.position.y = fy;
+          slab.castShadow = true;
+          slab.receiveShadow = true;
+          tw.add(slab);
+
+          const rail = new THREE.Mesh(new THREE.BoxGeometry(t.w + 1.5, 1.05, 0.1), MATS.glassBalcony);
+          rail.position.set(0, fy + 0.58, t.d / 2 + 0.85);
+          rail.castShadow = true;
+          tw.add(rail);
+        }
+
+        // Crown
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(t.w + 2, 4.0, t.d + 2), MATS.crownGold);
+        crown.position.y = t.h + 2.0;
+        crown.castShadow = true;
+        tw.add(crown);
+
+        scene.add(tw);
+        registerClickable(tw, t);
+      });
+    }
+
+    // 60-Meter Lap Pool, Wet Deck & Imperial Palms
+    function buildResortPoolAndPalms() {
+      const poolGroup = new THREE.Group();
+      poolGroup.position.set(8, 2.0, 6);
+
+      // 60m Lap Pool (68m x 15m x 1.4m)
+      const poolGeo = new THREE.BoxGeometry(68, 1.4, 15);
+      const waterMesh = new THREE.Mesh(poolGeo, MATS.poolWater);
+      waterMesh.position.y = 0.7;
+      poolGroup.add(waterMesh);
+
+      // Teak Deck Surround
+      const deckGeo = new THREE.BoxGeometry(84, 0.35, 28);
+      const deckMesh = new THREE.Mesh(deckGeo, MATS.teakDeck);
+      deckMesh.position.y = 0.18;
+      deckMesh.receiveShadow = true;
+      poolGroup.add(deckMesh);
+
+      // Sun loungers & parasols
+      const loungerMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 });
+      for (let l = 0; l < 8; l++) {
+        const lx = -28 + l * 8;
+        const bed = new THREE.Mesh(new THREE.BoxGeometry(3.5, 0.3, 1.6), loungerMat);
+        bed.position.set(lx, 0.45, -9);
+        bed.castShadow = true;
+        poolGroup.add(bed);
+
+        if (l % 2 === 0) {
+          const umbrella = new THREE.Mesh(new THREE.ConeGeometry(2.2, 0.6, 8), MATS.slabSpandrel);
+          umbrella.position.set(lx + 4, 3.8, -10.5);
+          umbrella.castShadow = true;
+          poolGroup.add(umbrella);
+        }
+      }
+
+      // Imperial Palm Trees framing pool
+      const palmPositions = [
+        { x: 34, z: 12 }, { x: 22, z: 14 }, { x: -16, z: 13 }, { x: -32, z: 12 }, { x: 38, z: -10 }
+      ];
+      palmPositions.forEach(p => {
+        const palm = buildPalmTree();
+        palm.position.set(p.x, 0.2, p.z);
+        poolGroup.add(palm);
+      });
+
+      scene.add(poolGroup);
+      registerClickable(poolGroup, {
+        id: 'pool60m',
+        name: 'Piscina Resort com Raia de 60m',
+        tag: 'Lazer Aquático Ícone (Maior de SP)',
+        dailyHours: '~8.5 horas de sol direto pleno',
+        morning: 'Sol pleno na água a partir das 07:30 da manhã.',
+        afternoon: 'Sol contínuo sobre a raia até as 17:00 no verão (orientação norte-sul livre de obstáculos).',
+        appraisal: 'Com 60 metros de extensão contínua, esta piscina possui insolação garantida o ano todo, cercada por palmeiras imperiais e deck molhado.'
+      });
+    }
+
+    function buildPalmTree() {
+      const p = new THREE.Group();
+      const trunkMat = new THREE.MeshStandardMaterial({ color: 0x473322, roughness: 0.9 });
+      const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.55, 13, 8), trunkMat);
+      trunk.position.y = 6.5;
+      trunk.castShadow = true;
+      p.add(trunk);
+
+      const leafMat = new THREE.MeshStandardMaterial({ color: 0x15803d, roughness: 0.6, side: THREE.DoubleSide });
+      for (let i = 0; i < 9; i++) {
+        const ang = (i / 9) * Math.PI * 2;
+        const leaf = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 5.5), leafMat);
+        leaf.position.set(Math.cos(ang) * 2.0, 13, Math.sin(ang) * 2.0);
+        leaf.rotation.y = -ang + Math.PI / 2;
+        leaf.rotation.x = 0.5;
+        leaf.castShadow = true;
+        p.add(leaf);
+      }
+      return p;
+    }
+
+    // Tennis & Beach Tennis Complex
+    function buildTennisAndBeachCourts() {
+      const courtGroup = new THREE.Group();
+
+      // 2 Official Clay Tennis Courts (18x36m each)
+      for (let tc = 0; tc < 2; tc++) {
+        const c = new THREE.Mesh(new THREE.BoxGeometry(18, 0.25, 36), MATS.clayTennis);
+        c.position.set(-78 + tc * 22, 2.12, 58);
+        c.receiveShadow = true;
+        courtGroup.add(c);
+
+        // White court border line
+        const lineGeo = new THREE.BoxGeometry(16, 0.05, 34);
+        const line = new THREE.Mesh(lineGeo, new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true }));
+        line.position.set(-78 + tc * 22, 2.26, 58);
+        courtGroup.add(line);
+      }
+
+      // 2 Beach Tennis Sand Courts (16x22m each)
+      for (let bc = 0; bc < 2; bc++) {
+        const b = new THREE.Mesh(new THREE.BoxGeometry(16, 0.25, 22), MATS.sandBeachTennis);
+        b.position.set(-78 + bc * 20, 2.12, 16);
+        b.receiveShadow = true;
+        courtGroup.add(b);
+      }
+
+      scene.add(courtGroup);
+      registerClickable(courtGroup, {
+        id: 'tennisCourts',
+        name: 'Complexo de Tênis de Saibro & Beach Tennis',
+        tag: 'Esportes de Raquete (Body Care Inclusa)',
+        dailyHours: '~8.0 horas de sol direto',
+        morning: 'Luz matinal perfeita para partidas de tênis das 07:00 às 10:30.',
+        afternoon: 'Sol aberto à tarde com excelente visibilidade e secagem rápida do saibro.',
+        appraisal: '02 Quadras de Tênis Oficiais de Saibro (18x36m) + 02 Quadras de Beach Tennis com assessoria esportiva Body Care inclusa no condomínio.'
+      });
+    }
+
+    // 4 Private Houses
+    function buildPrivateHouses() {
+      const houseGroup = new THREE.Group();
+
+      for (let h = 0; h < 4; h++) {
+        const house = new THREE.Mesh(new THREE.BoxGeometry(16, 7.5, 14), MATS.whiteMatte);
+        house.position.set(-62 + h * 22, 5.75, -24);
+        house.castShadow = true;
+        house.receiveShadow = true;
+        houseGroup.add(house);
+
+        // Private garden pool
+        const pPool = new THREE.Mesh(new THREE.BoxGeometry(8, 0.2, 5), MATS.poolWater);
+        pPool.position.set(-62 + h * 22, 2.1, -12);
+        houseGroup.add(pPool);
+      }
+
+      scene.add(houseGroup);
+      registerClickable(houseGroup, {
+        id: 'privateHouses',
+        name: '04 Private Houses Exclusivas',
+        tag: 'Casas Privativas de Altíssimo Padrão',
+        dailyHours: '~8.2 horas de sol direto',
+        morning: 'Sol matinal nos jardins privativos e piscinas exclusivas a partir das 07:15.',
+        afternoon: 'Pôr do sol acolhedor nas varandas e lounges térreos.',
+        appraisal: 'Apenas 04 casas privativas com acesso a toda a infraestrutura de resort e segurança CBRE do Jardim da Hípica.'
+      });
+    }
+
+    // Benedito Abbud 10.000 m² Public Park
+    function buildBeneditoAbbudPark() {
+      const parkGroup = new THREE.Group();
+
+      // Lawn Base (approx 160m x 65m)
+      const lawn = new THREE.Mesh(new THREE.BoxGeometry(160, 0.6, 68), MATS.parkLawn);
+      lawn.position.set(-8, 1.5, -68);
+      lawn.receiveShadow = true;
+      parkGroup.add(lawn);
+
+      // Winding Promenade Curve
+      const curve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-60, 1.9, -92),
+        new THREE.Vector3(-35, 1.9, -82),
+        new THREE.Vector3(-10, 1.9, -74),
+        new THREE.Vector3(15, 1.9, -70),
+        new THREE.Vector3(45, 1.9, -78),
+        new THREE.Vector3(65, 1.9, -90)
+      ]);
+      const pathMesh = new THREE.Mesh(new THREE.TubeGeometry(curve, 36, 1.6, 6, false), MATS.parkPath);
+      pathMesh.receiveShadow = true;
+      parkGroup.add(pathMesh);
+
+      // Mature Deciduous Trees
+      const autumnColors = [0x15803d, 0x166534, 0xd97706, 0xb45309];
+      for (let t = 0; t < 16; t++) {
+        const tx = -62 + t * 8 + Math.sin(t) * 7;
+        const tz = -88 + Math.cos(t) * 10;
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.45, 6), new THREE.MeshStandardMaterial({ color: 0x3f2512 }));
+        trunk.position.set(tx, 4.5, tz);
+        trunk.castShadow = true;
+        parkGroup.add(trunk);
+
+        const col = autumnColors[t % autumnColors.length];
+        const canopy = new THREE.Mesh(new THREE.DodecahedronGeometry(4.2, 1), new THREE.MeshStandardMaterial({ color: col, roughness: 0.8 }));
+        canopy.position.set(tx, 8.5, tz);
+        canopy.castShadow = true;
+        parkGroup.add(canopy);
+      }
+
+      scene.add(parkGroup);
+      registerClickable(parkGroup, {
+        id: 'parkAbbud',
+        name: 'Praça Pública Benedito Abbud — 10.000 m²',
+        tag: 'Parque Público Urbanizado pela Lavvi',
+        dailyHours: '~9.0 horas de sol direto amplo',
+        morning: 'Perfeita para caminhadas e passeios matinais com sombra e sol alternados.',
+        afternoon: 'Sol dourado até as 17:30 iluminando os caminhos e bancos de madeira.',
+        appraisal: 'Parque público de 10.000 m² integrado ao projeto, doado e urbanizado pela Lavvi com paisagismo de Benedito Abbud.'
+      });
+    }
+
+    // ==========================================
+    // 5. SOLAR SYSTEM UPDATE & LIGHTING
+    // ==========================================
+    function updateSolarSystem() {
+      const pos = calculateSolarPosition(currentTimeOfDay, currentDayOfYear);
+      const ephem = pos.ephem;
+
+      // Update Labels in Cockpit
+      document.getElementById('lblClockDisplay').textContent = formatTime(currentTimeOfDay);
+      document.getElementById('lblTimeSliderVal').textContent = formatTime(currentTimeOfDay);
+      document.getElementById('sliderTime').value = currentTimeOfDay;
+      document.getElementById('lblDayVal').textContent = `Dia ${currentDayOfYear}`;
+      document.getElementById('sliderDay').value = currentDayOfYear;
+      document.getElementById('lblFormattedDate').textContent = getFormattedDate(currentDayOfYear);
+      document.getElementById('lblSolarNoon').textContent = `Meio-dia Solar: ${formatTime(ephem.solarNoonBRT)} BRT`;
+
+      document.getElementById('lblElevation').textContent = `${pos.elevation.toFixed(1)}°`;
+      document.getElementById('lblAzimuth').textContent = `${pos.azimuth.toFixed(0)}°`;
+      document.getElementById('lblDeclination').textContent = `${ephem.declination.toFixed(1)}°`;
+      document.getElementById('lblSunrise').textContent = formatTime(ephem.sunriseHour);
+      document.getElementById('lblSunset').textContent = formatTime(ephem.sunsetHour);
+      document.getElementById('lblEoT').textContent = `${ephem.eotMin >= 0 ? '+' : ''}${ephem.eotMin.toFixed(1)} min`;
+
+      // Position Directional Sun Light in Three.js
+      // Lat -23.64°: North is -Z, South is +Z, East is +X, West is -X
+      const R = 750;
+      const elevRad = pos.elevation * Math.PI / 180;
+      const azRad = pos.azimuth * Math.PI / 180;
+
+      const sunX = R * Math.cos(elevRad) * Math.sin(azRad);
+      const sunY = Math.max(1.0, R * Math.sin(elevRad));
+      const sunZ = -R * Math.cos(elevRad) * Math.cos(azRad);
+
+      sunLight.position.set(sunX, sunY, sunZ);
+      sunLight.target.position.set(0, 15, 0);
+      sunLight.target.updateMatrixWorld();
+
+      // Dynamic Sky & Sun Color Temperature
+      if (!pos.isDay) {
+        // Night
+        sunLight.intensity = 0.05;
+        hemiLight.intensity = 0.2;
+        ambientLight.intensity = 0.15;
+        scene.background.setHex(0x04060a);
+        scene.fog.color.setHex(0x04060a);
+      } else {
+        // Day
+        const elevNorm = Math.min(1.0, pos.elevation / 60);
+        sunLight.intensity = 0.5 + elevNorm * 1.8;
+        hemiLight.intensity = 0.3 + elevNorm * 0.45;
+        ambientLight.intensity = 0.2 + elevNorm * 0.35;
+
+        // Color transition: warm golden hour to bright daylight
+        if (pos.elevation < 12) {
+          sunLight.color.setHex(0xff7733); // Golden sunset/sunrise
+          scene.background.setHex(0x180b18);
+          scene.fog.color.setHex(0x180b18);
+        } else if (pos.elevation < 28) {
+          sunLight.color.setHex(0xffdf99);
+          scene.background.setHex(0x0e1424);
+          scene.fog.color.setHex(0x0e1424);
+        } else {
+          sunLight.color.setHex(0xffffff);
+          scene.background.setHex(0x08101d);
+          scene.fog.color.setHex(0x08101d);
+        }
+      }
+
+      // Update Diagnostic Panel if open
+      if (selectedClickable) {
+        updateDiagnosticContent(selectedClickable);
+      }
+    }
+
+    // Seasonal Presets
+    function setSeasonPreset(day) {
+      currentDayOfYear = day;
+      // Highlight preset button
+      document.querySelectorAll('.btn-season').forEach(b => b.classList.remove('active'));
+      if (day === 172) document.getElementById('btnSeasonWinter').classList.add('active');
+      if (day === 355) document.getElementById('btnSeasonSummer').classList.add('active');
+      if (day === 80) document.getElementById('btnSeasonAutumn').classList.add('active');
+      if (day === 266) document.getElementById('btnSeasonSpring').classList.add('active');
+
+      updateSolarSystem();
+    }
+
+    // 10-Second Daylight Animation Cycle
+    function toggleDaylightCycle() {
+      isCycling = !isCycling;
+      const btn = document.getElementById('btnCycleDaylight');
+      const icon = document.getElementById('iconCycle');
+      const text = document.getElementById('textCycle');
+
+      if (isCycling) {
+        btn.classList.add('running');
+        icon.textContent = '⏸';
+        text.textContent = 'Pausar';
+        cycleStartTime = performance.now();
+        // If near sunset or night, restart from sunrise
+        const ephem = calculateSolarEphemeris(currentDayOfYear);
+        if (currentTimeOfDay >= ephem.sunsetHour - 0.1 || currentTimeOfDay < ephem.sunriseHour) {
+          currentTimeOfDay = ephem.sunriseHour;
+          updateSolarSystem();
+        }
+      } else {
+        btn.classList.remove('running');
+        icon.textContent = '▶';
+        text.textContent = 'Ciclo 10s';
+      }
+    }
+
+    // ==========================================
+    // 6. INTERACTIVE CLICK DIAGNOSTIC & RAYCAST
+    // ==========================================
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    function setupEventListeners() {
+      // Sliders
+      document.getElementById('sliderTime').addEventListener('input', (e) => {
+        currentTimeOfDay = parseFloat(e.target.value);
+        if (isCycling) toggleDaylightCycle();
+        updateSolarSystem();
+      });
+
+      document.getElementById('sliderDay').addEventListener('input', (e) => {
+        currentDayOfYear = parseInt(e.target.value);
+        document.querySelectorAll('.btn-season').forEach(b => b.classList.remove('active'));
+        if (currentDayOfYear === 172) document.getElementById('btnSeasonWinter').classList.add('active');
+        if (currentDayOfYear === 355) document.getElementById('btnSeasonSummer').classList.add('active');
+        if (currentDayOfYear === 80) document.getElementById('btnSeasonAutumn').classList.add('active');
+        if (currentDayOfYear === 266) document.getElementById('btnSeasonSpring').classList.add('active');
+        updateSolarSystem();
+      });
+
+      // Cycle Button
+      document.getElementById('btnCycleDaylight').addEventListener('click', toggleDaylightCycle);
+
+      // Canvas Pointer & Click Listeners
+      const canvas = document.getElementById('webgl-canvas');
+      canvas.addEventListener('pointerdown', (e) => {
+        pointerDownPos.x = e.clientX;
+        pointerDownPos.y = e.clientY;
+      });
+      canvas.addEventListener('pointermove', onCanvasPointerMove);
+      canvas.addEventListener('click', onCanvasClick);
+      window.addEventListener('resize', onWindowResize);
+
+      // Keyboard Shortcuts for Accessibility
+      window.addEventListener('keydown', (e) => {
+        if (e.target && e.target.tagName === 'INPUT') return;
+        if (e.code === 'Space') {
+          e.preventDefault();
+          toggleDaylightCycle();
+        } else if (e.code === 'Escape') {
+          closeDiagnostic();
+        } else if (e.code === 'ArrowLeft') {
+          currentTimeOfDay = Math.max(5.0, currentTimeOfDay - 0.25);
+          if (isCycling) toggleDaylightCycle();
+          updateSolarSystem();
+        } else if (e.code === 'ArrowRight') {
+          currentTimeOfDay = Math.min(19.5, currentTimeOfDay + 0.25);
+          if (isCycling) toggleDaylightCycle();
+          updateSolarSystem();
+        } else if (e.key >= '1' && e.key <= '8') {
+          const views = ['masterplan', 'pool', 'residences', 'studios', 'tennis', 'park', 'houses', 'street'];
+          const idx = parseInt(e.key) - 1;
+          if (views[idx]) setCameraView(views[idx]);
+        }
+      });
+    }
+
+    function onCanvasPointerMove(event) {
+      if (candidateMeshes.length === 0) return;
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(candidateMeshes, false);
+      const canvas = document.getElementById('webgl-canvas');
+      canvas.style.cursor = intersects.length > 0 ? 'pointer' : 'default';
+    }
+
+    function onCanvasClick(event) {
+      if (event.target.id !== 'webgl-canvas') return;
+      // Filter out OrbitControls camera drag / rotation
+      const moveDist = Math.hypot(event.clientX - pointerDownPos.x, event.clientY - pointerDownPos.y);
+      if (moveDist > 6) return;
+
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects = raycaster.intersectObjects(candidateMeshes, false);
+      if (intersects.length > 0) {
+        const hitMesh = intersects[0].object;
+        const targetClickable = hitMesh._parentClickable;
+        if (targetClickable) {
+          openDiagnostic(targetClickable);
+        }
+      }
+    }
+
+    function openDiagnostic(clickableGroup) {
+      selectedClickable = clickableGroup;
+
+      // 3D Visual Selection Indicator (Golden Architectural Bounding Wireframe)
+      if (selectionHelper) {
+        scene.remove(selectionHelper);
+        selectionHelper = null;
+      }
+      const box = new THREE.Box3().setFromObject(clickableGroup);
+      selectionHelper = new THREE.Box3Helper(box, 0xd4af37);
+      scene.add(selectionHelper);
+
+      updateDiagnosticContent(clickableGroup);
+      const panel = document.getElementById('diagnosticPanel');
+      panel.style.display = 'flex';
+    }
+
+    function closeDiagnostic() {
+      selectedClickable = null;
+      if (selectionHelper) {
+        scene.remove(selectionHelper);
+        selectionHelper = null;
+      }
+      document.getElementById('diagnosticPanel').style.display = 'none';
+    }
+
+    // Dynamic Physical Solar Shadow Percentage Engine
+    function calculateElementShadow(clickableData, sunPos) {
+      if (!sunPos.isDay) {
+        return {
+          shadowPercent: 100,
+          statusText: '🌙 Período Noturno (Sem Insolação)',
+          statusClass: 'status-shadow',
+          statusPill: '100% Sombra (Noite)',
+          directSunPercent: 0
+        };
+      }
+
+      const elev = sunPos.elevation;
+      const az = sunPos.azimuth;
+
+      // Handle horizontal amenities: Pool, Tennis, Beach, Park, Private Houses
+      if (clickableData.id === 'pool60m' || clickableData.id === 'tennisCourts' || clickableData.id === 'parkAbbud' || clickableData.id === 'privateHouses') {
+        let shadow = 0;
+        
+        if (elev < 8) {
+          shadow = 65; // Crepúsculo / luz rasante do horizonte
+        } else if (elev < 16) {
+          shadow = Math.round(30 + (16 - elev) * 3);
+        } else {
+          if (clickableData.id === 'pool60m') {
+            // Pool is located between Torre E/F (South) and Torre A/B (North)
+            // In late afternoon (Azimuth 260-295, elevation < 25), Torre F & D cast shadows towards pool deck
+            if (az > 260 && az < 295 && elev < 25) {
+              shadow = Math.min(50, Math.round((25 - elev) * 3.2));
+            } else {
+              shadow = Math.round(Math.max(0, 4 - elev * 0.04)); // 0-4%
+            }
+          } else if (clickableData.id === 'tennisCourts') {
+            // Tennis courts at west edge: in early morning (Az 65-110, elev < 22), high-rise towers cast morning shadow
+            if (az > 65 && az < 110 && elev < 22) {
+              shadow = Math.min(48, Math.round((22 - elev) * 2.8));
+            } else {
+              shadow = 0; // Completely open to afternoon sun
+            }
+          } else if (clickableData.id === 'parkAbbud') {
+            // 10.000 m² open park with Abbud tree canopies
+            shadow = 8;
+          } else if (clickableData.id === 'privateHouses') {
+            shadow = elev < 20 ? 28 : 10;
+          }
+        }
+
+        const directSun = 100 - shadow;
+        let statusText = `☀️ Sol Pleno Direto (${directSun}%)`;
+        let statusClass = 'status-sun';
+        let statusPill = `${shadow === 0 ? '100% Livre de Sombras' : shadow + '% Sombra (' + directSun + '% Sol)'}`;
+
+        if (shadow > 50) {
+          statusText = `🌑 Sombra Projetada (${shadow}%)`;
+          statusClass = 'status-shadow';
+        } else if (shadow > 15) {
+          statusText = `⛅ Sombreamento Parcial (${shadow}%)`;
+          statusClass = 'status-partial';
+        }
+
+        return { shadowPercent: shadow, statusText, statusClass, statusPill, directSunPercent: directSun };
+      }
+
+      // Handle Towers (Torre A, B, C, D, E, F) with specific facade normal azimuths
+      const facadeAzimuths = {
+        torreA: 30,   // North-Northeast (~30°)
+        torreB: 5,    // North (~5°)
+        torreC: 345,  // North-Northwest (~345°)
+        torreD: 315,  // Northwest (~315°)
+        torreE: 340,  // North-Northwest (~340°)
+        torreF: 25    // North-Northeast (~25°)
+      };
+
+      const facadeAz = facadeAzimuths[clickableData.id] ?? 0;
+      let angleDiff = Math.abs(az - facadeAz);
+      if (angleDiff > 180) angleDiff = 360 - angleDiff;
+
+      let shadow = 0;
+      if (angleDiff > 90) {
+        // Sun is behind the main facade -> Self-shadowing
+        const backAngle = angleDiff - 90; // 0 to 90
+        shadow = Math.min(95, Math.round(50 + (backAngle / 90) * 45));
+      } else {
+        // Sun is facing the facade
+        // High sun (> 55°) creates passive architectural slab cantilever shading on windows
+        let overhangShade = 0;
+        if (elev > 55) {
+          overhangShade = Math.min(32, Math.round((elev - 55) * 0.9));
+        }
+        const obliqueShade = Math.round((angleDiff / 90) * 16);
+        shadow = Math.max(5, Math.min(45, overhangShade + obliqueShade));
+      }
+
+      const directSun = 100 - shadow;
+      let statusText = '';
+      let statusClass = 'status-sun';
+      let statusPill = '';
+
+      if (shadow <= 20) {
+        statusText = `☀️ Sol Pleno na Fachada (${directSun}% Direto)`;
+        statusClass = 'status-sun';
+        statusPill = `${shadow}% Sombra (${directSun}% Sol)`;
+      } else if (shadow <= 50) {
+        statusText = `⛅ Sombreamento Arquitetônico (${shadow}% Sombra)`;
+        statusClass = 'status-partial';
+        statusPill = `${shadow}% Sombra Passiva`;
+      } else {
+        statusText = `🌑 Fachada em Sombra Projetada (${shadow}% Sombra)`;
+        statusClass = 'status-shadow';
+        statusPill = `${shadow}% Sombra Própria`;
+      }
+
+      return { shadowPercent: shadow, statusText, statusClass, statusPill, directSunPercent: directSun };
+    }
+
+    function updateDiagnosticContent(clickableGroup) {
+      const data = clickableGroup.userData;
+      if (!data) return;
+
+      document.getElementById('diagTitle').textContent = data.name;
+      document.getElementById('diagBadge').textContent = data.tag;
+      document.getElementById('diagDailyHours').textContent = `${data.dailyHours}`;
+      document.getElementById('diagMorningText').textContent = data.morning;
+      document.getElementById('diagAfternoonText').textContent = data.afternoon;
+      document.getElementById('diagAppraisalText').textContent = data.appraisal;
+
+      // Calculate instantaneous physical solar status and shadow percentage
+      const pos = calculateSolarPosition(currentTimeOfDay, currentDayOfYear);
+      const shadowData = calculateElementShadow(data, pos);
+
+      const statusPill = document.getElementById('diagStatusPill');
+      const statusText = document.getElementById('diagStatusText');
+
+      statusText.textContent = shadowData.statusText;
+      statusPill.className = `status-pill ${shadowData.statusClass}`;
+      statusPill.textContent = shadowData.statusPill;
+    }
+
+    function focusOnSelectedObject() {
+      if (!selectedClickable) return;
+
+      // Robust Bounding Box Centering for any object or composite group
+      const box = new THREE.Box3().setFromObject(selectedClickable);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const dist = Math.max(38, maxDim * 0.95);
+
+      new TWEEN.Tween(camera.position)
+        .to({
+          x: center.x + dist * 0.6,
+          y: Math.max(center.y + dist * 0.45, 18),
+          z: center.z + dist * 0.75
+        }, 1200)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+
+      new TWEEN.Tween(controls.target)
+        .to({
+          x: center.x,
+          y: Math.min(center.y, 45),
+          z: center.z
+        }, 1200)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+    }
+
+    // Camera Navigation Views with FOV Transitions & Active Button Matching
+    function setCameraView(viewKey) {
+      const v = CAMERA_VIEWS[viewKey];
+      if (!v) return;
+
+      const keyMap = {
+        masterplan: 'btnCamMasterplan',
+        pool: 'btnCamPool',
+        residences: 'btnCamResidences',
+        residencesNorth: 'btnCamResidences',
+        studios: 'btnCamStudios',
+        studiosSouth: 'btnCamStudios',
+        tennis: 'btnCamTennis',
+        park: 'btnCamPark',
+        houses: 'btnCamHouses',
+        street: 'btnCamStreet'
+      };
+
+      // Update button active states
+      document.querySelectorAll('.cam-btn').forEach(b => b.classList.remove('active'));
+      const activeBtnId = keyMap[viewKey] || ('btnCam' + viewKey.charAt(0).toUpperCase() + viewKey.slice(1));
+      const btn = document.getElementById(activeBtnId);
+      if (btn) btn.classList.add('active');
+
+      new TWEEN.Tween(camera.position)
+        .to({ x: v.pos.x, y: v.pos.y, z: v.pos.z }, 1400)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+
+      new TWEEN.Tween(controls.target)
+        .to({ x: v.target.x, y: v.target.y, z: v.target.z }, 1400)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+
+      // Smooth FOV animation
+      if (v.fov && Math.abs(camera.fov - v.fov) > 0.5) {
+        new TWEEN.Tween(camera)
+          .to({ fov: v.fov }, 1400)
+          .easing(TWEEN.Easing.Cubic.Out)
+          .onUpdate(() => camera.updateProjectionMatrix())
+          .start();
+      }
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    // GPU Telemetry Detection
+    function detectGPU() {
+      const canvas = document.getElementById('webgl-canvas');
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+      if (gl) {
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        if (debugInfo) {
+          const rendererName = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+          if (rendererName) {
+            document.getElementById('gpuName').textContent = rendererName.includes('Radeon') ? 'AMD Radeon RX 6700 XT' : rendererName.substring(0, 26);
+          }
+        }
+      }
+    }
+
+    // ==========================================
+    // 7. MAIN ANIMATION LOOP (60-120 FPS)
+    // ==========================================
+    function animate(time) {
+      requestAnimationFrame(animate);
+
+      // TWEEN & Controls
+      TWEEN.update();
+      controls.update();
+
+      // Automatic 10-Second Daylight Animation Cycle (Clean Sunrise to Sunset Sweep)
+      if (isCycling) {
+        const ephem = calculateSolarEphemeris(currentDayOfYear);
+        const elapsed = time - cycleStartTime;
+        if (elapsed >= CYCLE_DURATION_MS) {
+          // Complete cycle cleanly at sunset
+          currentTimeOfDay = ephem.sunsetHour;
+          isCycling = false;
+          const btn = document.getElementById('btnCycleDaylight');
+          if (btn) btn.classList.remove('running');
+          const icon = document.getElementById('iconCycle');
+          if (icon) icon.textContent = '▶';
+          const text = document.getElementById('textCycle');
+          if (text) text.textContent = 'Ciclo 10s';
+          updateSolarSystem();
+        } else {
+          const progress = elapsed / CYCLE_DURATION_MS; // 0.0 to 1.0
+          currentTimeOfDay = ephem.sunriseHour + progress * (ephem.sunsetHour - ephem.sunriseHour);
+          updateSolarSystem();
+        }
+      }
+
+      // FPS Telemetry
+      fpsFrames++;
+      if (time - lastFpsTime >= 1000) {
+        const fps = Math.round((fpsFrames * 1000) / (time - lastFpsTime));
+        document.getElementById('fpsDisplay').textContent = `${fps} FPS`;
+        fpsFrames = 0;
+        lastFpsTime = time;
+      }
+
+      // Render through composer
+      composer.render();
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

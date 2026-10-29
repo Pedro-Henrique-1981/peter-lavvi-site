@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIMULADOR EXAME CRECI-SP (TTI) | Treinamento Interativo Pedro Soares</title>
+  <meta name="description" content="Simulador de prova e fixação de conceitos oficiais para habilitação no CRECI-SP (TTI - Técnico em Transações Imobiliárias). Curadoria por Pedro Soares." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #090D14;
+      --surface: #101725;
+      --card: #151F32;
+      --card-hover: #1c2942;
+      --ink: #F7F4EE;
+      --muted: #94A3B8;
+      --gold: #D4AF37;
+      --gold-light: #F3DC8A;
+      --gold-dark: #957B2B;
+      --navy: #182842;
+      --hairline: rgba(212, 175, 55, 0.25);
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* TOP NAVBAR */
+    .top-nav {
+      border-bottom: 1px solid var(--hairline);
+      padding: 16px 0;
+      background: rgba(9, 13, 20, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .brand-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .btn-nav {
+      background: transparent;
+      border: 1px solid var(--hairline);
+      color: var(--ink);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-nav:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 40px 0 30px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      font-weight: 700;
+      background: rgba(149, 123, 43, 0.18);
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--hairline);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .hero-title em {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+    .hero-lead {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* PROGRESS TRACKER */
+    .progress-bar-container {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      height: 8px;
+      margin: 24px 0 32px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .progress-bar {
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* QUESTION CARD */
+    .quiz-card {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .q-badge {
+      background: rgba(212, 175, 55, 0.15);
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--hairline);
+    }
+    .q-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      line-height: 1.5;
+      color: #fff;
+    }
+
+    /* OPTIONS */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .opt-btn {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--ink);
+      padding: 16px 20px;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.2s;
+      line-height: 1.4;
+    }
+    .opt-btn:hover {
+      background: var(--card-hover);
+      border-color: var(--gold);
+    }
+    .opt-key {
+      font-weight: 700;
+      color: var(--gold-light);
+      background: rgba(212, 175, 55, 0.15);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--success) !important;
+      color: #D1FAE5 !important;
+    }
+    .opt-btn.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--danger) !important;
+      color: #FEE2E2 !important;
+    }
+    .opt-btn:disabled {
+      cursor: default;
+    }
+
+    /* EXPLANATION CARD */
+    .explanation-card {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 10px;
+      background: rgba(21, 31, 50, 0.9);
+      border: 1px solid var(--hairline);
+      display: none;
+    }
+    .explanation-card.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    .exp-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .exp-text {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .exp-cite {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* CONTROLS */
+    .quiz-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+    }
+    .btn-action {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: #000c1e;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn-action:hover {
+      transform: translateY(-2px);
+    }
+    .btn-action:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* SCORE CARD */
+    .score-card {
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      display: none;
+    }
+    .score-card.show {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    .score-number {
+      font-family: var(--serif);
+      font-size: 4rem;
+      color: var(--gold-light);
+      margin: 12px 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="top-nav">
+    <div class="container nav-inner">
+      <div>
+        <div class="brand-title">CRECI INED SIMULATOR</div>
+        <div class="brand-sub">Habilitação Profissional & Due Diligence | Curadoria Pedro Soares</div>
+      </div>
+      <div>
+        <a href="academy.html" class="btn-nav">← Voltar à Academy</a>
+        <a href="solarium.html" class="btn-nav">☀️ Solarium 365</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="container">
+    <header class="hero">
+      <span class="hero-eyebrow">BANCO OFICIAL INED / COFECI-CRECI</span>
+      <h1 class="hero-title">Simulador de Prova <em>Técnico em Transações Imobiliárias</em></h1>
+      <p class="hero-lead">10 questões de alta incidência em Direito Imobiliário, Contratos, Registros Públicos e Código de Ética para fixação imediata do corretor de alto padrão.</p>
+    </header>
+
+    <!-- PROGRESS -->
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- QUIZ CONTAINER -->
+    <div id="quiz-container">
+      <div class="quiz-card">
+        <div class="q-meta">
+          <span class="q-badge" id="q-category">Direito e Legislação</span>
+          <span id="q-counter">Questão 1 de 10</span>
+        </div>
+        <div class="q-text" id="q-text">Carregando pergunta...</div>
+
+        <div class="options-grid" id="options-grid"></div>
+
+        <div class="explanation-card" id="explanation-card">
+          <div class="exp-title" id="exp-title">FUNDAMENTO JURÍDICO</div>
+          <p class="exp-text" id="exp-text"></p>
+          <span class="exp-cite" id="exp-cite"></span>
+        </div>
+
+        <div class="quiz-controls">
+          <div id="status-hint" style="font-size: 0.8rem; color: var(--muted);">Selecione a alternativa correta</div>
+          <button class="btn-action" id="btn-next" onclick="nextQuestion()" disabled>Próxima Questão →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORE FINAL -->
+    <div class="score-card" id="score-card">
+      <span class="hero-eyebrow">RESULTADO DO SIMULADO</span>
+      <div class="score-number" id="final-score">10 / 10</div>
+      <h3 style="font-size: 1.4rem; margin-bottom: 12px;" id="score-headline">Desempenho Notável!</h3>
+      <p style="color: var(--muted); max-width: 540px; margin: 0 auto 28px;" id="score-desc">
+        Você dominou os fundamentos de direito imobiliário, registros públicos e ética profissional exigidos pelo CRECI-SP.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <button class="btn-action" onclick="restartQuiz()">Refazer Simulado</button>
+        <a href="academy.html" class="btn-nav" style="padding: 12px 24px;">Voltar à Academy</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        cat: "Operações Imobiliárias",
+        q: "No contrato de corretagem imobiliária com cláusula de exclusividade expressa por escrito, se o proprietário negociar o imóvel diretamente com terceiro sem a intervenção do corretor durante o prazo da opção, os honorários serão:",
+        opts: [
+          "Indevidos, pois o corretor não participou do fechamento do negócio.",
+          "Devidos integralmente ao corretor, salvo se comprovada a sua inércia ou desídia.",
+          "Reduzidos obrigatoriamente pela metade (50%) por arbitramento judicial.",
+          "Devidos apenas a título de reembolso de despesas de publicidade comprovadas."
+        ],
+        answer: 1,
+        exp: "O Código Civil estipula expressamente que, ajustada a exclusividade por escrito, o corretor tem direito à remuneração integral mesmo se o negócio for realizado sem sua mediação, exceto se restar comprovada sua inércia ou desídia.",
+        cite: "Art. 726 do Código Civil (Lei 10.406/2002)"
+      },
+      {
+        cat: "Direito e Legislação",
+        q: "Na locação residencial urbana regida pela Lei nº 8.245/1991 (Lei do Inquilinato), em relação às garantias locatícias, é CORRETO afirmar que:",
+        opts: [
+          "É permitido exigir caução em dinheiro cumulada com seguro-fiança para imóveis de alto padrão.",
+          "É vedada, sob pena de nulidade e contravenção penal, a exigência de mais de uma modalidade de garantia num mesmo contrato.",
+          "A fiança só é válida se prestada por instituição financeira autorizada pelo Banco Central.",
+          "A caução em dinheiro pode exceder o valor de 6 meses de aluguel se houver pactuação expressa."
+        ],
+        answer: 1,
+        exp: "A Lei do Inquilinato proíbe expressamente mais de uma modalidade de garantia no mesmo contrato de locação (art. 37, parágrafo único), tipificando a dupla garantia como contravenção penal punível com prisão simples ou multa (art. 43, II).",
+        cite: "Lei nº 8.245/1991, arts. 37 e 43"
+      },
+      {
+        cat: "Registros Públicos",
+        q: "De acordo com a Lei de Registros Públicos (Lei nº 6.015/1973), qual o efeito jurídico primordial da transcrição/registro do título translativo na Matrícula Imobiliária?",
+        opts: [
+          "Constitui apenas mera presunção de posse provisória entre particulares.",
+          "Transfere a propriedade imobiliária 'inter vivos', operando eficácia 'erga omnes' perante terceiros.",
+          "Equivale à averbação cadastral na Prefeitura para fins exclusivos de IPTU.",
+          "Gera apenas direitos pessoais obrigacionais sujeitos a perdas e danos."
+        ],
+        answer: 1,
+        exp: "No direito imobiliário brasileiro vigora o princípio da publicidade registral: 'quem não registra não é dono'. A propriedade entre vivos só se transfere mediante o registro do título translativo no Registro Geral de Imóveis (RGI).",
+        cite: "Art. 1.245 do Código Civil e Lei nº 6.015/1973"
+      },
+      {
+        cat: "Incorporação Imobiliária",
+        q: "O que caracteriza o instituto do Patrimônio de Afetação instituído pela Lei nº 10.931/2004 na Lei de Incorporações (Lei nº 4.591/1964)?",
+        opts: [
+          "Permite que o incorporador use o dinheiro das vendas para quitar dívidas de outras obras do grupo.",
+          "Segrega contabilmente e juridicamente o terreno e as receitas da obra, tornando-os inatingíveis por credores ou falência da incorporadora.",
+          "Obriga os adquirentes a assumirem a execução da obra sem a participação do incorporador.",
+          "Extingue a responsabilidade técnica do construtor após a entrega do habite-se."
+        ],
+        answer: 1,
+        exp: "Sob o regime de afetação (art. 31-A a 31-F da Lei 4.591/64), o terreno, as receitas recebidas e o edifício em construção constituem patrimônio segregado, destinado unicamente à conclusão daquela obra específica, imunes a arresto ou penhora por dívidas da incorporadora.",
+        cite: "Lei nº 4.591/1964, art. 31-A"
+      },
+      {
+        cat: "Ética Profissional COFECI",
+        q: "Conforme o Código de Ética Profissional dos Corretores de Imóveis (Resolução COFECI nº 326/1992), constitui infração disciplinar grave:",
+        opts: [
+          "Recusar a intermediação de negócio imobiliário que considere desfavorável ou ilícito.",
+          "Anunciar publicamente imóvel sem a prévia autorização por escrito do proprietário ou com valor divergente.",
+          "Cobrar honorários de corretagem estritamente de acordo com a tabela referencial do CRECI.",
+          "Guardar sigilo profissional sobre informações financeiras e dados pessoais de seus clientes."
+        ],
+        answer: 1,
+        exp: "É vedado ao corretor anunciar publicamente qualquer transação imobiliária sem dispor de prévia autorização formal por escrito, bem como veicular anúncio por preço ou condições distintas daquelas expressamente autorizadas.",
+        cite: "Resolução COFECI nº 326/1992, art. 4º, IX"
+      },
+      {
+        cat: "Direito das Obrigações",
+        q: "Na celebração de uma promessa de compra e venda imobiliária, o sinal pactuado com cláusula expressa de direito de arrependimento possui a natureza jurídica de:",
+        opts: [
+          "Arras confirmatórias, permitindo indenização suplementar em caso de prejuízo maior.",
+          "Arras penitenciais, cuja retenção ou devolução em dobro atua como prefixação máxima das perdas e danos sem indenização adicional.",
+          "Cláusula penal moratória cumulada com juros de mora legais.",
+          "Adiantamento neutro sem qualquer consequência jurídica em caso de distrato."
+        ],
+        answer: 1,
+        exp: "As arras penitenciais (art. 420 do Código Civil) são pactuadas com direito de arrependimento: quem as deu perde-as se desistir, e quem as recebeu devolve-as em dobro. Não cabe indenização suplementar de perdas e danos.",
+        cite: "Art. 420 do Código Civil (Lei 10.406/2002)"
+      },
+      {
+        cat: "Condomínio Edilício",
+        q: "Para a aprovação ou alteração da Convenção de Condomínio Edilício, o Código Civil brasileiro exige o quórum qualificado de:",
+        opts: [
+          "Maioria simples dos presentes na Assembleia Geral Ordinária.",
+          "2/3 (dois terços) dos votos dos condôminos que representem as frações ideais.",
+          "Unanimidade absoluta de todos os condôminos do edifício.",
+          "Maioria absoluta (50% mais um) de todos os condôminos."
+        ],
+        answer: 1,
+        exp: "O art. 1.351 do Código Civil estabelece que a convenção de condomínio depende da aprovação de 2/3 dos votos dos condôminos, sendo nula a alteração aprovada por quórum inferior.",
+        cite: "Art. 1.351 do Código Civil"
+      },
+      {
+        cat: "Lei do Distrato",
+        q: "Sob a Lei do Distrato Imobiliário (Lei nº 13.786/2018), caso o adquirente desista da compra na planta de um imóvel submetido ao regime de Patrimônio de Afetação, a retenção máxima legal da construtora sobre os valores pagos é de até:",
+        opts: [
+          "10% dos valores pagos, com devolução imediata em parcela única.",
+          "50% da quantia paga pelo adquirente, com prazo de devolução em até 30 dias após o habite-se.",
+          "100% dos valores pagos a título de arras irrecuperáveis.",
+          "25% dos valores pagos, sem qualquer exceção para afetação."
+        ],
+        answer: 1,
+        exp: "A Lei 13.786/2018 limitou a retenção a 25% para empreendimentos sem afetação, mas elevou o teto para até 50% quando o empreendimento conta com Patrimônio de Afetação, visando proteger a segurança financeira da coletividade dos demais adquirentes.",
+        cite: "Lei nº 13.786/2018 e art. 67-A da Lei 4.591/1964"
+      },
+      {
+        cat: "Avaliação Imobiliária",
+        q: "O documento formal emitido por corretor de imóveis devidamente inscrito no CNAI (Cadastro Nacional de Avaliadores Imobiliários) para determinação do valor de mercado fundamentado é denominado:",
+        opts: [
+          "Laudo Pericial Arbitral de Venda (LPAV).",
+          "Parecer Técnico de Avaliação Mercadológica (PTAM), regido pela NBR 14.653 da ABNT.",
+          "Certidão Negativa de Ônus e Alienações.",
+          "Contrato de Mútuo Habitacional com Força de Escritura Pública."
+        ],
+        answer: 1,
+        exp: "O PTAM é o instrumento técnico oficial regulamentado pela Resolução COFECI nº 1.066/2007, elaborado segundo os critérios científicos e metodológicos da Norma ABNT NBR 14.653.",
+        cite: "Resolução COFECI nº 1.066/2007 e ABNT NBR 14.653"
+      },
+      {
+        cat: "Remuneração e Mediação",
+        q: "Após a assinatura válida do instrumento de compromisso de compra e venda obtido pelo corretor, as partes decidem de comum acordo rescindir o negócio por arrependimento pessoal posterior. Quanto à comissão de corretagem:",
+        opts: [
+          "O corretor é obrigado a devolver 100% da comissão recebida.",
+          "A remuneração permanece devida ao corretor, uma vez que o resultado útil e o consenso foram alcançados.",
+          "A comissão é convertida em crédito obrigatório para uma transação futura.",
+          "O comprador e vendedor são isentos e respondem apenas por perdas cartorárias."
+        ],
+        answer: 1,
+        exp: "O Código Civil determina que a remuneração é devida ao corretor uma vez que tenha conseguido o resultado previsto no contrato de mediação, ou ainda que este não se efetive em virtude de arrependimento das partes.",
+        cite: "Art. 725 do Código Civil (Lei 10.406/2002)"
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let answered = false;
+
+    function renderQuestion() {
+      answered = false;
+      const qData = questions[currentQ];
+      
+      // Update Progress
+      const progressPct = ((currentQ) / questions.length) * 100;
+      document.getElementById('progress-bar').style.width = `${progressPct}%`;
+
+      // Update Texts
+      document.getElementById('q-category').innerText = qData.cat;
+      document.getElementById('q-counter').innerText = `Questão ${currentQ + 1} de ${questions.length}`;
+      document.getElementById('q-text').innerText = qData.q;
+      
+      // Reset Explanations & Controls
+      document.getElementById('explanation-card').className = 'explanation-card';
+      document.getElementById('btn-next').disabled = true;
+      document.getElementById('status-hint').innerText = "Selecione a alternativa correta";
+
+      // Render Options
+      const grid = document.getElementById('options-grid');
+      grid.innerHTML = '';
+      
+      const letters = ['A', 'B', 'C', 'D'];
+      qData.opts.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'opt-btn';
+        btn.onclick = () => selectOption(idx);
+        btn.innerHTML = `
+          <span class="opt-key">${letters[idx]}</span>
+          <span>${optText}</span>
+        `;
+        grid.appendChild(btn);
+      });
+    }
+
+    function selectOption(idx) {
+      if (answered) return;
+      answered = true;
+      const qData = questions[currentQ];
+      const optButtons = document.querySelectorAll('.opt-btn');
+
+      optButtons.forEach(btn => btn.disabled = true);
+
+      if (idx === qData.answer) {
+        score++;
+        optButtons[idx].classList.add('correct');
+        document.getElementById('status-hint').innerHTML = `<span style="color: var(--success); font-weight: 700;">✔ Resposta Correta!</span>`;
+      } else {
+        optButtons[idx].classList.add('wrong');
+        optButtons[qData.answer].classList.add('correct');
+        document.getElementById('status-hint').innerHTML = `<span style="color: var(--danger); font-weight: 700;">✖ Resposta Incorreta</span>`;
+      }
+
+      // Show Explanation
+      document.getElementById('exp-text').innerText = qData.exp;
+      document.getElementById('exp-cite').innerText = `Fonte: ${qData.cite}`;
+      document.getElementById('explanation-card').classList.add('show');
+
+      // Enable Next
+      document.getElementById('btn-next').disabled = false;
+    }
+
+    function nextQuestion() {
+      currentQ++;
+      if (currentQ < questions.length) {
+        renderQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    function showFinalScore() {
+      document.getElementById('quiz-container').style.display = 'none';
+      document.getElementById('progress-bar').style.width = '100%';
+      
+      const scoreCard = document.getElementById('score-card');
+      scoreCard.classList.add('show');
+      
+      document.getElementById('final-score').innerText = `${score} / ${questions.length}`;
+      
+      const headline = document.getElementById('score-headline');
+      const desc = document.getElementById('score-desc');
+      
+      if (score >= 9) {
+        headline.innerText = "Excelência Absoluta (Apto para Prática & Habilitação)";
+        desc.innerText = "Seu domínio sobre Direito Imobiliário, Código de Ética e Lei de Registros coloca sua consultoria no nível de um especialista sênior de Family Office.";
+      } else if (score >= 7) {
+        headline.innerText = "Aprovado no Padrão CRECI!";
+        desc.innerText = "Você superou a nota de corte oficial do exame TTI com segurança. Revise os pontos comentados para refinar o discurso perante clientes céticos.";
+      } else {
+        headline.innerText = "Revisão Recomendada";
+        desc.innerText = "Recomendamos refazer o simulado e consultar os resumos do cofre de Direito Imobiliário para fixar os artigos legais fundamentais.";
+      }
+    }
+
+    function restartQuiz() {
+      currentQ = 0;
+      score = 0;
+      document.getElementById('quiz-container').style.display = 'block';
+      document.getElementById('score-card').classList.remove('show');
+      renderQuestion();
+    }
+
+    // Start
+    renderQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Aprovação Privado | Pedro Soares — Lavvi Private Wealth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0a0b0e;
+      --bg-surface: #12141c;
+      --bg-card: #181b24;
+      --bg-card-hover: #1e222d;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(212, 175, 55, 0.35);
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --text-main: #f0f2f5;
+      --text-muted: #9aa0a6;
+      --accent-green: #10b981;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-amber: #f59e0b;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /* Top Navigation */
+    .topbar {
+      background: rgba(18, 20, 28, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #d4af37, #996515);
+      color: #000;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+    }
+
+    /* Hero Banner */
+    .hero {
+      max-width: 1200px;
+      margin: 28px auto 20px;
+      padding: 0 24px;
+    }
+
+    .hero-badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .agent-pill {
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 780px;
+    }
+
+    /* Audio Briefing Box (Dyslexia Friendly) */
+    .audio-briefing-box {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 24px;
+    }
+
+    .audio-card {
+      background: linear-gradient(135deg, rgba(24, 27, 36, 0.95), rgba(30, 34, 45, 0.9));
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .audio-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .audio-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+
+    .audio-text h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .audio-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-play {
+      background: var(--gold-primary);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.1s, background 0.2s;
+    }
+
+    .btn-play:hover {
+      background: var(--gold-light);
+      transform: scale(1.03);
+    }
+
+    /* Stats Dashboard */
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto 24px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-card.active-stat {
+      border-color: var(--gold-primary);
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .stat-icon {
+      font-size: 24px;
+      opacity: 0.8;
+    }
+
+    /* Tab Filter Bar */
+    .filter-bar {
+      max-width: 1200px;
+      margin: 0 auto 20px;
+      padding: 0 24px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .tab-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--border-gold);
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: var(--gold-primary);
+      color: #000;
+      font-weight: 600;
+      border-color: var(--gold-primary);
+    }
+
+    /* Content Stream Cards */
+    .stream-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .draft-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .draft-card:hover {
+      border-color: var(--border-gold);
+    }
+
+    .draft-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .draft-title-wrap {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .draft-type-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    .tag-vids {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .tag-audio {
+      background: rgba(139, 92, 246, 0.15);
+      color: #a78bfa;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .tag-card {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .tag-legal {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .draft-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .draft-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .draft-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .draft-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 850px) {
+      .draft-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .content-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .content-box-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .story-beat {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .story-beat:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .beat-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .beat-text {
+      font-size: 14px;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+
+    .storyboard-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .scene-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .scene-badge {
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* Actions Footer */
+    .draft-footer {
+      background: rgba(18, 20, 28, 0.5);
+      border-top: 1px solid var(--border-subtle);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .target-client-info {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .target-client-info strong {
+      color: var(--text-main);
+    }
+
+    .action-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-approve {
+      background: #10b981;
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-approve:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+
+    .btn-mockup {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 13px;
+      border: 1px solid var(--border-subtle);
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-mockup:hover {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--accent-amber);
+      color: #fbbf24;
+    }
+
+    .btn-whatsapp-test {
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      color: #25d366;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-whatsapp-test:hover {
+      background: #25d366;
+      color: #000;
+    }
+
+    /* Feedback Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .chip:hover {
+      border-color: var(--border-gold);
+      color: var(--gold-light);
+    }
+
+    .feedback-textarea {
+      width: 100%;
+      height: 90px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px;
+      color: #fff;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      resize: none;
+      margin-bottom: 16px;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Drive sync footer alert */
+    .drive-sync-bar {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+    }
+
+    .drive-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed var(--border-subtle);
+      border-radius: 8px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .drive-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-badge">⚡ PROMETHEUS</span>
+      <span class="brand-title">Staging & Approval Vault | Pedro Soares</span>
+    </div>
+    <div class="topbar-actions">
+      <a href="academy.html" class="btn-nav" style="border-color: var(--gold); color: var(--gold-light);">🎓 Academy</a>
+      <a href="index.html" class="btn-nav">👁️ Ver Site do Cliente</a>
+      <a href="relocation_matcher.html" class="btn-nav">🗺️ Relocation Matcher</a>
+      <a href="checklist-due-diligence.html" class="btn-nav">⚖️ Due Diligence</a>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero">
+    <div class="hero-badge-wrap">
+      <span class="agent-pill">AGENTE #14 • GOOGLE & GEMINI ECOSYSTEM</span>
+      <span style="font-size: 12px; color: var(--text-muted);">Aprovador Humano: <strong>Pedro Soares</strong></span>
+    </div>
+    <h1 class="hero-title">Esteira de Conteúdo & Validação de Ativos</h1>
+    <p class="hero-subtitle">
+      Conteúdos montados a custo zero de token/API via <strong>Google Vids</strong>, <strong>NotebookLM</strong> e <strong>Gemini Flash</strong>. 
+      Nenhum conteúdo vai a cliente sem o seu clique de aprovação.
+    </p>
+  </section>
+
+  <!-- Visual-First Cockpit Notice -->
+  <section class="audio-briefing-box">
+    <div class="audio-card" style="border-color: rgba(212, 175, 55, 0.3); background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(18, 20, 28, 0.8));">
+      <div class="audio-info">
+        <div class="audio-icon" style="background: rgba(212, 175, 55, 0.15); color: var(--gold-light);">🎨</div>
+        <div class="audio-text">
+          <h4>Esteira 100% Visual & Pronta para Clientes</h4>
+          <p>Áudio briefings desativados conforme sua diretriz. Foco total em infográficos de alta conversão, comparativos NBR 15575 e mapas de demanda para envio direto no WhatsApp.</p>
+        </div>
+      </div>
+      <div class="audio-controls">
+        <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); font-size: 11px; padding: 6px 12px; border-radius: 20px; font-weight: 700;">
+          ⚡ Zero Custo de Tokens
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Dashboard -->
+  <section class="stats-container">
+    <div class="stat-card active-stat">
+      <div>
+        <div class="stat-number" id="count-pending">4</div>
+        <div class="stat-label">Pendentes de Aprovação</div>
+      </div>
+      <div class="stat-icon">⏳</div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="stat-number" id="count-approved">0</div>
+        <div class="stat-label">Aprovados para Cliente</div>
+      </div>
+      <div class="stat-icon">✅</div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="stat-number" id="count-mockups">0</div>
+        <div class="stat-label">Mockups em Iteração</div>
+      </div>
+      <div class="stat-icon">🔄</div>
+    </div>
+    <div class="stat-card">
+      <div>
+        <div class="stat-number" style="color: #10b981;">0 tokens</div>
+        <div class="stat-label">Custo de API (Google Vids / NotebookLM)</div>
+      </div>
+      <div class="stat-icon">⚡</div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="filter-bar">
+    <button class="tab-btn active" onclick="filterCategory('all', this)">Todos os Rascunhos</button>
+    <button class="tab-btn" onclick="filterCategory('visual_infographic', this)">🎨 Infográficos & Bento (Visual)</button>
+    <button class="tab-btn" onclick="filterCategory('video_vids', this)">🎥 Google Vids (Vídeos)</button>
+    <button class="tab-btn" onclick="filterCategory('relocation_matcher', this)">🗺️ 3D Relocation Matcher</button>
+    <button class="tab-btn" onclick="filterCategory('legal_dossier', this)">⚖️ Pontes Legal & Tributário</button>
+    <button class="tab-btn" onclick="filterView('approved', this)">📂 Ver Aprovados (<span id="tab-approved-count">0</span>)</button>
+    <button class="tab-btn" onclick="filterView('mockups', this)">🧪 Ver Mockups (<span id="tab-mockups-count">0</span>)</button>
+  </section>
+
+  <!-- Dynamic Content Stream -->
+  <main class="stream-container" id="stream-container">
+    <!-- Populated by JavaScript from staging_data.json -->
+  </main>
+
+  <!-- Drive Sync Bar -->
+  <footer class="drive-sync-bar">
+    <div class="drive-card">
+      <div class="drive-status">
+        <span class="status-dot"></span>
+        <span>Espelho no Google Drive Ativo: <code>G:\Meine Ablage\Antigravity_Backups\Staging_Aprovacao</code></span>
+      </div>
+      <div>Sincronizado automaticamente via <code>backup_to_gdrive.ps1</code></div>
+    </div>
+  </footer>
+
+  <!-- Iteration / Feedback Modal -->
+  <div class="modal-overlay" id="feedback-modal">
+    <div class="modal-box">
+      <h3 class="modal-title">Guardar como Mockup & Iterar</h3>
+      <p class="modal-desc">Indique para os agentes o que precisa ser refinado para a próxima versão:</p>
+      
+      <div class="preset-chips">
+        <span class="chip" onclick="setFeedback('Tornar o gancho de 3s mais intrigante')">Ajustar Gancho (0-3s)</span>
+        <span class="chip" onclick="setFeedback('Enfatizar a proximidade das escolas Chapel / Suíça')">Focar em Escolas</span>
+        <span class="chip" onclick="setFeedback('Refinar métricas de rentabilidade líquida do hospital')">Mais Números</span>
+        <span class="chip" onclick="setFeedback('Tom de voz muito vendedor; tornar mais sóbrio e consultivo')">Tom Mais Discreto</span>
+      </div>
+
+      <textarea class="feedback-textarea" id="feedback-text" placeholder="Ou digite uma observação rápida para o agente..."></textarea>
+      
+      <div class="modal-footer">
+        <button class="btn-nav" onclick="closeModal()">Cancelar</button>
+        <button class="btn-approve" style="background: var(--accent-amber);" onclick="confirmMockup()">Salvar Mockup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initial Staging Data
+    let stagingData = {
+      pending: [],
+      approved: [],
+      mockups: []
+    };
+
+    let activeFilter = 'all';
+    let currentView = 'pending';
+    let activeModalTargetId = null;
+
+    // Load Data
+    async function loadStagingData() {
+      try {
+        const res = await fetch('staging_data.json?t=' + Date.now());
+        if (res.ok) {
+          stagingData = await res.json();
+        }
+      } catch (e) {
+        console.warn('Carregando dados locais de fallback...');
+      }
+
+      // Check localStorage for any local Pedro approvals
+      const localApproved = JSON.parse(localStorage.getItem('lavvi_approved_ids') || '[]');
+      const localMockups = JSON.parse(localStorage.getItem('lavvi_mockup_ids') || '[]');
+
+      if (stagingData.pending) {
+        // Apply local state if any
+        localApproved.forEach(id => {
+          const idx = stagingData.pending.findIndex(i => i.id === id);
+          if (idx !== -1) {
+            const item = stagingData.pending.splice(idx, 1)[0];
+            item.status = 'approved';
+            stagingData.approved.push(item);
+          }
+        });
+
+        localMockups.forEach(entry => {
+          const idx = stagingData.pending.findIndex(i => i.id === entry.id);
+          if (idx !== -1) {
+            const item = stagingData.pending.splice(idx, 1)[0];
+            item.status = 'mockup_iteration';
+            item.iteration_feedback = entry.feedback;
+            stagingData.mockups.push(item);
+          }
+        });
+      }
+
+      updateCounters();
+      renderStream();
+    }
+
+    function updateCounters() {
+      document.getElementById('count-pending').textContent = stagingData.pending.length;
+      document.getElementById('count-approved').textContent = stagingData.approved.length;
+      document.getElementById('count-mockups').textContent = stagingData.mockups.length;
+      document.getElementById('tab-approved-count').textContent = stagingData.approved.length;
+      document.getElementById('tab-mockups-count').textContent = stagingData.mockups.length;
+    }
+
+    function filterCategory(cat, btn) {
+      currentView = 'pending';
+      activeFilter = cat;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderStream();
+    }
+
+    function filterView(view, btn) {
+      currentView = view;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderStream();
+    }
+
+    function renderStream() {
+      const container = document.getElementById('stream-container');
+      container.innerHTML = '';
+
+      let items = [];
+      if (currentView === 'pending') {
+        items = stagingData.pending;
+      } else if (currentView === 'approved') {
+        items = stagingData.approved;
+      } else if (currentView === 'mockups') {
+        items = stagingData.mockups;
+      }
+
+      if (activeFilter !== 'all' && currentView === 'pending') {
+        items = items.filter(i => i.type === activeFilter);
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: 12px; border: 1px dashed var(--border-subtle);">
+            <div style="font-size: 32px; margin-bottom: 12px;">✨</div>
+            <h3 style="font-size: 18px; color: #fff; margin-bottom: 6px;">Nenhum item nesta fila</h3>
+            <p style="color: var(--text-muted); font-size: 14px;">Todos os conteúdos foram processados ou aguardam o próximo ciclo agendado da esteira PROMETHEUS.</p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = createDraftCard(item);
+        container.appendChild(card);
+      });
+    }
+
+    function createDraftCard(item) {
+      const el = document.createElement('article');
+      el.className = 'draft-card';
+      el.id = `card-${item.id}`;
+
+      let typeTagClass = 'tag-vids';
+      let typeLabel = 'Google Vids (Vídeo)';
+      if (item.type === 'visual_infographic') {
+        typeTagClass = 'tag-card';
+        typeLabel = '🎨 Infográfico Visual & Bento (Client-Ready)';
+      } else if (item.type === 'video_vids') {
+        typeTagClass = 'tag-vids';
+        typeLabel = '🎥 Google Vids & Reels (Vídeo)';
+      } else if (item.type === 'relocation_matcher') {
+        typeTagClass = 'tag-card';
+        typeLabel = '🗺️ 3D Relocation Matcher (Expats & Bairros)';
+      } else if (item.type === 'legal_dossier') {
+        typeTagClass = 'tag-legal';
+        typeLabel = '⚖️ Pontes Legal & Tributário';
+      } else if (item.type === 'approved_post') {
+        typeTagClass = 'tag-card';
+        typeLabel = '✅ Post Oficial Pronto para Redes';
+      } else if (item.type === 'carousel_mockup' || item.status === 'mockup_iteration') {
+        typeTagClass = 'tag-audio';
+        typeLabel = '🧪 Mockup em Iteração Criativa';
+      }
+
+      // WhatsApp text encoding
+      const waText = encodeURIComponent(`Olá! Pedro Soares da Lavvi por aqui.\n\n${item.content.hook_0_3s || item.content.headline || item.title}\n\n${item.content.beat_3_cta || item.content.whatsapp_pitch_accompanying || 'Quer ter acesso ao material completo? Vamos conversar.'}`);
+      const waUrl = `https://wa.me/5511966105952?text=${waText}`;
+
+      // Body preview rendering based on type
+      let previewHtml = '';
+      if (item.type === 'visual_infographic') {
+        previewHtml = `
+          <div class="content-box">
+            <div class="content-box-title">🎨 Tese Visual & Métricas de Impacto</div>
+            <h4 style="font-size: 16px; color: #fff; margin-bottom: 8px;">${item.content.headline}</h4>
+            <p style="font-size: 13px; color: var(--gold-light); margin-bottom: 12px; line-height: 1.4;">${item.content.core_thesis}</p>
+            <ul style="padding-left: 20px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+              ${item.content.key_metrics.map(m => `<li>${m}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="content-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="content-box-title">📱 Mensagem Formatada para WhatsApp</div>
+              <div style="background: rgba(37, 211, 102, 0.05); border: 1px solid rgba(37, 211, 102, 0.2); padding: 12px; border-radius: 6px; font-size: 13px; color: #e2e8f0; line-height: 1.4; margin-bottom: 14px;">
+                "${item.content.whatsapp_pitch_accompanying}"
+              </div>
+            </div>
+            <a href="${item.visual_url}" target="_blank" class="btn-play" style="width: 100%; justify-content: center; text-decoration: none; padding: 10px 16px;">
+              👁️ Abrir Infográfico Visual em Tela Cheia
+            </a>
+          </div>
+        `;
+      } else if (item.type === 'video_vids') {
+        previewHtml = `
+          <div class="content-box">
+            <div class="content-box-title">🎬 3 Spoken Story Beats (Teleprompter-Free)</div>
+            <div class="story-beat">
+              <div class="beat-label">Beat 1: Hook (0-3s)</div>
+              <div class="beat-text">"${item.content.hook_0_3s}"</div>
+            </div>
+            <div class="story-beat">
+              <div class="beat-label">Beat 2: Geografia & Detalhes (3-20s)</div>
+              <div class="beat-text">"${item.content.beat_2_geography}"</div>
+            </div>
+            <div class="story-beat">
+              <div class="beat-label">Beat 3: Conexão & CTA (20-35s)</div>
+              <div class="beat-text">"${item.content.beat_3_cta}"</div>
+            </div>
+          </div>
+          <div class="content-box">
+            <div class="content-box-title">🎥 Storyboard Google Vids (1080p Nativo)</div>
+            <div class="storyboard-timeline">
+              ${item.content.storyboard_scenes.map(s => `
+                <div class="scene-row">
+                  <span class="scene-badge">Cena ${s.scene} (${s.duration})</span>
+                  <span>${s.visual} — <em>"${s.caption}"</em></span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } else if (item.type === 'relocation_matcher') {
+        previewHtml = `
+          <div class="content-box">
+            <div class="content-box-title">🗺️ Diagnóstico de Bairro & Relocation SP</div>
+            <h4 style="font-size: 16px; color: #fff; margin-bottom: 8px;">${item.content.headline}</h4>
+            <p style="font-size: 13px; color: var(--gold-light); margin-bottom: 12px; line-height: 1.4;">${item.content.core_thesis}</p>
+            <ul style="padding-left: 20px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+              ${(item.content.key_features || []).map(f => `<li>${f}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="content-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="content-box-title">📱 Pitch de Envio no WhatsApp</div>
+              <div style="background: rgba(37, 211, 102, 0.05); border: 1px solid rgba(37, 211, 102, 0.2); padding: 12px; border-radius: 6px; font-size: 13px; color: #e2e8f0; line-height: 1.4; margin-bottom: 14px;">
+                "${item.content.whatsapp_pitch_accompanying}"
+              </div>
+            </div>
+            <a href="relocation_matcher.html" target="_blank" class="btn-play" style="width: 100%; justify-content: center; text-decoration: none; padding: 10px 16px; background: #3b82f6; color: #fff;">
+              🗺️ Abrir 3D Relocation Matcher
+            </a>
+          </div>
+        `;
+      } else if (item.type === 'approved_post') {
+        previewHtml = `
+          <div class="content-box" style="grid-column: span 2;">
+            <div class="content-box-title">📱 Texto Completo para Publicação (LinkedIn & Instagram)</div>
+            <h4 style="font-size: 16px; color: #fff; margin-bottom: 10px;">${item.content.headline}</h4>
+            <div style="background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 16px; font-size: 13px; color: #cbd5e1; line-height: 1.6; white-space: pre-line; max-height: 240px; overflow-y: auto;">
+              ${item.content.post_copy}
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
+              <button class="btn-nav" onclick="copyPostText('${item.id}')" style="background: var(--gold-primary); color: #000; font-weight: 700; border: none; cursor: pointer;">
+                📋 Copiar Texto Formatado
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (item.type === 'carousel_mockup' || item.status === 'mockup_iteration') {
+        previewHtml = `
+          <div class="content-box">
+            <div class="content-box-title">🧪 Feedback & Objetivo da Iteração</div>
+            <h4 style="font-size: 16px; color: #fff; margin-bottom: 8px;">${item.content.headline}</h4>
+            <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 12px; font-size: 13px; color: #fde68a; margin-bottom: 12px;">
+              <strong>Anotação do Agente:</strong> ${item.iteration_feedback || item.content.headline}
+            </div>
+            <div class="storyboard-timeline">
+              ${(item.content.slides || []).map(s => `
+                <div class="scene-row">
+                  <span class="scene-badge">Lâmina ${s.slide}</span>
+                  <span><strong>${s.title}:</strong> <em>"${s.text}"</em></span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          <div class="content-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div class="content-box-title">📱 Mensagem de Acompanhamento WhatsApp</div>
+              <div style="background: rgba(37, 211, 102, 0.05); border: 1px solid rgba(37, 211, 102, 0.2); padding: 12px; border-radius: 6px; font-size: 13px; color: #e2e8f0; line-height: 1.4;">
+                "${item.content.whatsapp_pitch_accompanying}"
+              </div>
+            </div>
+            <div style="margin-top: 14px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 8px; font-size: 12px; color: var(--text-muted);">
+              💡 <em>Mockup em refinamento. Clique em "Aprovar Versão Refinada" para promover à esteira de publicação.</em>
+            </div>
+          </div>
+        `;
+      } else {
+        previewHtml = `
+          <div class="content-box" style="grid-column: span 2;">
+            <div class="content-box-title">⚖️ Parecer Legal PONTES</div>
+            <h4 style="font-size: 16px; color: #fff; margin-bottom: 12px;">${item.content.headline}</h4>
+            <ul style="padding-left: 20px; font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+              ${item.content.legal_pillars.map(p => `<li>${p}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      // Actions bar
+      let actionsHtml = '';
+      if (item.status === 'pending_approval') {
+        actionsHtml = `
+          <div class="action-btn-group">
+            <a href="${waUrl}" target="_blank" class="btn-whatsapp-test" title="Ver como chega no WhatsApp">
+              📲 Testar no WhatsApp
+            </a>
+            <button class="btn-mockup" onclick="openMockupModal('${item.id}')">
+              🔁 Guardar como Mockup / Iterar
+            </button>
+            <button class="btn-approve" onclick="approveAsset('${item.id}')">
+              ✅ Aprovar para Cliente
+            </button>
+          </div>
+        `;
+      } else if (item.status === 'approved') {
+        actionsHtml = `
+          <div class="action-btn-group">
+            <button class="btn-nav" onclick="copyPostText('${item.id}')" style="background: rgba(255,255,255,0.08);">
+              📋 Copiar Texto do Post
+            </button>
+            <a href="${waUrl}" target="_blank" class="btn-whatsapp-test">
+              📲 Disparar WhatsApp
+            </a>
+          </div>
+        `;
+      } else {
+        actionsHtml = `
+          <div class="action-btn-group">
+            <span style="color: var(--accent-amber); font-size: 12px; font-weight: 600;">🧪 Mockup em Iteração Criativa</span>
+            <button class="btn-approve" onclick="approveAsset('${item.id}')" style="background: #10b981; color: #000; font-weight: 700;">
+              ✅ Aprovar Versão Refinada
+            </button>
+          </div>
+        `;
+      }
+
+      el.innerHTML = `
+        <div class="draft-header">
+          <div class="draft-title-wrap">
+            <span class="draft-type-tag ${typeTagClass}">${typeLabel}</span>
+            <h3 class="draft-title">${item.title}</h3>
+            <div class="draft-meta">
+              <span>🏢 <strong>${item.project}</strong></span>
+              <span>📅 ${item.created_at}</span>
+              <span>⚡ ${item.estimated_token_cost}</span>
+            </div>
+          </div>
+        </div>
+        <div class="draft-body">
+          ${previewHtml}
+        </div>
+        <div class="draft-footer">
+          <div class="target-client-info">
+            Público-Alvo: <strong>${item.target_persona}</strong> | Canal: <strong>${item.platform_target}</strong>
+          </div>
+          ${actionsHtml}
+        </div>
+      `;
+
+      return el;
+    }
+
+    // Actions
+    function approveAsset(id) {
+      let item = null;
+      let idx = stagingData.pending.findIndex(i => i.id === id);
+      if (idx !== -1) {
+        item = stagingData.pending.splice(idx, 1)[0];
+      } else {
+        idx = stagingData.mockups.findIndex(i => i.id === id);
+        if (idx !== -1) {
+          item = stagingData.mockups.splice(idx, 1)[0];
+        }
+      }
+
+      if (item) {
+        item.status = 'approved';
+        item.approved_at = new Date().toISOString();
+        stagingData.approved.push(item);
+
+        // Store in localStorage
+        const localApproved = JSON.parse(localStorage.getItem('lavvi_approved_ids') || '[]');
+        if (!localApproved.includes(id)) {
+          localApproved.push(id);
+          localStorage.setItem('lavvi_approved_ids', JSON.stringify(localApproved));
+        }
+
+        updateCounters();
+        renderStream();
+        showToast(`🎉 "${item.title}" aprovado com sucesso! Pronto para publicação.`);
+      }
+    }
+
+    function copyPostText(id) {
+      let item = stagingData.approved.find(i => i.id === id) || stagingData.pending.find(i => i.id === id) || stagingData.mockups.find(i => i.id === id);
+      if (item && item.content) {
+        const text = item.content.post_copy || item.content.whatsapp_pitch_accompanying || item.content.headline || item.title;
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('📋 Texto copiado para a área de transferência! Pronto para colar no LinkedIn ou Instagram.');
+        }).catch(() => {
+          showToast('📋 Pronto para compartilhar!');
+        });
+      }
+    }
+
+    function openMockupModal(id) {
+      activeModalTargetId = id;
+      document.getElementById('feedback-text').value = '';
+      document.getElementById('feedback-modal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('feedback-modal').classList.remove('active');
+      activeModalTargetId = null;
+    }
+
+    function setFeedback(txt) {
+      document.getElementById('feedback-text').value = txt;
+    }
+
+    function confirmMockup() {
+      if (!activeModalTargetId) return;
+      const feedback = document.getElementById('feedback-text').value.trim() || 'Ajustar tom e formato';
+      
+      const idx = stagingData.pending.findIndex(i => i.id === activeModalTargetId);
+      if (idx !== -1) {
+        const item = stagingData.pending.splice(idx, 1)[0];
+        item.status = 'mockup_iteration';
+        item.iteration_feedback = feedback;
+        stagingData.mockups.push(item);
+
+        // Store in localStorage
+        const localMockups = JSON.parse(localStorage.getItem('lavvi_mockup_ids') || '[]');
+        localMockups.push({ id: item.id, feedback });
+        localStorage.setItem('lavvi_mockup_ids', JSON.stringify(localMockups));
+
+        closeModal();
+        updateCounters();
+        renderStream();
+        showToast(`🔄 Movido para Mockups para refinamento.`);
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.createElement('div');
+      toast.style.position = 'fixed';
+      toast.style.bottom = '24px';
+      toast.style.right = '24px';
+      toast.style.background = '#12141c';
+      toast.style.border = '1px solid var(--gold-primary)';
+      toast.style.color = '#fff';
+      toast.style.padding = '12px 20px';
+      toast.style.borderRadius = '8px';
+      toast.style.fontSize = '14px';
+      toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.5)';
+      toast.style.zIndex = '9999';
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    // Audio Briefing player simulator
+    function toggleAudioBriefing() {
+      const btn = document.getElementById('btn-audio-briefing');
+      if (btn.textContent.includes('Ouvir')) {
+        btn.textContent = '⏸ Pausar Áudio';
+        btn.style.background = '#10b981';
+        showToast('🎧 Reproduzindo resumo da esteira de aprovação...');
+        
+        // Speak using Web Speech API if supported
+        if ('speechSynthesis' in window) {
+          const text = "Olá Pedro! O Agente Prometheus preparou 4 rascunhos na sua esteira de hoje. O primeiro é um vídeo para o Google Vids sobre o Jardim da Hípica, focado no oásis de 40 mil metros quadrados. O segundo é um podcast do NotebookLM sobre a alta rentabilidade de studios no T.O.M. Paraíso para médicos. O terceiro é um card visual do simulador Solarium 365, e o quarto é uma nota jurídica do Agente Pontes sobre patrimônio de afetação. Todos prontos para seu clique de aprovação.";
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = 'pt-BR';
+          utter.rate = 1.05;
+          utter.onend = () => {
+            btn.textContent = '▶ Ouvir Resumo em Áudio';
+            btn.style.background = 'var(--gold-primary)';
+          };
+          window.speechSynthesis.speak(utter);
+        }
+      } else {
+        btn.textContent = '▶ Ouvir Resumo em Áudio';
+        btn.style.background = 'var(--gold-primary)';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+    }
+
+    // Initialize
+    loadStagingData();
+  </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Private Podcasts | 8 Bairros Nobres de São Paulo</title>
+  <style>
+    :root {
+      --navy-deep: #0B1320;
+      --navy-card: #142033;
+      --navy-border: #233552;
+      --gold-primary: #D4AF37;
+      --text-white: #F8FAFC;
+      --text-slate: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--navy-deep);
+      color: var(--text-white);
+      padding: 40px 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { color: var(--gold-primary); margin-bottom: 8px; font-size: 1.8rem; }
+    p.lead { color: var(--text-slate); margin-bottom: 30px; font-size: 0.95rem; }
+    .episodes-grid { display: flex; flex-direction: column; gap: 20px; }
+    .ep-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .ep-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .ep-title { font-size: 1.15rem; font-weight: 700; color: #FFF; }
+    .ep-badge { background: var(--gold-primary); color: #000; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 12px; }
+    audio { width: 100%; margin-top: 15px; border-radius: 8px; }
+    .footer { text-align: center; margin-top: 40px; color: var(--text-slate); font-size: 0.85rem; border-top: 1px solid var(--navy-border); padding-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎧 Private Podcasts: Os 8 Bairros Nobres de São Paulo</h1>
+    <p class="lead">Guias de áudio imersivos narrados sob a perspectiva do corretor que caminha e pedala pela cidade. Análise urbana, cultural, gastronômica e os empreendimentos ícones da Lavvi.</p>
+    
+    <div class="episodes-grid">
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Alto da Boa Vista & Chácara Flora: O Refúgio Equestre e Verde de São Paulo</div>
+          <span class="ep-badge">Alto da Boa Vista</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>Jardim da Hípica</strong>.</p>
+        <audio controls src="01_alto_da_boa_vista.wav"></audio>
+      </div>
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Moema Pássaros e Índios: A Arte da Caminhabilidade Plena e Alta Costura</div>
+          <span class="ep-badge">Moema</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>Villa Versace Moema & Saffire Elie Saab</strong>.</p>
+        <audio controls src="02_moema_passaros_indios.wav"></audio>
+      </div>
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Paraíso e Eixo Hospitalar: O Encontro entre a Cultura, a Medicina e o Ibirapuera</div>
+          <span class="ep-badge">Paraíso</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>T.O.M. Paraíso & Le Six Paraíso</strong>.</p>
+        <audio controls src="03_paraiso_eixo_hospitalar.wav"></audio>
+      </div>
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Brooklin e Chácara Santo Antônio: A Nova Centralidade Corporativa e Verde</div>
+          <span class="ep-badge">Brooklin / Chácara Santo Antônio</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>Nurban, Wonder & Eden Park</strong>.</p>
+        <audio controls src="04_brooklin_chacara_santo_antonio.wav"></audio>
+      </div>
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Perdizes e Pompéia: Tradição Intelectual, Colinas Históricas e Bem-Estar</div>
+          <span class="ep-badge">Perdizes</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>Well Perdizes</strong>.</p>
+        <audio controls src="05_perdizes_pompeia.wav"></audio>
+      </div>
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Chácara Klabin e Vila Mariana: Logística Privilegiada e Tradição Familiar</div>
+          <span class="ep-badge">Chácara Klabin</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>Galleria Klabin & Grand Square</strong>.</p>
+        <audio controls src="06_chacara_klabin_vila_mariana.wav"></audio>
+      </div>
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Jardim Anália Franco: O Epicentro de Sofisticação e Lazer da Zona Leste</div>
+          <span class="ep-badge">Jardim Anália Franco</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>Portfólio Lavvi Anália Franco</strong>.</p>
+        <audio controls src="07_jardim_analia_franco.wav"></audio>
+      </div>
+
+      <div class="ep-card">
+        <div class="ep-header">
+          <div class="ep-title">📍 Jardim Marajoara e Interlagos: O Oásis Verde e a Tradição do Golf Club</div>
+          <span class="ep-badge">Jardim Marajoara / Interlagos</span>
+        </div>
+        <p style="color: var(--text-slate); font-size: 0.88rem;">Análise com foco em: <strong>Residencial Marajoara & Linha Verde</strong>.</p>
+        <audio controls src="08_marajoara_interlagos.wav"></audio>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <p><strong>Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952</strong></p>
+      <p style="margin-top: 5px;">Áudios criados para ouvir no fone de ouvido durante caminhadas e deslocamentos urbanos.</p>
+    </div>
+  </div>
+</body>
+</html>

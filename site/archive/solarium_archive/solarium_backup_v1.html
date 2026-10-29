@@ -1,0 +1,2983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOLARIUM 365 PRO — Física Solar, Satélite & Auditoria de Sombras Vizinhas | Pedro Soares</title>
+  <meta name="description" content="Simulador de trajetória solar de alta precisão com imagem de satélite, plantas arquitetônicas, perspectiva do pedestre e cálculo de sombras de edifícios vizinhos nos empreendimentos Lavvi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090D14;
+      --surface: #101725;
+      --card: #151F32;
+      --card-hover: #1c2942;
+      --ink: #F7F4EE;
+      --muted: #94A3B8;
+      --gold: #D4AF37;
+      --gold-light: #F3DC8A;
+      --gold-dark: #957B2B;
+      --navy: #182842;
+      --hairline: rgba(212, 175, 55, 0.25);
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 60px;
+    }
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* TOP NAVBAR */
+    .top-nav {
+      border-bottom: 1px solid var(--hairline);
+      padding: 16px 0;
+      background: rgba(9, 13, 20, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .brand-sub {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-nav {
+      background: transparent;
+      border: 1px solid var(--hairline);
+      color: var(--ink);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-nav:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* HERO STRIP */
+    .hero-strip {
+      padding: 28px 0 16px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.1);
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--hairline);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-lead {
+      font-size: 0.92rem;
+      color: var(--muted);
+      max-width: 820px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* PROJECT SELECTOR TABS */
+    .proj-tabs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0 24px;
+    }
+    .tab-btn {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      color: var(--muted);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover {
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+      color: #000c1e;
+      border-color: var(--gold-light);
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+    }
+
+    /* VIEW MODE TOGGLE (SATELLITE vs ARCHITECTURAL vs PEDESTRIAN) */
+    .view-mode-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .view-mode-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .view-mode-btn.active {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* MAIN STAGE (2-COLUMN GRID) */
+    .simulator-stage {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .simulator-stage {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* VISUALIZER CARD & CANVAS */
+    .visualizer-card {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .canvas-topbar {
+      padding: 14px 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+    .canvas-title {
+      font-weight: 700;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .canvas-metrics {
+      color: var(--muted);
+      font-size: 0.75rem;
+      display: flex;
+      gap: 14px;
+    }
+    .canvas-metrics span strong {
+      color: #fff;
+    }
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      background: #06090e;
+      overflow: hidden;
+    }
+    #gmaps-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: none;
+    }
+    #gmaps-streetview {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      display: none;
+    }
+    #solar-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: block;
+      pointer-events: none; /* Permite interagir, dar zoom e arrastar o Google Maps por baixo! */
+    }
+    .canvas-3d-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-3d-toggle {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--hairline);
+      color: var(--gold-light);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-3d-toggle:hover {
+      background: rgba(212, 175, 55, 0.25);
+      border-color: var(--gold);
+    }
+    /* SHADOW ALERT BANNER OVERLAY */
+    .shadow-alert-overlay {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      padding: 12px 18px;
+      border-radius: 10px;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.82rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+    .alert-clear {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #A7F3D0;
+    }
+    .alert-warning {
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #FDE68A;
+    }
+    .alert-danger {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #FECACA;
+    }
+
+    /* RIGHT CONTROLS PANEL */
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .control-box {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .control-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .control-value {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .slider-input {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid #fff;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+    }
+    .slider-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* FLOOR SELECTOR ROW */
+    .floor-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .floor-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--hairline);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: var(--ink);
+    }
+    .floor-chip.active {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+    }
+
+    /* SENSORY & THERMAL ANALYSIS CARDS */
+    .sensory-card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(24, 40, 66, 0.3));
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .sensory-title {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .sensory-text {
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: #E2E8F0;
+    }
+
+    /* TIME-LAPSE & ACTION BUTTONS */
+    .btn-timelapse {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+      color: #000c1e;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+      transition: all 0.2s;
+    }
+    .btn-timelapse:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-wa-gold {
+      background: rgba(37, 211, 102, 0.15);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      color: #25D366;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-wa-gold:hover {
+      background: #25D366;
+      color: #000;
+    }
+
+    /* PRESET PILLS (PROMETHEUS & CLAUDE ENHANCEMENTS) */
+    .preset-pill-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .preset-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--hairline);
+      color: var(--ink);
+      font-size: 0.72rem;
+      padding: 5px 11px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .preset-pill:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+    .preset-pill.active {
+      background: var(--gold);
+      color: #090D14;
+      font-weight: 700;
+      border-color: var(--gold);
+    }
+
+    /* SOLAR SUMMARY BOX & HORÍMETRO SOLAR */
+    .solar-summary-box {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(16, 23, 37, 0.85) 100%);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .solar-summary-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .solar-summary-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 10px 0 8px 0;
+    }
+    .solar-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 50%, #10B981 100%);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+    .solar-summary-notes {
+      font-size: 0.78rem;
+      color: #CBD5E1;
+      line-height: 1.45;
+    }
+  
+    /* SATELLITE BASE MAP (LEAFLET + ESRI WORLD IMAGERY) */
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: 580px;
+      background: #06090e;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--hairline);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+    }
+    #solarium-map-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background: #090D14;
+    }
+    #solar-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      display: block;
+      pointer-events: none; /* User can click and drag the satellite map directly! */
+    }
+    .leaflet-control-attribution {
+      display: none !important;
+    }
+
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <nav class="top-nav">
+    <div class="container nav-inner">
+      <div>
+        <div class="brand-title">SOLARIUM 365 PRO</div>
+        <div class="brand-sub">Física Solar, Trajetória & Cálculo de Sombras Vizinhas | Pedro Soares</div>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-nav" id="btn-gmaps-connect" onclick="openGmapsModal()" style="border-color: var(--gold); color: var(--gold-light);">🗺️ Conectar Google Maps 3D</button>
+        <a href="index.html" class="btn-nav">🏛️ Voltar ao Portal Lavvi</a>
+        <a href="https://wa.me/5511966105952" target="_blank" class="btn-nav" style="border-color: #25D366; color: #25D366;">💬 Falar com Pedro</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- HERO HEADER -->
+    <header class="hero-strip">
+      <span class="eyebrow">AUDITORIA DE LUZ & INCIDÊNCIA SOLAR REAL</span>
+      <h1 class="hero-title">O Sol Não Mente: <em>Simule o Seu Apartamento</em></h1>
+      <p class="hero-lead">
+        Integração de coordenadas satelitais, plantas reais e o <strong>Motor de Oclusão de Prédios Vizinhos</strong>. 
+        Descubra se a torre ao lado causará sombra na sua varanda ou se a sua suíte terá sol pleno o ano todo.
+      </p>
+
+            <!-- LUXURY PROJECT SELECTOR (COMPLETE 25 LAVVI & NOVVO ASSETS) -->
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 16px 0 12px 0; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 0.8rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em;">🏢 Selecionar Empreendimento:</span>
+          <select id="project-master-select" onchange="selectProject(this.value)" style="background: rgba(16, 23, 37, 0.95); color: #F1F5F9; border: 1px solid var(--hairline); padding: 8px 16px; border-radius: 8px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; outline: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <optgroup label="👑 COLEÇÃO LAVVI LUXO (HIGH-END)">
+              <option value="hipica">Jardim da Hípica Residences (Alto da Boa Vista – 84 a 276 m²)</option>
+              <option value="hipica_apt">Jardim da Hípica Apartments (Alto da Boa Vista – 21 a 57 m²)</option>
+              <option value="tom_paraiso">T.O.M. Paraíso (Eixo Vergueiro – 25 a 43 m²)</option>
+              <option value="saffire">Saffire Elie Saab (Moema Pássaros – 360 e 493 m²)</option>
+              <option value="villa_moema">Villa Residence by Versace Home (Moema Pássaros – 149 a 221 m²)</option>
+              <option value="petra">Petra Brooklin by Boca do Lobo (Brooklin – 162 a 199 m²)</option>
+              <option value="le_six">Le Six Ibirapuera & Residences (Paraíso – 194 e 264 m²)</option>
+              <option value="heaven">Heaven Residences by Yoo (Paraíso – 155 a 220 m²)</option>
+              <option value="alive">Alive Home Resort (Vila Prudente – 65 a 115 m²)</option>
+              <option value="grand_square">Grand Square (Praça da Árvore – 67 a 92 m²)</option>
+              <option value="palace">Palace by Praças (Brás – 45 a 82 m²)</option>
+              <option value="green_view">Green View Butantã (Butantã / USP – 74 a 108 m²)</option>
+              <option value="well_perdizes">Well Perdizes Smart Living (Perdizes – 25 a 51 m²)</option>
+              <option value="soleil_klabin">Galleria Klabin & Soleil Residences (Chácara Klabin – 166 m²)</option>
+              <option value="soleil_apt">Soleil Apartments (Chácara Klabin – 24 a 38 m²)</option>
+              <option value="verdant">Verdant Tucuruvi (Tucuruvi – 55 a 78 m²)</option>
+              <option value="high_wonder">High Wonder (Brás – 24 a 42 m²)</option>
+            </optgroup>
+            <optgroup label="⚡ LINHA MEU NOVVO (SMART URBAN)">
+              <option value="novvo_santa_marina">Novvo Santa Marina (Água Branca – 25 a 37 m²)</option>
+              <option value="novvo_analia_franco">Novvo Anália Franco (Anália Franco – 24 a 44 m²)</option>
+              <option value="novvo_vila_prudente">Novvo Vila Prudente (Vila Prudente – 25 a 39 m²)</option>
+              <option value="novvo_marajoara">Novvo Marajoara (Jardim Marajoara – 26 a 41 m²)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div id="project-quick-badge" style="font-size: 0.78rem; color: #F3DC8A; background: rgba(212,175,55,0.08); padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(212,175,55,0.25);">
+          📍 Rua Antônio Bandeira, 305 | Alto da Boa Vista
+        </div>
+      </div>
+
+      <!-- PROJECT TABS (CONFIRMED ACTIVE LAVVI & NOVVO LISTINGS) -->
+      <div class="proj-tabs">
+        <button class="tab-btn active" onclick="selectProject('hipica', this)">Jardim da Hípica (Residences 84-276m²)</button>
+        <button class="tab-btn" onclick="selectProject('hipica_apt', this)">Hípica Apartments (Studios 21-57m²)</button>
+        <button class="tab-btn" onclick="selectProject('tom_paraiso', this)">T.O.M. Paraíso (25 a 43m²)</button>
+        <button class="tab-btn" onclick="selectProject('saffire', this)">Saffire Elie Saab (360 e 493m²)</button>
+        <button class="tab-btn" onclick="selectProject('petra', this)">Petra Brooklin (162 a 199m²)</button>
+        <button class="tab-btn" onclick="selectProject('le_six', this)">Le Six Ibirapuera (194 e 264m²)</button>
+        <button class="tab-btn" onclick="selectProject('villa_moema', this)">Villa Moema (149 a 221m²)</button>
+        <button class="tab-btn" onclick="selectProject('well_perdizes', this)">Well Perdizes (25 a 51m²)</button>
+        <button class="tab-btn" onclick="selectProject('novvo_santa_marina', this)">Novvo Santa Marina (25 a 37m²)</button>
+        <button class="tab-btn" onclick="selectProject('soleil_klabin', this)">Galleria Klabin (166m²)</button>
+      </div>
+
+      <!-- VIEW MODE TOGGLE -->
+      <div class="view-mode-bar">
+        <button class="view-mode-btn active" id="mode-satellite" onclick="setViewMode('satellite')">🛰️ Visão Satélite & Entorno 3D</button>
+        <button class="view-mode-btn" id="mode-floorplan" onclick="setViewMode('floorplan')">📐 Planta Baixa & Azimute das Suítes</button>
+        <button class="view-mode-btn" id="mode-street" onclick="setViewMode('street')">🚶 Perspectiva do Pedestre / Rua</button>
+      </div>
+    </header>
+
+    <!-- SIMULATOR STAGE -->
+    <main class="simulator-stage">
+      <!-- LEFT COLUMN: CANVAS VISUALIZER -->
+      <section class="visualizer-card">
+        <div class="canvas-topbar">
+          <div class="canvas-title" id="canvas-title">
+            <span>☀️</span>
+            <span id="proj-name-header">Jardim da Hípica — Alto da Boa Vista</span>
+          </div>
+          <div class="canvas-3d-controls">
+            <button class="btn-3d-toggle" id="btn-toggle-tilt" onclick="toggleMapTilt()">📐 Modo 3D (45°)</button>
+            <button class="btn-3d-toggle" id="btn-rotate-cam" onclick="rotateMapCamera()">🔄 Girar 3D</button>
+            <button class="btn-3d-toggle" id="btn-recenter-cam" onclick="recenterMap()">🎯 Centralizar Torre</button>
+            <button class="btn-3d-toggle" id="btn-copy-share-link" onclick="copySimulationShareLink()" style="background: rgba(212, 175, 55, 0.15); border-color: var(--gold); color: var(--gold-light);">🔗 Copiar Link SunCalc</button>
+          </div>
+          <div class="canvas-metrics">
+            <span>Azimute: <strong id="metric-azimuth">68° (NE)</strong></span>
+            <span>Elevação: <strong id="metric-elevation">28°</strong></span>
+            <span>Sombra Projetada: <strong id="metric-shadow-length" style="color: #FBBF24;">38.4m</strong></span>
+            <span>Nascente: <strong id="metric-sunrise" style="color: #FFA500;">05:32</strong></span>
+            <span>Poente: <strong id="metric-sunset" style="color: #FF4500;">18:42</strong></span>
+            <span>Gabarito ZER: <strong style="color: var(--success);" id="metric-zer">100% Protegido</strong></span>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <!-- SATELLITE MAP CONTAINER (ESRI WORLD IMAGERY - ZERO API KEY REQUIRED) -->
+          <div id="solarium-map-container"></div>
+          <canvas id="solar-canvas" width="800" height="580"></canvas>
+
+          <!-- DYNAMIC SHADOW AUDIT ALERT -->
+          <div class="shadow-alert-overlay alert-clear" id="shadow-alert">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 20px;" id="alert-icon">☀️</span>
+              <div>
+                <strong id="alert-title">Sol Pleno Desobstruído: 0% de Sombra Vizinha</strong>
+                <p id="alert-desc" style="font-size: 0.75rem; margin-top: 2px;">
+                  Em frente ao Clube Hípico de Santo Amaro e praça de 10.000m². Nenhum edifício vizinho bloqueia a luz solar.
+                </p>
+              </div>
+            </div>
+            <div style="font-size: 0.72rem; font-weight: 700; white-space: nowrap; padding: 4px 10px; background: rgba(0,0,0,0.3); border-radius: 6px;" id="alert-score">
+              ÍNDICE SOLAR: 9.8 / 10
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: INTERACTIVE CONTROLS -->
+      <aside class="controls-panel">
+        <!-- CONTROL 1: TIME OF DAY -->
+        <div class="control-box">
+          <div class="control-header">
+            <span class="control-title">⏰ Horário do Dia</span>
+            <span class="control-value" id="val-hour">08:30</span>
+          </div>
+          <input type="range" class="slider-input" id="slider-hour" min="6" max="18.5" step="0.25" value="8.5" oninput="updateTime(this.value)" />
+          <div class="slider-ticks">
+            <span>06:00 (Nascente)</span>
+            <span>12:30 (Zênite)</span>
+            <span>18:30 (Poente)</span>
+          </div>
+          <div class="preset-pill-row">
+            <button class="preset-pill" onclick="setTimePreset(8.0)">☕ 08:00 (Café/Manhã)</button>
+            <button class="preset-pill" onclick="setTimePreset(12.0)">☀️ 12:00 (Zênite)</button>
+            <button class="preset-pill" onclick="setTimePreset(16.5)">🌇 16:30 (Sunset)</button>
+          </div>
+        </div>
+
+        <!-- CONTROL 2: SEASON / MONTH (SOLSTICES & EQUINOXES) -->
+        <div class="control-box">
+          <div class="control-header">
+            <span class="control-title">📅 Estação do Ano</span>
+            <span class="control-value" id="val-season" style="font-size: 0.92rem; color: var(--gold-light);">Equinócio de Outono (Março)</span>
+          </div>
+          <input type="range" class="slider-input" id="slider-month" min="1" max="12" step="1" value="3" oninput="updateSeason(this.value)" />
+          <div class="slider-ticks">
+            <span>Jan (Verão)</span>
+            <span>Jun (Inverno)</span>
+            <span>Set (Primavera)</span>
+            <span>Dez (Solstício)</span>
+          </div>
+          <div class="preset-pill-row" id="season-presets">
+            <button class="preset-pill" onclick="setSeasonPreset(12, this)">☀️ Solstício Verão (Dez)</button>
+            <button class="preset-pill active" onclick="setSeasonPreset(3, this)">🍂 Equinócio Outono (Mar)</button>
+            <button class="preset-pill" onclick="setSeasonPreset(6, this)">❄️ Solstício Inverno (Jun)</button>
+            <button class="preset-pill" onclick="setSeasonPreset(9, this)">🌸 Equinócio Prim. (Set)</button>
+          </div>
+        </div>
+
+        <!-- SOLAR SUMMARY & HORÍMETRO SOLAR (PROMETHEUS ENGINE) -->
+        <div class="control-box solar-summary-box">
+          <div class="solar-summary-header">
+            <span class="control-title">☀️ Horímetro Solar Diário</span>
+            <span class="control-value" id="val-sun-hours" style="color: var(--gold-light); font-size: 1.05rem;">7h 30m de Sol</span>
+          </div>
+          <div class="solar-summary-bar">
+            <div class="solar-progress-fill" id="solar-progress-fill" style="width: 78%;"></div>
+          </div>
+          <div class="solar-summary-notes" id="solar-summary-notes">
+            Insolação direta contínua das 06:30 às 14:00 (Face Leste / Norte). Excelente conforto térmico no inverno e proteção contra sobreaquecimento poente.
+          </div>
+        </div>
+
+        <!-- CONTROL 3: FLOOR LEVEL (MOTOR DE SOMBRA VIZINHA) -->
+        <div class="control-box">
+          <div class="control-header">
+            <span class="control-title">🏢 Andar Selecionado (Altura da Unidade)</span>
+            <span class="control-value" id="val-floor">12º Andar (~38m)</span>
+          </div>
+          <input type="range" class="slider-input" id="slider-floor" min="1" max="28" step="1" value="12" oninput="updateFloor(this.value)" />
+          <div class="floor-badge-row">
+            <span class="floor-chip" onclick="setFloorPreset(3)">Andar Baixo (3º)</span>
+            <span class="floor-chip active" onclick="setFloorPreset(12)">Andar Médio (12º)</span>
+            <span class="floor-chip" onclick="setFloorPreset(24)">Cobertura / Alto (24º)</span>
+          </div>
+        </div>
+
+        <!-- TIME LAPSE BUTTON -->
+        <button class="btn-timelapse" id="btn-timelapse" onclick="toggleTimeLapse()">
+          <span>▶</span>
+          <span id="timelapse-text">Simular Dia Completo (Time-Lapse 10s)</span>
+        </button>
+
+        <!-- SENSORY DIAGNOSTIC -->
+        <div class="sensory-card">
+          <div class="sensory-title">🔬 Diagnóstico Térmico & Conforto Circadiano</div>
+          <p class="sensory-text" id="sensory-desc">
+            Às 08:30 no 12º andar, o living e as suítes recebem a luz dourada do nascente com incidência oblíqua de 28°. 
+            Ideal para começar o dia com iluminação natural revigorante sem superaquecer o ambiente.
+          </p>
+        </div>
+
+        <!-- WHATSAPP DOSSIER CTA -->
+        <a id="btn-wa-dossier" href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro!%20Fiz%20a%20simula%C3%A7%C3%A3o%20solar%20do%20Jardim%20da%20H%C3%ADpica%20no%20Solarium%20365%20e%20gostaria%20de%20ver%20a%20planta%20do%2012%C2%BA%20andar." target="_blank" class="btn-wa-gold">
+          <span>💬</span>
+          <span>Pedir Parecer de Luz Deste Andar no WhatsApp</span>
+        </a>
+      </aside>
+    </main>
+  </div>
+
+  <!-- SIMULATOR JAVASCRIPT & GOOGLE MAPS 3D ENGINE -->
+  <script>
+    // PROJECT DATA & PRECISE COORDINATES
+    const PROJECTS = {
+      hipica: {
+        "name": "Jardim da Hípica Residences",
+        "address": "Rua Antônio Bandeira, 305",
+        "bairro": "Alto da Boa Vista",
+        "typology": "Residences 84 a 276 m² (4 Suítes)",
+        "lat": -23.645377,
+        "lng": -46.710906,
+        "azimuthOffset": -15,
+        "zerProtected": true,
+        "defaultFloor": 14,
+        "totalFloors": 32,
+        "neighbors": [
+                {
+                        "name": "Clube Hípico de Santo Amaro",
+                        "dir": "Leste",
+                        "dist": 30,
+                        "height": 12,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Praça Pública Benedito Abbud (10.000m²)",
+                        "dir": "Norte",
+                        "dist": 15,
+                        "height": 15,
+                        "type": "trees"
+                },
+                {
+                        "name": "Torre B Residences",
+                        "dir": "Sudoeste",
+                        "dist": 48,
+                        "height": 85,
+                        "type": "internal_tower"
+                }
+        ],
+        "description": "Em frente aos 330.000m² verdes do Clube Hípico e à praça pública doada de 10.000m². Insolação Leste/Norte perene e protegida de qualquer bloqueio futuro pelo zoneamento ZER."
+},
+
+      hipica_apt: {
+        "name": "Jardim da Hípica Apartments",
+        "address": "Rua Antônio Bandeira, 305 (Torre E)",
+        "bairro": "Alto da Boa Vista",
+        "typology": "Studios e 1 Dorm 21 a 57 m²",
+        "lat": -23.644888,
+        "lng": -46.70907,
+        "azimuthOffset": -10,
+        "zerProtected": true,
+        "defaultFloor": 8,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Clube Hípico de Santo Amaro",
+                        "dir": "Leste",
+                        "dist": 40,
+                        "height": 12,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Torre A Residences",
+                        "dir": "Noroeste",
+                        "dist": 55,
+                        "height": 85,
+                        "type": "internal_tower"
+                }
+        ],
+        "description": "Torre independente com entrada e lazer exclusivos. Face Leste com sol matinal direto e vista panorâmica para o bosque da Hípica."
+},
+
+      tom_paraiso: {
+        "name": "T.O.M. Paraíso",
+        "address": "Rua Vergueiro, 1200",
+        "bairro": "Paraíso",
+        "typology": "Studios 25 a 43 m²",
+        "lat": -23.572349,
+        "lng": -46.645109,
+        "azimuthOffset": 25,
+        "zerProtected": false,
+        "defaultFloor": 10,
+        "totalFloors": 28,
+        "neighbors": [
+                {
+                        "name": "Edifício Comercial Vergueiro",
+                        "dir": "Leste",
+                        "dist": 38,
+                        "height": 62,
+                        "type": "commercial"
+                },
+                {
+                        "name": "BP Hospital Mirante",
+                        "dir": "Norte",
+                        "dist": 85,
+                        "height": 48,
+                        "type": "hospital"
+                }
+        ],
+        "description": "Epicentro do polo médico Paulista/Paraíso (29.000 profissionais de saúde). A partir do 6º andar, a torre supera completamente os edifícios comerciais vizinhos às 08:30."
+},
+
+      saffire: {
+        "name": "Saffire Elie Saab",
+        "address": "Rua Diogo Jácome / Moema Pássaros",
+        "bairro": "Moema",
+        "typology": "Mansões Suspensas 360 e 493 m² (4 Suítes)",
+        "lat": -23.597812,
+        "lng": -46.666145,
+        "azimuthOffset": 10,
+        "zerProtected": true,
+        "defaultFloor": 15,
+        "totalFloors": 26,
+        "neighbors": [
+                {
+                        "name": "Copas de Árvores de Moema Pássaros",
+                        "dir": "Oeste",
+                        "dist": 22,
+                        "height": 18,
+                        "type": "trees"
+                },
+                {
+                        "name": "Residencial Moema Baixo",
+                        "dir": "Sul",
+                        "dist": 45,
+                        "height": 40,
+                        "type": "residential"
+                }
+        ],
+        "description": "O 1º residencial com interiores de Elie Saab da América Latina. Terreno de 7.600m² em Moema Pássaros. Insolação Norte e Oeste desobstruída com vista exuberante para o Parque Ibirapuera."
+},
+
+      villa_moema: {
+        "name": "Villa Residence by Versace Home",
+        "address": "Av. Jamaris, 450",
+        "bairro": "Moema",
+        "typology": "Residences 149 a 221 m² (3 e 4 Suítes)",
+        "lat": -23.606283,
+        "lng": -46.662019,
+        "azimuthOffset": 5,
+        "zerProtected": false,
+        "defaultFloor": 12,
+        "totalFloors": 25,
+        "neighbors": [
+                {
+                        "name": "Bairro Residencial Moema Pássaros",
+                        "dir": "Norte",
+                        "dist": 30,
+                        "height": 20,
+                        "type": "residential"
+                },
+                {
+                        "name": "Edifício Residencial Jamaris",
+                        "dir": "Leste",
+                        "dist": 42,
+                        "height": 45,
+                        "type": "residential"
+                }
+        ],
+        "description": "Design exclusivo assinado por Versace Home. Moema Pássaros fora da rota de aproximação de aeronaves. Insolação Norte que garante calor e luz natural em todo o inverno paulistano."
+},
+
+      petra: {
+        "name": "Petra Brooklin by Boca do Lobo",
+        "address": "Rua Arizona, 800",
+        "bairro": "Brooklin",
+        "typology": "Residences 162 a 199 m² (4 Suítes)",
+        "lat": -23.616238,
+        "lng": -46.691456,
+        "azimuthOffset": -20,
+        "zerProtected": false,
+        "defaultFloor": 14,
+        "totalFloors": 28,
+        "neighbors": [
+                {
+                        "name": "Torre Empresarial Berrini",
+                        "dir": "Oeste",
+                        "dist": 60,
+                        "height": 85,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Arizona",
+                        "dir": "Norte",
+                        "dist": 35,
+                        "height": 40,
+                        "type": "residential"
+                }
+        ],
+        "description": "1º projeto global com design assinado pela marca portuguesa de joalheria mobiliária Boca do Lobo. Living voltado para o skyline da Berrini com pôr do sol cinematográfico."
+},
+
+      le_six: {
+        "name": "Le Six Ibirapuera & Residences",
+        "address": "Rua Salto, 80",
+        "bairro": "Paraíso",
+        "typology": "Residences 194 e 264 m² (4 Suítes)",
+        "lat": -23.5785,
+        "lng": -46.6542,
+        "azimuthOffset": 15,
+        "zerProtected": false,
+        "defaultFloor": 12,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Copas do Parque Ibirapuera (600m)",
+                        "dir": "Sudoeste",
+                        "dist": 120,
+                        "height": 20,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Residencial Salto",
+                        "dir": "Leste",
+                        "dist": 32,
+                        "height": 42,
+                        "type": "residential"
+                }
+        ],
+        "description": "Paraíso nobre junto ao Ibirapuera. Suítes com vista limpa e ventilação perene vinda dos ventos do parque. Living amplo com face solar Norte."
+},
+
+      well_perdizes: {
+        "name": "Well Perdizes Smart Living",
+        "address": "Rua Cardoso de Almeida, 218",
+        "bairro": "Perdizes",
+        "typology": "Studios e 2 Dorms (25 a 51 m²)",
+        "lat": -23.5358,
+        "lng": -46.6672,
+        "azimuthOffset": -25,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Campus PUC-SP",
+                        "dir": "Oeste",
+                        "dist": 120,
+                        "height": 30,
+                        "type": "trees"
+                },
+                {
+                        "name": "Vale do Pacaembu",
+                        "dir": "Sudoeste",
+                        "dist": 250,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Topografia privilegiada no alto de Perdizes. Vista aberta para o Vale do Pacaembu e campus da PUC-SP. Alta demanda universitária e médica."
+},
+
+      heaven: {
+        "name": "Heaven Residences by Yoo",
+        "address": "Rua Tutóia / Paraíso",
+        "bairro": "Paraíso",
+        "typology": "Residences 155 a 220 m² (3 e 4 Suítes)",
+        "lat": -23.57512,
+        "lng": -46.6518,
+        "azimuthOffset": 12,
+        "zerProtected": false,
+        "defaultFloor": 11,
+        "totalFloors": 25,
+        "neighbors": [
+                {
+                        "name": "Colégio Bandeirantes",
+                        "dir": "Norte",
+                        "dist": 80,
+                        "height": 25,
+                        "type": "school"
+                },
+                {
+                        "name": "Residencial Tutóia",
+                        "dir": "Oeste",
+                        "dist": 35,
+                        "height": 45,
+                        "type": "residential"
+                }
+        ],
+        "description": "Design icônico do estúdio global Yoo (Philippe Starck). Paraíso arborizado próximo aos melhores colégios de São Paulo. Sol pleno nas varandas."
+},
+
+      alive: {
+        "name": "Alive Home Resort",
+        "address": "Rua Capitão Pacheco e Chaves, 500",
+        "bairro": "Vila Prudente",
+        "typology": "Residences 65 a 115 m² (2 e 3 Dorms)",
+        "lat": -23.5856,
+        "lng": -46.5982,
+        "azimuthOffset": 0,
+        "zerProtected": false,
+        "defaultFloor": 10,
+        "totalFloors": 27,
+        "neighbors": [
+                {
+                        "name": "Mooca Plaza Shopping",
+                        "dir": "Norte",
+                        "dist": 140,
+                        "height": 30,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Parque Verde Interno",
+                        "dir": "Sul",
+                        "dist": 20,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Megaresort residencial em terreno de 18.000m² com parque privativo. Sem nenhum obstáculo a Sul ou Leste, garantindo sol absoluto o dia inteiro na área das piscinas."
+},
+
+      grand_square: {
+        "name": "Grand Square Praça da Árvore",
+        "address": "Av. Jabaquara, 800",
+        "bairro": "Praça da Árvore",
+        "typology": "Residences 67 a 92 m² (2 e 3 Dorms)",
+        "lat": -23.6105,
+        "lng": -46.6387,
+        "azimuthOffset": -10,
+        "zerProtected": false,
+        "defaultFloor": 9,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Eixo Metroviário Linha 1-Azul",
+                        "dir": "Oeste",
+                        "dist": 40,
+                        "height": 15,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Praça da Árvore",
+                        "dir": "Leste",
+                        "dist": 35,
+                        "height": 40,
+                        "type": "residential"
+                }
+        ],
+        "description": "Ao lado da Estação Praça da Árvore. Facilidade de locomoção imediata pela Linha 1-Azul. Insolação equilibrada com sol poente filtrado e sol nascente limpo."
+},
+
+      palace: {
+        "name": "Palace by Praças",
+        "address": "Rua Visconde de Parnaíba",
+        "bairro": "Brás",
+        "typology": "Residences 45 a 82 m² (1 a 3 Dorms)",
+        "lat": -23.5428,
+        "lng": -46.6135,
+        "azimuthOffset": 30,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Polo Ferroviário Histórico do Brás",
+                        "dir": "Sul",
+                        "dist": 150,
+                        "height": 15,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Edifício Comercial Brás",
+                        "dir": "Norte",
+                        "dist": 40,
+                        "height": 38,
+                        "type": "commercial"
+                }
+        ],
+        "description": "Revitalização urbana e patrimonial do centro expandido de São Paulo. Conexão expressa com linhas de metrô e trem, com face solar Sul e Leste livre de bloqueios."
+},
+
+      green_view: {
+        "name": "Green View Residence Butantã",
+        "address": "Av. Corifeu de Azevedo Marques",
+        "bairro": "Butantã",
+        "typology": "Residences 74 a 108 m² (2 e 3 Dorms)",
+        "lat": -23.5714,
+        "lng": -46.7268,
+        "azimuthOffset": 45,
+        "zerProtected": true,
+        "defaultFloor": 10,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Bosque da Cidade Universitária (USP)",
+                        "dir": "Norte",
+                        "dist": 180,
+                        "height": 20,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Casas do Butantã",
+                        "dir": "Sul",
+                        "dist": 40,
+                        "height": 10,
+                        "type": "residential"
+                }
+        ],
+        "description": "Em frente à exuberante floresta urbana da Universidade de São Paulo (USP). Vista verde perene tombada pelo patrimônio, com sol Norte durante todo o dia."
+},
+
+      soleil_klabin: {
+        "name": "Galleria Klabin & Soleil Residences",
+        "address": "Rua Pedro de Toledo, 1800",
+        "bairro": "Chácara Klabin",
+        "typology": "Residences 166 m² (3 Suítes)",
+        "lat": -23.5991,
+        "lng": -46.6432,
+        "azimuthOffset": 10,
+        "zerProtected": true,
+        "defaultFloor": 15,
+        "totalFloors": 26,
+        "neighbors": [
+                {
+                        "name": "Polo Hospitalar Unifesp / São Paulo",
+                        "dir": "Norte",
+                        "dist": 140,
+                        "height": 45,
+                        "type": "hospital"
+                },
+                {
+                        "name": "Casas Arborizadas da Chácara Klabin",
+                        "dir": "Sul",
+                        "dist": 30,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Oásis na Chácara Klabin / Vila Clementino. Face Sul e Leste protegida pela ZER do Klabin, garantindo luminosidade e silêncio absoluto."
+},
+
+      soleil_apt: {
+        "name": "Soleil Apartments Klabin",
+        "address": "Rua Pedro de Toledo, 1800 (Torre Studios)",
+        "bairro": "Chácara Klabin",
+        "typology": "Studios 24 a 38 m²",
+        "lat": -23.599,
+        "lng": -46.643,
+        "azimuthOffset": 10,
+        "zerProtected": true,
+        "defaultFloor": 7,
+        "totalFloors": 20,
+        "neighbors": [
+                {
+                        "name": "Polo Hospitalar Unifesp",
+                        "dir": "Norte",
+                        "dist": 140,
+                        "height": 45,
+                        "type": "hospital"
+                }
+        ],
+        "description": "Studios inteligentes na Vila Clementino / Klabin com taxa de ocupação recorde devido à proximidade de mais de 6 grandes hospitais."
+},
+
+      verdant: {
+        "name": "Verdant Tucuruvi",
+        "address": "Av. Mazzei, 700",
+        "bairro": "Tucuruvi",
+        "typology": "Residences 55 a 78 m² (2 e 3 Dorms)",
+        "lat": -23.4792,
+        "lng": -46.6041,
+        "azimuthOffset": 18,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Serra da Cantareira",
+                        "dir": "Norte",
+                        "dist": 600,
+                        "height": 80,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Residencial Mazzei",
+                        "dir": "Leste",
+                        "dist": 35,
+                        "height": 30,
+                        "type": "residential"
+                }
+        ],
+        "description": "Zona Norte com vista panorâmica para a Serra da Cantareira. Clima fresco e ventilação perene, com varanda gourmet ensolarada."
+},
+
+      high_wonder: {
+        "name": "High Wonder Brás",
+        "address": "Rua Caetano Pinto",
+        "bairro": "Brás",
+        "typology": "Studios e 1 Dorm (24 a 42 m²)",
+        "lat": -23.5489,
+        "lng": -46.6192,
+        "azimuthOffset": -5,
+        "zerProtected": false,
+        "defaultFloor": 9,
+        "totalFloors": 25,
+        "neighbors": [
+                {
+                        "name": "Polo Comercial do Brás",
+                        "dir": "Oeste",
+                        "dist": 50,
+                        "height": 25,
+                        "type": "commercial"
+                }
+        ],
+        "description": "Alta rentabilidade para locação de curta e média temporada no centro atacadista mais movimentado do Brasil."
+},
+
+      novvo_santa_marina: {
+        "name": "Novvo Santa Marina",
+        "address": "Av. Santa Marina, 600",
+        "bairro": "Água Branca",
+        "typology": "Smart Living 25 a 37 m² (1 e 2 Dorms)",
+        "lat": -23.5186,
+        "lng": -46.6853,
+        "azimuthOffset": 20,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 23,
+        "neighbors": [
+                {
+                        "name": "Futura Estação Santa Marina Linha 6-Laranja",
+                        "dir": "Oeste",
+                        "dist": 180,
+                        "height": 15,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Água Branca",
+                        "dir": "Norte",
+                        "dist": 40,
+                        "height": 35,
+                        "type": "residential"
+                }
+        ],
+        "description": "Eixo de maior valorização da Linha 6-Laranja. Apartamentos inteligentes com varanda e excelente aproveitamento espacial."
+},
+
+      novvo_analia_franco: {
+        "name": "Novvo Anália Franco",
+        "address": "Av. Regente Feijó, 1200",
+        "bairro": "Anália Franco",
+        "typology": "Smart Living 24 a 44 m²",
+        "lat": -23.5592,
+        "lng": -46.5681,
+        "azimuthOffset": -15,
+        "zerProtected": false,
+        "defaultFloor": 9,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Shopping Anália Franco",
+                        "dir": "Sul",
+                        "dist": 180,
+                        "height": 35,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Anália",
+                        "dir": "Leste",
+                        "dist": 35,
+                        "height": 45,
+                        "type": "residential"
+                }
+        ],
+        "description": "Ao lado do Shopping Anália Franco e Parque CERET. Padrão nobre da Zona Leste com acabamento diferenciado Lavvi."
+},
+
+      novvo_vila_prudente: {
+        "name": "Novvo Vila Prudente",
+        "address": "Rua Orfanato, 300",
+        "bairro": "Vila Prudente",
+        "typology": "Smart Living 25 a 39 m²",
+        "lat": -23.5834,
+        "lng": -46.5862,
+        "azimuthOffset": 10,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Estação Vila Prudente Metrô",
+                        "dir": "Norte",
+                        "dist": 250,
+                        "height": 20,
+                        "type": "commercial"
+                }
+        ],
+        "description": "Conexão direta com a Linha 2-Verde (Paulista em 15 minutos). Localização estratégica com comércio ativo e vida de bairro vibrante."
+},
+
+      novvo_marajoara: {
+        "name": "Novvo Marajoara",
+        "address": "Av. Sargento Geraldo Sant'Ana",
+        "bairro": "Jardim Marajoara",
+        "typology": "Smart Living 26 a 41 m²",
+        "lat": -23.6682,
+        "lng": -46.6923,
+        "azimuthOffset": -5,
+        "zerProtected": true,
+        "defaultFloor": 7,
+        "totalFloors": 20,
+        "neighbors": [
+                {
+                        "name": "Casas Arborizadas do Marajoara (ZER)",
+                        "dir": "Leste",
+                        "dist": 30,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Em pleno Jardim Marajoara, cercado por ruas calmas e copas de árvores. Excelente para quem busca tranquilidade e fácil acesso à Chácara Santo Antônio."
+},
+
+    };
+
+    const FLOORPLAN_DATA = {
+      hipica: {
+        "title": "RESIDENCES TIPO – 223 m² (4 SUÍTES PRIVATIVAS)",
+        "leftWing": {
+                "label": "LIVING & TERRAÇO GOURMET",
+                "desc": "Face Oeste – Sol Poente & Churrasqueira a Carvão",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "ALA DAS 4 SUÍTES MASTER",
+                "desc": "Face Leste – Sol Nascente & Vista Clube Hípico",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "02 Quadras de tênis oficiais de saibro (18x36m) + 02 Beach Tennis",
+                "Piscina monumental com raia de 60m + 04 Private Houses",
+                "Gestão CBRE e assessoria esportiva Body Care inclusa no condomínio"
+        ]
+},
+
+      hipica_apt: {
+        "title": "STUDIO EXECUTIVO & 1 DORM – 56 m² COM VAGA",
+        "leftWing": {
+                "label": "LIVING & VARANDA PRIVATIVA",
+                "desc": "Face Norte – Luminosidade Perene o Dia Todo",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "DORMITÓRIO PRINCIPAL",
+                "desc": "Face Leste – Sol Matinal Suave das 07h às 11h",
+                "color": "#60A5FA"
+        },
+        "highlights": [
+                "Portaria e lazer 100% independentes das torres residenciais",
+                "Ponto para máquina de lavar e secar dentro da unidade",
+                "1 Vaga vinculada em todas as unidades a partir do 13º andar"
+        ]
+},
+
+      tom_paraiso: {
+        "title": "STUDIOS & 1 DORM – 25 A 43 m² (POLO MÉDICO)",
+        "leftWing": {
+                "label": "COZINHA GOURMET & LIVING",
+                "desc": "Face Norte – Vista Aberta Eixo Paulista",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "SUÍTE EXECUTIVA & OFFICE",
+                "desc": "Face Leste – Luz Matinal sem Ruído da Avenida",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Rooftop monumental com raia coberta aquecida de 25m",
+                "3 Minutos a pé da Estação Paraíso (Linhas 1-Azul e 2-Verde)",
+                "Demanda locativa contínua por médicos residentes e executivos"
+        ]
+},
+
+      saffire: {
+        "title": "MANSÃO SUSPENSA ELIE SAAB – 493 m² (4 SUÍTES)",
+        "leftWing": {
+                "label": "GALERIA SOCIAL & LIVING 360°",
+                "desc": "Face Norte/Oeste – Pôr do Sol e Vista Ibirapuera",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "ALA ÍNTIMA DAS 4 SUÍTES MASTER",
+                "desc": "Face Leste/Norte – Silêncio em Moema Pássaros",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Interiores e áreas comuns 100% assinados por Elie Saab Maison",
+                "Terreno de 7.600 m² no miolo mais nobre de Moema Pássaros",
+                "4 a 6 vagas demarcadas de garagem + depósito privativo"
+        ]
+},
+
+      villa_moema: {
+        "title": "VILLA RESIDENCE BY VERSACE HOME – 221 m² (3 SUÍTES)",
+        "leftWing": {
+                "label": "LIVING COM TERRAÇO VERSACE",
+                "desc": "Face Norte – Sol Pleno de Inverno e Verão",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "3 SUÍTES COM SACADAS PRIVATIVAS",
+                "desc": "Face Leste – Silêncio Acústico Fora da Rota",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Acabamentos e mosaicos exclusivos Versace Home",
+                "Localização ímpar a 300m da Estação Moema do Metrô",
+                "Prédio pronto e entregue com valorização consolidada"
+        ]
+},
+
+      petra: {
+        "title": "PETRA BY BOCA DO LOBO – 199 m² (4 SUÍTES)",
+        "leftWing": {
+                "label": "LIVING INTEGRADO & VARANDA GOURMET",
+                "desc": "Face Oeste – Sol Poente & Skyline Brooklin",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "4 SUÍTES COM CLOSETS",
+                "desc": "Face Leste – Sol da Manhã Energizante",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Mobiliário e peças de arte Boca do Lobo nas áreas comuns",
+                "350m a pé da Estação Brooklin (Linha 5-Lilás)",
+                "Complexo de piscinas com raia aquecida e spa privativo"
+        ]
+},
+
+      le_six: {
+        "title": "LE SIX RESIDENCES – 264 m² (4 SUÍTES PRIVATIVAS)",
+        "leftWing": {
+                "label": "LIVING COM VISTA IBIRAPUERA",
+                "desc": "Face Norte/Oeste – Sol da Tarde e Pôr do Sol",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "ALA ÍNTIMA DAS 4 SUÍTES",
+                "desc": "Face Leste – Sol Suave da Manhã",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Apenas 600m do portão principal do Parque Ibirapuera",
+                "Elevador social privativo com biometria",
+                "Varanda com pé-direito duplo e churrasqueira integrada"
+        ]
+},
+
+      well_perdizes: {
+        "title": "WELL PERDIZES SMART LIVING – 51 m² (2 DORMS)",
+        "leftWing": {
+                "label": "LIVING & TERRAÇO VALE DO PACAEMBU",
+                "desc": "Face Oeste – Horizonte Amplo da Zona Oeste",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "2 DORMITÓRIOS COM SOL MATINAL",
+                "desc": "Face Leste – Ventilação Cruzada da PUC-SP",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Rua Cardoso de Almeida, 218 (coração de Perdizes)",
+                "Colado à futura Estação PUC-Cardoso da Linha 6-Laranja",
+                "Rentabilidade líquida média de aluguel estimada em 0.65% a.m."
+        ]
+},
+
+      heaven: {
+        "title": "HEAVEN BY YOO – 220 m² (4 SUÍTES EXCLUSIVAS)",
+        "leftWing": {
+                "label": "LIVING INTEGRADO COM DESIGN YOO",
+                "desc": "Face Norte – Sol Perene o Ano Inteiro",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "ALA DAS SUÍTES DE HOSPEDAGEM",
+                "desc": "Face Leste – Vista Aberta da Tutóia",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Assinatura de design de interiores Yoo Studio (Londres)",
+                "A poucas quadras do Parque Ibirapuera e Av. Paulista",
+                "Área de lazer com conceito de hotelaria internacional"
+        ]
+},
+
+      alive: {
+        "title": "ALIVE HOME RESORT – 115 m² (3 SUÍTES COM VARANDA)",
+        "leftWing": {
+                "label": "LIVING & TERRAÇO COM CHURRASQUEIRA",
+                "desc": "Face Norte – Vista para o Complexo Aquático",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "DORMITÓRIOS & SUÍTE MASTER",
+                "desc": "Face Leste – Sol da Manhã e Silêncio",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Parque aquático com praia artificial de 1.200 m²",
+                "A 500m do Mooca Plaza Shopping",
+                "Mais de 40 itens de lazer para famílias"
+        ]
+},
+
+      grand_square: {
+        "title": "GRAND SQUARE – 92 m² (3 DORMS COM VARANDA GOURMET)",
+        "leftWing": {
+                "label": "SALA DE ESTAR & JANTAR INTEGRADA",
+                "desc": "Face Oeste – Pôr do Sol e Amplitude",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "SUÍTE CASAL + 2 DORMS",
+                "desc": "Face Leste – Sol da Manhã sem Ruído",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "250m a pé da Estação Praça da Árvore do Metrô",
+                "Varanda gourmet com churrasqueira em todas as metragens",
+                "Pronto para morar com documentação 100% regularizada"
+        ]
+},
+
+      palace: {
+        "title": "PALACE BY PRAÇAS – 82 m² (3 DORMS COM SUÍTE)",
+        "leftWing": {
+                "label": "LIVING SOCIAL COM SACADA",
+                "desc": "Face Leste – Sol Nascente Aconchegante",
+                "color": "#60A5FA"
+        },
+        "rightWing": {
+                "label": "ALA ÍNTIMA DOS DORMITÓRIOS",
+                "desc": "Face Norte – Luminosidade Diurna Natural",
+                "color": "#10B981"
+        },
+        "highlights": [
+                "A 400m da Estação Brás de Metrô e CPTM",
+                "Condomínio com praça verde privativa",
+                "Excelente opção para primeira moradia ou locação mensal"
+        ]
+},
+
+      green_view: {
+        "title": "GREEN VIEW BUTANTÃ – 108 m² (3 SUÍTES COM VISTA USP)",
+        "leftWing": {
+                "label": "VARANDA GOURMET & LIVING AMPLO",
+                "desc": "Face Norte – Vista Panorâmica do Bosque da USP",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "3 SUÍTES COM JANELAS AMPLAS",
+                "desc": "Face Leste – Sol Matinal Suave e Ar Puro",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Vista verde definitiva e deslumbrante para a USP",
+                "A 5 minutos do Metrô Butantã (Linha 4-Amarela)",
+                "Área de lazer com piscina de borda infinita voltada para a mata"
+        ]
+},
+
+      soleil_klabin: {
+        "title": "GALLERIA KLABIN – 166 m² (3 SUÍTES COM 3 VAGAS)",
+        "leftWing": {
+                "label": "LIVING EXPANDIDO COM VARANDA GOURMET",
+                "desc": "Face Norte – Sol Pleno e Ventilação Livre",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "3 SUÍTES COM CLOSETS",
+                "desc": "Face Leste – Conforto Térmico Matinal",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Rua Pedro de Toledo (Chácara Klabin nobre)",
+                "3 Vagas demarcadas e livres na garagem",
+                "Última unidade disponível no estoque da construtora"
+        ]
+},
+
+      soleil_apt: {
+        "title": "STUDIOS EXECUTIVOS – 28 m² COM VARANDA",
+        "leftWing": {
+                "label": "LIVING & OFFICE",
+                "desc": "Face Norte – Muita Luz Natural",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "DORMITÓRIO & BANHEIRO",
+                "desc": "Face Leste – Sol Matinal Tranquilo",
+                "color": "#60A5FA"
+        },
+        "highlights": [
+                "Demanda permanente de médicos e pesquisadores da Unifesp",
+                "Área de coworking e lavanderia coletiva OMO",
+                "Entrada e lazer independentes da torre residencial"
+        ]
+},
+
+      verdant: {
+        "title": "VERDANT TUCURUVI – 78 m² (3 DORMS COM SUÍTE)",
+        "leftWing": {
+                "label": "LIVING & VARANDA COM VISTA DA SERRA",
+                "desc": "Face Norte – Sol o Dia Todo e Ar Puro",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "3 DORMITÓRIOS COM ILUMINAÇÃO NATURAL",
+                "desc": "Face Leste – Sol Nascente Aconchegante",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Vista definitiva para a Serra da Cantareira",
+                "A poucos minutos do Shopping Metrô Tucuruvi",
+                "Excelente custo por metro quadrado na Zona Norte"
+        ]
+},
+
+      high_wonder: {
+        "title": "HIGH WONDER STUDIOS – 32 m² COM VARANDA",
+        "leftWing": {
+                "label": "COZINHA & SALA",
+                "desc": "Face Norte – Boa Iluminação Natural",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "DORMITÓRIO & BANHEIRO",
+                "desc": "Face Leste – Sol da Manhã",
+                "color": "#60A5FA"
+        },
+        "highlights": [
+                "Ao lado das grandes feiras de moda e vestuário de SP",
+                "Facilidade de locação no Airbnb com alta diária média",
+                "Gestão profissional de locação disponível"
+        ]
+},
+
+      novvo_santa_marina: {
+        "title": "NOVVO SANTA MARINA – 37 m² (1 DORM COM VARANDA)",
+        "leftWing": {
+                "label": "SALA INTEGRADA COM VARANDA",
+                "desc": "Face Norte – Luminosidade Natural Superior",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "DORMITÓRIO PRINCIPAL",
+                "desc": "Face Leste – Sol Suave das 07h às 11h",
+                "color": "#60A5FA"
+        },
+        "highlights": [
+                "A menos de 200m da Estação Santa Marina do Metrô",
+                "Lazer completo de condomínio clube com piscina e academia",
+                "Baixo custo de condomínio e alta liquidez de revenda"
+        ]
+},
+
+      novvo_analia_franco: {
+        "title": "NOVVO ANÁLIA FRANCO – 44 m² (2 DORMS COM VARANDA)",
+        "leftWing": {
+                "label": "LIVING & SACADA GOURMET",
+                "desc": "Face Oeste – Sol da Tarde e Vista Aberta",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "2 DORMITÓRIOS",
+                "desc": "Face Leste – Sol Matinal Aconchegante",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "A 3 minutos a pé do Shopping Anália Franco",
+                "Futura Estação Anália Franco da Linha 2-Verde",
+                "Rooftop com piscina e vista panorâmica da Zona Leste"
+        ]
+},
+
+      novvo_vila_prudente: {
+        "title": "NOVVO VILA PRUDENTE – 39 m² (1 DORM COM VARANDA)",
+        "leftWing": {
+                "label": "SALA & COZINHA INTEGRADA",
+                "desc": "Face Norte – Excelente Incidência Solar",
+                "color": "#10B981"
+        },
+        "rightWing": {
+                "label": "DORMITÓRIO PRINCIPAL",
+                "desc": "Face Leste – Sol Suave Matinal",
+                "color": "#60A5FA"
+        },
+        "highlights": [
+                "250m da Estação Vila Prudente (Linha 2-Verde e Monotrilho)",
+                "Mobilidade total sem precisar de automóvel",
+                "Infraestrutura de lazer com coworking e academia montada"
+        ]
+},
+
+      novvo_marajoara: {
+        "title": "NOVVO MARAJOARA – 41 m² (2 DORMS)",
+        "leftWing": {
+                "label": "LIVING & SACADA",
+                "desc": "Face Oeste – Pôr do Sol Desobstruído",
+                "color": "#F59E0B"
+        },
+        "rightWing": {
+                "label": "2 DORMITÓRIOS",
+                "desc": "Face Leste – Vista para as Árvores da ZER",
+                "color": "#3B82F6"
+        },
+        "highlights": [
+                "Bairro nobre e estritamente residencial com árvores centenárias",
+                "Próximo aos colégios Chapel e Suíço-Brasileiro",
+                "Preço por m² altamente atrativo na Zona Sul"
+        ]
+},
+
+    };
+
+    let solariumMap = null;
+    let solariumMarker = null;
+
+    function initSolariumMap(proj) {
+      const container = document.getElementById('solarium-map-container');
+      if (!container || !window.L) return;
+
+      if (!solariumMap) {
+        solariumMap = L.map('solarium-map-container', {
+          center: [proj.lat, proj.lng],
+          zoom: 18,
+          zoomControl: false,
+          attributionControl: false
+        });
+
+        // High-Resolution World Imagery Satellite Tiles
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          maxZoom: 19
+        }).addTo(solariumMap);
+
+        solariumMap.on('move', () => {
+          updateSimulation();
+        });
+        solariumMap.on('zoomend', () => {
+          updateSimulation();
+        });
+      } else {
+        solariumMap.setView([proj.lat, proj.lng], 18);
+      }
+
+      // Add Glowing Gold Pin Marker
+      if (solariumMarker) {
+        solariumMap.removeLayer(solariumMarker);
+      }
+      const goldIcon = L.divIcon({
+        className: 'solarium-custom-marker',
+        html: `<div style="background: rgba(212, 175, 55, 0.95); border: 2px solid #fff; border-radius: 50%; width: 26px; height: 26px; box-shadow: 0 0 25px #D4AF37; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: #090D14;">🏢</div>`,
+        iconSize: [26, 26],
+        iconAnchor: [13, 13]
+      });
+      solariumMarker = L.marker([proj.lat, proj.lng], { icon: goldIcon }).addTo(solariumMap);
+    }
+
+    const seasonNames = [
+      "", "Verão Pleno (Janeiro)", "Verão (Fevereiro)", "Equinócio de Outono (Março)",
+      "Outono (Abril)", "Outono (Maio)", "Solstício de Inverno (Junho)",
+      "Inverno (Julho)", "Inverno (Agosto)", "Equinócio de Primavera (Setembro)",
+      "Primavera (Outubro)", "Primavera (Novembro)", "Solstício de Verão (Dezembro)"
+    ];
+
+    function selectProject(key, btn) {
+      if (!PROJECTS[key]) return;
+      curProjKey = key;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (!btn) {
+        btn = document.querySelector(`.tab-btn[onclick*="'${key}'"]`);
+      }
+      if (btn) btn.classList.add('active');
+      const proj = PROJECTS[key];
+      document.getElementById('proj-name-header').innerText = proj.name;
+      document.getElementById('metric-zer').innerText = proj.zerProtected ? "100% Protegido (ZER)" : "Zona Central (ZEU)";
+      document.getElementById('metric-zer').style.color = proj.zerProtected ? "var(--success)" : "var(--warning)";
+
+      // Sync dropdown & quick location badge
+      const masterSel = document.getElementById('project-master-select');
+      if (masterSel && masterSel.value !== key) masterSel.value = key;
+      const qBadge = document.getElementById('project-quick-badge');
+      if (qBadge) qBadge.innerText = `📍 ${proj.address} | ${proj.bairro || 'São Paulo'}`;
+      
+      if (solariumMap) {
+        solariumMap.flyTo([proj.lat, proj.lng], 18, { duration: 1.2 });
+        if (solariumMarker) solariumMarker.setLatLng([proj.lat, proj.lng]);
+      } else {
+        initSolariumMap(proj);
+      }
+      updateSimulation();
+    }
+
+    function setViewMode(mode) {
+      curViewMode = mode;
+      document.querySelectorAll('.view-mode-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`mode-${mode}`).classList.add('active');
+      updateSimulation();
+    }
+
+    function updateTime(val) {
+      curHour = parseFloat(val);
+      const h = Math.floor(curHour);
+      const m = Math.round((curHour - h) * 60);
+      document.getElementById('val-hour').innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+      updateSimulation();
+    }
+
+    function updateSeason(val) {
+      curMonth = parseInt(val);
+      document.getElementById('val-season').innerText = seasonNames[curMonth];
+      updateSimulation();
+    }
+
+    function updateFloor(val) {
+      curFloor = parseInt(val);
+      const meters = Math.round(curFloor * 3.2 + 2);
+      document.getElementById('val-floor').innerText = `${curFloor}º Andar (~${meters}m)`;
+      updateSimulation();
+    }
+
+    function setTimePreset(h) {
+      document.getElementById('slider-hour').value = h;
+      updateTime(h);
+    }
+
+    function setSeasonPreset(m, btn) {
+      document.getElementById('slider-month').value = m;
+      if (btn) {
+        document.querySelectorAll('#season-presets .preset-pill').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      updateSeason(m);
+    }
+
+    function computeDailySunHours(proj, month, floor) {
+      let directHours = 0;
+      let totalDayHours = 0;
+      let shadowedHours = 0;
+
+      for (let h = 6.0; h <= 18.5; h += 0.5) {
+        const sol = getSolarPosition(h, month);
+        if (sol.isDay) {
+          totalDayHours += 0.5;
+          const audit = evaluateShadows(proj, sol, floor);
+          if (audit.status === 'clear') {
+            directHours += 0.5;
+          } else if (audit.status === 'shadowed') {
+            shadowedHours += 0.5;
+          }
+        }
+      }
+
+      const hVal = Math.floor(directHours);
+      const mVal = Math.round((directHours - hVal) * 60);
+      const pct = Math.min(100, Math.round((directHours / Math.max(1, totalDayHours)) * 100));
+
+      const hoursEl = document.getElementById('val-sun-hours');
+      const barEl = document.getElementById('solar-progress-fill');
+      const notesEl = document.getElementById('solar-summary-notes');
+
+      if (hoursEl) hoursEl.innerText = `${hVal}h ${mVal > 0 ? mVal + 'm' : ''} de Sol`;
+      if (barEl) barEl.style.width = `${pct}%`;
+      if (notesEl) {
+        if (shadowedHours > 0) {
+          notesEl.innerHTML = `☀️ <strong>${directHours.toFixed(1)}h de sol pleno</strong> (${pct}% do dia). <span style="color: var(--warning);">⚠️ Edifícios vizinhos projetam cerca de ${shadowedHours.toFixed(1)}h de sombra matinal/vespertina.</span>`;
+        } else {
+          notesEl.innerHTML = `☀️ <strong>${directHours.toFixed(1)}h de sol pleno contínuo</strong> (${pct}% do dia). 100% livre de oclusão de prédios vizinhos neste pavimento.`;
+        }
+      }
+    }
+
+    function setFloorPreset(fl) {
+      document.getElementById('slider-floor').value = fl;
+      updateFloor(fl);
+    }
+
+    function toggleTimeLapse() {
+      const btn = document.getElementById('btn-timelapse');
+      const txt = document.getElementById('timelapse-text');
+
+      if (isPlaying) {
+        clearInterval(animTimer);
+        isPlaying = false;
+        txt.innerText = "Simular Dia Completo (Time-Lapse 10s)";
+        btn.style.background = "linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%)";
+      } else {
+        isPlaying = true;
+        txt.innerText = "Pausar Simulação";
+        btn.style.background = "#10B981";
+
+        animTimer = setInterval(() => {
+          let h = parseFloat(document.getElementById('slider-hour').value);
+          h += 0.2;
+          if (h > 18.5) h = 6.0;
+          document.getElementById('slider-hour').value = h;
+          updateTime(h);
+        }, 120);
+      }
+    }
+
+    // ASTRONOMICAL SOLAR CALCULATIONS FOR SÃO PAULO (-23.55° LATITUDE)
+    
+    // ==========================================
+    // SUNCALC ASTRONOMICAL EPHEMERIS ENGINE (SP)
+    // ==========================================
+    function getSolarEphemeris(month, lat) {
+      const phi = (lat || -23.55) * Math.PI / 180;
+      const dayOfYear = (month - 1) * 30.5 + 15;
+      const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * (Math.PI / 180));
+      const delta = declination * Math.PI / 180;
+
+      // Hour angle at horizon (h0 = -0.833 deg standard atmospheric refraction)
+      const h0 = -0.833 * Math.PI / 180;
+      const cosH0 = (Math.sin(h0) - Math.sin(phi) * Math.sin(delta)) / (Math.cos(phi) * Math.cos(delta));
+      const clampedCosH0 = Math.max(-1, Math.min(1, cosH0));
+      const H0 = Math.acos(clampedCosH0);
+      const H0_hours = (H0 * 180 / Math.PI) / 15;
+
+      const sunriseHour = 12.0 - H0_hours;
+      const sunsetHour = 12.0 + H0_hours;
+      const dayLengthHours = 2 * H0_hours;
+
+      // Sunrise and Sunset Azimuth
+      const cosAz = (Math.sin(delta) - Math.sin(phi) * Math.sin(h0)) / (Math.cos(phi) * Math.cos(h0));
+      const clampedCosAz = Math.max(-1, Math.min(1, cosAz));
+      const sunriseAzimuth = Math.acos(clampedCosAz) * (180 / Math.PI);
+      const sunsetAzimuth = 360 - sunriseAzimuth;
+
+      return {
+        sunriseHour,
+        sunsetHour,
+        dayLengthHours,
+        sunriseAzimuth,
+        sunsetAzimuth,
+        declination
+      };
+    }
+
+    function formatHourMinutes(decHour) {
+      const h = Math.floor(decHour);
+      const m = Math.round((decHour - h) * 60);
+      return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+    }
+
+    function updateSimulationUrlHash() {
+      try {
+        const hStr = curHour.toFixed(1);
+        const hash = `#${curProjKey}/${curFloor}andar/mes-${curMonth}/${hStr}h`;
+        if (window.location.hash !== hash) {
+          history.replaceState(null, null, hash);
+        }
+      } catch (e) {}
+    }
+
+    function copySimulationShareLink() {
+      updateSimulationUrlHash();
+      const url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showSimulationToast(`🔗 Link SunCalc Copiado! (${PROJECTS[curProjKey].name}, ${curFloor}º andar às ${document.getElementById('val-hour').innerText})`);
+        }).catch(() => {
+          prompt("Copie o link da simulação:", url);
+        });
+      } else {
+        prompt("Copie o link da simulação:", url);
+      }
+    }
+
+    function showSimulationToast(msg) {
+      let toast = document.getElementById('solarium-toast-box');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'solarium-toast-box';
+        toast.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#151F32;border:1px solid #D4AF37;color:#fff;padding:12px 24px;border-radius:12px;font-size:0.85rem;font-weight:700;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,0.6);transition:all 0.3s;";
+        document.body.appendChild(toast);
+      }
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3200);
+    }
+
+    function getSolarPosition(hour, month) {
+      const dayOfYear = (month - 1) * 30.5 + 15;
+      const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * (Math.PI / 180));
+      const latRad = -23.55 * (Math.PI / 180);
+      const decRad = declination * (Math.PI / 180);
+      const hourAngle = (hour - 12.2) * 15 * (Math.PI / 180);
+      
+      const sinElevation = Math.sin(latRad) * Math.sin(decRad) + Math.cos(latRad) * Math.cos(decRad) * Math.cos(hourAngle);
+      const elevationRad = Math.asin(Math.max(-1, Math.min(1, sinElevation)));
+      const elevationDeg = elevationRad * (180 / Math.PI);
+      
+      const cosAzimuth = (Math.sin(decRad) * Math.cos(latRad) - Math.cos(decRad) * Math.sin(latRad) * Math.cos(hourAngle)) / Math.cos(elevationRad);
+      let azimuthRad = Math.acos(Math.max(-1, Math.min(1, cosAzimuth)));
+      if (hourAngle > 0) azimuthRad = 2 * Math.PI - azimuthRad;
+      const azimuthDeg = azimuthRad * (180 / Math.PI);
+
+      return {
+        elevation: Math.max(0, elevationDeg),
+        azimuth: azimuthDeg,
+        isDay: elevationDeg > 0
+      };
+    }
+
+    function evaluateShadows(proj, solar, floor) {
+      if (!solar.isDay) {
+        return {
+          status: "night",
+          title: "Período Noturno (Sem incidência solar)",
+          desc: "Ambiente iluminado por luz estelar e iluminação pública do bairro.",
+          score: "0.0 / 10",
+          class: "alert-clear"
+        };
+      }
+
+      const floorHeightM = floor * 3.2;
+      let shadowRisk = false;
+      let blockingNeighbor = null;
+
+      proj.neighbors.forEach(n => {
+        if (n.type === "open_green" || n.type === "trees") return;
+        let angleDiff = 180;
+        if (n.dir === "Leste" && solar.azimuth >= 45 && solar.azimuth <= 135) angleDiff = 0;
+        if (n.dir === "Oeste" && solar.azimuth >= 225 && solar.azimuth <= 315) angleDiff = 0;
+        if (n.dir === "Sudoeste" && solar.azimuth >= 200 && solar.azimuth <= 260) angleDiff = 0;
+
+        if (angleDiff === 0 && solar.elevation < 35) {
+          const shadowReach = n.height / Math.tan(solar.elevation * Math.PI / 180);
+          if (shadowReach > n.dist && floorHeightM < n.height) {
+            shadowRisk = true;
+            blockingNeighbor = n;
+          }
+        }
+      });
+
+      if (shadowRisk) {
+        return {
+          status: "shadowed",
+          title: `⚠️ Sombra Projetada por ${blockingNeighbor.name}`,
+          desc: `O edifício vizinho a ${blockingNeighbor.dir} (${blockingNeighbor.height}m) projeta sombra no ${floor}º andar neste horário. A partir do ${Math.ceil(blockingNeighbor.height / 3.2)}º andar, a luz permanece 100% desobstruída.`,
+          score: "6.2 / 10",
+          class: "alert-warning"
+        };
+      }
+
+      const score = (8.5 + (floor / 28) * 1.4).toFixed(1);
+      return {
+        status: "clear",
+        title: "☀️ 100% Sol Pleno Garantido (Sem Sombra de Vizinhos)",
+        desc: `No ${floor}º andar (~${Math.round(floorHeightM)}m), a fachada recebe luz solar direta e desimpedida. Visada perene e horizonte livre.`,
+        score: `${score} / 10`,
+        class: "alert-clear"
+      };
+    }
+
+    function getCompassDirection(deg) {
+      if (deg >= 337.5 || deg < 22.5) return "Norte";
+      if (deg >= 22.5 && deg < 67.5) return "Nordeste";
+      if (deg >= 67.5 && deg < 112.5) return "Leste";
+      if (deg >= 112.5 && deg < 157.5) return "Sudeste";
+      if (deg >= 157.5 && deg < 202.5) return "Sul";
+      if (deg >= 202.5 && deg < 247.5) return "Sudoeste";
+      if (deg >= 247.5 && deg < 292.5) return "Oeste";
+      return "Noroeste";
+    }
+
+    // MAIN UPDATE SIMULATION CONTROLLER
+    function updateSimulation() {
+      const proj = PROJECTS[curProjKey];
+      const solar = getSolarPosition(curHour, curMonth);
+
+      // Update text metrics
+      document.getElementById('metric-azimuth').innerText = `${Math.round(solar.azimuth)}° (${getCompassDirection(solar.azimuth)})`;
+      document.getElementById('metric-elevation').innerText = `${Math.round(solar.elevation)}°`;
+
+      // Update shadow audit
+      const audit = evaluateShadows(proj, solar, curFloor);
+      const alertEl = document.getElementById('shadow-alert');
+      alertEl.className = `shadow-alert-overlay ${audit.class}`;
+      document.getElementById('alert-title').innerText = audit.title;
+      document.getElementById('alert-desc').innerText = audit.desc;
+      document.getElementById('alert-score').innerText = `ÍNDICE SOLAR: ${audit.score}`;
+
+      // SunCalc Ephemeris & Physical Shadow Updates
+      const ephem = getSolarEphemeris(curMonth, proj.lat);
+      const buildingHeightM = Math.max(10, curFloor * 3.2);
+      let shadowMeters = 0;
+      if (solar.isDay && solar.elevation > 0.5) {
+        shadowMeters = buildingHeightM / Math.tan(solar.elevation * Math.PI / 180);
+      }
+      const shadowEl = document.getElementById('metric-shadow-length');
+      if (shadowEl) shadowEl.innerText = solar.isDay ? `${shadowMeters.toFixed(1)}m` : '0m (Noite)';
+      const srEl = document.getElementById('metric-sunrise');
+      if (srEl) srEl.innerText = formatHourMinutes(ephem.sunriseHour);
+      const ssEl = document.getElementById('metric-sunset');
+      if (ssEl) ssEl.innerText = formatHourMinutes(ephem.sunsetHour);
+
+      updateSimulationUrlHash();
+
+      // Update sensory description
+      const hStr = document.getElementById('val-hour').innerText;
+      document.getElementById('sensory-desc').innerText = `Às ${hStr} no ${curFloor}º andar do ${proj.name}, a luz incide a ${Math.round(solar.elevation)}° de elevação com azimute de ${Math.round(solar.azimuth)}°. Sombra calculada de ${shadowMeters.toFixed(1)}m no solo. ${audit.desc}`;
+      computeDailySunHours(proj, curMonth, curFloor);
+
+      // Update WhatsApp link
+      const waMsg = encodeURIComponent(`Olá Pedro Soares! Fiz a simulação solar de ${proj.name} no Solarium 365 (${curFloor}º andar às ${hStr} em ${seasonNames[curMonth]}). Quero entender os detalhes da planta e disponibilidade.`);
+      document.getElementById('btn-wa-dossier').href = `https://wa.me/5511966105952?text=${waMsg}`;
+
+      // Handle Satellite Map vs Canvas Rendering
+      const gContainer = document.getElementById('gmaps-container');
+      const svContainer = document.getElementById('gmaps-streetview');
+      const mapContainer = document.getElementById('solarium-map-container');
+      const canvas = document.getElementById('solar-canvas');
+
+      const isGoogleActive = isGmapsLoaded && gmapsApiKey;
+
+      if (curViewMode === 'satellite') {
+        if (mapContainer) mapContainer.style.display = 'block';
+        if (!solariumMap) {
+          initSolariumMap(proj);
+        }
+        canvas.style.display = 'block';
+        renderSolarOverlayOnMap(proj, solar, curFloor, true);
+      } else if (curViewMode === 'street') {
+        if (mapContainer) mapContainer.style.display = 'none';
+        canvas.style.display = 'block';
+        renderStreetViewFallback(proj, solar, curFloor);
+      } else {
+        // Floorplan Mode
+        if (mapContainer) mapContainer.style.display = 'none';
+        canvas.style.display = 'block';
+        renderFloorplanView(proj, solar, curFloor);
+      }
+    }
+
+    // GOOGLE MAPS 3D SYNC
+    function syncGoogleMap3D(proj) {
+      const gContainer = document.getElementById('gmaps-container');
+      const coords = { lat: proj.lat, lng: proj.lng };
+
+      if (!gmapInstance) {
+        gmapInstance = new google.maps.Map(gContainer, {
+          center: coords,
+          zoom: 19, // Ultra close 3D street & tower zoom
+          mapTypeId: 'hybrid',
+          tilt: currentMapTilt,
+          heading: currentMapHeading,
+          mapTypeControl: false,
+          streetViewControl: false,
+          rotateControl: true,
+          fullscreenControl: false,
+          gestureHandling: 'greedy'
+        });
+        gmapInstance.addListener('heading_changed', () => {
+          currentMapHeading = gmapInstance.getHeading() || 0;
+          updateSimulation();
+        });
+      } else {
+        gmapInstance.setCenter(coords);
+        gmapInstance.setTilt(currentMapTilt);
+      }
+    }
+
+    function toggleMapTilt() {
+      const btn = document.getElementById('btn-toggle-tilt');
+      currentMapTilt = currentMapTilt === 45 ? 0 : 45;
+      btn.innerText = currentMapTilt === 45 ? "📐 Modo 3D (45°)" : "📐 Vista Topo (0°)";
+      if (gmapInstance) gmapInstance.setTilt(currentMapTilt);
+      updateSimulation();
+    }
+
+    function rotateMapCamera() {
+      currentMapHeading = (currentMapHeading + 45) % 360;
+      if (gmapInstance) gmapInstance.setHeading(currentMapHeading);
+      updateSimulation();
+    }
+
+    function recenterMap() {
+      const proj = PROJECTS[curProjKey];
+      if (solariumMap) {
+        solariumMap.flyTo([proj.lat, proj.lng], 18, { duration: 0.8 });
+      } else if (gmapInstance) {
+        gmapInstance.setCenter({ lat: proj.lat, lng: proj.lng });
+        gmapInstance.setZoom(19);
+      }
+    }
+
+    function syncGoogleStreetView(proj) {
+      const svContainer = document.getElementById('gmaps-streetview');
+      const coords = { lat: proj.lat, lng: proj.lng };
+
+      if (!gmapStreetView) {
+        gmapStreetView = new google.maps.StreetViewPanorama(svContainer, {
+          position: coords,
+          pov: { heading: 240, pitch: 10 },
+          zoom: 1,
+          addressControl: false
+        });
+      } else {
+        gmapStreetView.setPosition(coords);
+      }
+    }
+
+    // DRAW SUN TRACKING & SHADOW OVERLAY OVER GOOGLE 3D MAP
+    function renderSolarOverlayOnMap(proj, solar, floor, isMapUnderneath) {
+      const canvas = document.getElementById('solar-canvas');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width = canvas.parentElement.clientWidth;
+      const h = canvas.height = canvas.parentElement.clientHeight;
+      let cx = w / 2;
+      let cy = h / 2;
+
+      // Lock building center to Leaflet coordinates on satellite view
+      if (solariumMap && curViewMode === 'satellite') {
+        try {
+          const pt = solariumMap.latLngToContainerPoint([proj.lat, proj.lng]);
+          cx = pt.x;
+          cy = pt.y;
+        } catch (e) {}
+      }
+
+      ctx.clearRect(0, 0, w, h);
+
+      // If no Google Maps underneath, draw textured fallback
+      if (!isMapUnderneath) {
+        drawFallbackSatelliteBackground(ctx, w, h, cx, cy, proj);
+      }
+
+      // Compass & Heading Adjustment
+      const mapHeading = isMapUnderneath && gmapInstance ? (gmapInstance.getHeading() || 0) : 0;
+      const relativeSolarAzimuth = solar.azimuth - mapHeading;
+      const towerAngle = (proj.azimuthOffset - mapHeading) * (Math.PI / 180);
+
+      // Tower Dimensions & Cartographic Scale
+      const towerW = 100;
+      const towerH = 60;
+      const buildingHeightM = Math.max(10, floor * 3.2);
+
+      // Web Mercator cartographic scale (meters per pixel)
+      const zoom = (solariumMap && typeof solariumMap.getZoom === 'function') ? solariumMap.getZoom() : 18;
+      const metersPerPixel = (156543.03392 * Math.cos((proj.lat || -23.55) * Math.PI / 180)) / Math.pow(2, zoom);
+      const horizonRadius = Math.min(w, h) * 0.44;
+
+      // SUNCALC ASTRONOMICAL EPHEMERIS
+      const ephem = getSolarEphemeris(curMonth, proj.lat);
+
+      // ========================================================
+      // SUNCALC FEATURE A: THE GOLDEN WEDGE (ANNUAL SOLAR CONE)
+      // ========================================================
+      ctx.save();
+      const summerSunriseRad = (115.7 - mapHeading - 90) * (Math.PI / 180);
+      const summerSunsetRad = (244.3 - mapHeading - 90) * (Math.PI / 180);
+
+      // Fill Golden Sector covering the Northern Sun trajectory in SP
+      ctx.fillStyle = "rgba(212, 175, 55, 0.08)";
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, horizonRadius, summerSunsetRad, summerSunriseRad, false);
+      ctx.closePath();
+      ctx.fill();
+
+      // Outer Horizon Border
+      ctx.strokeStyle = "rgba(212, 175, 55, 0.20)";
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.arc(cx, cy, horizonRadius, 0, 2 * Math.PI);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Golden Wedge Label
+      ctx.fillStyle = "rgba(243, 220, 138, 0.65)";
+      ctx.font = "bold 9px 'Plus Jakarta Sans', sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("☀️ ENVELOPE SOLAR ANUAL • FACE NORTE (365 DIAS DE LUZ)", cx, cy - horizonRadius + 15);
+      ctx.restore();
+
+      // ========================================================
+      // SUNCALC FEATURE B: SUNRISE & SUNSET AZIMUTH RAYS
+      // ========================================================
+      ctx.save();
+      // 1. Sunrise Ray (#FFA500)
+      const srAngleRad = (ephem.sunriseAzimuth - mapHeading - 90) * (Math.PI / 180);
+      const srX = cx + Math.cos(srAngleRad) * (horizonRadius * 0.95);
+      const srY = cy + Math.sin(srAngleRad) * (horizonRadius * 0.95);
+
+      ctx.strokeStyle = "rgba(255, 165, 0, 0.75)";
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(srX, srY);
+      ctx.stroke();
+
+      ctx.fillStyle = "#FFA500";
+      ctx.font = "bold 9px 'Plus Jakarta Sans'";
+      ctx.textAlign = "left";
+      ctx.fillText(`🌅 Nascente ${formatHourMinutes(ephem.sunriseHour)} (${Math.round(ephem.sunriseAzimuth)}°)`, srX + 4, srY);
+
+      // 2. Sunset Ray (#FF4500)
+      const ssAngleRad = (ephem.sunsetAzimuth - mapHeading - 90) * (Math.PI / 180);
+      const ssX = cx + Math.cos(ssAngleRad) * (horizonRadius * 0.95);
+      const ssY = cy + Math.sin(ssAngleRad) * (horizonRadius * 0.95);
+
+      ctx.strokeStyle = "rgba(255, 69, 0, 0.75)";
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(ssX, ssY);
+      ctx.stroke();
+
+      ctx.fillStyle = "#FF6B6B";
+      ctx.textAlign = "right";
+      ctx.fillText(`🌇 Poente ${formatHourMinutes(ephem.sunsetHour)} (${Math.round(ephem.sunsetAzimuth)}°)`, ssX - 4, ssY);
+      ctx.restore();
+
+      // ========================================================
+      // SUNCALC FEATURE C: PHYSICAL CARTOGRAPHIC SHADOW SCALING
+      // ========================================================
+      if (solar.isDay && solar.elevation > 0.5) {
+        const shadowLengthMeters = buildingHeightM / Math.tan(Math.max(3, solar.elevation) * Math.PI / 180);
+        const shadowLen = Math.min(320, shadowLengthMeters / metersPerPixel);
+        const shadowRad = (relativeSolarAzimuth + 180 - 90) * (Math.PI / 180);
+        const shadowEndX = cx + Math.cos(shadowRad) * shadowLen;
+        const shadowEndY = cy + Math.sin(shadowRad) * shadowLen;
+
+        ctx.save();
+        ctx.fillStyle = "rgba(0, 0, 0, 0.65)";
+        ctx.beginPath();
+        ctx.moveTo(cx - towerW/2, cy - towerH/2);
+        ctx.lineTo(cx + towerW/2, cy - towerH/2);
+        ctx.lineTo(shadowEndX + towerW/2, shadowEndY + towerH/2);
+        ctx.lineTo(shadowEndX - towerW/2, shadowEndY + towerH/2);
+        ctx.closePath();
+        ctx.fill();
+
+        // Shadow Edge & Length Marker
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.4)";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // Physical length tag at shadow tip
+        if (shadowLen > 40) {
+          ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+          ctx.strokeStyle = "#FBBF24";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.roundRect(shadowEndX - 40, shadowEndY - 10, 80, 20, 10);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = "#FBBF24";
+          ctx.font = "bold 9px 'Plus Jakarta Sans'";
+          ctx.textAlign = "center";
+          ctx.fillText(`Sombra: ${shadowLengthMeters.toFixed(1)}m`, shadowEndX, shadowEndY + 3);
+        }
+        ctx.restore();
+      }
+
+
+      // 1.5. NEIGHBOR BUILDING OCCLUSION & SHADOW CONES (Miyamoto & Nolan Engine)
+      if (solar.isDay && proj.neighbors && proj.neighbors.length > 0) {
+        proj.neighbors.forEach(neighbor => {
+          // Direction offset angle
+          let dirDeg = 0;
+          if (neighbor.dir === "Norte") dirDeg = 0;
+          else if (neighbor.dir === "Nordeste") dirDeg = 45;
+          else if (neighbor.dir === "Leste") dirDeg = 90;
+          else if (neighbor.dir === "Sudeste") dirDeg = 135;
+          else if (neighbor.dir === "Sul") dirDeg = 180;
+          else if (neighbor.dir === "Sudoeste") dirDeg = 225;
+          else if (neighbor.dir === "Oeste") dirDeg = 270;
+          else if (neighbor.dir === "Noroeste") dirDeg = 315;
+
+          const nAngleRad = (dirDeg - mapHeading - 90) * (Math.PI / 180);
+          const nDistPx = Math.min(200, neighbor.dist * 1.5);
+          const nx = cx + Math.cos(nAngleRad) * nDistPx;
+          const ny = cy + Math.sin(nAngleRad) * nDistPx;
+
+          // Draw Neighbor Building Footprint
+          ctx.save();
+          ctx.fillStyle = "rgba(100, 116, 139, 0.75)";
+          ctx.strokeStyle = "rgba(212, 175, 55, 0.4)";
+          ctx.lineWidth = 1.5;
+          ctx.fillRect(nx - 24, ny - 16, 48, 32);
+          ctx.strokeRect(nx - 24, ny - 16, 48, 32);
+
+          // Neighbor Label & Height
+          ctx.font = "9px 'Plus Jakarta Sans', sans-serif";
+          ctx.fillStyle = "#E2E8F0";
+          ctx.textAlign = "center";
+          ctx.fillText(neighbor.name, nx, ny - 20);
+          ctx.fillStyle = "#F3DC8A";
+          ctx.fillText(`${neighbor.height}m (${Math.round(neighbor.dist)}m dist)`, nx, ny + 26);
+
+          // Neighbor Shadow Vector
+          const nShadowLen = Math.min(220, (neighbor.height * 2.2) / Math.tan(Math.max(10, solar.elevation) * Math.PI / 180));
+          const nShadowRad = (relativeSolarAzimuth + 180 - 90) * (Math.PI / 180);
+          const nShadowEndX = nx + Math.cos(nShadowRad) * nShadowLen;
+          const nShadowEndY = ny + Math.sin(nShadowRad) * nShadowLen;
+
+          // Check if neighbor shadow reaches our building center (cx, cy)
+          const distToUs = Math.hypot(nShadowEndX - cx, nShadowEndY - cy);
+          const hitsUs = distToUs < 45 && (floor * 3.2 < neighbor.height);
+
+          ctx.fillStyle = hitsUs ? "rgba(239, 68, 68, 0.4)" : "rgba(30, 41, 59, 0.5)";
+          ctx.beginPath();
+          ctx.moveTo(nx - 20, ny - 12);
+          ctx.lineTo(nx + 20, ny - 12);
+          ctx.lineTo(nShadowEndX + 20, nShadowEndY + 12);
+          ctx.lineTo(nShadowEndX - 20, nShadowEndY + 12);
+          ctx.closePath();
+          ctx.fill();
+
+          if (hitsUs) {
+            ctx.strokeStyle = "rgba(239, 68, 68, 0.8)";
+            ctx.lineWidth = 2;
+            ctx.setLineDash([4, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+          ctx.restore();
+        });
+      }
+
+      // 2. 3D TOWER EXTRUSION ANCHORED OVER REAL BUILDING LOCATION
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(towerAngle);
+
+      // Extruded 3D Building Base
+      ctx.fillStyle = "rgba(24, 40, 66, 0.88)";
+      ctx.strokeStyle = "#D4AF37";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(-towerW/2, -towerH/2, towerW, towerH, 6);
+      ctx.fill();
+      ctx.stroke();
+
+      // Top Roof / Selected Floor Level
+      ctx.fillStyle = solar.isDay ? "rgba(253, 224, 71, 0.25)" : "rgba(255, 255, 255, 0.1)";
+      ctx.fillRect(-towerW/2 + 4, -towerH/2 + 4, towerW - 8, towerH - 8);
+
+      // Floor Marker Line
+      ctx.fillStyle = "#fff";
+      ctx.font = "bold 11px 'Cormorant Garamond', serif";
+      ctx.textAlign = "center";
+      ctx.fillText(proj.name.split("—")[0].trim().toUpperCase(), 0, -4);
+      ctx.fillStyle = "var(--gold-light)";
+      ctx.font = "bold 10px 'Plus Jakarta Sans'";
+      ctx.fillText(`${floor}º Andar (~${Math.round(floor * 3.2)}m)`, 0, 12);
+
+      // Sunlit Façade Glow Indicator
+      if (solar.isDay) {
+        ctx.strokeStyle = "#FDE047";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        // Face East or West
+        if (relativeSolarAzimuth >= 0 && relativeSolarAzimuth < 180) {
+          ctx.moveTo(towerW/2, -towerH/2); ctx.lineTo(towerW/2, towerH/2); // East Facade
+        } else {
+          ctx.moveTo(-towerW/2, -towerH/2); ctx.lineTo(-towerW/2, towerH/2); // West Facade
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // 3. REAL-TIME SUN TRACKING ORB & CELESTIAL RAYS IN 3D SKY
+      if (solar.isDay) {
+        const sunRadiusPx = Math.min(w, h) * 0.42;
+        const sunRad = (relativeSolarAzimuth - 90) * (Math.PI / 180);
+        const sx = cx + Math.cos(sunRad) * sunRadiusPx;
+        const sy = cy + Math.sin(sunRad) * sunRadiusPx;
+
+        // Radiant Sun Aura
+        const sunGlow = ctx.createRadialGradient(sx, sy, 4, sx, sy, 80);
+        sunGlow.addColorStop(0, "rgba(255, 245, 160, 0.95)");
+        sunGlow.addColorStop(0.3, "rgba(245, 158, 11, 0.5)");
+        sunGlow.addColorStop(0.7, "rgba(245, 158, 11, 0.15)");
+        sunGlow.addColorStop(1, "rgba(245, 158, 11, 0)");
+
+        ctx.fillStyle = sunGlow;
+        ctx.beginPath(); ctx.arc(sx, sy, 80, 0, 2 * Math.PI); ctx.fill();
+
+        // Sun Core
+        ctx.fillStyle = "#FFFFFF";
+        ctx.beginPath(); ctx.arc(sx, sy, 14, 0, 2 * Math.PI); ctx.fill();
+
+        // Sun Label Tag
+        ctx.fillStyle = "rgba(18, 20, 28, 0.9)";
+        ctx.strokeStyle = "#D4AF37";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(sx - 65, sy + 22, 130, 22, 11);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#F3DC8A";
+        ctx.font = "bold 10px 'Plus Jakarta Sans'";
+        ctx.textAlign = "center";
+        ctx.fillText(`☀️ Sol: Az ${Math.round(solar.azimuth)}° • Alt ${Math.round(solar.elevation)}°`, sx, sy + 37);
+
+        // Radiant Beams hitting the Building
+        ctx.strokeStyle = "rgba(253, 224, 71, 0.45)";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6, 6]);
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(cx, cy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      // 4. 3D COMPASS ROSE ALIGNED WITH GOOGLE MAP HEADING
+      draw3DCompassRose(ctx, 60, 60, mapHeading);
+    }
+
+    function drawFallbackSatelliteBackground(ctx, w, h, cx, cy, proj) {
+      const bgGrad = ctx.createRadialGradient(cx, cy, 50, cx, cy, w / 2);
+      bgGrad.addColorStop(0, "#131E2F");
+      bgGrad.addColorStop(0.7, "#0B111A");
+      bgGrad.addColorStop(1, "#05080D");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Grid
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.04)";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      if (proj.zerProtected) {
+        ctx.fillStyle = "rgba(16, 185, 129, 0.12)";
+        ctx.strokeStyle = "rgba(16, 185, 129, 0.3)";
+        ctx.beginPath();
+        ctx.roundRect(cx + 90, cy - 180, 260, 360, 16);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#A7F3D0";
+        ctx.font = "bold 11px 'Plus Jakarta Sans'";
+        ctx.fillText("CLUBE HÍPICO DE SANTO AMARO", cx + 110, cy - 140);
+        ctx.fillStyle = "rgba(167, 243, 208, 0.7)";
+        ctx.font = "10px 'Plus Jakarta Sans'";
+        ctx.fillText("330.000 m² de verde preservado (ZER)", cx + 110, cy - 120);
+      }
+    }
+
+    function renderStreetViewOverlay(proj, solar, floor) {
+      const canvas = document.getElementById('solar-canvas');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width = canvas.parentElement.clientWidth;
+      const h = canvas.height = canvas.parentElement.clientHeight;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // If day, show sun elevation marker in the Street View sky
+      if (solar.isDay) {
+        const sx = w * 0.75;
+        const sy = 90;
+
+        ctx.fillStyle = "rgba(18, 20, 28, 0.85)";
+        ctx.strokeStyle = "#D4AF37";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(sx - 100, sy, 200, 32, 16);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#FEF08A";
+        ctx.font = "bold 11px 'Plus Jakarta Sans'";
+        ctx.textAlign = "center";
+        ctx.fillText(`☀️ Posição Solar na Calçada: Alt ${Math.round(solar.elevation)}°`, sx, sy + 20);
+      }
+    }
+
+    function renderStreetViewFallback(proj, solar, floor) {
+      const canvas = document.getElementById('solar-canvas');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width = canvas.parentElement.clientWidth;
+      const h = canvas.height = canvas.parentElement.clientHeight;
+      const cx = w / 2;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Sky
+      const sky = ctx.createLinearGradient(0, 0, 0, h);
+      if (solar.elevation > 15) {
+        sky.addColorStop(0, "#1E3A8A");
+        sky.addColorStop(0.6, "#3B82F6");
+        sky.addColorStop(1, "#93C5FD");
+      } else if (solar.isDay) {
+        sky.addColorStop(0, "#311B92");
+        sky.addColorStop(0.5, "#D97706");
+        sky.addColorStop(1, "#FEF08A");
+      } else {
+        sky.addColorStop(0, "#020617");
+        sky.addColorStop(1, "#0F172A");
+      }
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, w, h);
+
+      // Ground
+      ctx.fillStyle = "#1E293B";
+      ctx.fillRect(0, h - 80, w, 80);
+
+      // Building Façade
+      const bW = 200;
+      const bH = 360;
+      ctx.fillStyle = "#0F172A";
+      ctx.strokeStyle = "var(--gold)";
+      ctx.lineWidth = 2;
+      ctx.fillRect(cx - bW/2, h - 80 - bH, bW, bH);
+      ctx.strokeRect(cx - bW/2, h - 80 - bH, bW, bH);
+
+      // Selected floor highlight
+      const selY = h - 80 - Math.min(15, floor) * 22;
+      ctx.strokeStyle = "#EF4444";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(cx - bW/2 - 4, selY - 2, bW + 8, 16);
+      ctx.fillStyle = "#EF4444";
+      ctx.font = "bold 10px 'Plus Jakarta Sans'";
+      ctx.fillText(`${floor}º ANDAR`, cx + bW/2 + 35, selY + 10);
+
+      if (solar.isDay) {
+        const sx = cx + (solar.azimuth - 180) * 1.8;
+        const sy = (h - 80) - (solar.elevation / 90) * 320;
+        ctx.fillStyle = "#FEF08A";
+        ctx.beginPath(); ctx.arc(sx, sy, 18, 0, 2 * Math.PI); ctx.fill();
+      }
+    }
+
+    function renderFloorplanView(proj, solar, floor) {
+      const canvas = document.getElementById('solar-canvas');
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width = canvas.parentElement.clientWidth;
+      const h = canvas.height = canvas.parentElement.clientHeight;
+      const cx = w / 2;
+      const cy = h / 2;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Luxury Blueprint Dark Texture
+      ctx.fillStyle = "#0c1320";
+      ctx.fillRect(0, 0, w, h);
+
+      const fp = FLOORPLAN_DATA[curProjKey] || FLOORPLAN_DATA['hipica'];
+
+      // Header Title
+      ctx.font = "bold 15px 'Cormorant Garamond', Georgia, serif";
+      ctx.fillStyle = "#F3DC8A";
+      ctx.textAlign = "center";
+      ctx.fillText(fp.title, cx, 40);
+
+      // Floorplan Outer Shell
+      ctx.strokeStyle = "rgba(212, 175, 55, 0.4)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(cx - 240, cy - 140, 480, 270, 10);
+      ctx.stroke();
+
+      // Left Wing
+      ctx.fillStyle = fp.leftWing.color === "#F59E0B" ? "rgba(245, 158, 11, 0.12)" : "rgba(16, 185, 129, 0.12)";
+      ctx.fillRect(cx - 230, cy - 130, 220, 250);
+      ctx.strokeStyle = fp.leftWing.color;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(cx - 230, cy - 130, 220, 250);
+
+      ctx.fillStyle = "#F3DC8A";
+      ctx.font = "bold 12px 'Plus Jakarta Sans'";
+      ctx.fillText(fp.leftWing.label, cx - 120, cy - 30);
+      ctx.font = "10px 'Plus Jakarta Sans'";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+      ctx.fillText(fp.leftWing.desc, cx - 120, cy - 10);
+
+      // Right Wing
+      ctx.fillStyle = "rgba(59, 130, 246, 0.12)";
+      ctx.fillRect(cx + 10, cy - 130, 220, 250);
+      ctx.strokeStyle = "#3B82F6";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(cx + 10, cy - 130, 220, 250);
+
+      ctx.fillStyle = "#93C5FD";
+      ctx.font = "bold 12px 'Plus Jakarta Sans'";
+      ctx.fillText(fp.rightWing.label, cx + 120, cy - 30);
+      ctx.font = "10px 'Plus Jakarta Sans'";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+      ctx.fillText(fp.rightWing.desc, cx + 120, cy - 10);
+
+      // Highlights Checklist
+      ctx.font = "11px 'Plus Jakarta Sans'";
+      ctx.textAlign = "left";
+      fp.highlights.forEach((hl, i) => {
+        ctx.fillStyle = "#10B981";
+        ctx.fillText("✔", cx - 210, cy + 60 + i * 22);
+        ctx.fillStyle = "#CBD5E1";
+        ctx.fillText(hl, cx - 190, cy + 60 + i * 22);
+      });
+
+      // Sun Vector Angle Indicator
+      if (solar.isDay) {
+        const rad = (solar.azimuth - 90) * (Math.PI / 180);
+        const sunX = cx + Math.cos(rad) * 290;
+        const sunY = cy + Math.sin(rad) * 160;
+
+        ctx.fillStyle = "#FDE047";
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, 14, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "rgba(253, 224, 71, 0.4)";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.moveTo(sunX, sunY);
+        ctx.lineTo(cx, cy);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+
+    function draw3DCompassRose(ctx, x, y, mapHeading) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(-mapHeading * (Math.PI / 180));
+
+      ctx.strokeStyle = "rgba(212, 175, 55, 0.5)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(0, 0, 26, 0, 2 * Math.PI); ctx.stroke();
+
+      ctx.fillStyle = "var(--gold-light)";
+      ctx.font = "bold 10px 'Plus Jakarta Sans'";
+      ctx.textAlign = "center";
+      ctx.fillText("N", 0, -30);
+      ctx.fillText("S", 0, 36);
+      ctx.fillText("L", 34, 4);
+      ctx.fillText("O", -34, 4);
+
+      ctx.fillStyle = "#EF4444";
+      ctx.beginPath();
+      ctx.moveTo(0, -22);
+      ctx.lineTo(5, -4);
+      ctx.lineTo(-5, -4);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // GOOGLE MAPS API KEY STORAGE & LOAD
+    function openGmapsModal() {
+      document.getElementById('gmaps-api-key-input').value = gmapsApiKey;
+      document.getElementById('gmaps-modal').style.display = 'flex';
+    }
+
+    function closeGmapsModal() {
+      document.getElementById('gmaps-modal').style.display = 'none';
+    }
+
+    function saveGmapsKey() {
+      const key = document.getElementById('gmaps-api-key-input').value.trim();
+      if (!key) {
+        alert('Por favor, insira uma API Key válida do Google Maps.');
+        return;
+      }
+      gmapsApiKey = key;
+      localStorage.setItem('lavvi_gmaps_api_key', key);
+      closeGmapsModal();
+      loadGoogleMapsScript(key, () => {
+        updateGmapsButtonState();
+        updateSimulation();
+      });
+    }
+
+    function clearGmapsKey() {
+      gmapsApiKey = '';
+      localStorage.removeItem('lavvi_gmaps_api_key');
+      closeGmapsModal();
+      updateGmapsButtonState();
+      updateSimulation();
+    }
+
+    function updateGmapsButtonState() {
+      const btn = document.getElementById('btn-gmaps-connect');
+      if (btn) {
+        if (gmapsApiKey) {
+          btn.innerHTML = '🟢 Google Maps 3D Ativo';
+          btn.style.borderColor = 'var(--gold)';
+          btn.style.color = 'var(--gold-light)';
+        } else {
+          btn.innerHTML = '🗺️ Conectar Google Maps 3D';
+          btn.style.borderColor = 'var(--hairline)';
+          btn.style.color = 'var(--ink)';
+        }
+      }
+    }
+
+    function loadGoogleMapsScript(apiKey, callback) {
+      if (window.google && window.google.maps) {
+        isGmapsLoaded = true;
+        if (callback) callback();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&solution_channel=gmp_git_agentskills_v1&v=weekly`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        isGmapsLoaded = true;
+        if (callback) callback();
+      };
+      script.onerror = () => {
+        alert('Não foi possível carregar a API do Google Maps. Verifique se a chave está correta.');
+      };
+      document.head.appendChild(script);
+    }
+
+    // INITIALIZATION
+    window.addEventListener('load', () => {
+      initSolariumMap(PROJECTS[curProjKey]);
+      updateSimulation();
+    });
+  
+    // Deep-linking from Index catalog cards via ?project=key
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Query parameters
+      const params = new URLSearchParams(window.location.search);
+      const projParam = params.get('project') || params.get('proj');
+      if (projParam && PROJECTS[projParam]) {
+        selectProject(projParam);
+      }
+
+      // 2. SunCalc-style URL Hash Navigation: #hipica/18andar/mes-10/14.5h
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const parts = hash.split('/');
+        if (parts[0] && PROJECTS[parts[0]]) {
+          selectProject(parts[0]);
+        }
+        parts.forEach(part => {
+          if (part.includes('andar')) {
+            const fl = parseInt(part.replace('andar', ''));
+            if (!isNaN(fl)) {
+              const slider = document.getElementById('slider-floor');
+              if (slider) { slider.value = fl; updateFloor(fl); }
+            }
+          } else if (part.includes('mes-')) {
+            const m = parseInt(part.replace('mes-', ''));
+            if (!isNaN(m)) {
+              const slider = document.getElementById('slider-month');
+              if (slider) { slider.value = m; updateSeason(m); }
+            }
+          } else if (part.includes('h')) {
+            const h = parseFloat(part.replace('h', ''));
+            if (!isNaN(h)) {
+              const slider = document.getElementById('slider-hour');
+              if (slider) { slider.value = h; updateTime(h); }
+            }
+          }
+        });
+      }
+    });
+</script>
+</body>
+</html>

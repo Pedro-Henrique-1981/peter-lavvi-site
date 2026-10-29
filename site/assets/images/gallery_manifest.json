@@ -1,0 +1,108 @@
+{
+  "hipica": [
+    "assets/images/hipica_gallery_1.jpg",
+    "assets/images/hipica_gallery_2.jpg",
+    "assets/images/hipica_gallery_3.jpg",
+    "assets/images/hipica_gallery_4.jpg",
+    "assets/images/hipica_gallery_5.jpg",
+    "assets/images/hipica_gallery_6.jpg",
+    "assets/images/hipica_gallery_7.jpg",
+    "assets/images/hipica_gallery_8.jpg"
+  ],
+  "tom": [
+    "assets/images/tom_gallery_1.jpg",
+    "assets/images/tom_gallery_2.jpg",
+    "assets/images/tom_gallery_3.jpg",
+    "assets/images/tom_gallery_4.jpg",
+    "assets/images/tom_gallery_5.jpg",
+    "assets/images/tom_gallery_6.jpg",
+    "assets/images/tom_gallery_7.jpg",
+    "assets/images/tom_gallery_8.jpg"
+  ],
+  "lesix": [
+    "assets/images/lesix_gallery_1.jpg",
+    "assets/images/lesix_gallery_2.jpg",
+    "assets/images/lesix_gallery_3.jpg",
+    "assets/images/lesix_gallery_4.jpg",
+    "assets/images/lesix_gallery_5.jpg",
+    "assets/images/lesix_gallery_6.jpg",
+    "assets/images/lesix_gallery_7.jpg",
+    "assets/images/lesix_gallery_8.jpg"
+  ],
+  "versace": [
+    "assets/images/versace_gallery_1.jpg",
+    "assets/images/versace_gallery_2.jpg",
+    "assets/images/versace_gallery_3.jpg",
+    "assets/images/versace_gallery_4.jpg",
+    "assets/images/versace_gallery_5.jpg",
+    "assets/images/versace_gallery_6.jpg",
+    "assets/images/versace_gallery_7.jpg",
+    "assets/images/versace_gallery_8.jpg"
+  ],
+  "grandsquare": [
+    "assets/images/grandsquare_gallery_1.jpg",
+    "assets/images/grandsquare_gallery_2.jpg",
+    "assets/images/grandsquare_gallery_3.jpg",
+    "assets/images/grandsquare_gallery_4.jpg",
+    "assets/images/grandsquare_gallery_5.jpg",
+    "assets/images/grandsquare_gallery_6.jpg",
+    "assets/images/grandsquare_gallery_7.jpg",
+    "assets/images/grandsquare_gallery_8.jpg"
+  ],
+  "greenview": [
+    "assets/images/greenview_gallery_1.jpg",
+    "assets/images/greenview_gallery_2.jpg",
+    "assets/images/greenview_gallery_3.jpg",
+    "assets/images/greenview_gallery_4.jpg",
+    "assets/images/greenview_gallery_5.jpg",
+    "assets/images/greenview_gallery_6.jpg",
+    "assets/images/greenview_gallery_7.jpg",
+    "assets/images/greenview_gallery_8.jpg"
+  ],
+  "alive": [
+    "assets/images/alive_gallery_1.jpg",
+    "assets/images/alive_gallery_2.jpg",
+    "assets/images/alive_gallery_3.jpg",
+    "assets/images/alive_gallery_4.jpg",
+    "assets/images/alive_gallery_5.jpg",
+    "assets/images/alive_gallery_6.jpg",
+    "assets/images/alive_gallery_7.jpg",
+    "assets/images/alive_gallery_8.jpg"
+  ],
+  "petra": [
+    "assets/images/petra_gallery_1.jpg",
+    "assets/images/petra_gallery_2.jpg",
+    "assets/images/petra_gallery_3.jpg",
+    "assets/images/petra_gallery_4.jpg",
+    "assets/images/petra_gallery_5.jpg",
+    "assets/images/petra_gallery_6.jpg",
+    "assets/images/petra_gallery_7.jpg",
+    "assets/images/petra_gallery_8.jpg"
+  ],
+  "heaven": [
+    "assets/images/heaven_gallery_1.jpg",
+    "assets/images/heaven_gallery_2.jpg",
+    "assets/images/heaven_gallery_3.jpg",
+    "assets/images/heaven_gallery_4.jpg",
+    "assets/images/heaven_gallery_5.jpg",
+    "assets/images/heaven_gallery_6.jpg",
+    "assets/images/heaven_gallery_7.jpg",
+    "assets/images/heaven_gallery_8.jpg"
+  ],
+  "palace": [
+    "assets/images/palace_gallery_1.jpg",
+    "assets/images/palace_gallery_2.jpg"
+  ],
+  "well": [],
+  "safire": [
+    "assets/images/safire_gallery_1.jpg",
+    "assets/images/safire_gallery_2.jpg",
+    "assets/images/safire_gallery_3.jpg",
+    "assets/images/safire_gallery_4.jpg",
+    "assets/images/safire_gallery_5.jpg",
+    "assets/images/safire_gallery_6.jpg",
+    "assets/images/safire_gallery_7.jpg",
+    "assets/images/safire_gallery_8.jpg"
+  ],
+  "novvo": []
+}

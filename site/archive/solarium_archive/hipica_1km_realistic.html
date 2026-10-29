@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jardim da Hípica | Modelo 3D Realista 1 km — Alto da Boa Vista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090c10;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --border: rgba(212, 175, 55, 0.25);
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #webgl-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: block;
+    }
+
+    /* Top Navigation Bar */
+    .top-bar {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      right: 24px;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .brand-pill {
+      background: rgba(9, 12, 16, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      pointer-events: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .brand-badge {
+      font-size: 11px;
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      pointer-events: auto;
+    }
+
+    .btn-action {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn-action:hover {
+      background: rgba(212, 175, 55, 0.2);
+      border-color: var(--gold);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .btn-action.gold {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(180, 140, 20, 0.2));
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* Floating Left Control Panel */
+    .control-panel {
+      position: absolute;
+      top: 90px;
+      left: 24px;
+      z-index: 20;
+      width: 320px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .panel-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-preset {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      border-radius: 10px;
+      padding: 9px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+    }
+
+    .btn-preset:hover, .btn-preset.active {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .btn-preset span {
+      display: block;
+      font-size: 9px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .btn-preset.active span {
+      color: rgba(243, 229, 171, 0.7);
+    }
+
+    /* Slider Group */
+    .slider-box {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .slider-header span:last-child {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    input[type=range] {
+      width: 100%;
+      height: 4px;
+      background: #334155;
+      border-radius: 4px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    /* Layer Toggles */
+    .layer-toggles {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .layer-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 6px 8px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+    }
+
+    .layer-item input[type="checkbox"] {
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    /* Bottom Info Card */
+    .bottom-hud {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+
+    .geo-stats-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 20px;
+      display: flex;
+      gap: 24px;
+      pointer-events: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #64748b;
+    }
+
+    .stat-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-top: 2px;
+    }
+
+    .capture-badge {
+      background: rgba(9, 12, 16, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 20px;
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-capture {
+      background: linear-gradient(135deg, #d4af37, #996515);
+      border: none;
+      color: #000;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-capture:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+    }
+
+    /* Modal for Da Vinci Codex / Image View */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #0f172a;
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 1100px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-head {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .modal-img-preview {
+      width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #fff;
+    }
+
+    /* Loading Spinner */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #090c10;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      transition: opacity 0.5s ease;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(212, 175, 55, 0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- Three.js and Addons via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <div style="font-family:'Cinzel',serif; color:#d4af37; letter-spacing:2px; font-size:14px;">
+      CARREGANDO MODELO 3D REALISTA (RAIO 1 KM)
+    </div>
+    <div style="color:#64748b; font-size:11px;">
+      Georreferenciamento Alto da Boa Vista & Clube Hípico de Santo Amaro...
+    </div>
+  </div>
+
+  <!-- WebGL Render Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-bar">
+    <div class="brand-pill">
+      <div class="brand-title">LAVVI &bull; JARDIM DA HÍPICA</div>
+      <div class="brand-badge">Raio 1 km &bull; 3D Realista</div>
+    </div>
+    <div class="nav-actions">
+      <a href="hipica_building_3d.html" class="btn-action gold">🏢 Apenas o Edifício (50.000 m²)</a>
+      <button class="btn-action gold" id="btnOpenRealisticRender">
+        📸 Render Fotorrealista 4K
+      </button>
+      <a href="solarium.html" class="btn-action">
+        ☀️ Solarium & Sombras
+      </a>
+      <a href="solarium_3d_tiles.html" class="btn-action">
+        🌍 Google Earth 3D
+      </a>
+      <a href="index.html" class="btn-action">
+        🏛️ Portal Lavvi
+      </a>
+    </div>
+  </header>
+
+  <!-- Left Interactive Control Panel -->
+  <aside class="control-panel">
+    <div>
+      <div class="panel-section-title">
+        <span>Perspectivas de Voo</span>
+        <span style="font-size:9px; color:#64748b;">Presets</span>
+      </div>
+      <div class="preset-grid">
+        <button class="btn-preset active" data-preset="drone800">
+          🦅 Drone 800m
+          <span>Visão aérea geral 1km</span>
+        </button>
+        <button class="btn-preset" data-preset="earthUser">
+          🌍 Google Earth
+          <span>Ângulo exato 73.5°/28.5°</span>
+        </button>
+        <button class="btn-preset" data-preset="lavviFocus">
+          🏛️ Jardim da Hípica
+          <span>Torres e Raia 60m</span>
+        </button>
+        <button class="btn-preset" data-preset="hipicaClub">
+          🏇 Clube Hípico
+          <span>Pistas de salto & CHSA</span>
+        </button>
+        <button class="btn-preset" data-preset="streetWalk">
+          🚶 Rua Antônio Bandeira
+          <span>Visão de pedestre</span>
+        </button>
+        <button class="btn-preset" data-preset="rioPinheiros">
+          🌊 Rio Pinheiros
+          <span>Marginal & Pontes</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Time of Day & Lighting -->
+    <div class="slider-box">
+      <div class="slider-header">
+        <span>Horário Solar (Brasília UTC-3)</span>
+        <span id="timeLabel">17:30 (Golden Hour)</span>
+      </div>
+      <input type="range" id="timeSlider" min="6" max="20" step="0.25" value="17.5">
+    </div>
+
+    <!-- 3D Layer Toggles -->
+    <div>
+      <div class="panel-section-title">Camadas no Raio de 1 km</div>
+      <div class="layer-toggles">
+        <label class="layer-item">
+          <span>Prédios Reais (474 edifícios)</span>
+          <input type="checkbox" id="chkBuildings" checked>
+        </label>
+        <label class="layer-item">
+          <span>Malha Viária (719 ruas/avenidas)</span>
+          <input type="checkbox" id="chkRoads" checked>
+        </label>
+        <label class="layer-item">
+          <span>Clube Hípico de Santo Amaro</span>
+          <input type="checkbox" id="chkHipica" checked>
+        </label>
+        <label class="layer-item">
+          <span>Vegetação Alto da Boa Vista (2.500+ árvores)</span>
+          <input type="checkbox" id="chkTrees" checked>
+        </label>
+        <label class="layer-item">
+          <span>Rio Pinheiros & Reflexos</span>
+          <input type="checkbox" id="chkWater" checked>
+        </label>
+      </div>
+    </div>
+
+    <!-- Renaissance Filter Toggle -->
+    <div>
+      <button class="btn-action" id="btnToggleDaVinciShader" style="width:100%; justify-content:center; border-color:var(--gold);">
+        📜 Modo Leonardo da Vinci (Codex)
+      </button>
+    </div>
+  </aside>
+
+  <!-- Bottom HUD Stats & Snapshot -->
+  <footer class="bottom-hud">
+    <div class="geo-stats-card">
+      <div class="stat-item">
+        <span class="stat-label">Coordenadas Centro</span>
+        <span class="stat-val">-23.6422°, -46.7081°</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Terreno Lavvi</span>
+        <span class="stat-val">39.553 m²</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Área CHSA</span>
+        <span class="stat-val">~330.000 m²</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Edifícios Modelados</span>
+        <span class="stat-val">474 Reais (OSM)</span>
+      </div>
+    </div>
+
+    <div class="capture-badge">
+      <span style="font-size:11px; color:#94a3b8;">Captura de Imagem 3D:</span>
+      <button class="btn-capture" id="btnSnapshot">
+        📷 Exportar Imagem 4K
+      </button>
+    </div>
+  </footer>
+
+  <!-- Modal for Realistic Render 4K -->
+  <div class="modal-overlay" id="renderModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div style="font-family:'Cinzel',serif; color:#d4af37; font-size:16px;">
+          📸 RENDER FOTORREALISTA AÉREO — RAIO 1 KM HÍPICA
+        </div>
+        <button class="close-btn" id="btnCloseRenderModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <img src="assets/images/hipica_1km_realistic_render.jpg" alt="Render Fotorrealista 1km Hípica" class="modal-img-preview" id="modalRenderImg" onerror="this.src='assets/hipica_davinci_earth_oblique.jpg'">
+        <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+          <div style="font-size:12px; color:#94a3b8;">
+            Perspectiva aérea Hasselblad: Jardim da Hípica, Clube Hípico de Santo Amaro e Rio Pinheiros.
+          </div>
+          <a href="assets/images/hipica_1km_realistic_render.jpg" download="hipica_1km_render_4k.jpg" class="btn-capture">
+            💾 Baixar Imagem Original
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script>
+    // Global App Configuration
+    const CONFIG = {
+      center: { lat: -23.642276, lon: -46.708081 },
+      radius: 1200,
+      daVinciMode: false
+    };
+
+    // Scene & Three.js globals
+    let scene, camera, renderer, controls;
+    let dirLight, hemiLight, ambientLight;
+    let buildingsGroup, roadsGroup, treesGroup, lavviGroup, hipicaGroup, waterMesh;
+    let groundMesh;
+
+    const canvas = document.getElementById('webgl-canvas');
+    const loader = document.getElementById('loader');
+
+    // Camera Presets
+    const PRESETS = {
+      drone800: {
+        pos: { x: 0, y: 750, z: 850 },
+        target: { x: 0, y: 0, z: 0 },
+        desc: 'Visão Geral 1km'
+      },
+      earthUser: {
+        // Reproduces exact Google Earth perspective: tilt 73.5°, heading 28.5°, dist ~1024m
+        pos: { x: -470, y: 290, z: 880 },
+        target: { x: 0, y: 30, z: 0 },
+        desc: 'Google Earth Ângulo Exato'
+      },
+      lavviFocus: {
+        pos: { x: 120, y: 90, z: 180 },
+        target: { x: -20, y: 40, z: -20 },
+        desc: 'Jardim da Hípica (Torres & Lazer)'
+      },
+      hipicaClub: {
+        pos: { x: -450, y: 60, z: -250 },
+        target: { x: -50, y: 20, z: 0 },
+        desc: 'Clube Hípico de Santo Amaro'
+      },
+      streetWalk: {
+        pos: { x: 30, y: 6, z: 120 },
+        target: { x: 0, y: 25, z: 0 },
+        desc: 'Rua Antônio Bandeira Pedestre'
+      },
+      rioPinheiros: {
+        pos: { x: -850, y: 150, z: 100 },
+        target: { x: -300, y: 20, z: 0 },
+        desc: 'Rio Pinheiros & Marginal'
+      }
+    };
+
+    // Initialize Scene
+    function init() {
+      // 1. Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a1118);
+      scene.fog = new THREE.FogExp2(0x0a1118, 0.00065);
+
+      // 2. Camera
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 2, 4000);
+      camera.position.set(PRESETS.drone800.pos.x, PRESETS.drone800.pos.y, PRESETS.drone800.pos.z);
+
+      // 3. Renderer
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.1;
+
+      // 4. Controls
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.maxPolarAngle = Math.PI / 2 - 0.02; // Prevent underground view
+      controls.minDistance = 15;
+      controls.maxDistance = 2200;
+      controls.target.set(0, 0, 0);
+
+      // 5. Lighting
+      hemiLight = new THREE.HemisphereLight(0xfff7ed, 0x1e293b, 0.6);
+      scene.add(hemiLight);
+
+      ambientLight = new THREE.AmbientLight(0x334155, 0.5);
+      scene.add(ambientLight);
+
+      dirLight = new THREE.DirectionalLight(0xfff1d0, 1.8);
+      dirLight.position.set(400, 500, 300);
+      dirLight.castShadow = true;
+      dirLight.shadow.mapSize.width = 2048;
+      dirLight.shadow.mapSize.height = 2048;
+      dirLight.shadow.camera.near = 100;
+      dirLight.shadow.camera.far = 1800;
+      const d = 600;
+      dirLight.shadow.camera.left = -d;
+      dirLight.shadow.camera.right = d;
+      dirLight.shadow.camera.top = d;
+      dirLight.shadow.camera.bottom = -d;
+      dirLight.shadow.bias = -0.0005;
+      scene.add(dirLight);
+
+      // Groups for Toggle
+      buildingsGroup = new THREE.Group();
+      roadsGroup = new THREE.Group();
+      treesGroup = new THREE.Group();
+      lavviGroup = new THREE.Group();
+      hipicaGroup = new THREE.Group();
+      scene.add(buildingsGroup);
+      scene.add(roadsGroup);
+      scene.add(treesGroup);
+      scene.add(lavviGroup);
+      scene.add(hipicaGroup);
+
+      // 6. Build Base Environment
+      createGroundTerrain();
+      createRioPinheiros();
+      createClubeHipicoGrounds();
+      createLavviJardimDaHipica();
+      createInstancedTrees();
+
+      // 7. Load Real OpenStreetMap Geospatial Data
+      loadGeoJSON();
+
+      // 8. Event Listeners
+      setupUIEvents();
+      window.addEventListener('resize', onWindowResize, false);
+
+      // Dismiss loader
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 500);
+      }, 1000);
+    }
+
+    // Ground Plateau with Satellite Texture
+    function createGroundTerrain() {
+      const geo = new THREE.PlaneGeometry(2400, 2400, 64, 64);
+      geo.rotateX(-Math.PI / 2);
+
+      // Load Satellite Texture
+      const textureLoader = new THREE.TextureLoader();
+      textureLoader.load('assets/hipica_google_earth_3blocks.jpg', (tex) => {
+        tex.wrapS = THREE.ClampToEdgeWrapping;
+        tex.wrapT = THREE.ClampToEdgeWrapping;
+        groundMesh.material.map = tex;
+        groundMesh.material.needsUpdate = true;
+      });
+
+      const mat = new THREE.MeshStandardMaterial({
+        color: 0x243324,
+        roughness: 0.9,
+        metalness: 0.1
+      });
+
+      groundMesh = new THREE.Mesh(geo, mat);
+      groundMesh.receiveShadow = true;
+      scene.add(groundMesh);
+    }
+
+    // Rio Pinheiros Water
+    function createRioPinheiros() {
+      // Pinheiros river runs roughly North-South on the west side (x ~= -650 to -750)
+      const waterGeo = new THREE.PlaneGeometry(160, 2400);
+      waterGeo.rotateX(-Math.PI / 2);
+      const waterMat = new THREE.MeshStandardMaterial({
+        color: 0x1e3a5f,
+        roughness: 0.1,
+        metalness: 0.85
+      });
+      waterMesh = new THREE.Mesh(waterGeo, waterMat);
+      waterMesh.position.set(-720, 0.2, 0);
+      waterMesh.receiveShadow = true;
+      scene.add(waterMesh);
+
+      // Embankments / Marginal Pinheiros Expressway lanes
+      const marginalGeo = new THREE.PlaneGeometry(45, 2400);
+      marginalGeo.rotateX(-Math.PI / 2);
+      const marginalMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.8 });
+      const marginalEast = new THREE.Mesh(marginalGeo, marginalMat);
+      marginalEast.position.set(-620, 0.25, 0);
+      scene.add(marginalEast);
+    }
+
+    // Clube Hípico de Santo Amaro (CHSA)
+    function createClubeHipicoGrounds() {
+      // CHSA spans ~ -400 to -100 in X and -350 to +50 in Z (north-west of Lavvi)
+      // Large grass jumping arena
+      const arenaGramaGeo = new THREE.PlaneGeometry(220, 160);
+      arenaGramaGeo.rotateX(-Math.PI / 2);
+      const arenaGramaMat = new THREE.MeshStandardMaterial({ color: 0x2e7d32, roughness: 0.7 });
+      const arenaGrama = new THREE.Mesh(arenaGramaGeo, arenaGramaMat);
+      arenaGrama.position.set(-260, 0.3, -120);
+      arenaGrama.receiveShadow = true;
+      hipicaGroup.add(arenaGrama);
+
+      // Red-sand Dressage arena
+      const arenaAreiaGeo = new THREE.PlaneGeometry(140, 90);
+      arenaAreiaGeo.rotateX(-Math.PI / 2);
+      const arenaAreiaMat = new THREE.MeshStandardMaterial({ color: 0xd97736, roughness: 0.95 });
+      const arenaAreia = new THREE.Mesh(arenaAreiaGeo, arenaAreiaMat);
+      arenaAreia.position.set(-260, 0.35, 40);
+      arenaAreia.receiveShadow = true;
+      hipicaGroup.add(arenaAreia);
+
+      // Secondary Sand Arena
+      const arenaAreia2 = arenaAreia.clone();
+      arenaAreia2.position.set(-420, 0.35, -80);
+      hipicaGroup.add(arenaAreia2);
+
+      // CHSA Stables / Cavalariças (Low horizontal pavilions)
+      const stableMat = new THREE.MeshStandardMaterial({ color: 0xf1f5f9, roughness: 0.6 });
+      const roofMat = new THREE.MeshStandardMaterial({ color: 0x991b1b, roughness: 0.5 });
+      for (let i = 0; i < 5; i++) {
+        const stable = new THREE.Mesh(new THREE.BoxGeometry(70, 5, 14), stableMat);
+        stable.position.set(-360, 2.5, -240 + i * 22);
+        stable.castShadow = true;
+        stable.receiveShadow = true;
+
+        const roof = new THREE.Mesh(new THREE.ConeGeometry(12, 3, 4), roofMat);
+        roof.position.set(-360, 6, -240 + i * 22);
+        roof.scale.set(3, 1, 0.7);
+        roof.rotateY(Math.PI / 4);
+        hipicaGroup.add(stable);
+        hipicaGroup.add(roof);
+      }
+    }
+
+    // Lavvi Jardim da Hípica - High-Fidelity 3D Architecture
+    function createLavviJardimDaHipica() {
+      // Site boundary base podium (39,553 m²)
+      const siteBaseGeo = new THREE.BoxGeometry(220, 1.2, 180);
+      const siteBaseMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.9 });
+      const siteBase = new THREE.Mesh(siteBaseGeo, siteBaseMat);
+      siteBase.position.set(0, 0.6, 0);
+      siteBase.receiveShadow = true;
+      lavviGroup.add(siteBase);
+
+      // Tower Materials
+      const concreteMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.3, metalness: 0.05 });
+      const glassBalconyMat = new THREE.MeshPhysicalMaterial({
+        color: 0x38bdf8,
+        transparent: true,
+        opacity: 0.65,
+        roughness: 0.1,
+        metalness: 0.1,
+        transmission: 0.6
+      });
+      const crownMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.85, roughness: 0.25 });
+
+      // Towers Configuration (Torres A, B, C, D curved arc + Torres E, F)
+      const towers = [
+        { name: 'Torre A Residences', x: 50, z: -40, floors: 43, h: 138, rot: 0.15 },
+        { name: 'Torre B Residences', x: 10, z: -55, floors: 43, h: 138, rot: 0.05 },
+        { name: 'Torre C Residences', x: -35, z: -45, floors: 43, h: 138, rot: -0.1 },
+        { name: 'Torre D Residences', x: -75, z: -20, floors: 43, h: 138, rot: -0.25 },
+        { name: 'Torre E Apartments', x: 60, z: 45, floors: 42, h: 132, rot: 0 },
+        { name: 'Torre F Apartments', x: -60, z: 45, floors: 42, h: 132, rot: 0 }
+      ];
+
+      towers.forEach(t => {
+        const twGroup = new THREE.Group();
+        twGroup.position.set(t.x, 0, t.z);
+        twGroup.rotation.y = t.rot;
+
+        // Core Tower Body
+        const coreWidth = 26, coreDepth = 18;
+        const coreGeo = new THREE.BoxGeometry(coreWidth, t.h, coreDepth);
+        const core = new THREE.Mesh(coreGeo, concreteMat);
+        core.position.y = t.h / 2;
+        core.castShadow = true;
+        core.receiveShadow = true;
+        twGroup.add(core);
+
+        // Balconies running up the facade
+        const numBalconies = Math.floor(t.floors / 2);
+        for (let f = 1; f < numBalconies; f++) {
+          const by = f * 6.5;
+          const bGeo = new THREE.BoxGeometry(coreWidth + 2.5, 0.4, coreDepth + 2.5);
+          const bMesh = new THREE.Mesh(bGeo, glassBalconyMat);
+          bMesh.position.y = by;
+          twGroup.add(bMesh);
+        }
+
+        // Golden Architectural Crown Pergola
+        const crownGeo = new THREE.BoxGeometry(coreWidth + 1, 6, coreDepth + 1);
+        const crown = new THREE.Mesh(crownGeo, crownMat);
+        crown.position.y = t.h + 3;
+        crown.castShadow = true;
+        twGroup.add(crown);
+
+        lavviGroup.add(twGroup);
+      });
+
+      // 60-Meter Lap Pool with Turquoise Water
+      const poolGeo = new THREE.BoxGeometry(60, 0.8, 14);
+      const poolMat = new THREE.MeshStandardMaterial({
+        color: 0x06b6d4,
+        roughness: 0.1,
+        metalness: 0.9
+      });
+      const pool = new THREE.Mesh(poolGeo, poolMat);
+      pool.position.set(0, 1.3, -5);
+      pool.receiveShadow = true;
+      lavviGroup.add(pool);
+
+      // Pool Deck
+      const deckGeo = new THREE.BoxGeometry(75, 0.2, 28);
+      const deckMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.8 });
+      const deck = new THREE.Mesh(deckGeo, deckMat);
+      deck.position.set(0, 1.0, -5);
+      deck.receiveShadow = true;
+      lavviGroup.add(deck);
+
+      // 2 Official Clay Tennis Courts (18x36m each)
+      const tennisMat = new THREE.MeshStandardMaterial({ color: 0xc2410c, roughness: 0.9 });
+      for (let tc = 0; tc < 2; tc++) {
+        const court = new THREE.Mesh(new THREE.BoxGeometry(18, 0.3, 36), tennisMat);
+        court.position.set(-65 + tc * 22, 1.2, 50);
+        court.receiveShadow = true;
+        lavviGroup.add(court);
+      }
+
+      // 2 Beach Tennis Sand Courts
+      const sandMat = new THREE.MeshStandardMaterial({ color: 0xfde047, roughness: 0.95 });
+      for (let bc = 0; bc < 2; bc++) {
+        const bCourt = new THREE.Mesh(new THREE.BoxGeometry(16, 0.3, 22), sandMat);
+        bCourt.position.set(45 + bc * 20, 1.2, 50);
+        bCourt.receiveShadow = true;
+        lavviGroup.add(bCourt);
+      }
+
+      // 4 Private Houses with Private Gardens
+      const houseMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 });
+      for (let h = 0; h < 4; h++) {
+        const house = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 14), houseMat);
+        house.position.set(-30 + h * 20, 4.5, -75);
+        house.castShadow = true;
+        house.receiveShadow = true;
+        lavviGroup.add(house);
+      }
+
+      // 10,000 m² Central Public Park (Benedito Abbud)
+      const parkGeo = new THREE.BoxGeometry(160, 0.4, 70);
+      const parkMat = new THREE.MeshStandardMaterial({ color: 0x15803d, roughness: 0.85 });
+      const park = new THREE.Mesh(parkGeo, parkMat);
+      park.position.set(0, 0.9, -65);
+      park.receiveShadow = true;
+      lavviGroup.add(park);
+    }
+
+    // Instanced Trees (Alto da Boa Vista Lush Canopy)
+    function createInstancedTrees() {
+      const treeCount = 1200;
+      const trunkGeo = new THREE.CylinderGeometry(0.3, 0.6, 6, 6);
+      const foliageGeo = new THREE.DodecahedronGeometry(4, 1);
+
+      const trunkMat = new THREE.MeshStandardMaterial({ color: 0x451a03, roughness: 0.9 });
+      const foliageMat = new THREE.MeshStandardMaterial({ color: 0x166534, roughness: 0.7 });
+
+      const trunkInst = new THREE.InstancedMesh(trunkGeo, trunkMat, treeCount);
+      const foliageInst = new THREE.InstancedMesh(foliageGeo, foliageMat, treeCount);
+      trunkInst.castShadow = true;
+      foliageInst.castShadow = true;
+
+      const dummy = new THREE.Object3D();
+
+      for (let i = 0; i < treeCount; i++) {
+        // Random distribution across 1km radius with exclusion of river and building centers
+        const radius = 80 + Math.random() * 950;
+        const angle = Math.random() * Math.PI * 2;
+        let tx = Math.cos(angle) * radius;
+        let tz = Math.sin(angle) * radius;
+
+        // Skip river
+        if (tx < -650 && tx > -790) continue;
+
+        const scale = 0.7 + Math.random() * 0.6;
+
+        dummy.position.set(tx, 3 * scale, tz);
+        dummy.scale.set(scale, scale, scale);
+        dummy.updateMatrix();
+        trunkInst.setMatrixAt(i, dummy.matrix);
+
+        dummy.position.set(tx, 7 * scale, tz);
+        dummy.scale.set(scale * 1.2, scale * 1.2, scale * 1.2);
+        dummy.updateMatrix();
+        foliageInst.setMatrixAt(i, dummy.matrix);
+      }
+
+      trunkInst.instanceMatrix.needsUpdate = true;
+      foliageInst.instanceMatrix.needsUpdate = true;
+      treesGroup.add(trunkInst);
+      treesGroup.add(foliageInst);
+    }
+
+    // Load Real OpenStreetMap Data (474 Buildings + 719 Roads)
+    function loadGeoJSON() {
+      fetch('assets/hipica_1km_geo.json')
+        .then(res => res.json())
+        .then(data => {
+          renderOSMBuildings(data.buildings || []);
+          renderOSMRoads(data.roads || []);
+        })
+        .catch(err => {
+          console.warn('Geospatial JSON fallback:', err);
+        });
+    }
+
+    // Render Extruded 3D Real Buildings
+    function renderOSMBuildings(buildings) {
+      const bMat = new THREE.MeshStandardMaterial({
+        color: 0x94a3b8,
+        roughness: 0.6,
+        metalness: 0.1
+      });
+      const highriseMat = new THREE.MeshStandardMaterial({
+        color: 0xe2e8f0,
+        roughness: 0.35,
+        metalness: 0.2
+      });
+
+      buildings.forEach(b => {
+        if (!b.pts || b.pts.length < 3) return;
+
+        // Skip buildings right on top of our Lavvi lot to avoid overlapping
+        const distToCenter = Math.hypot(b.centroid[0], b.centroid[1]);
+        if (distToCenter < 120) return;
+
+        const shape = new THREE.Shape();
+        b.pts.forEach((pt, idx) => {
+          if (idx === 0) shape.moveTo(pt[0], pt[1]);
+          else shape.lineTo(pt[0], pt[1]);
+        });
+
+        const height = Math.max(b.height, 4);
+        const extrudeSettings = {
+          steps: 1,
+          depth: height,
+          bevelEnabled: false
+        };
+
+        const geom = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+        geom.rotateX(Math.PI / 2); // Orient upright
+
+        const mesh = new THREE.Mesh(geom, height > 30 ? highriseMat : bMat);
+        mesh.position.y = 0;
+        mesh.castShadow = height > 15;
+        mesh.receiveShadow = true;
+        buildingsGroup.add(mesh);
+      });
+    }
+
+    // Render Real Road Network
+    function renderOSMRoads(roads) {
+      const roadMat = new THREE.LineBasicMaterial({ color: 0x475569, linewidth: 2 });
+      roads.forEach(r => {
+        if (!r.pts || r.pts.length < 2) return;
+        const pts = r.pts.map(p => new THREE.Vector3(p[0], 0.3, p[1]));
+        const geom = new THREE.BufferGeometry().setFromPoints(pts);
+        const line = new THREE.Line(geom, roadMat);
+        roadsGroup.add(line);
+      });
+    }
+
+    // UI & Preset Controls
+    function setupUIEvents() {
+      // Preset buttons
+      document.querySelectorAll('.btn-preset').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const pKey = btn.dataset.preset;
+          if (PRESETS[pKey]) flyTo(PRESETS[pKey]);
+        });
+      });
+
+      // Time Slider
+      const timeSlider = document.getElementById('timeSlider');
+      const timeLabel = document.getElementById('timeLabel');
+      timeSlider.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value);
+        const hrs = Math.floor(val);
+        const mins = Math.floor((val % 1) * 60);
+        const timeStr = `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+        timeLabel.textContent = `${timeStr} ${val >= 16.5 && val <= 18.5 ? '(Golden Hour)' : (val > 18.5 ? '(Crepúsculo)' : '')}`;
+        updateSun(val);
+      });
+
+      // Layer Toggles
+      document.getElementById('chkBuildings').addEventListener('change', e => buildingsGroup.visible = e.target.checked);
+      document.getElementById('chkRoads').addEventListener('change', e => roadsGroup.visible = e.target.checked);
+      document.getElementById('chkHipica').addEventListener('change', e => hipicaGroup.visible = e.target.checked);
+      document.getElementById('chkTrees').addEventListener('change', e => treesGroup.visible = e.target.checked);
+      document.getElementById('chkWater').addEventListener('change', e => waterMesh.visible = e.target.checked);
+
+      // Snapshot Tool
+      document.getElementById('btnSnapshot').addEventListener('click', takeSnapshot);
+
+      // Render Modal
+      const modal = document.getElementById('renderModal');
+      document.getElementById('btnOpenRealisticRender').addEventListener('click', () => modal.classList.add('active'));
+      document.getElementById('btnCloseRenderModal').addEventListener('click', () => modal.classList.remove('active'));
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+      // Da Vinci Shader Toggle
+      document.getElementById('btnToggleDaVinciShader').addEventListener('click', toggleDaVinciMode);
+    }
+
+    // Smooth Camera Transition (Tween)
+    function flyTo(preset) {
+      new TWEEN.Tween(camera.position)
+        .to(preset.pos, 1600)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+
+      new TWEEN.Tween(controls.target)
+        .to(preset.target, 1600)
+        .easing(TWEEN.Easing.Cubic.Out)
+        .start();
+    }
+
+    // Update Sun Position based on Hour of Day
+    function updateSun(hour) {
+      // 6 to 18 = day, >18 = sunset/night
+      const sunAngle = (hour - 6) / 12 * Math.PI;
+      const sunDist = 750;
+      const sunX = Math.cos(sunAngle) * sunDist;
+      const sunY = Math.max(Math.sin(sunAngle) * sunDist, 10);
+      const sunZ = Math.sin(sunAngle * 0.7) * 250;
+
+      dirLight.position.set(sunX, sunY, sunZ);
+
+      // Warm golden hour coloration
+      if (hour >= 16.5 && hour <= 18.5) {
+        dirLight.color.setHex(0xffaa55);
+        hemiLight.color.setHex(0xffddaa);
+        scene.fog.color.setHex(0x1a1510);
+      } else if (hour > 18.5 || hour < 6.5) {
+        dirLight.color.setHex(0x38bdf8);
+        dirLight.intensity = 0.4;
+        hemiLight.color.setHex(0x0f172a);
+        scene.fog.color.setHex(0x050810);
+      } else {
+        dirLight.color.setHex(0xfff7ed);
+        dirLight.intensity = 1.8;
+        hemiLight.color.setHex(0xf8fafc);
+        scene.fog.color.setHex(0x0a1118);
+      }
+    }
+
+    // High-Resolution 4K Canvas Snapshot
+    function takeSnapshot() {
+      renderer.render(scene, camera);
+      const dataURL = renderer.domElement.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.download = 'jardim_hipica_3d_1km_snapshot.png';
+      link.href = dataURL;
+      link.click();
+    }
+
+    // Toggle Renaissance Da Vinci Parchment Mode
+    function toggleDaVinciMode() {
+      CONFIG.daVinciMode = !CONFIG.daVinciMode;
+      const btn = document.getElementById('btnToggleDaVinciShader');
+      if (CONFIG.daVinciMode) {
+        scene.background = new THREE.Color(0xd2b48c);
+        scene.fog.color = new THREE.Color(0xd2b48c);
+        btn.textContent = '🎨 Modo Realista 3D';
+        btn.style.background = 'rgba(212, 175, 55, 0.3)';
+      } else {
+        scene.background = new THREE.Color(0x0a1118);
+        scene.fog.color = new THREE.Color(0x0a1118);
+        btn.textContent = '📜 Modo Leonardo da Vinci (Codex)';
+        btn.style.background = 'rgba(15, 23, 42, 0.85)';
+      }
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    // Animation Loop
+    function animate(time) {
+      requestAnimationFrame(animate);
+      TWEEN.update();
+      controls.update();
+
+      // Subtle water ripple animation
+      if (waterMesh) {
+        waterMesh.material.roughness = 0.1 + Math.sin(time * 0.002) * 0.02;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    // Start
+    init();
+    animate(0);
+  </script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Well Perdizes | Dossiê de Investimento & Viabilidade Patrimonial</title>
+  <meta name="description" content="Dossiê executivo e viabilidade patrimonial do Well Perdizes (Perdizes). Análise financeira 35/65, normas ABNT e consultoria exclusiva de Pedro Soares.">
+  <style>
+    :root {
+      --navy-deep: #0B1320;
+      --navy-card: #142033;
+      --navy-border: #233552;
+      --gold-primary: #D4AF37;
+      --gold-light: #F3DC8A;
+      --text-white: #F8FAFC;
+      --text-slate: #94A3B8;
+      --text-muted: #64748B;
+      --green-accent: #10B981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--navy-deep);
+      color: var(--text-white);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    .dossier-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+    header.dossier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--navy-border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .brand-col { display: flex; flex-direction: column; }
+    .brand-title { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; color: var(--gold-light); }
+    .brand-sub { font-size: 0.75rem; color: var(--text-slate); text-transform: uppercase; letter-spacing: 0.1em; }
+    .broker-tag {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+    }
+    .hero-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold-primary);
+      color: #000;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+    h1.project-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #FFF;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .project-location {
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .quick-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+      border-top: 1px solid var(--navy-border);
+      padding-top: 25px;
+    }
+    .metric-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .metric-label { font-size: 0.72rem; color: var(--text-slate); text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric-value { font-size: 1.15rem; font-weight: 700; color: #FFF; margin-top: 4px; }
+    
+    .section-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 25px;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 10px;
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    table.data-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-slate);
+      font-weight: 600;
+      border-bottom: 1px solid var(--navy-border);
+    }
+    table.data-table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #FFF;
+    }
+    .m2-badge {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+    
+    .cta-wa-box {
+      background: linear-gradient(135deg, #10233D, #0B1728);
+      border: 1px solid var(--gold-primary);
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      margin: 35px 0;
+    }
+    .btn-wa-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green-accent);
+      color: #FFF;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      transition: all 0.2s;
+      margin-top: 15px;
+    }
+    .btn-wa-action:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+    
+    .script-box {
+      background: #0A111C;
+      border-left: 3px solid var(--gold-primary);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 12px 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .beat-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .copy-btn {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      margin-top: 12px;
+    }
+    .copy-btn:hover { background: var(--gold-primary); color: #000; }
+
+    footer.dossier-footer {
+      border-top: 1px solid var(--navy-border);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body { background: #FFF !important; color: #000 !important; }
+      .dossier-container { max-width: 100%; padding: 0; }
+      .hero-card, .section-card, .metric-box { background: #FFF !important; border: 1px solid #CCC !important; color: #000 !important; }
+      .project-title, .section-title, .metric-value, table.data-table td { color: #000 !important; }
+      .btn-wa-action, .copy-btn { display: none !important; }
+      .brand-title { color: #000 !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dossier-container">
+    <header class="dossier-header">
+      <div class="brand-col">
+        <span class="brand-title">LAVVI PRIVATE WEALTH</span>
+        <span class="brand-sub">Dossiê de Viabilidade & Inteligência Patrimonial</span>
+      </div>
+      <div class="broker-tag">
+        <span>👔</span>
+        <span><strong>Pedro Soares</strong> • Consultoria Oficial</span>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-card">
+      <span class="hero-badge">Lançamento</span>
+      <h1 class="project-title">Well Perdizes</h1>
+      <div class="project-location">
+        <span>📍</span>
+        <span>Perdizes — São Paulo/SP</span>
+      </div>
+      <p style="color: var(--text-slate); font-size: 0.95rem; line-height: 1.6;">
+        Desenvolvimento de alto padrão concebido com rigor de engenharia, arquitetura contemporânea e conveniência urbana incomparável. Oportunidade estratégica de alocação de capital e preservação de patrimônio em 2026.
+      </p>
+
+      <div class="quick-metrics-grid">
+        <div class="metric-box">
+          <div class="metric-label">Preço de Partida</div>
+          <div class="metric-value">R$ 480.000</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Faixa de Metro Quadrado</div>
+          <div class="metric-value">R$ 16.000 a R$ 19.500 / m²</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Previsão de Entrega</div>
+          <div class="metric-value"></div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Estrutura de Pagamento</div>
+          <div class="metric-value">35/65 Obra</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIPOLOGIAS & PLANTAS -->
+    <section class="section-card">
+      <h2 class="section-title">📐 Tipologias & Metragens Privativas</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Torre / Tipologia</th>
+            <th>Área Privativa</th>
+            <th>Configuração</th>
+            <th>Vagas</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr>
+          <td><strong>Studio / 1 dorm</strong></td>
+          <td><span class="m2-badge">31 m²</span></td>
+          <td>Studio a 1 dorm</td>
+          <td>-</td>
+        </tr>
+        
+        <tr>
+          <td><strong>2 dorms</strong></td>
+          <td><span class="m2-badge">41 m²</span></td>
+          <td>2 dorms</td>
+          <td>-</td>
+        </tr>
+        
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ENGENHARIA FINANCEIRA: ALAVANCAGEM 35/65 -->
+    <section class="section-card">
+      <h2 class="section-title">📊 Estrutura de Alavancagem 35/65 vs. CDI</h2>
+      <p style="color: var(--text-slate); font-size: 0.90rem; margin-bottom: 15px;">
+        A tese financeira da Lavvi permite alavancar ganho de capital sobre o valor total do imóvel desembolsando apenas 35% ao longo do período de obras:
+      </p>
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--navy-border); padding: 18px; border-radius: 12px; margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span>🔹 <strong>35% Durante a Obra:</strong> Sinal e parcelas mensais suaves (correção por INCC)</span>
+          <span style="color: var(--gold-light); font-weight: 700;">Capital Disperso</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span>🔹 <strong>65% Saldo nas Chaves:</strong> Financiamento bancário ou quitação via rendimento</span>
+          <span style="color: var(--green-accent); font-weight: 700;">Preservado no CDI</span>
+        </div>
+      </div>
+      <p style="font-size: 0.82rem; color: var(--text-muted);">
+        *Enquanto seu capital próprio permanece aplicado rendendo juros compostos a CDI líquido no banco, você trava o preço do imóvel a custo de lançamento e absorve 100% da valorização imobiliária da entrega.
+      </p>
+    </section>
+
+    <!-- ENGENHARIA LEGAL & NORMAS ABNT -->
+    <section class="section-card">
+      <h2 class="section-title">⚖️ Conformidade Legal & Normas de Engenharia</h2>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 8px;">
+          <strong style="color: var(--gold-light);">ABNT NBR 12.721 (Incorporação & Fração Ideal):</strong>
+          <p style="font-size: 0.85rem; color: var(--text-slate); margin-top: 4px;">Fração ideal de terreno estritamente em conformidade com ABNT NBR 12.721 no bairro Perdizes.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 8px;">
+          <strong style="color: var(--gold-light);">ABNT NBR 15.575 (Desempenho Habitacional de Alto Padrão):</strong>
+          <p style="font-size: 0.85rem; color: var(--text-slate); margin-top: 4px;">Desempenho Acústico Nível Superior (S) com atenuação de ruído de impacto e aéreo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROTEIRO FALADO DE VÍDEO (3-BEATS) -->
+    <section class="section-card">
+      <h2 class="section-title">🎙️ Roteiro de Vídeo para Redes Sociais (3 Spoken Story Beats)</h2>
+      <p style="color: var(--text-slate); font-size: 0.85rem; margin-bottom: 12px;">
+        Roteiro calibrado para gravação em movimento (caminhando na calçada ou de bicicleta) sem necessidade de teleprompter:
+      </p>
+
+      <div class="script-box">
+        <span class="beat-tag">Beat 1: O Gancho (0 a 3s)</span>
+        <p>"Se você busca patrimônio seguro em Perdizes, pare de olhar apenas para preço de metro quadrado."</p>
+      </div>
+
+      <div class="script-box">
+        <span class="beat-tag">Beat 2: A História de Rua & Geografia (3 a 20s)</span>
+        <p>"O Well Perdizes está inserido no quadrilátero mais nobre de Perdizes. Aqui a rotina de escolas, clubes e gastronomia se resolve em uma caminhada de 15 minutos sob árvores frondosas."</p>
+      </div>
+
+      <div class="script-box">
+        <span class="beat-tag">Beat 3: Conexão Lavvi & Call to Action (20 a 35s)</span>
+        <p>"Com a engenharia Lavvi e fluxo de 35% na obra, o retorno de capital supera o CDI real. Quer o dossiê com a tabela de Outubro de 2026? Me mande uma mensagem no WhatsApp."</p>
+      </div>
+    </section>
+
+    <!-- WHATSAPP BATTLECARD -->
+    <section class="section-card">
+      <h2 class="section-title">💬 Battlecard de WhatsApp para Investidores</h2>
+      <p style="color: var(--text-slate); font-size: 0.85rem; margin-bottom: 12px;">
+        Mensagem de alta conversão para envio rápido a investidores e compradores qualificados:
+      </p>
+      <div style="background: #0A111C; border: 1px solid var(--navy-border); padding: 16px; border-radius: 8px; font-family: monospace; font-size: 0.80rem; white-space: pre-wrap; color: #CBD5E1;" id="battlecard-text-container">*PEDRO SOARES | DOSSIÊ EXECUTIVO DE INVESTIMENTO*
+🏢 *Empreendimento:* Well Perdizes
+📍 *Localização:* Perdizes — São Paulo/SP
+🏗️ *Status & Entrega:* Lançamento (Previsão: )
+📐 *Preço & Metragens:* A partir de R$ 480.000 (R$ 16.000 a R$ 19.500 / m²)
+📊 *Estrutura Financeira:* Fluxo 35/65 (35% diluído em obras + 65% na entrega das chaves)
+⚖️ *Segurança Jurídica:* Patrimônio de Afetação blindado + ABNT NBR 12.721 (Fração Ideal) e NBR 15.575 (Acústica Superior)
+
+💬 *Fale diretamente comigo para agendar visita ao decorado ou receber a tabela completa:*
+WhatsApp: (11) 96610-5952 • https://wa.me/5511966105952</div>
+      <button class="copy-btn" onclick="copyBattlecard()">📋 Copiar Mensagem Formatada</button>
+      <span id="copy-status" style="font-size: 0.75rem; color: var(--green-accent); margin-left: 10px; display: none;">Copiado para a área de transferência!</span>
+    </section>
+
+    <!-- CTA BOX -->
+    <div class="cta-wa-box">
+      <h3 style="font-size: 1.35rem; color: #FFF; margin-bottom: 6px;">Deseja Conhecer as Unidades Disponíveis?</h3>
+      <p style="color: var(--text-slate); font-size: 0.90rem;">
+        Agende uma conversa técnica com Pedro Soares ou solicite o book de apresentação oficial e memorial de incorporação.
+      </p>
+      <a href="https://wa.me/5511966105952?text=Olá%20Pedro!%20Acessei%20o%20Dossiê%20Executivo%20de%20Investimento%20do%20Well%20Perdizes%20(Perdizes)%20e%20gostaria%20de%20analisar%20a%20tabela%20vigente%20de%20Out/2026%20e%20a%20simulação%20de%20Alavancagem%2035/65." target="_blank" rel="noopener noreferrer" class="btn-wa-action">
+        <span>💬</span>
+        <span>Conversar com Pedro Soares no WhatsApp</span>
+      </a>
+    </div>
+
+    <footer class="dossier-footer">
+      <p><strong>Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952</strong></p>
+      <p style="margin-top: 5px;">Documento de viabilidade estritamente confidencial elaborado para análise patrimonial individualizada.</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyBattlecard() {
+      const text = "*PEDRO SOARES | DOSSIÊ EXECUTIVO DE INVESTIMENTO*\n🏢 *Empreendimento:* Well Perdizes\n📍 *Localização:* Perdizes — São Paulo/SP\n🏗️ *Status & Entrega:* Lançamento (Previsão: )\n📐 *Preço & Metragens:* A partir de R$ 480.000 (R$ 16.000 a R$ 19.500 / m²)\n📊 *Estrutura Financeira:* Fluxo 35/65 (35% diluído em obras + 65% na entrega das chaves)\n⚖️ *Segurança Jurídica:* Patrimônio de Afetação blindado + ABNT NBR 12.721 (Fração Ideal) e NBR 15.575 (Acústica Superior)\n\n💬 *Fale diretamente comigo para agendar visita ao decorado ou receber a tabela completa:*\nWhatsApp: (11) 96610-5952 • https://wa.me/5511966105952";
+      navigator.clipboard.writeText(text).then(() => {
+        const status = document.getElementById('copy-status');
+        status.style.display = 'inline';
+        setTimeout(() => { status.style.display = 'none'; }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>

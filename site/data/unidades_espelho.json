@@ -1,0 +1,246 @@
+{
+  "updated_at": "2026-10-27 13:20",
+  "month_reference": "Outubro/2026",
+  "source": "Lior Associados API + Simuladores Out/2026 + Tabelas PDF 26.10",
+  "projects": {
+    "Jardim da Hípica": {
+      "avail_count": 184,
+      "total_count": 740,
+      "avail_info": "🟢 184 Livres (Torres A–D) • Tabela Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Jardim da Hípica Apartments": {
+      "avail_count": 215,
+      "total_count": 630,
+      "avail_info": "🟢 Torre E Ativa (630 unid. • Torre F não lançada) • Tabela Out/2026",
+      "table_ref": "Out/2026 (v1)"
+    },
+    "T.O.M. Paraíso": {
+      "avail_count": 380,
+      "total_count": 901,
+      "avail_info": "🟢 380 Livres de 901 • Simulador Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Saffire": {
+      "avail_count": 23,
+      "total_count": 147,
+      "avail_info": "🟢 23 Livres (124 Vendidas) • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Saffire Studios": {
+      "avail_count": 11,
+      "total_count": 34,
+      "avail_info": "🟢 11 Studios Livres • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Villa Residence": {
+      "avail_count": 8,
+      "total_count": 403,
+      "avail_info": "⚡ Últimas 8 Unidades Prontas • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Villa Studios": {
+      "avail_count": 5,
+      "total_count": 120,
+      "avail_info": "⚡ Últimos 5 Studios Prontos • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Le Six Residences": {
+      "avail_count": 57,
+      "total_count": 522,
+      "avail_info": "🟢 57 Livres (401 Vendidas) • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Le Six Apartments": {
+      "avail_count": 22,
+      "total_count": 180,
+      "avail_info": "🟢 22 Studios Livres • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Le Six Ibirapuera": {
+      "avail_count": 239,
+      "total_count": 250,
+      "avail_info": "🟢 239 no Estoque Lior • Pré-Lançamento Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Le Six Ibirapuera Apartments": {
+      "avail_count": 110,
+      "total_count": 120,
+      "avail_info": "🟢 Estoque Lior Ativo • Pré-Lançamento Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Petra": {
+      "avail_count": 53,
+      "total_count": 407,
+      "avail_info": "🟢 53 Livres (344 Vendidas) • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Heaven Residences": {
+      "avail_count": 66,
+      "total_count": 947,
+      "avail_info": "🟢 66 Livres (870 Vendidas) • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Heaven Apartments": {
+      "avail_count": 28,
+      "total_count": 320,
+      "avail_info": "🟢 28 Livres • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Soleil Residences": {
+      "avail_count": 38,
+      "total_count": 154,
+      "avail_info": "🟢 38 Livres (104 Vendidas) • Simulador Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Soleil Apartments": {
+      "avail_count": 19,
+      "total_count": 80,
+      "avail_info": "🟢 19 Studios Livres • Simulador Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Alive": {
+      "avail_count": 172,
+      "total_count": 1400,
+      "avail_info": "🟢 172 Livres • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Palace": {
+      "avail_count": 19,
+      "total_count": 216,
+      "avail_info": "🟢 19 Livres (194 Vendidas) • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Grand Square": {
+      "avail_count": 62,
+      "total_count": 343,
+      "avail_info": "🟢 62 Prontos Livres (260 Vend.) • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Green View Residence": {
+      "avail_count": 11,
+      "total_count": 433,
+      "avail_info": "⚡ Últimas 11 Unidades Prontas • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Green View Studios": {
+      "avail_count": 5,
+      "total_count": 120,
+      "avail_info": "⚡ Últimos 5 Studios Prontos • Tabela 26.10",
+      "table_ref": "Out/2026 (26.10)"
+    },
+    "Verdant": {
+      "avail_count": 2,
+      "total_count": 174,
+      "avail_info": "⚡ Últimas 2 Unidades Prontas (171 Vend.) • Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Galleria Klabin": {
+      "avail_count": 1,
+      "total_count": 606,
+      "avail_info": "⚡ Última Unidade Pronta (166 m²) • Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Casa Cerâmica": {
+      "avail_count": 29,
+      "total_count": 39,
+      "avail_info": "🟢 29 Livres de 39 (Lior API) • Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Well Perdizes": {
+      "avail_count": 805,
+      "total_count": 1252,
+      "avail_info": "🟢 805 Livres (Lior API) • Simulador Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Novvo Santa Marina": {
+      "avail_count": 160,
+      "total_count": 462,
+      "avail_info": "🟢 160 Livres (289 Vendidas) • Simulador Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Novvo Anália Franco": {
+      "avail_count": 23,
+      "total_count": 594,
+      "avail_info": "⚡ Últimas 23 Unidades (569 Vend.) • Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Novvo Vila Prudente": {
+      "avail_count": 290,
+      "total_count": 900,
+      "avail_info": "🟢 290 Livres (590 Vendidas) • Simulador Out/2026",
+      "table_ref": "Out/2026"
+    },
+    "Novvo Marajoara": {
+      "avail_count": 1,
+      "total_count": 794,
+      "avail_info": "⚡ Última Unidade (792 Vendidas) • Out/2026",
+      "table_ref": "Out/2026"
+    }
+  },
+  "jardim_da_hipica_torre_e_table_v1_102026": {
+    "lancamento": "Mai/2026",
+    "entrega": "Mar/2031",
+    "torre_e_units": 630,
+    "torre_f_status": "Não lançada (sem tabela ativa)",
+    "fluxo_curto": "Fluxo 55% Obra / 45% Chaves",
+    "fluxo_obra": "55% Obra (6,5% Sinal + 6,5% em 2x 60/90d + 27% em 49 mensais + 10% em 3 anuais + 5% Única Mar/2031) + 45% Financiamento (Mar/2031)",
+    "preco_partida": "R$ 293.600",
+    "pricing_table": [
+      {
+        "tipo": "Torre E - Studio 21,41 m² (Final 9)",
+        "planta": "Studio c/ Terraço • 5º ao 46º andar (Sem Vaga)",
+        "preco": "R$ 293.600",
+        "m2_calc": "R$ 13.713/m²",
+        "entrada_10": "R$ 19.084 (6,5%) + 2x R$ 9.542",
+        "mensais_36x": "49x R$ 1.618 + 3 Anuais R$ 9.787 + Única R$ 14.680",
+        "chaves_65": "R$ 132.120 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 1 Dorm 26,33 a 27,14 m² (Finais 10 a 14)",
+        "planta": "1 Dormitório c/ Terraço • 5º ao 46º andar (Sem Vaga)",
+        "preco": "R$ 339.923",
+        "m2_calc": "R$ 12.525/m²",
+        "entrada_10": "R$ 22.095 (6,5%) + 2x R$ 11.047",
+        "mensais_36x": "49x R$ 1.873 + 3 Anuais R$ 11.331 + Única R$ 16.996",
+        "chaves_65": "R$ 152.965 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 1 Dorm 27,86 a 28,78 m² (Finais 4 a 8)",
+        "planta": "1 Dormitório c/ Terraço • 5º ao 46º andar (Sem Vaga)",
+        "preco": "R$ 356.476",
+        "m2_calc": "R$ 12.386/m²",
+        "entrada_10": "R$ 23.171 (6,5%) + 2x R$ 11.585",
+        "mensais_36x": "49x R$ 1.964 + 3 Anuais R$ 11.883 + Única R$ 17.824",
+        "chaves_65": "R$ 160.414 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 2 Dorms 48,74 m² (Finais 1 e 2)",
+        "planta": "2 Dorms (1 Suíte) + Terraço c/ Churrasqueira (Sem Vaga)",
+        "preco": "R$ 591.604",
+        "m2_calc": "R$ 12.138/m²",
+        "entrada_10": "R$ 38.454 (6,5%) + 2x R$ 19.227",
+        "mensais_36x": "49x R$ 3.260 + 3 Anuais R$ 19.720 + Única R$ 29.580",
+        "chaves_65": "R$ 266.222 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 2 Dorms 57,07 m² (Final 15 • 5º ao 12º)",
+        "planta": "2 Dorms (1 Suíte) + Terraço Gourmet (Sem Vaga)",
+        "preco": "R$ 656.062",
+        "m2_calc": "R$ 11.496/m²",
+        "entrada_10": "R$ 42.644 (6,5%) + 2x R$ 21.322",
+        "mensais_36x": "49x R$ 3.615 + 3 Anuais R$ 21.869 + Única R$ 32.803",
+        "chaves_65": "R$ 295.228 (45% Mar/31)"
+      },
+      {
+        "tipo": "Torre E - 2 Dorms 57,07 m² (Final 15 • 13º ao 46º)",
+        "planta": "2 Dorms (1 Suíte) + Terraço Gourmet + 1 Vaga Determinada",
+        "preco": "R$ 754.209",
+        "m2_calc": "R$ 13.215/m²",
+        "entrada_10": "R$ 49.024 (6,5%) + 2x R$ 24.512",
+        "mensais_36x": "49x R$ 4.156 + 3 Anuais R$ 25.140 + Única R$ 37.710",
+        "chaves_65": "R$ 339.394 (45% Mar/31)"
+      }
+    ]
+  }
+}

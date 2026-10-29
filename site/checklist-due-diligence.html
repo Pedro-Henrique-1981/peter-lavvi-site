@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHECKLIST DE DUE DILIGENCE IMOBILIÁRIA — PEDRO SOARES & CONSELHO JURÍDICO PONTES</title>
+  <meta name="description" content="Os 10 Pontos Inegociáveis de Segurança Registral, Plano Diretor e Tributação para Comprar Imóveis em São Paulo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F4EE;
+      --card: #FFFFFF;
+      --ink: #161514;
+      --muted: #656059;
+      --burgundy: #4A151B;
+      --gold: #957b2b;
+      --gold-light: #b89d4a;
+      --navy: #182842;
+      --hairline: rgba(22, 21, 20, 0.12);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--burgundy), var(--navy));
+      border-radius: 16px 16px 0 0;
+    }
+    .header {
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 28px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: block;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.7rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--navy);
+    }
+    .meta-tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .intro-box {
+      background: rgba(24, 40, 66, 0.03);
+      border-left: 3px solid var(--gold);
+      padding: 18px 24px;
+      margin-bottom: 36px;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .item-card {
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      padding: 22px;
+      margin-bottom: 20px;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+    .item-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .item-num {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .item-title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--ink);
+      flex: 1;
+    }
+    .badge-status {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(74, 158, 92, 0.12);
+      color: #2e7d32;
+    }
+    .item-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .item-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 0.82rem;
+    }
+    @media (max-width: 600px) {
+      .item-grid { grid-template-columns: 1fr; }
+      .wrapper { padding: 24px; }
+    }
+    .item-grid strong {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 3px;
+    }
+    .score-banner {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 12px;
+      padding: 32px;
+      margin: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .score-title {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+    .score-sub {
+      font-size: 0.88rem;
+      opacity: 0.85;
+      max-width: 520px;
+    }
+    .btn-wa {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: #0d121c;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 14px 26px;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+    .btn-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(184, 157, 74, 0.35);
+    }
+    .footer {
+      border-top: 1px solid var(--hairline);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .wrapper { border: none; box-shadow: none; padding: 0; }
+      .btn-wa { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <div>
+        <span class="eyebrow">AUDITORIA REGISTRAL & URBANÍSTICA</span>
+        <h1>Checklist de Due Diligence: 10 Pontos de Auditoria</h1>
+      </div>
+      <div class="meta-tag">
+        <strong>Pedro Soares</strong><br>
+        Consultor Imobiliário Lior Lavvi<br>
+        CRECI / WhatsApp: (11) 96610-5952
+      </div>
+    </div>
+
+    <div class="intro-box">
+      <strong>Instrução ao Comprador / Investidor:</strong> Leve este documento em qualquer visita a stands de lançamentos em São Paulo (Cyrela, Trisul, Mitre, Even, Tegra). Solicite ao corretor que comprove formalmente cada um dos 10 itens abaixo antes de emitir qualquer cheque ou transferir sinal.
+    </div>
+
+    <!-- 10 Items -->
+    <!-- 1 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">01</span>
+        <div class="item-title">Patrimônio de Afetação na Matrícula (Lei 4.591/64)</div>
+        <span class="badge-status">PADRÃO LAVVI 100%</span>
+      </div>
+      <div class="item-desc">
+        Segregação patrimonial absoluta. O terreno e o dinheiro dos compradores ficam em conta bancária vinculada exclusiva, imunes a dívidas trabalhistas, fiscais ou falência da incorporadora.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Certidão de Matrícula do Cartório de Imóveis (RGI) com o ato de afetação averbado.</div>
+        <div><strong>Risco no Concorrente:</strong> Sem afetação, os recursos da sua obra podem ser usados para pagar dívidas de outras obras com prejuízo.</div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">02</span>
+        <div class="item-title">Registro de Incorporação (RI) Ativo (Lei 4.591/64, art. 32)</div>
+        <span class="badge-status">OBRIGATÓRIO</span>
+      </div>
+      <div class="item-desc">
+        A lei brasileira veta expressamente a venda de qualquer unidade na planta sem o RI definitivamente deferido e averbado pelo Oficial de Registro de Imóveis.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Número exato do registro na matrícula (ex: R.03 na Matrícula nº 123.456).</div>
+        <div><strong>Risco no Concorrente:</strong> Pré-reservas com adiantamento financeiro sem RI aprovado, configurando infração legal e risco total de cancelamento.</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">03</span>
+        <div class="item-title">Conformidade com o Plano Diretor & Outorga Onerosa (Leis 16.050/14 e 17.975/23)</div>
+        <span class="badge-status">URBANISMO SP</span>
+      </div>
+      <div class="item-desc">
+        Alvará de Edificação Nova emitido pela SMUL/PMSP com quitação ou parcelamento formal da Outorga Onerosa do Direito de Construir (OODC).
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Certidão de Diretrizes e Alvará da Prefeitura de São Paulo em vigência.</div>
+        <div><strong>Risco no Concorrente:</strong> Embargos judiciais provocados por falta de pagamento da outorga ou descumprimento de cotas de densidade da revisão de 2023.</div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">04</span>
+        <div class="item-title">Blindagem de Vizinhança, Recuos e Proteção Arbórea</div>
+        <span class="badge-status">ALTO DA BOA VISTA</span>
+      </div>
+      <div class="item-desc">
+        Garantia de que torres vizinhas não bloquearão a luz, a ventilação e a vista no futuro. No <strong>Jardim da Hípica</strong>, doação e urbanização da <strong>Praça de 10.000 m² por Benedito Abbud</strong> e vizinhança tombada ZER do Clube Hípico.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Termo de Compromisso Ambiental (TCA) e zoneamento dos lotes vizinhos (ZER vs. ZEU).</div>
+        <div><strong>Risco no Concorrente:</strong> Comprar apartamento de frente para um terreno que em 3 anos virará uma torre de 30 andares colada na sua janela.</div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">05</span>
+        <div class="item-title">Certidão Vintenária e Negativa de Ônus Reais</div>
+        <span class="badge-status">CERTIDÃO LIMPA</span>
+      </div>
+      <div class="item-desc">
+        Histórico cartorário de 20 anos do terreno sem ações de evicção, penhoras judiciais, disputas de espólio ou ações civis públicas.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Certidão de Feitos Ajuizados (Cível, Trabalhista, Federal e Protestos) dos alienantes anteriores.</div>
+        <div><strong>Risco no Concorrente:</strong> Terreno adquirido com fraude contra credores de antigos donos, gerando anulação da matrícula anos depois.</div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">06</span>
+        <div class="item-title">Contrato Auditado na Lei do Distrato (Lei 13.786/18)</div>
+        <span class="badge-status">SEGURANÇA JURÍDICA</span>
+      </div>
+      <div class="item-desc">
+        Quadro-resumo cristalino: índice de correção pelo INCC durante a obra, IPCA pós-chaves, prazo de tolerância de 180 dias e retenção legal máxima de até 50%.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Cláusulas de carência de obra e ausência de juros capitalizados ou taxas de interveniência ocultas.</div>
+        <div><strong>Risco no Concorrente:</strong> Contratos desbalanceados com multas ilegais ou índices abusivos de correção acumulada.</div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">07</span>
+        <div class="item-title">Seguro de Término de Obra & Financiamento Bancário (Plano Empresário)</div>
+        <span class="badge-status">INSTITUCIONAL</span>
+      </div>
+      <div class="item-desc">
+        Apoio formal de banco de primeira linha (Itaú, Bradesco, Santander, Caixa) com medições mensais de engenharia e seguro que garante a entrega mesmo em crise.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Contrato de Financiamento à Produção com liberação condicionada ao avanço físico da obra.</div>
+        <div><strong>Risco no Concorrente:</strong> Construtoras sem banco garantidor que paralisam canteiros assim que as vendas desaceleram.</div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">08</span>
+        <div class="item-title">Minuta de Convenção Condominial & Gestão de Padrão Internacional</div>
+        <span class="badge-status">GESTÃO CBRE</span>
+      </div>
+      <div class="item-desc">
+        Regulamentação clara de uso das áreas comuns, segurança patrimonial e governança. No <em>Jardim da Hípica</em>, gestão internacional **CBRE** e assessoria esportiva **Body Care** em convenção.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Minuta registrada no RI estipulando regras de rateio de condomínio e controle de portaria.</div>
+        <div><strong>Risco no Concorrente:</strong> Condomínios entregues sem gestão profissional que viram passivos de manutenção e conflitos de vizinhança.</div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">09</span>
+        <div class="item-title">Cessão Contratual Desembaraçada para Holding Familiar (Tema 796 STF)</div>
+        <span class="badge-status">HOLDING & PJ</span>
+      </div>
+      <div class="item-desc">
+        Liberdade contratual para faturar ou ceder a compra à sua Administradora de Bens Próprios (CNAE 6810-2/01), reduzindo impostos de locação de 27,5% (PF) para ~11,33% (PJ no Lucro Presumido).
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Cláusula de cessão sem cobrança abusiva de taxas de transferência pelo incorporador.</div>
+        <div><strong>Risco no Concorrente:</strong> Incorporadoras que cobram até 5% sobre o valor do imóvel para permitir a transferência para a holding da família.</div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="item-card">
+      <div class="item-header">
+        <span class="item-num">10</span>
+        <div class="item-title">Governança B3 & Balanços Auditados por Big Four (LAVV3 & Cyrela)</div>
+        <span class="badge-status">AUDITORIA B3</span>
+      </div>
+      <div class="item-desc">
+        Companhia de capital aberto no Novo Mercado da B3, com auditoria independente, dívida líquida negativa (caixa líquido) e a chancela de mais de 60 anos da Cyrela.
+      </div>
+      <div class="item-grid">
+        <div><strong>O que auditar:</strong> Demonstrativos Financeiros Trimestrais (ITR/DFP) públicos no portal da CVM.</div>
+        <div><strong>Risco no Concorrente:</strong> Empresas de capital fechado com endividamento oculto que quebram sem aviso prévio.</div>
+      </div>
+    </div>
+
+    <!-- Score Banner -->
+    <div class="score-banner">
+      <div>
+        <div class="score-title">Audite o Seu Imóvel com Pedro Soares</div>
+        <div class="score-sub">
+          Se a incorporadora que você está avaliando não gabaritar pelo menos 9 desses 10 itens, o seu capital está exposto a risco desnecessário. Envie as minutas para uma análise técnica gratuita.
+        </div>
+      </div>
+      <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20estou%20avaliando%20um%20im%C3%B3vel%20e%20gostaria%20de%20fazer%20o%20Checklist%20de%20Due%20Diligence%20de%2010%20pontos." 
+         target="_blank" class="btn-wa">
+        Auditar Imóvel no WhatsApp &rarr;
+      </a>
+    </div>
+
+    <div class="footer">
+      <div>© 2026 Pedro Soares | Consultor Imobiliário Associado Lior Lavvi</div>
+      <div>Conselho Jurídico & Urbanístico: Agent PONTES (Lei 16.050/14 & 17.975/23)</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACADEMY & COMMAND CENTER | Área Restrita Pedro Soares</title>
+  <meta name="description" content="Painel exclusivo de treinamento, simulados CRECI, esteira de aprovação de conteúdos, battlecards e áudios de inteligência imobiliária." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #070A0F;
+      --surface: #0E1420;
+      --card: #141C2B;
+      --card-hover: #1A2538;
+      --ink: #F7F4EE;
+      --muted: #8E9BAE;
+      --gold: #D4AF37;
+      --gold-light: #F3DC8A;
+      --gold-dark: #957B2B;
+      --navy: #182842;
+      --hairline: rgba(212, 175, 55, 0.22);
+      --success: #10B981;
+      --warning: #F59E0B;
+      --danger: #EF4444;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      background: rgba(14, 20, 32, 0.95);
+      border-bottom: 1px solid var(--hairline);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .top-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-badge {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--hairline);
+    }
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.08em;
+    }
+    .brand-title span {
+      color: var(--gold-light);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-client-view {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: #000c1e;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+    .btn-client-view:hover {
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 44px 0 32px;
+      border-bottom: 1px solid var(--hairline);
+      margin-bottom: 36px;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .hero-title em {
+      color: var(--gold-light);
+      font-style: italic;
+    }
+    .hero-lead {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 760px;
+    }
+
+    /* ACTION GRID (INTERNAL TOOLS) */
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .tool-card:hover {
+      background: var(--card-hover);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+    }
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .tool-card:hover::before {
+      opacity: 1;
+    }
+    .tool-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+    .tool-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .tool-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .tool-cta {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* BATTLECARDS ACCORDION / GRID */
+    .battlecards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .battlecard {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .battlecard:hover {
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+    .bc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 16px;
+    }
+    .bc-obj {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #F87171;
+    }
+    .bc-tag {
+      background: rgba(239, 68, 68, 0.15);
+      color: #FCA5A5;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .bc-response {
+      background: var(--card);
+      border-left: 3px solid var(--gold);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 0.9rem;
+      color: #E2E8F0;
+      line-height: 1.5;
+    }
+    .bc-fact {
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    /* AUDIO BRIEFINGS PLAYER */
+    .audio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .audio-card {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .audio-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .audio-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    audio {
+      width: 100%;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    /* DATA RADAR DIGEST */
+    .radar-digest {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      padding: 28px;
+    }
+    .macro-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.85rem;
+    }
+    .macro-table th, .macro-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .macro-table th {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="container top-inner">
+      <div class="brand-group">
+        <span class="brand-badge">ÁREA RESTRITA</span>
+        <div class="brand-title">PEDRO SOARES <span>ACADEMY</span></div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html" target="_blank" class="btn-client-view">
+          👁️ Ver Site do Cliente →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- HERO -->
+    <section class="hero">
+      <span class="hero-eyebrow">COMMAND CENTER & TREINAMENTO DO CORRETOR</span>
+      <h1 class="hero-title">Inteligência Privada, Estudos CRECI <em>& Esteira de Conteúdo</em></h1>
+      <p class="hero-lead">
+        Seu ambiente exclusivo para praticar, estudar o código imobiliário, ouvir resumos em áudio antes de reuniões e aprovar conteúdos da agência — <strong>completamente separado do portal público do cliente</strong>.
+      </p>
+    </section>
+
+    <!-- 1. TOOL HUBS -->
+    <section>
+      <h2 class="section-title">Central de Ferramentas Internas</h2>
+      <p class="section-sub">Acesse os ambientes de prática, aprovação e vistoria técnica.</p>
+
+      <div class="tools-grid">
+        <a href="creci_simulado.html" class="tool-card">
+          <div>
+            <div class="tool-icon">🎓</div>
+            <div class="tool-name">Simulador de Exame CRECI-SP</div>
+            <div class="tool-desc">10 questões oficiais de alta incidência (Lei do Inquilinato, Registro de Imóveis, Código Civil e Ética COFECI) com gabarito comentado.</div>
+          </div>
+          <div class="tool-cta">Abrir Simulado →</div>
+        </a>
+
+        <a href="staging.html" class="tool-card">
+          <div>
+            <div class="tool-icon">⚡</div>
+            <div class="tool-name">Prometheus Staging Vault</div>
+            <div class="tool-desc">Aprove com 1 clique vídeos no Google Vids, podcasts no NotebookLM, bento cards e dossiês gerados pela sua agência autônoma.</div>
+          </div>
+          <div class="tool-cta">Revisar Esteira →</div>
+        </a>
+
+        <a href="checklist-due-diligence.html" class="tool-card">
+          <div>
+            <div class="tool-icon">🛡️</div>
+            <div class="tool-name">Checklist de Due Diligence</div>
+            <div class="tool-desc">Os 10 pontos de auditoria técnica e documental (Patrimônio de Afetação, certidões vintenárias, fração ideal e holding familiar).</div>
+          </div>
+          <div class="tool-cta">Abrir Auditoria →</div>
+        </a>
+
+        <a href="index.html#catalogo" target="_blank" class="tool-card" style="border-color: rgba(212, 175, 55, 0.4);">
+          <div>
+            <div class="tool-icon">📊</div>
+            <div class="tool-name">Ground Truth & Estoque Real (Out/26)</div>
+            <div class="tool-desc">Auditoria dos 53 projetos na API da Lior, 7 empreendimentos Meu Novvo e 3 espaços Lavvi Learning. Base 100% verificada sem produtos esgotados.</div>
+          </div>
+          <div class="tool-cta">Ver Catálogo Blindado →</div>
+        </a>
+        <a href="solarium.html" class="tool-card">
+          <div>
+            <div class="tool-icon">☀️</div>
+            <div class="tool-name">Solarium 365 Pro</div>
+            <div class="tool-desc">Simulador 3D de trajetória solar e oclusão de vizinhos. Teste a insolação exata do apartamento antes de enviar o link para o comprador.</div>
+          </div>
+          <div class="tool-cta">Simular Sombra →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 1.5. ACERVO OFICIAL LAVVI LEARNING & CAPACITAÇÃO LIOR -->
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+        <h2 class="section-title">🎓 Acervo Oficial Lavvi Learning (Tenant 35030 • Lior)</h2>
+        <span style="background: rgba(16, 185, 129, 0.15); color: #34D399; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem;">100% Auditado & Extraído</span>
+      </div>
+      <p class="section-sub">Ficha técnica factual, matriz de serviços CBRE, links diretos dos treinamentos em vídeo e manuais operacionais extraídos da plataforma oficial <code>lavvi.learning.rocks</code>.</p>
+
+      <!-- Grid de Ficha Técnica e Matriz de Serviços -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px;">
+        
+        <!-- CARD 1: FICHA TÉCNICA HÍPICA -->
+        <div style="background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.72rem; color: #D4AF37; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">GROUND TRUTH • JARDIM DA HÍPICA</div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 12px;">Números Oficiais de Incorporação</h3>
+          <ul style="list-style: none; padding: 0; font-size: 0.85rem; color: #CBD5E1; line-height: 1.8;">
+            <li>📍 <strong>Endereço:</strong> Av. João Dias, 1084 / R. Antônio Bandeira, 305 (Alto da Boa Vista)</li>
+            <li>🏛️ <strong>Terreno:</strong> ~40.000 m² (39.553 m²) + <strong>10.000 m² de Praça Pública</strong> doada ao lado da Torre C</li>
+            <li>🎾 <strong>07 Quadras Esportivas:</strong> 2 Tênis saibro (18x36m), 2 Beach Tennis, 2 Poliesportivas e 1 Futebol Society</li>
+            <li>🏊 <strong>06 Piscinas de Raia:</strong> Raia de 60m geral + 5 raias de 25m coberta aquecida + 4 privativas de 25m (Torres A, B, C e D)</li>
+            <li>📐 <strong>Engenharia de Luxo:</strong> Viga chata embutida no forro (teto plano entre sala e terraço), contrapiso acústico nivelado, VRF</li>
+            <li>👑 <strong>Arquitetura & Grifes:</strong> MCAA Arquitetos, Chris Silveira, Benedito Abbud e gestão CBRE</li>
+          </ul>
+        </div>
+
+        <!-- CARD 2: MATRIZ CBRE (INCLUSO VS PAY-PER-USE) -->
+        <div style="background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.72rem; color: #10B981; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">HOSPITALITY CBRE (~R$ 11 A R$ 13/M²)</div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 12px;">Inclusos na Cota vs. Pay-per-Use</h3>
+          <div style="font-size: 0.82rem; color: #CBD5E1; line-height: 1.7;">
+            <p style="margin-bottom: 10px;"><strong style="color: #34D399;">🟢 100% Inclusos no Condomínio:</strong><br>
+            • <strong>Body Care Assessoria Esportiva:</strong> Treinadores de 2ª a 6ª (tênis, natação, musculação, futebol e funcional).<br>
+            • <strong>Monitoria Infantil:</strong> Recreação lúdica nos fins de semana.<br>
+            • <strong>Concierge & Mensageria CBRE:</strong> Triagem de pacotes, agendamentos e eventos CX temáticos.</p>
+            <p style="margin-bottom: 0;"><strong style="color: #F59E0B;">⭐ Parcerias Pay-per-Use (Cobrança no Boleto Único):</strong><br>
+            • <strong>Red Balloon:</strong> Aulas de inglês dentro do condomínio.<br>
+            • <strong>Salão Bluma:</strong> Cabeleireiro e beleza no Espaço Beauty.<br>
+            • <strong>Zazuu Bem-Estar Pet:</strong> Banho e tosa no Espaço Pet.<br>
+            • <strong>Car Wash a seco:</strong> No subsolo agendado via App CBRE.</p>
+          </div>
+        </div>
+
+        <!-- CARD 3: VÍDEOS DE PRODUTO & MANUAIS -->
+        <div style="background: var(--surface); border: 1px solid var(--hairline); border-radius: 12px; padding: 20px;">
+          <div style="font-size: 0.72rem; color: #38BDF8; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">FERRAMENTAS & TREINAMENTOS VIMEO</div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 12px;">Treinamento Oficial em Vídeo</h3>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8rem;">
+            <a href="https://vimeo.com/1221126491" target="_blank" style="color: #F3DC8A; text-decoration: none; padding: 6px 10px; background: rgba(255,255,255,0.04); border-radius: 6px;">🎬 Hípica: Os 4 Pilares da Venda &rarr;</a>
+            <a href="https://vimeo.com/1221134056" target="_blank" style="color: #F3DC8A; text-decoration: none; padding: 6px 10px; background: rgba(255,255,255,0.04); border-radius: 6px;">🎬 Hípica: Perguntas Técnicas e Objeções &rarr;</a>
+            <a href="https://vimeo.com/1221224525" target="_blank" style="color: #F3DC8A; text-decoration: none; padding: 6px 10px; background: rgba(255,255,255,0.04); border-radius: 6px;">🎬 Hípica: Lazer como Argumento de Venda &rarr;</a>
+            <a href="https://vimeo.com/1221579543" target="_blank" style="color: #38BDF8; text-decoration: none; padding: 6px 10px; background: rgba(255,255,255,0.04); border-radius: 6px;">🎬 Well Perdizes: Gravação Treinamento Comercial &rarr;</a>
+            <a href="https://file.skore.io/35030/files/01b6d696-6536-4b28-88c3-ca1152b145fe.pdf" target="_blank" style="color: #10B981; text-decoration: none; padding: 6px 10px; background: rgba(16,185,129,0.1); border-radius: 6px;">📄 Passo a Passo MOBOX (Esteira de Propostas) &rarr;</a>
+            <a href="https://file.skore.io/35030/files/64e72403-f62c-43c7-8373-0fbd973f51ab.pdf" target="_blank" style="color: #10B981; text-decoration: none; padding: 6px 10px; background: rgba(16,185,129,0.1); border-radius: 6px;">📄 Manual do Corretor Lior (Compliance & Ética) &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. BATTLECARDS DE BOLSO -->
+    <section>
+      <h2 class="section-title">Cheat-Sheet de Bolso: Burry vs. ME</h2>
+      <p class="section-sub">As 5 grandes objeções do comprador cético e as respostas de terreno calibradas (revise em 1 minuto antes de ligar).</p>
+
+      <div class="battlecards-grid">
+        
+        <!-- BC 1 -->
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">1. "O CDI está em 12% a 15% ao ano. Imóvel em SP não bate a renda fixa."</div>
+            <span class="bc-tag">Ceticismo Renda Fixa</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Concordo 100% se você fosse pagar à vista. Mas na obra da Lavvi você só desembolsa 35% ao longo de 36 meses. Os outros 65% continuam rendendo juros compostos no seu CDI. Você captura a valorização sobre 100% do imóvel mobilizando apenas 35% de caixa próprio."</em>
+          </div>
+          <div class="bc-fact">
+            📌 Âncora Matemática: Alavancagem 35/65 sem risco de chamada de margem da Bolsa.
+          </div>
+        </div>
+
+        <!-- BC 2 -->
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">2. "São Paulo está com excesso de studios. A vacância vai explodir."</div>
+            <span class="bc-tag">Risco de Oferta</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Nos bairros periféricos sim. Mas no T.O.M. Paraíso você está colado a 29.000 médicos e profissionais de saúde ativos (Santa Catarina, BP, HCor, Oswaldo Cruz). Essa demanda é inelástica: cirurgião e residente pós-plantão de 24h não atravessam a cidade."</em>
+          </div>
+          <div class="bc-fact">
+            📌 Âncora de Terreno: Vacância médica histórica < 4% + Revisão do Plano Diretor freou novos alvarás com cota-parte.
+          </div>
+        </div>
+
+        <!-- BC 3 -->
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">3. "A Reforma Tributária (IBS/CBS) vai encarecer a construção e o ITCMD vai dobrar."</div>
+            <span class="bc-tag">Insegurança Tributária</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Por isso 2026 é a última janela histórica vantajosa. Comprando na planta hoje, você trava a alíquota antiga de 4% do RET sob Patrimônio de Afetação. Além disso, estruturando a Holding Familiar com reserva de usufruto agora, você trava o ITCMD em 4% antes da progressividade estadual."</em>
+          </div>
+          <div class="bc-fact">
+            📌 Âncora Legal: Lei 4.591/64 (art. 31-A) + Economia de 13% de IR sobre aluguel na PJ (11,33% vs 27,5% PF).
+          </div>
+        </div>
+
+        <!-- BC 4 -->
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">4. "E se a construtora quebrar ou atrasar a obra?"</div>
+            <span class="bc-tag">Risco de Crédito</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"A Lavvi tem Dívida Líquida Negativa — tem mais caixa livre do que dívida total. Além disso, 100% dos empreendimentos operam sob Patrimônio de Afetação: o dinheiro e o terreno do prédio ficam numa conta bancária segregada em cartório, inatingíveis por credores."</em>
+          </div>
+          <div class="bc-fact">
+            📌 Âncora Corporativa: Padrão de governança Cyrela + Auditoria de balanço com selo de solvência máxima.
+          </div>
+        </div>
+
+        <!-- BC 5 -->
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">5. "Prefiro mandar 100% do capital para fora (Dólar e S&P 500)."</div>
+            <span class="bc-tag">Fuga Cambial</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Excelente estratégia de proteção cambial, mas nunca coloque 100% em uma só jurisdição. O governo americano confisca até 40% de Estate Tax (imposto de herança) de estrangeiros acima de US$ 60 mil. A melhor estratégia é o Barbell: 40% offshore + 30% liquidez local + 30% em tijolo nobre na Zona Sul de SP — um ativo físico inconfiscável."</em>
+          </div>
+          <div class="bc-fact">
+            📌 Âncora Patrimonial: Estratégia Barbell de Nassim Taleb + Zero inventário em holding familiar no Brasil.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 2.5 BURRY: O CLIENTE CÉTICO DO REDDIT -->
+    <section>
+      <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 18px 24px; margin-bottom: 24px;">
+        <span style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #FCA5A5; font-weight: 700;">MEMORIZE O NOME DO CLIENTE:</span>
+        <h2 style="font-family: var(--serif); font-size: 1.8rem; color: #F87171; margin: 4px 0;">🕵️‍♂️ AGENTE BURRY (O Cético do Reddit)</h2>
+        <p style="color: var(--muted); font-size: 0.88rem;">
+          Inspirado em <strong>Dr. Michael Burry</strong> (<em>The Big Short</em>). Este é o seu cliente Ideal Customer Persona (ICP). Ele lê o <code>r/investimentos</code> e <code>r/saopaulo</code> todos os dias e odeia papo furado de vendedor.
+        </p>
+      </div>
+
+      <h3 class="section-title">As 6 Dores Viscerais do Reddit (r/investimentos & r/saopaulo)</h3>
+      <p class="section-sub">Respostas de terreno na ponta da língua para quebrar as dúvidas reais de compradores em 2026.</p>
+
+      <div class="battlecards-grid">
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">1. "A Armadilha do INCC: Pago parcela todo mês e a dívida só aumenta!"</div>
+            <span class="bc-tag">r/investimentos</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Na Lavvi, durante a obra você só desembolsa 35% do valor total sem juros da Tabela Price. Enquanto isso, seus 65% preservados no CDI a 12%-14% ao ano rendem juros compostos que superam com folga o INCC acumulado."</em>
+          </div>
+          <div class="bc-fact">📌 Retenção de caixa no CDI bate a correção histórica do INCC.</div>
+        </div>
+
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">2. "Taxa de Evolução de Obra: Um custo invisível que sobe a cada mês."</div>
+            <span class="bc-tag">r/investimentos</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Isso ocorre em programas populares dependentes da Caixa. A Lavvi tem dívida líquida negativa e financia as obras com caixa próprio e crédito corporativo com Patrimônio de Afetação segregado. Não há juros de evolução bancária pré-chaves."</em>
+          </div>
+          <div class="bc-fact">📌 Balanço sólido: Caixa livre e Patrimônio de Afetação sem taxa oculta de evolução.</div>
+        </div>
+
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">3. "Febre dos Studios: São Paulo tem excesso de microapartamentos de 18m²."</div>
+            <span class="bc-tag">r/investimentos</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Em bairros sem âncora sim. Mas no T.O.M. Paraíso você tem 29.000 profissionais de saúde ativos colados aos hospitais Santa Catarina, BP e HCor. Demanda inelástica e vacância histórica abaixo de 4%."</em>
+          </div>
+          <div class="bc-fact">📌 29k médicos em raio de 1.2km + Revisão do Plano Diretor freou novos alvarás com cota-parte.</div>
+        </div>
+
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">4. "Barulho de Congonhas & Trânsito: Moema e Brooklin têm rota aérea ensurdecedora."</div>
+            <span class="bc-tag">r/saopaulo</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"A quadra exata faz toda a diferença. O Villa Moema fica no miolo de Moema Pássaros (Juriti com Canário), fora da cabeceira de descida. E no Jardim da Hípica você tem 40.000 m² de verde e uma praça pública de 10.000 m² criando uma barreira acústica natural."</em>
+          </div>
+          <div class="bc-fact">📌 Moema Pássaros fora da rota + Jardim da Hípica com 40k m² e praça Benedito Abbud.</div>
+        </div>
+
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">5. "O Medo do Balão das Chaves: O banco avalia o imóvel abaixo do contrato."</div>
+            <span class="bc-tag">r/investimentos</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Nossa assessoria Lior Lavvi pré-qualifica o repasse bancário 6 meses antes das chaves com Itaú, Bradesco, Santander e BTG. Padrão Cyrela garante laudos de engenharia bancária alinhados à tabela de mercado."</em>
+          </div>
+          <div class="bc-fact">📌 Repasse pré-qualificado nos 4 grandes bancos sem surpresas na entrega.</div>
+        </div>
+
+        <div class="battlecard">
+          <div class="bc-header">
+            <div class="bc-obj">6. "Custos Ocultos: ITBI de 3%, escritura, mobília cara e IR de 27.5% no Carnê-Leão."</div>
+            <span class="bc-tag">r/investimentos</span>
+          </div>
+          <div class="bc-response">
+            🗣️ <em>"Transparência total na ponta do lápis. Se comprar na PF, o imposto corrói o retorno. Mas nós estruturamos na Holding Familiar (PJ - Lucro Presumido), onde o imposto cai de 27,5% para ~11,33%. Essa economia de 16% de imposto paga seu ITBI no primeiro ano de locação."</em>
+          </div>
+          <div class="bc-fact">📌 Holding Familiar (CNAE 6810-2/01) reduz tributação de 27,5% para ~11,33%.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ÁUDIO BRIEFINGS PLAYER -->
+    <section>
+      <h2 class="section-title">Briefings em Áudio (Ouça no Treino / Caminhada)</h2>
+      <p class="section-sub">Sínteses gravadas pelos agentes para fixação sem telas.</p>
+
+      <div class="audio-grid">
+        
+        <div class="audio-card" style="border-color: var(--gold); background: rgba(212, 175, 55, 0.08); box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div class="audio-title">🎧 Neo Matrix & BURRY Reddit (Português)</div>
+            <span style="background: var(--gold); color: #000c1e; font-size: 0.62rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">✨ Voz Neural Humana</span>
+          </div>
+          <div class="audio-sub">Narração fluida em Português Brasileiro (Voz Antônio Neural)</div>
+          <audio controls src="audio/me_neo_and_burry_reddit_PTBR.mp3"></audio>
+        </div>
+
+        <div class="audio-card" style="border-color: var(--gold); background: rgba(212, 175, 55, 0.08); box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div class="audio-title">🎧 Neo Matrix & BURRY Reddit (English)</div>
+            <span style="background: var(--gold); color: #000c1e; font-size: 0.62rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase;">✨ NotebookLM Style</span>
+          </div>
+          <div class="audio-sub">Authentic, conversational American narrator (Andrew Multilingual Neural)</div>
+          <audio controls src="audio/me_neo_and_burry_reddit_EN.mp3"></audio>
+        </div>
+        
+        <div class="audio-card">
+          <div class="audio-title">🎧 Marco 6: O Playbook Mestre de Negociação</div>
+          <div class="audio-sub">Síntese unificada de objeções Burry vs. ME</div>
+          <audio controls src="audio/milestone6_loop_briefing.wav"></audio>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-title">🎧 Marco 5: Family Office & Barbell Offshore</div>
+          <div class="audio-sub">Tri-gerações no Hípica & Armadilha do Estate Tax US</div>
+          <audio controls src="audio/milestone5_loop_briefing.wav"></audio>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-title">🎧 Marco 4: Solvência Lavvi & Protocolo Estoico</div>
+          <div class="audio-sub">Auditoria de caixa líquido e fechamento sem afobação</div>
+          <audio controls src="audio/milestone4_loop_briefing.wav"></audio>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-title">🎧 Marco 3: Reforma Tributária & Dossiê Expat</div>
+          <div class="audio-sub">IBS/CBS, ITCMD e assessoria em 6 idiomas</div>
+          <audio controls src="audio/milestone3_loop_briefing.wav"></audio>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-title">🎧 The Cheater Sprint: Leads CVM e Assimetrias</div>
+          <div class="audio-sub">Diretores de empresas abertas e parcerias esportivas</div>
+          <audio controls src="audio/cheater_sprint_briefing.wav"></audio>
+        </div>
+
+        <div class="audio-card">
+          <div class="audio-title">🎧 CRECI INED Study: Resumo do NotebookLM</div>
+          <div class="audio-sub">Módulos I e II, legislação e ética COFECI</div>
+          <audio controls src="audio/creci_ined_notebooklm_study_EN.wav"></audio>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. RADAR DE LIQUIDEZ -->
+    <section>
+      <h2 class="section-title">Radar de Liquidez & Indicadores Macro (Cobb)</h2>
+      <p class="section-sub">Puxada em tempo real da API Olinda (Banco Central) para ancorar suas conversas.</p>
+
+      <div class="radar-digest">
+        <table class="macro-table">
+          <thead>
+            <tr>
+              <th>Indicador</th>
+              <th>Ano Referência</th>
+              <th>Expectativa Mercado (Média)</th>
+              <th>Mediana</th>
+              <th>Data do Boletim</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>IPCA (Inflação)</strong></td>
+              <td>2026</td>
+              <td>5.20% a.a.</td>
+              <td>5.21% a.a.</td>
+              <td>Outubro 2026</td>
+            </tr>
+            <tr>
+              <td><strong>IPCA (Inflação)</strong></td>
+              <td>2027</td>
+              <td>4.33% a.a.</td>
+              <td>4.32% a.a.</td>
+              <td>Outubro 2026</td>
+            </tr>
+            <tr>
+              <td><strong>IPCA (Inflação)</strong></td>
+              <td>2028</td>
+              <td>3.75% a.a.</td>
+              <td>3.75% a.a.</td>
+              <td>Outubro 2026</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top: 16px; font-size: 0.8rem; color: var(--muted);">
+          💡 <strong>Aplicação prática:</strong> Com a inflação estimada em ~5,2% e Selic de dois dígitos, o custo de reposição da construção sobe constantemente. Comprar na planta a preço travado de Outubro/2026 protege o capital contra o encarecimento da mão de obra e insumos.
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

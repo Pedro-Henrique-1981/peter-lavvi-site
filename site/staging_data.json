@@ -1,0 +1,244 @@
+{
+  "updated_at": "2026-10-25 12:58:00",
+  "pending": [
+    {
+      "id": "VISUAL-INFOGRAPHIC-001",
+      "title": "Infográfico 4:5: A Matemática da Alavancagem — R$ 2M no CDI vs. Obra Lavvi 35/65",
+      "type": "visual_infographic",
+      "project": "Lavvi Institucional / Portfólio 2026",
+      "created_at": "2026-10-25 12:30",
+      "status": "pending_approval",
+      "target_persona": "Investidores com Alta Liquidez em CDB/Tesouro Selic e Holdings Familiares",
+      "platform_target": "WhatsApp 1-to-1 / LinkedIn / Carrossel Instagram / Reunião Privada",
+      "visual_url": "infografico_alavancagem.html",
+      "estimated_token_cost": "0 tokens ($0.00 via CSS/SVG Renderer nativo)",
+      "content": {
+        "headline": "A Matemática da Alavancagem: R$ 2.000.000 no CDI vs. Obra Lavvi 35/65",
+        "core_thesis": "Investidores de alta liquidez não sacam patrimônio da Renda Fixa: usam o fluxo 35/65 para capturar valorização sobre 100% do ativo desembolsando apenas 35% de bolso.",
+        "key_metrics": [
+          "Desembolso real de bolso: R$ 700.000 diluídos em 36 meses.",
+          "R$ 1.300.000 permanece no seu banco rendendo ~R$ 370.000 de juros líquidos no CDI.",
+          "Retorno sobre o capital efetivamente desembolsado (ROE Real): +78,5% nas chaves.",
+          "Alavancagem de 2,85x sem chamada de margem com Patrimônio de Afetação blindado (Lei 4.591/64)."
+        ],
+        "whatsapp_pitch_accompanying": "Olá! Preparei um infográfico visual dissecando a matemática exata de alocar R$ 2M no CDI tradicional versus alavancar no fluxo 35/65 da Lavvi preservando 65% da sua liquidez no banco: https://pedro-lavvi.web.app/infografico_alavancagem.html"
+      }
+    },
+    {
+      "id": "VISUAL-COMPARATIVO-002",
+      "title": "Bento Matrix: Mini-Mansão Alphaville vs. Santuário Jardim da Hípica",
+      "type": "visual_infographic",
+      "project": "Jardim da Hípica (Alto da Boa Vista)",
+      "created_at": "2026-10-25 12:30",
+      "status": "pending_approval",
+      "target_persona": "Famílias de Alta Renda em Dúvida entre Condomínio Fechado e Zona Sul SP",
+      "platform_target": "WhatsApp Status / Instagram / Apresentação de Vendas",
+      "visual_url": "infografico_alphaville_vs_hipica.html",
+      "estimated_token_cost": "0 tokens ($0.00 via CSS/SVG Renderer nativo)",
+      "content": {
+        "headline": "Mini-Mansão Alphaville vs. Santuário Jardim da Hípica (NBR 15575)",
+        "core_thesis": "A ilusão dos 250m² isolados contra a sofisticação de 40.000m² no Alto da Boa Vista: economize 540h/ano de trânsito vivendo em frente ao Clube Hípico com gestão CBRE.",
+        "key_metrics": [
+          "Tempo no trânsito: 2h15/dia (540h/ano na Castello) vs. 12 min da Chapel / Berrini.",
+          "Área verde: Lote de 400m² vs. 40.000m² de terreno + 10.000m² praça pública + 2 quadras de tênis de saibro.",
+          "Acústica NBR 15575: Manta acústica em lajes e vidros de alta espessura vs. vizinhos colados a 1,5m.",
+          "Gestão: Síndico da própria casa vs. CBRE + assessoria esportiva Body Care inclusa."
+        ],
+        "whatsapp_pitch_accompanying": "Olá! Muitos clientes me perguntam se ainda vale a pena ir para condomínio fechado fora de SP. Montei um comparativo visual direto colocando na ponta do lápis tempo de trânsito, acústica NBR 15575 e os 40.000m² do Jardim da Hípica: https://pedro-lavvi.web.app/infografico_alphaville_vs_hipica.html"
+      }
+    },
+    {
+      "id": "VISUAL-HEATMAP-003",
+      "title": "Radar de Demanda Médica: A Fortaleza dos 29.000 Médicos do T.O.M. Paraíso",
+      "type": "visual_infographic",
+      "project": "T.O.M. Paraíso",
+      "created_at": "2026-10-25 12:30",
+      "status": "pending_approval",
+      "target_persona": "Investidores de Studios e Médicos Cirurgiões Buscando Renda Passiva Resiliente",
+      "platform_target": "WhatsApp Direto / LinkedIn / Comunidade Médica",
+      "visual_url": "infografico_medicos_paraiso.html",
+      "estimated_token_cost": "0 tokens ($0.00 via CSS/SVG Renderer nativo)",
+      "content": {
+        "headline": "A Fortaleza dos 29.000 Médicos: T.O.M. Paraíso",
+        "core_thesis": "Por que studios no Paraíso não sofrem com vacância: demanda inelástica 24/7/365 cercada por 6 hospitais Tier-1 (Santa Catarina, BP, HCor, Oswaldo Cruz).",
+        "key_metrics": [
+          "29.000+ profissionais médicos ativos num raio de 1.200 metros.",
+          "Rentabilidade líquida projetada: 0,65% a 0,82% a.m. via gestão Charlie/Housi.",
+          "Taxa média de ocupação de 92% blindada contra sazonalidade turística.",
+          "Unidades de 21m² a 57m² com arquitetura e serviços sob medida para plantonistas."
+        ],
+        "whatsapp_pitch_accompanying": "Olá Dr(a)! Preparei um infográfico exclusivo mapeando o raio hospitalar do T.O.M. Paraíso e por que a concentração de 29.000 médicos cria a barreira de ocupação mais sólida de SP: https://pedro-lavvi.web.app/infografico_medicos_paraiso.html"
+      }
+    },
+    {
+      "id": "PROMETHEUS-VIDS-001",
+      "title": "Google Vids: Jardim da Hípica — O Oásis de 40.000m² vs. O Caos da Faria Lima",
+      "type": "video_vids",
+      "project": "Jardim da Hípica (Alto da Boa Vista)",
+      "created_at": "2026-10-22 13:53",
+      "status": "pending_approval",
+      "target_persona": "Famílias de Alta Renda e Executivos da Faria Lima/Berrini",
+      "platform_target": "Reels / TikTok / LinkedIn (1080x1920 & 1920x1080)",
+      "google_vids_template": "Architectural Spotlight (Quiet Luxury Dark)",
+      "estimated_token_cost": "0 tokens ($0.00 via Google Vids)",
+      "content": {
+        "hook_0_3s": "Por que famílias que trabalham na Faria Lima estão trocando o trânsito por 40.000 metros de verde?",
+        "beat_2_geography": "Rua Antônio Bandeira, Alto da Boa Vista. Em frente ao Clube Hípico de Santo Amaro e a minutos das escolas Chapel e Suíço-Brasileira. Um terreno raro de quase 40 mil m² com 2 quadras de tênis de saibro oficiais e piscina com raia de 60 metros.",
+        "beat_3_cta": "Residências de 84 a 276 m² com gestão CBRE. Quer ver a planta e a tabela oficial de Outubro? Comente HÍPICA ou mande WhatsApp para Pedro Soares: (11) 96610-5952.",
+        "storyboard_scenes": [
+          {
+            "scene": 1,
+            "duration": "3s",
+            "visual": "Drone aéreo suave sobre o verde do Clube Hípico e neblina matinal",
+            "caption": "40.000 m² de refúgio particular."
+          },
+          {
+            "scene": 2,
+            "duration": "12s",
+            "visual": "Câmera ao nível dos olhos descendo a calçada arborizada da Antônio Bandeira",
+            "caption": "Alto da Boa Vista: caminhe sob a copa das árvores."
+          },
+          {
+            "scene": 3,
+            "duration": "10s",
+            "visual": "Render 4K da piscina com raia de 60m e quadras de tênis de saibro",
+            "caption": "Assessoria esportiva Body Care inclusa."
+          },
+          {
+            "scene": 4,
+            "duration": "5s",
+            "visual": "Card minimalista de Pedro Soares com selo CRECI e botão WhatsApp",
+            "caption": "Pedro Soares | (11) 96610-5952"
+          }
+        ]
+      }
+    },
+    {
+      "id": "VIDS-REELS-002",
+      "title": "Instagram Reels / TikTok: 3 Segredos do Alto da Boa Vista que Nenhuma Imobiliária Te Conta",
+      "type": "video_vids",
+      "project": "Jardim da Hípica / Alto da Boa Vista",
+      "created_at": "2026-10-25 12:45",
+      "status": "pending_approval",
+      "target_persona": "Expats, Executivos e Famílias Buscando Qualidade de Vida",
+      "platform_target": "Reels / TikTok / Shorts (9:16 Vertical • Gravação a Pé)",
+      "google_vids_template": "Street Walk & Insider Discovery",
+      "estimated_token_cost": "0 tokens (Roteiro Falado sem Teleprompter)",
+      "content": {
+        "hook_0_3s": "São Paulo tem um bairro onde você escuta pássaros e passos de cavalos em vez de buzinas.",
+        "beat_2_geography": "Estou caminhando aqui na Antônio Bandeira, Alto da Boa Vista. Três coisas que pouca gente sabe: 1) O microclima aqui é 2°C mais fresco por causa dos bosques; 2) Você está a 4 minutos da Chapel e da Escola Suíço-Brasileira; 3) Este terreno atrás de mim tem 40.000 metros quadrados com 2 quadras de tênis de saibro oficiais.",
+        "beat_3_cta": "Se você quer ver como é o projeto Jardim da Hípica por dentro, mande uma mensagem no meu WhatsApp direto: (11) 96610-5952.",
+        "storyboard_scenes": [
+          {
+            "scene": 1,
+            "duration": "3s",
+            "visual": "Pedro caminhando na calçada arborizada, segurando celular com ângulo amplo",
+            "caption": "Silêncio raro em plena Zona Sul."
+          },
+          {
+            "scene": 2,
+            "duration": "14s",
+            "visual": "Corte rápido mostrando a copa das árvores centenárias e o muro verde do Clube Hípico",
+            "caption": "Escolas internacionais e microclima único."
+          },
+          {
+            "scene": 3,
+            "duration": "10s",
+            "visual": "Transição suave para render 3D do pórtico de entrada e bosque privativo do Jardim da Hípica",
+            "caption": "40.000 m² de terreno exclusivo."
+          },
+          {
+            "scene": 4,
+            "duration": "5s",
+            "visual": "Pedro sorrindo, apontando para o botão de contato com selo CRECI-SP (Estágio em homologação)",
+            "caption": "WhatsApp: (11) 96610-5952"
+          }
+        ]
+      }
+    },
+    {
+      "id": "RELOCATION-MATCHER-001",
+      "title": "3D Relocation Matcher: Diagnóstico de Mudança & Bairros Nobres de SP",
+      "type": "relocation_matcher",
+      "project": "Institucional / Expats & Relocation SP",
+      "created_at": "2026-10-25 12:58",
+      "status": "pending_approval",
+      "target_persona": "Expats, Famílias Migrando para SP, Médicos e Executivos",
+      "platform_target": "Web App Interativo & WhatsApp Direct",
+      "estimated_token_cost": "0 tokens (Three.js WebGL & Spatial Relocation Engine)",
+      "content": {
+        "headline": "3D Relocation Matcher: Descubra o Bairro Ideal para o Seu Estilo de Vida",
+        "core_thesis": "Ferramenta consultiva interativa que cruza as prioridades da família (escolas internacionais, esportes, silêncio, proximidade de hospitais) com os 4 polos nobres de São Paulo.",
+        "key_features": [
+          "Câmera 3D interativa que sobrevoa Alto da Boa Vista, Moema, Paraíso e Brooklin.",
+          "Matriz de compatibilidade: Chapel/Suíço-Brasileira, Berrini, Paulista e CHSA.",
+          "Integração com síntese de voz consultiva e botão WhatsApp pré-configurado por bairro."
+        ],
+        "whatsapp_pitch_accompanying": "Olá! Desenvolvemos uma ferramenta 3D de diagnóstico para quem está planejando moradia em São Paulo. Você seleciona o que prioriza na sua rotina e a plataforma faz o match com o bairro ideal: https://pedro-lavvi.web.app/relocation_matcher.html"
+      }
+    },
+    {
+      "id": "PROMETHEUS-PONTES-004",
+      "title": "Pontes Legal Briefing: Blindagem por Afetação e Economia de 13% de IR na PJ",
+      "type": "legal_dossier",
+      "project": "Portfólio Lavvi 2026 (Visão Macro)",
+      "created_at": "2026-10-22 13:53",
+      "status": "pending_approval",
+      "target_persona": "Famílias com Patrimônio > R$ 5M e Patriarcas de Holdings Familiares",
+      "platform_target": "LinkedIn Artigo / PDF Executivo / WhatsApp Direct",
+      "estimated_token_cost": "0 tokens (Compilado pelo Agente PONTES)",
+      "content": {
+        "headline": "A Estratégia de Afetação: Por que os empreendimentos Lavvi são legalmente inatingíveis por credores",
+        "legal_pillars": [
+          "Patrimônio de Afetação (Lei 4.591/64, art. 31-A): Conta escrow segregada onde cada real pago fica blindado para a obra.",
+          "PF vs. PJ: Redução da tributação de locação de 27,5% (Carnê-Leão PF) para ~11,33% no Lucro Presumido da Holding.",
+          "Doação com Reserva de Usufruto: Sucessão patrimonial sem inventário cartorário custoso."
+        ],
+        "whatsapp_pitch_accompanying": "Olá! Preparei uma nota jurídica executiva sobre blindagem patrimonial via Patrimônio de Afetação e redução de carga tributária de aluguel de 27,5% para 11,3% via Holding: https://pedro-lavvi.web.app/checklist-due-diligence.html"
+      }
+    }
+  ],
+  "approved": [
+    {
+      "id": "APPROVED-POST-001",
+      "title": "Post Pronto LinkedIn & Instagram: O Mito dos 40.000m² em Santo Amaro (Ativo Irreplicável)",
+      "type": "approved_post",
+      "project": "Jardim da Hípica (Alto da Boa Vista)",
+      "created_at": "2026-10-25 12:45",
+      "status": "approved",
+      "target_persona": "Investidores e Compradores de Moradia de Alto Padrão em São Paulo",
+      "platform_target": "LinkedIn & Instagram Feed (Quiet Luxury Dark)",
+      "estimated_token_cost": "0 tokens (Aprovado para Publicação)",
+      "content": {
+        "headline": "Por que 40.000 m² de terreno é o verdadeiro dividendo em São Paulo",
+        "post_copy": "Em cidades globais como Nova York, Londres ou São Paulo, existe uma regra imutável no mercado imobiliário:\n\nVocê pode reformar um apartamento, trocar acabamentos e instalar a melhor automação do mundo. Mas você NUNCA conseguirá fabricar 40.000 metros quadrados de terra na Zona Sul.\n\nNo Jardim da Hípica (Rua Antônio Bandeira, Alto da Boa Vista), o terreno de quase 40 mil m² com mais de 10.000 m² de praça pública arborizada em frente ao Clube Hípico de Santo Amaro representa uma das últimas reservas de escala da capital.\n\n• 02 Quadras de tênis oficiais de saibro (18x36m)\n• Piscina com raia de 60 metros\n• Gestão condominial CBRE e assessoria esportiva Body Care\n• Residências de 84 a 276 m²\n\nQuando a escala encontra a sofisticação, o valor de revenda deixa de ser uma projeção e vira uma barreira geográfica natural.\n\nPara receber o book de apresentação e a tabela oficial de Outubro/2026:\nWhatsApp direto: (11) 96610-5952 | Pedro Soares\n\n#Lavvi #JardimDaHipica #AltoDaBoaVista #QuietLuxury #MercadoImobiliario #PedroSoares",
+        "whatsapp_pitch_accompanying": "Olá! Acabei de publicar uma reflexão sobre a irreplicabilidade do terreno de 40.000m² do Jardim da Hípica no Alto da Boa Vista. Segue o link com as fotos oficiais e a tabela vigente."
+      }
+    }
+  ],
+  "mockups": [
+    {
+      "id": "MOCKUP-CAROUSEL-001",
+      "title": "Mockup em Iteração: Carrossel Instagram de 5 Lâminas — 'O Ciclo dos 35% de Obra'",
+      "type": "carousel_mockup",
+      "project": "Lavvi Institucional / Portfólio 2026",
+      "created_at": "2026-10-25 12:45",
+      "status": "mockup_iteration",
+      "iteration_feedback": "Ajuste em andamento: condensar o texto da lâmina 3 e destacar em dourado o multiplicador de ROE de 78,5% sobre o capital desembolsado.",
+      "target_persona": "Investidores com Alta Liquidez em CDB/Tesouro Selic",
+      "platform_target": "Carrossel Instagram (1080x1350 • 4:5)",
+      "estimated_token_cost": "0 tokens (Em Iteração Criativa)",
+      "content": {
+        "headline": "Carrossel 5 Lâminas: Como Lucrar com Imóvel na Planta Sem Tirar o Dinheiro do CDI",
+        "slides": [
+          { "slide": 1, "title": "Capa / Gancho", "text": "Por que investidores com R$ 2M em CDB não compram imóveis à vista?" },
+          { "slide": 2, "title": "A Mecânica dos 35%", "text": "Durante os 36 meses de obra, você desembolsa apenas 35% (R$ 700k) em parcelas previsíveis." },
+          { "slide": 3, "title": "O Efeito CDI", "text": "Os R$ 1.300.000 restantes continuam gerando mais de R$ 370k líquidos no seu banco para abater o fluxo." },
+          { "slide": 4, "title": "O Salto das Chaves", "text": "Você captura a valorização dos R$ 2M inteiros. Retorno sobre o desembolso real: +78,5%." },
+          { "slide": 5, "title": "CTA Consultivo", "text": "Envie 'FLUXO' no direct ou fale com Pedro Soares: (11) 96610-5952 para simular sua unidade." }
+        ],
+        "whatsapp_pitch_accompanying": "Olá! Estamos finalizando o carrossel visual sobre alavancagem 35/65 na Lavvi. Gostaria de ver o rascunho antes da publicação?"
+      }
+    }
+  ]
+}

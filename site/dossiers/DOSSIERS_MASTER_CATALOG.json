@@ -1,0 +1,362 @@
+[
+  {
+    "nome": "Jardim da Hípica",
+    "bairro": "Alto da Boa Vista",
+    "status": "Lançamento",
+    "slug": "jardim_da_hipica",
+    "file": "dossie_jardim_da_hipica.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Jardim da Hípica\\DOSSIE_EXECUTIVO_jardim_da_hipica.html"
+  },
+  {
+    "nome": "Jardim da Hípica Apartments",
+    "bairro": "Alto da Boa Vista",
+    "status": "Lançamento",
+    "slug": "jardim_da_hipica_apartments",
+    "file": "dossie_jardim_da_hipica_apartments.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Jardim da Hípica\\DOSSIE_EXECUTIVO_jardim_da_hipica_apartments.html"
+  },
+  {
+    "nome": "Le Six Residences",
+    "bairro": "Paraíso",
+    "status": "Em Obras",
+    "slug": "le_six_residences",
+    "file": "dossie_le_six_residences.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Le Six Paraíso\\DOSSIE_EXECUTIVO_le_six_residences.html"
+  },
+  {
+    "nome": "Villa Residence",
+    "bairro": "Moema",
+    "status": "Pronto Para Morar",
+    "slug": "villa_residence",
+    "file": "dossie_villa_residence.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Villa Versace\\DOSSIE_EXECUTIVO_villa_residence.html"
+  },
+  {
+    "nome": "Villa Studios",
+    "bairro": "Moema",
+    "status": "Pronto Para Morar",
+    "slug": "villa_studios",
+    "file": "dossie_villa_studios.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Villa Versace\\DOSSIE_EXECUTIVO_villa_studios.html"
+  },
+  {
+    "nome": "Green View Residence",
+    "bairro": "Butantã",
+    "status": "Pronto Para Morar",
+    "slug": "green_view_residence",
+    "file": "dossie_green_view_residence.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Green View\\DOSSIE_EXECUTIVO_green_view_residence.html"
+  },
+  {
+    "nome": "Alive",
+    "bairro": "Vila Prudente",
+    "status": "Em Obras",
+    "slug": "alive",
+    "file": "dossie_alive.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Alive\\DOSSIE_EXECUTIVO_alive.html"
+  },
+  {
+    "nome": "Heaven Residences",
+    "bairro": "Paraíso",
+    "status": "Em Obras",
+    "slug": "heaven_residences",
+    "file": "dossie_heaven_residences.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Heaven\\DOSSIE_EXECUTIVO_heaven_residences.html"
+  },
+  {
+    "nome": "Palace",
+    "bairro": "Brás",
+    "status": "Em Obras",
+    "slug": "palace",
+    "file": "dossie_palace.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Palace\\DOSSIE_EXECUTIVO_palace.html"
+  },
+  {
+    "nome": "Petra",
+    "bairro": "Brooklin",
+    "status": "Em Obras",
+    "slug": "petra",
+    "file": "dossie_petra.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Petra\\DOSSIE_EXECUTIVO_petra.html"
+  },
+  {
+    "nome": "Saffire",
+    "bairro": "Moema",
+    "status": "Em Obras",
+    "slug": "saffire",
+    "file": "dossie_saffire.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Saffire by Elie Saab\\DOSSIE_EXECUTIVO_saffire.html"
+  },
+  {
+    "nome": "Soleil Apartments",
+    "bairro": "Chácara Klabin",
+    "status": "Em Obras",
+    "slug": "soleil_apartments",
+    "file": "dossie_soleil_apartments.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Soleil Apartments\\DOSSIE_EXECUTIVO_soleil_apartments.html"
+  },
+  {
+    "nome": "Soleil Residences",
+    "bairro": "Chácara Klabin",
+    "status": "Em Obras",
+    "slug": "soleil_residences",
+    "file": "dossie_soleil_residences.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Soleil Residences\\DOSSIE_EXECUTIVO_soleil_residences.html"
+  },
+  {
+    "nome": "Verdant",
+    "bairro": "Tucuruvi",
+    "status": "Pronto Para Morar",
+    "slug": "verdant",
+    "file": "dossie_verdant.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Verdant\\DOSSIE_EXECUTIVO_verdant.html"
+  },
+  {
+    "nome": "Grand Square",
+    "bairro": "Praça da Árvore",
+    "status": "Pronto Para Morar",
+    "slug": "grand_square",
+    "file": "dossie_grand_square.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Grand Square\\DOSSIE_EXECUTIVO_grand_square.html"
+  },
+  {
+    "nome": "Le Six Ibirapuera",
+    "bairro": "Moema",
+    "status": "Breve Lançamento",
+    "slug": "le_six_ibirapuera",
+    "file": "dossie_le_six_ibirapuera.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Le Six Paraíso\\DOSSIE_EXECUTIVO_le_six_ibirapuera.html"
+  },
+  {
+    "nome": "Le Six Ibirapuera Apartments",
+    "bairro": "Moema",
+    "status": "Breve Lançamento",
+    "slug": "le_six_ibirapuera_apartments",
+    "file": "dossie_le_six_ibirapuera_apartments.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Le Six Paraíso\\DOSSIE_EXECUTIVO_le_six_ibirapuera_apartments.html"
+  },
+  {
+    "nome": "T.O.M. Paraíso",
+    "bairro": "Paraíso",
+    "status": "Breve Lançamento",
+    "slug": "t_o_m_paraiso",
+    "file": "dossie_t_o_m_paraiso.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\T.O.M. Paraíso\\DOSSIE_EXECUTIVO_t_o_m_paraiso.html"
+  },
+  {
+    "nome": "Casa Cerâmica",
+    "bairro": "Espaço Cerâmica (São Caetano do Sul)",
+    "status": "Pronto - 100% Vendido",
+    "slug": "casa_ceramica",
+    "file": "dossie_casa_ceramica.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Casa Cerâmica\\DOSSIE_EXECUTIVO_casa_ceramica.html"
+  },
+  {
+    "nome": "Heaven Apartments",
+    "bairro": "Paraíso",
+    "status": "100% Vendido",
+    "slug": "heaven_apartments",
+    "file": "dossie_heaven_apartments.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Heaven\\DOSSIE_EXECUTIVO_heaven_apartments.html"
+  },
+  {
+    "nome": "Le Six Apartments",
+    "bairro": "Paraíso",
+    "status": "100% Vendido",
+    "slug": "le_six_apartments",
+    "file": "dossie_le_six_apartments.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Le Six Paraíso\\DOSSIE_EXECUTIVO_le_six_apartments.html"
+  },
+  {
+    "nome": "Wonder Residence",
+    "bairro": "Ipiranga",
+    "status": "100% Vendido",
+    "slug": "wonder_residence",
+    "file": "dossie_wonder_residence.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_wonder_residence.html"
+  },
+  {
+    "nome": "Praça Mooca",
+    "bairro": "Mooca",
+    "status": "100% Vendido",
+    "slug": "praca_mooca",
+    "file": "dossie_praca_mooca.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Praça Mooca\\DOSSIE_EXECUTIVO_praca_mooca.html"
+  },
+  {
+    "nome": "Eden by Dror",
+    "bairro": "Brooklin",
+    "status": "100% Vendido",
+    "slug": "eden_by_dror",
+    "file": "dossie_eden_by_dror.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Eden by Dror\\DOSSIE_EXECUTIVO_eden_by_dror.html"
+  },
+  {
+    "nome": "Grand Vitrali",
+    "bairro": "Moema",
+    "status": "100% Vendido",
+    "slug": "grand_vitrali",
+    "file": "dossie_grand_vitrali.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Grand Vitrali\\DOSSIE_EXECUTIVO_grand_vitrali.html"
+  },
+  {
+    "nome": "High Wonder",
+    "bairro": "Brás",
+    "status": "100% Vendido",
+    "slug": "high_wonder",
+    "file": "dossie_high_wonder.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_high_wonder.html"
+  },
+  {
+    "nome": "Lumiere Residence",
+    "bairro": "Chácara Klabin",
+    "status": "100% Vendido",
+    "slug": "lumiere_residence",
+    "file": "dossie_lumiere_residence.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Lumiere Residence\\DOSSIE_EXECUTIVO_lumiere_residence.html"
+  },
+  {
+    "nome": "Lumiere Studios",
+    "bairro": "Chácara Klabin",
+    "status": "100% Vendido",
+    "slug": "lumiere_studios",
+    "file": "dossie_lumiere_studios.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Lumiere Studios\\DOSSIE_EXECUTIVO_lumiere_studios.html"
+  },
+  {
+    "nome": "Movva Luz",
+    "bairro": "Luz",
+    "status": "100% Vendido",
+    "slug": "movva_luz",
+    "file": "dossie_movva_luz.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Movva Luz\\DOSSIE_EXECUTIVO_movva_luz.html"
+  },
+  {
+    "nome": "Nativ Tatuapé",
+    "bairro": "Tatuapé",
+    "status": "100% Vendido",
+    "slug": "nativ_tatuape",
+    "file": "dossie_nativ_tatuape.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Nativ Tatuapé\\DOSSIE_EXECUTIVO_nativ_tatuape.html"
+  },
+  {
+    "nome": "One Park Perdizes",
+    "bairro": "Perdizes",
+    "status": "100% Vendido",
+    "slug": "one_park_perdizes",
+    "file": "dossie_one_park_perdizes.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Well Perdizes\\DOSSIE_EXECUTIVO_one_park_perdizes.html"
+  },
+  {
+    "nome": "Palazzo Vila Mariana",
+    "bairro": "Vila Mariana",
+    "status": "100% Vendido",
+    "slug": "palazzo_vila_mariana",
+    "file": "dossie_palazzo_vila_mariana.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Palazzo Vila Mariana\\DOSSIE_EXECUTIVO_palazzo_vila_mariana.html"
+  },
+  {
+    "nome": "Boulevard Lapa",
+    "bairro": "Lapa",
+    "status": "100% Vendido",
+    "slug": "boulevard_lapa",
+    "file": "dossie_boulevard_lapa.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Boulevard Lapa\\DOSSIE_EXECUTIVO_boulevard_lapa.html"
+  },
+  {
+    "nome": "Praça Piratininga",
+    "bairro": "Brás",
+    "status": "100% Vendido",
+    "slug": "praca_piratininga",
+    "file": "dossie_praca_piratininga.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Praça Piratininga\\DOSSIE_EXECUTIVO_praca_piratininga.html"
+  },
+  {
+    "nome": "Studios Elie Saab",
+    "bairro": "Moema",
+    "status": "Em Obras - 100% vendido",
+    "slug": "studios_elie_saab",
+    "file": "dossie_studios_elie_saab.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Saffire by Elie Saab\\DOSSIE_EXECUTIVO_studios_elie_saab.html"
+  },
+  {
+    "nome": "Vitrali Moema",
+    "bairro": "Moema",
+    "status": "Pronto - 100% vendido",
+    "slug": "vitrali_moema",
+    "file": "dossie_vitrali_moema.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Vitrali Moema\\DOSSIE_EXECUTIVO_vitrali_moema.html"
+  },
+  {
+    "nome": "Wonder by Praças da Cidade",
+    "bairro": "Brás",
+    "status": "Pronto - 100% vendido",
+    "slug": "wonder_by_pracas_da_cidade",
+    "file": "dossie_wonder_by_pracas_da_cidade.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_wonder_by_pracas_da_cidade.html"
+  },
+  {
+    "nome": "Wonder Ipiranga Studios",
+    "bairro": "Ipiranga",
+    "status": "Pronto - 100% vendido",
+    "slug": "wonder_ipiranga_studios",
+    "file": "dossie_wonder_ipiranga_studios.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_wonder_ipiranga_studios.html"
+  },
+  {
+    "nome": "Galleria Klabin",
+    "bairro": "Chácara Klabin",
+    "status": "Em Obras - 100% vendido",
+    "slug": "galleria_klabin",
+    "file": "dossie_galleria_klabin.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Galleria Klabin\\DOSSIE_EXECUTIVO_galleria_klabin.html"
+  },
+  {
+    "nome": "Novvo Santa Marina",
+    "bairro": "Água Branca",
+    "status": "Lançamento",
+    "slug": "novvo_santa_marina",
+    "file": "dossie_novvo_santa_marina.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_novvo_santa_marina.html"
+  },
+  {
+    "nome": "Novvo Anália Franco",
+    "bairro": "Anália Franco",
+    "status": "Lançamento",
+    "slug": "novvo_analia_franco",
+    "file": "dossie_novvo_analia_franco.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_novvo_analia_franco.html"
+  },
+  {
+    "nome": "Novvo Vila Prudente",
+    "bairro": "Vila Prudente",
+    "status": "Lançamento",
+    "slug": "novvo_vila_prudente",
+    "file": "dossie_novvo_vila_prudente.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_novvo_vila_prudente.html"
+  },
+  {
+    "nome": "Novvo Marajoara",
+    "bairro": "Jardim Marajoara",
+    "status": "Em obras",
+    "slug": "novvo_marajoara",
+    "file": "dossie_novvo_marajoara.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_novvo_marajoara.html"
+  },
+  {
+    "nome": "Novvo Barra Funda",
+    "bairro": "Barra Funda",
+    "status": "Em obras",
+    "slug": "novvo_barra_funda",
+    "file": "dossie_novvo_barra_funda.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Linha NOVVO\\DOSSIE_EXECUTIVO_novvo_barra_funda.html"
+  },
+  {
+    "nome": "Well Perdizes",
+    "bairro": "Perdizes",
+    "status": "Lançamento",
+    "slug": "well_perdizes",
+    "file": "dossie_well_perdizes.html",
+    "drive_path": "G:\\Meine Ablage\\LAVVI\\new assets\\Well Perdizes\\DOSSIE_EXECUTIVO_well_perdizes.html"
+  }
+]

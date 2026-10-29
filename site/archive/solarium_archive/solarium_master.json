@@ -1,0 +1,1078 @@
+{
+  "generated_by": "Scrooge McDuck (vault-enrichment-agent)",
+  "timestamp": "2026-10-23 12:00:07",
+  "total_projects": 21,
+  "projects": {
+    "hipica": {
+      "vault": "01_jardim_da_hipica",
+      "key": "hipica",
+      "name": "Jardim da Hípica Residences",
+      "bairro": "Alto da Boa Vista",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Antônio Bandeira, 305",
+      "typology": "Residences 84 a 276 m² (4 Suítes)",
+      "lat": -23.645377,
+      "lng": -46.710906,
+      "azimuthOffset": -15,
+      "zerProtected": true,
+      "defaultFloor": 14,
+      "totalFloors": 32,
+      "hero_image": "assets/images/jardim_hipica_facade_4k.jpg",
+      "neighbors": [
+        {
+          "name": "Clube Hípico de Santo Amaro",
+          "dir": "Leste",
+          "dist": 30,
+          "height": 12,
+          "type": "open_green"
+        },
+        {
+          "name": "Praça Pública Benedito Abbud (10.000m²)",
+          "dir": "Norte",
+          "dist": 15,
+          "height": 15,
+          "type": "trees"
+        },
+        {
+          "name": "Torre B Residences",
+          "dir": "Sudoeste",
+          "dist": 48,
+          "height": 85,
+          "type": "internal_tower"
+        }
+      ],
+      "description": "Em frente aos 330.000m² verdes do Clube Hípico e à praça pública doada de 10.000m². Insolação Leste/Norte perene e protegida de qualquer bloqueio futuro pelo zoneamento ZER.",
+      "floorplan": {
+        "title": "RESIDENCES TIPO – 223 m² (4 SUÍTES PRIVATIVAS)",
+        "leftWing": {
+          "label": "LIVING & TERRAÇO GOURMET",
+          "desc": "Face Oeste – Sol Poente & Churrasqueira a Carvão",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "ALA DAS 4 SUÍTES MASTER",
+          "desc": "Face Leste – Sol Nascente & Vista Clube Hípico",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "02 Quadras de tênis oficiais de saibro (18x36m) + 02 Beach Tennis",
+          "Piscina monumental com raia de 60m + 04 Private Houses",
+          "Gestão CBRE e assessoria esportiva Body Care inclusa no condomínio"
+        ]
+      }
+    },
+    "hipica_apt": {
+      "vault": "01_jardim_da_hipica",
+      "key": "hipica_apt",
+      "name": "Jardim da Hípica Apartments",
+      "bairro": "Alto da Boa Vista",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Antônio Bandeira, 305 (Torre E)",
+      "typology": "Studios e 1 Dorm 21 a 57 m²",
+      "lat": -23.644888,
+      "lng": -46.70907,
+      "azimuthOffset": -10,
+      "zerProtected": true,
+      "defaultFloor": 8,
+      "totalFloors": 24,
+      "hero_image": "assets/images/jardim_hipica_facade_4k.jpg",
+      "neighbors": [
+        {
+          "name": "Clube Hípico de Santo Amaro",
+          "dir": "Leste",
+          "dist": 40,
+          "height": 12,
+          "type": "open_green"
+        },
+        {
+          "name": "Torre A Residences",
+          "dir": "Noroeste",
+          "dist": 55,
+          "height": 85,
+          "type": "internal_tower"
+        }
+      ],
+      "description": "Torre independente com entrada e lazer exclusivos. Face Leste com sol matinal direto e vista panorâmica para o bosque da Hípica.",
+      "floorplan": {
+        "title": "STUDIO EXECUTIVO & 1 DORM – 56 m² COM VAGA",
+        "leftWing": {
+          "label": "LIVING & VARANDA PRIVATIVA",
+          "desc": "Face Norte – Luminosidade Perene o Dia Todo",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "DORMITÓRIO PRINCIPAL",
+          "desc": "Face Leste – Sol Matinal Suave das 07h às 11h",
+          "color": "#60A5FA"
+        },
+        "highlights": [
+          "Portaria e lazer 100% independentes das torres residenciais",
+          "Ponto para máquina de lavar e secar dentro da unidade",
+          "1 Vaga vinculada em todas as unidades a partir do 13º andar"
+        ]
+      }
+    },
+    "tom_paraiso": {
+      "vault": "02_tom_paraiso",
+      "key": "tom_paraiso",
+      "name": "T.O.M. Paraíso",
+      "bairro": "Paraíso",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Vergueiro, 1200",
+      "typology": "Studios 25 a 43 m²",
+      "lat": -23.572349,
+      "lng": -46.645109,
+      "azimuthOffset": 25,
+      "zerProtected": false,
+      "defaultFloor": 10,
+      "totalFloors": 28,
+      "hero_image": "assets/images/tom_paraiso_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Edifício Comercial Vergueiro",
+          "dir": "Leste",
+          "dist": 38,
+          "height": 62,
+          "type": "commercial"
+        },
+        {
+          "name": "BP Hospital Mirante",
+          "dir": "Norte",
+          "dist": 85,
+          "height": 48,
+          "type": "hospital"
+        }
+      ],
+      "description": "Epicentro do polo médico Paulista/Paraíso (29.000 profissionais de saúde). A partir do 6º andar, a torre supera completamente os edifícios comerciais vizinhos às 08:30.",
+      "floorplan": {
+        "title": "STUDIOS & 1 DORM – 25 A 43 m² (POLO MÉDICO)",
+        "leftWing": {
+          "label": "COZINHA GOURMET & LIVING",
+          "desc": "Face Norte – Vista Aberta Eixo Paulista",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "SUÍTE EXECUTIVA & OFFICE",
+          "desc": "Face Leste – Luz Matinal sem Ruído da Avenida",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Rooftop monumental com raia coberta aquecida de 25m",
+          "3 Minutos a pé da Estação Paraíso (Linhas 1-Azul e 2-Verde)",
+          "Demanda locativa contínua por médicos residentes e executivos"
+        ]
+      }
+    },
+    "saffire": {
+      "vault": "04_saffire_elie_saab",
+      "key": "saffire",
+      "name": "Saffire Elie Saab",
+      "bairro": "Moema",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Diogo Jácome / Moema Pássaros",
+      "typology": "Mansões Suspensas 360 e 493 m² (4 Suítes)",
+      "lat": -23.597812,
+      "lng": -46.666145,
+      "azimuthOffset": 10,
+      "zerProtected": true,
+      "defaultFloor": 15,
+      "totalFloors": 26,
+      "hero_image": "assets/images/saffire_elie_saab_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Copas de Árvores de Moema Pássaros",
+          "dir": "Oeste",
+          "dist": 22,
+          "height": 18,
+          "type": "trees"
+        },
+        {
+          "name": "Residencial Moema Baixo",
+          "dir": "Sul",
+          "dist": 45,
+          "height": 40,
+          "type": "residential"
+        }
+      ],
+      "description": "O 1º residencial com interiores de Elie Saab da América Latina. Terreno de 7.600m² em Moema Pássaros. Insolação Norte e Oeste desobstruída com vista exuberante para o Parque Ibirapuera.",
+      "floorplan": {
+        "title": "MANSÃO SUSPENSA ELIE SAAB – 493 m² (4 SUÍTES)",
+        "leftWing": {
+          "label": "GALERIA SOCIAL & LIVING 360°",
+          "desc": "Face Norte/Oeste – Pôr do Sol e Vista Ibirapuera",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "ALA ÍNTIMA DAS 4 SUÍTES MASTER",
+          "desc": "Face Leste/Norte – Silêncio em Moema Pássaros",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Interiores e áreas comuns 100% assinados por Elie Saab Maison",
+          "Terreno de 7.600 m² no miolo mais nobre de Moema Pássaros",
+          "4 a 6 vagas demarcadas de garagem + depósito privativo"
+        ]
+      }
+    },
+    "villa_moema": {
+      "vault": "03_villa_moema_versace",
+      "key": "villa_moema",
+      "name": "Villa Residence by Versace Home",
+      "bairro": "Moema",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Av. Jamaris, 450",
+      "typology": "Residences 149 a 221 m² (3 e 4 Suítes)",
+      "lat": -23.606283,
+      "lng": -46.662019,
+      "azimuthOffset": 5,
+      "zerProtected": false,
+      "defaultFloor": 12,
+      "totalFloors": 25,
+      "hero_image": "assets/images/villa_versace_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Bairro Residencial Moema Pássaros",
+          "dir": "Norte",
+          "dist": 30,
+          "height": 20,
+          "type": "residential"
+        },
+        {
+          "name": "Edifício Residencial Jamaris",
+          "dir": "Leste",
+          "dist": 42,
+          "height": 45,
+          "type": "residential"
+        }
+      ],
+      "description": "Design exclusivo assinado por Versace Home. Moema Pássaros fora da rota de aproximação de aeronaves. Insolação Norte que garante calor e luz natural em todo o inverno paulistano.",
+      "floorplan": {
+        "title": "VILLA RESIDENCE BY VERSACE HOME – 221 m² (3 SUÍTES)",
+        "leftWing": {
+          "label": "LIVING COM TERRAÇO VERSACE",
+          "desc": "Face Norte – Sol Pleno de Inverno e Verão",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "3 SUÍTES COM SACADAS PRIVATIVAS",
+          "desc": "Face Leste – Silêncio Acústico Fora da Rota",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Acabamentos e mosaicos exclusivos Versace Home",
+          "Localização ímpar a 300m da Estação Moema do Metrô",
+          "Prédio pronto e entregue com valorização consolidada"
+        ]
+      }
+    },
+    "petra": {
+      "vault": "06_petra_boca_do_lobo",
+      "key": "petra",
+      "name": "Petra Brooklin by Boca do Lobo",
+      "bairro": "Brooklin",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Arizona, 800",
+      "typology": "Residences 162 a 199 m² (4 Suítes)",
+      "lat": -23.616238,
+      "lng": -46.691456,
+      "azimuthOffset": -20,
+      "zerProtected": false,
+      "defaultFloor": 14,
+      "totalFloors": 28,
+      "hero_image": "assets/images/petra_brooklin_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Torre Empresarial Berrini",
+          "dir": "Oeste",
+          "dist": 60,
+          "height": 85,
+          "type": "commercial"
+        },
+        {
+          "name": "Residencial Arizona",
+          "dir": "Norte",
+          "dist": 35,
+          "height": 40,
+          "type": "residential"
+        }
+      ],
+      "description": "1º projeto global com design assinado pela marca portuguesa de joalheria mobiliária Boca do Lobo. Living voltado para o skyline da Berrini com pôr do sol cinematográfico.",
+      "floorplan": {
+        "title": "PETRA BY BOCA DO LOBO – 199 m² (4 SUÍTES)",
+        "leftWing": {
+          "label": "LIVING INTEGRADO & VARANDA GOURMET",
+          "desc": "Face Oeste – Sol Poente & Skyline Brooklin",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "4 SUÍTES COM CLOSETS",
+          "desc": "Face Leste – Sol da Manhã Energizante",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Mobiliário e peças de arte Boca do Lobo nas áreas comuns",
+          "350m a pé da Estação Brooklin (Linha 5-Lilás)",
+          "Complexo de piscinas com raia aquecida e spa privativo"
+        ]
+      }
+    },
+    "le_six": {
+      "vault": "05_le_six_ibirapuera_paraiso",
+      "key": "le_six",
+      "name": "Le Six Ibirapuera & Residences",
+      "bairro": "Paraíso",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Salto, 80",
+      "typology": "Residences 194 e 264 m² (4 Suítes)",
+      "lat": -23.5785,
+      "lng": -46.6542,
+      "azimuthOffset": 15,
+      "zerProtected": false,
+      "defaultFloor": 12,
+      "totalFloors": 24,
+      "hero_image": "assets/images/le_six_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Copas do Parque Ibirapuera (600m)",
+          "dir": "Sudoeste",
+          "dist": 120,
+          "height": 20,
+          "type": "open_green"
+        },
+        {
+          "name": "Residencial Salto",
+          "dir": "Leste",
+          "dist": 32,
+          "height": 42,
+          "type": "residential"
+        }
+      ],
+      "description": "Paraíso nobre junto ao Ibirapuera. Suítes com vista limpa e ventilação perene vinda dos ventos do parque. Living amplo com face solar Norte.",
+      "floorplan": {
+        "title": "LE SIX RESIDENCES – 264 m² (4 SUÍTES PRIVATIVAS)",
+        "leftWing": {
+          "label": "LIVING COM VISTA IBIRAPUERA",
+          "desc": "Face Norte/Oeste – Sol da Tarde e Pôr do Sol",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "ALA ÍNTIMA DAS 4 SUÍTES",
+          "desc": "Face Leste – Sol Suave da Manhã",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Apenas 600m do portão principal do Parque Ibirapuera",
+          "Elevador social privativo com biometria",
+          "Varanda com pé-direito duplo e churrasqueira integrada"
+        ]
+      }
+    },
+    "well_perdizes": {
+      "vault": "12_well_perdizes",
+      "key": "well_perdizes",
+      "name": "Well Perdizes Smart Living",
+      "bairro": "Perdizes",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Cardoso de Almeida, 218",
+      "typology": "Studios e 2 Dorms (25 a 51 m²)",
+      "lat": -23.5358,
+      "lng": -46.6672,
+      "azimuthOffset": -25,
+      "zerProtected": false,
+      "defaultFloor": 8,
+      "totalFloors": 22,
+      "hero_image": "assets/images/well_perdizes_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Campus PUC-SP",
+          "dir": "Oeste",
+          "dist": 120,
+          "height": 30,
+          "type": "trees"
+        },
+        {
+          "name": "Vale do Pacaembu",
+          "dir": "Sudoeste",
+          "dist": 250,
+          "height": 10,
+          "type": "open_green"
+        }
+      ],
+      "description": "Topografia privilegiada no alto de Perdizes. Vista aberta para o Vale do Pacaembu e campus da PUC-SP. Alta demanda universitária e médica.",
+      "floorplan": {
+        "title": "WELL PERDIZES SMART LIVING – 51 m² (2 DORMS)",
+        "leftWing": {
+          "label": "LIVING & TERRAÇO VALE DO PACAEMBU",
+          "desc": "Face Oeste – Horizonte Amplo da Zona Oeste",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "2 DORMITÓRIOS COM SOL MATINAL",
+          "desc": "Face Leste – Ventilação Cruzada da PUC-SP",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Rua Cardoso de Almeida, 218 (coração de Perdizes)",
+          "Colado à futura Estação PUC-Cardoso da Linha 6-Laranja",
+          "Rentabilidade líquida média de aluguel estimada em 0.65% a.m."
+        ]
+      }
+    },
+    "heaven": {
+      "vault": "07_heaven_by_yoo",
+      "key": "heaven",
+      "name": "Heaven Residences by Yoo",
+      "bairro": "Paraíso",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Tutóia / Paraíso",
+      "typology": "Residences 155 a 220 m² (3 e 4 Suítes)",
+      "lat": -23.57512,
+      "lng": -46.6518,
+      "azimuthOffset": 12,
+      "zerProtected": false,
+      "defaultFloor": 11,
+      "totalFloors": 25,
+      "hero_image": "assets/images/heaven_by_yoo_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Colégio Bandeirantes",
+          "dir": "Norte",
+          "dist": 80,
+          "height": 25,
+          "type": "school"
+        },
+        {
+          "name": "Residencial Tutóia",
+          "dir": "Oeste",
+          "dist": 35,
+          "height": 45,
+          "type": "residential"
+        }
+      ],
+      "description": "Design icônico do estúdio global Yoo (Philippe Starck). Paraíso arborizado próximo aos melhores colégios de São Paulo. Sol pleno nas varandas.",
+      "floorplan": {
+        "title": "HEAVEN BY YOO – 220 m² (4 SUÍTES EXCLUSIVAS)",
+        "leftWing": {
+          "label": "LIVING INTEGRADO COM DESIGN YOO",
+          "desc": "Face Norte – Sol Perene o Ano Inteiro",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "ALA DAS SUÍTES DE HOSPEDAGEM",
+          "desc": "Face Leste – Vista Aberta da Tutóia",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Assinatura de design de interiores Yoo Studio (Londres)",
+          "A poucas quadras do Parque Ibirapuera e Av. Paulista",
+          "Área de lazer com conceito de hotelaria internacional"
+        ]
+      }
+    },
+    "alive": {
+      "vault": "08_alive_home_resort",
+      "key": "alive",
+      "name": "Alive Home Resort",
+      "bairro": "Vila Prudente",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Capitão Pacheco e Chaves, 500",
+      "typology": "Residences 65 a 115 m² (2 e 3 Dorms)",
+      "lat": -23.5856,
+      "lng": -46.5982,
+      "azimuthOffset": 0,
+      "zerProtected": false,
+      "defaultFloor": 10,
+      "totalFloors": 27,
+      "hero_image": "assets/images/alive_home_resort_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Mooca Plaza Shopping",
+          "dir": "Norte",
+          "dist": 140,
+          "height": 30,
+          "type": "commercial"
+        },
+        {
+          "name": "Parque Verde Interno",
+          "dir": "Sul",
+          "dist": 20,
+          "height": 10,
+          "type": "open_green"
+        }
+      ],
+      "description": "Megaresort residencial em terreno de 18.000m² com parque privativo. Sem nenhum obstáculo a Sul ou Leste, garantindo sol absoluto o dia inteiro na área das piscinas.",
+      "floorplan": {
+        "title": "ALIVE HOME RESORT – 115 m² (3 SUÍTES COM VARANDA)",
+        "leftWing": {
+          "label": "LIVING & TERRAÇO COM CHURRASQUEIRA",
+          "desc": "Face Norte – Vista para o Complexo Aquático",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "DORMITÓRIOS & SUÍTE MASTER",
+          "desc": "Face Leste – Sol da Manhã e Silêncio",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Parque aquático com praia artificial de 1.200 m²",
+          "A 500m do Mooca Plaza Shopping",
+          "Mais de 40 itens de lazer para famílias"
+        ]
+      }
+    },
+    "grand_square": {
+      "vault": "09_grand_square",
+      "key": "grand_square",
+      "name": "Grand Square Praça da Árvore",
+      "bairro": "Praça da Árvore",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Av. Jabaquara, 800",
+      "typology": "Residences 67 a 92 m² (2 e 3 Dorms)",
+      "lat": -23.6105,
+      "lng": -46.6387,
+      "azimuthOffset": -10,
+      "zerProtected": false,
+      "defaultFloor": 9,
+      "totalFloors": 24,
+      "hero_image": "assets/images/grand_square_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Eixo Metroviário Linha 1-Azul",
+          "dir": "Oeste",
+          "dist": 40,
+          "height": 15,
+          "type": "commercial"
+        },
+        {
+          "name": "Residencial Praça da Árvore",
+          "dir": "Leste",
+          "dist": 35,
+          "height": 40,
+          "type": "residential"
+        }
+      ],
+      "description": "Ao lado da Estação Praça da Árvore. Facilidade de locomoção imediata pela Linha 1-Azul. Insolação equilibrada com sol poente filtrado e sol nascente limpo.",
+      "floorplan": {
+        "title": "GRAND SQUARE – 92 m² (3 DORMS COM VARANDA GOURMET)",
+        "leftWing": {
+          "label": "SALA DE ESTAR & JANTAR INTEGRADA",
+          "desc": "Face Oeste – Pôr do Sol e Amplitude",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "SUÍTE CASAL + 2 DORMS",
+          "desc": "Face Leste – Sol da Manhã sem Ruído",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "250m a pé da Estação Praça da Árvore do Metrô",
+          "Varanda gourmet com churrasqueira em todas as metragens",
+          "Pronto para morar com documentação 100% regularizada"
+        ]
+      }
+    },
+    "palace": {
+      "vault": "10_palace_by_pracas",
+      "key": "palace",
+      "name": "Palace by Praças",
+      "bairro": "Brás",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Visconde de Parnaíba",
+      "typology": "Residences 45 a 82 m² (1 a 3 Dorms)",
+      "lat": -23.5428,
+      "lng": -46.6135,
+      "azimuthOffset": 30,
+      "zerProtected": false,
+      "defaultFloor": 8,
+      "totalFloors": 22,
+      "hero_image": "assets/images/palace_by_pracas_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Polo Ferroviário Histórico do Brás",
+          "dir": "Sul",
+          "dist": 150,
+          "height": 15,
+          "type": "open_green"
+        },
+        {
+          "name": "Edifício Comercial Brás",
+          "dir": "Norte",
+          "dist": 40,
+          "height": 38,
+          "type": "commercial"
+        }
+      ],
+      "description": "Revitalização urbana e patrimonial do centro expandido de São Paulo. Conexão expressa com linhas de metrô e trem, com face solar Sul e Leste livre de bloqueios.",
+      "floorplan": {
+        "title": "PALACE BY PRAÇAS – 82 m² (3 DORMS COM SUÍTE)",
+        "leftWing": {
+          "label": "LIVING SOCIAL COM SACADA",
+          "desc": "Face Leste – Sol Nascente Aconchegante",
+          "color": "#60A5FA"
+        },
+        "rightWing": {
+          "label": "ALA ÍNTIMA DOS DORMITÓRIOS",
+          "desc": "Face Norte – Luminosidade Diurna Natural",
+          "color": "#10B981"
+        },
+        "highlights": [
+          "A 400m da Estação Brás de Metrô e CPTM",
+          "Condomínio com praça verde privativa",
+          "Excelente opção para primeira moradia ou locação mensal"
+        ]
+      }
+    },
+    "green_view": {
+      "vault": "11_green_view",
+      "key": "green_view",
+      "name": "Green View Residence Butantã",
+      "bairro": "Butantã",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Av. Corifeu de Azevedo Marques",
+      "typology": "Residences 74 a 108 m² (2 e 3 Dorms)",
+      "lat": -23.5714,
+      "lng": -46.7268,
+      "azimuthOffset": 45,
+      "zerProtected": true,
+      "defaultFloor": 10,
+      "totalFloors": 24,
+      "hero_image": "assets/images/green_view_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Bosque da Cidade Universitária (USP)",
+          "dir": "Norte",
+          "dist": 180,
+          "height": 20,
+          "type": "open_green"
+        },
+        {
+          "name": "Casas do Butantã",
+          "dir": "Sul",
+          "dist": 40,
+          "height": 10,
+          "type": "residential"
+        }
+      ],
+      "description": "Em frente à exuberante floresta urbana da Universidade de São Paulo (USP). Vista verde perene tombada pelo patrimônio, com sol Norte durante todo o dia.",
+      "floorplan": {
+        "title": "GREEN VIEW BUTANTÃ – 108 m² (3 SUÍTES COM VISTA USP)",
+        "leftWing": {
+          "label": "VARANDA GOURMET & LIVING AMPLO",
+          "desc": "Face Norte – Vista Panorâmica do Bosque da USP",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "3 SUÍTES COM JANELAS AMPLAS",
+          "desc": "Face Leste – Sol Matinal Suave e Ar Puro",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Vista verde definitiva e deslumbrante para a USP",
+          "A 5 minutos do Metrô Butantã (Linha 4-Amarela)",
+          "Área de lazer com piscina de borda infinita voltada para a mata"
+        ]
+      }
+    },
+    "soleil_klabin": {
+      "vault": "14_simuladores_e_tabelas_out2026",
+      "key": "soleil_klabin",
+      "name": "Galleria Klabin & Soleil Residences",
+      "bairro": "Chácara Klabin",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Pedro de Toledo, 1800",
+      "typology": "Residences 166 m² (3 Suítes)",
+      "lat": -23.5991,
+      "lng": -46.6432,
+      "azimuthOffset": 10,
+      "zerProtected": true,
+      "defaultFloor": 15,
+      "totalFloors": 26,
+      "hero_image": "assets/images/soleil_klabin_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Polo Hospitalar Unifesp / São Paulo",
+          "dir": "Norte",
+          "dist": 140,
+          "height": 45,
+          "type": "hospital"
+        },
+        {
+          "name": "Casas Arborizadas da Chácara Klabin",
+          "dir": "Sul",
+          "dist": 30,
+          "height": 10,
+          "type": "open_green"
+        }
+      ],
+      "description": "Oásis na Chácara Klabin / Vila Clementino. Face Sul e Leste protegida pela ZER do Klabin, garantindo luminosidade e silêncio absoluto.",
+      "floorplan": {
+        "title": "GALLERIA KLABIN – 166 m² (3 SUÍTES COM 3 VAGAS)",
+        "leftWing": {
+          "label": "LIVING EXPANDIDO COM VARANDA GOURMET",
+          "desc": "Face Norte – Sol Pleno e Ventilação Livre",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "3 SUÍTES COM CLOSETS",
+          "desc": "Face Leste – Conforto Térmico Matinal",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Rua Pedro de Toledo (Chácara Klabin nobre)",
+          "3 Vagas demarcadas e livres na garagem",
+          "Última unidade disponível no estoque da construtora"
+        ]
+      }
+    },
+    "soleil_apt": {
+      "vault": "14_simuladores_e_tabelas_out2026",
+      "key": "soleil_apt",
+      "name": "Soleil Apartments Klabin",
+      "bairro": "Chácara Klabin",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Pedro de Toledo, 1800 (Torre Studios)",
+      "typology": "Studios 24 a 38 m²",
+      "lat": -23.599,
+      "lng": -46.643,
+      "azimuthOffset": 10,
+      "zerProtected": true,
+      "defaultFloor": 7,
+      "totalFloors": 20,
+      "hero_image": "assets/images/soleil_klabin_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Polo Hospitalar Unifesp",
+          "dir": "Norte",
+          "dist": 140,
+          "height": 45,
+          "type": "hospital"
+        }
+      ],
+      "description": "Studios inteligentes na Vila Clementino / Klabin com taxa de ocupação recorde devido à proximidade de mais de 6 grandes hospitais.",
+      "floorplan": {
+        "title": "STUDIOS EXECUTIVOS – 28 m² COM VARANDA",
+        "leftWing": {
+          "label": "LIVING & OFFICE",
+          "desc": "Face Norte – Muita Luz Natural",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "DORMITÓRIO & BANHEIRO",
+          "desc": "Face Leste – Sol Matinal Tranquilo",
+          "color": "#60A5FA"
+        },
+        "highlights": [
+          "Demanda permanente de médicos e pesquisadores da Unifesp",
+          "Área de coworking e lavanderia coletiva OMO",
+          "Entrada e lazer independentes da torre residencial"
+        ]
+      }
+    },
+    "verdant": {
+      "vault": "14_simuladores_e_tabelas_out2026",
+      "key": "verdant",
+      "name": "Verdant Tucuruvi",
+      "bairro": "Tucuruvi",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Av. Mazzei, 700",
+      "typology": "Residences 55 a 78 m² (2 e 3 Dorms)",
+      "lat": -23.4792,
+      "lng": -46.6041,
+      "azimuthOffset": 18,
+      "zerProtected": false,
+      "defaultFloor": 8,
+      "totalFloors": 22,
+      "hero_image": "assets/images/verdant_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Serra da Cantareira",
+          "dir": "Norte",
+          "dist": 600,
+          "height": 80,
+          "type": "open_green"
+        },
+        {
+          "name": "Residencial Mazzei",
+          "dir": "Leste",
+          "dist": 35,
+          "height": 30,
+          "type": "residential"
+        }
+      ],
+      "description": "Zona Norte com vista panorâmica para a Serra da Cantareira. Clima fresco e ventilação perene, com varanda gourmet ensolarada.",
+      "floorplan": {
+        "title": "VERDANT TUCURUVI – 78 m² (3 DORMS COM SUÍTE)",
+        "leftWing": {
+          "label": "LIVING & VARANDA COM VISTA DA SERRA",
+          "desc": "Face Norte – Sol o Dia Todo e Ar Puro",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "3 DORMITÓRIOS COM ILUMINAÇÃO NATURAL",
+          "desc": "Face Leste – Sol Nascente Aconchegante",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Vista definitiva para a Serra da Cantareira",
+          "A poucos minutos do Shopping Metrô Tucuruvi",
+          "Excelente custo por metro quadrado na Zona Norte"
+        ]
+      }
+    },
+    "high_wonder": {
+      "vault": "10_palace_by_pracas",
+      "key": "high_wonder",
+      "name": "High Wonder Brás",
+      "bairro": "Brás",
+      "brand_line": "lavvi",
+      "category_label": "👑 Coleção Lavvi Luxo",
+      "address": "Rua Caetano Pinto",
+      "typology": "Studios e 1 Dorm (24 a 42 m²)",
+      "lat": -23.5489,
+      "lng": -46.6192,
+      "azimuthOffset": -5,
+      "zerProtected": false,
+      "defaultFloor": 9,
+      "totalFloors": 25,
+      "hero_image": "assets/images/high_wonder_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Polo Comercial do Brás",
+          "dir": "Oeste",
+          "dist": 50,
+          "height": 25,
+          "type": "commercial"
+        }
+      ],
+      "description": "Alta rentabilidade para locação de curta e média temporada no centro atacadista mais movimentado do Brasil.",
+      "floorplan": {
+        "title": "HIGH WONDER STUDIOS – 32 m² COM VARANDA",
+        "leftWing": {
+          "label": "COZINHA & SALA",
+          "desc": "Face Norte – Boa Iluminação Natural",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "DORMITÓRIO & BANHEIRO",
+          "desc": "Face Leste – Sol da Manhã",
+          "color": "#60A5FA"
+        },
+        "highlights": [
+          "Ao lado das grandes feiras de moda e vestuário de SP",
+          "Facilidade de locação no Airbnb com alta diária média",
+          "Gestão profissional de locação disponível"
+        ]
+      }
+    },
+    "novvo_santa_marina": {
+      "vault": "13_linha_novvo",
+      "key": "novvo_santa_marina",
+      "name": "Novvo Santa Marina",
+      "bairro": "Água Branca",
+      "brand_line": "novvo",
+      "category_label": "⚡ Linha Meu Novvo",
+      "address": "Av. Santa Marina, 600",
+      "typology": "Smart Living 25 a 37 m² (1 e 2 Dorms)",
+      "lat": -23.5186,
+      "lng": -46.6853,
+      "azimuthOffset": 20,
+      "zerProtected": false,
+      "defaultFloor": 8,
+      "totalFloors": 23,
+      "hero_image": "assets/images/novvo_santa_marina_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Futura Estação Santa Marina Linha 6-Laranja",
+          "dir": "Oeste",
+          "dist": 180,
+          "height": 15,
+          "type": "commercial"
+        },
+        {
+          "name": "Residencial Água Branca",
+          "dir": "Norte",
+          "dist": 40,
+          "height": 35,
+          "type": "residential"
+        }
+      ],
+      "description": "Eixo de maior valorização da Linha 6-Laranja. Apartamentos inteligentes com varanda e excelente aproveitamento espacial.",
+      "floorplan": {
+        "title": "NOVVO SANTA MARINA – 37 m² (1 DORM COM VARANDA)",
+        "leftWing": {
+          "label": "SALA INTEGRADA COM VARANDA",
+          "desc": "Face Norte – Luminosidade Natural Superior",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "DORMITÓRIO PRINCIPAL",
+          "desc": "Face Leste – Sol Suave das 07h às 11h",
+          "color": "#60A5FA"
+        },
+        "highlights": [
+          "A menos de 200m da Estação Santa Marina do Metrô",
+          "Lazer completo de condomínio clube com piscina e academia",
+          "Baixo custo de condomínio e alta liquidez de revenda"
+        ]
+      }
+    },
+    "novvo_analia_franco": {
+      "vault": "13_linha_novvo",
+      "key": "novvo_analia_franco",
+      "name": "Novvo Anália Franco",
+      "bairro": "Anália Franco",
+      "brand_line": "novvo",
+      "category_label": "⚡ Linha Meu Novvo",
+      "address": "Av. Regente Feijó, 1200",
+      "typology": "Smart Living 24 a 44 m²",
+      "lat": -23.5592,
+      "lng": -46.5681,
+      "azimuthOffset": -15,
+      "zerProtected": false,
+      "defaultFloor": 9,
+      "totalFloors": 24,
+      "hero_image": "assets/images/novvo_analia_franco_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Shopping Anália Franco",
+          "dir": "Sul",
+          "dist": 180,
+          "height": 35,
+          "type": "commercial"
+        },
+        {
+          "name": "Residencial Anália",
+          "dir": "Leste",
+          "dist": 35,
+          "height": 45,
+          "type": "residential"
+        }
+      ],
+      "description": "Ao lado do Shopping Anália Franco e Parque CERET. Padrão nobre da Zona Leste com acabamento diferenciado Lavvi.",
+      "floorplan": {
+        "title": "NOVVO ANÁLIA FRANCO – 44 m² (2 DORMS COM VARANDA)",
+        "leftWing": {
+          "label": "LIVING & SACADA GOURMET",
+          "desc": "Face Oeste – Sol da Tarde e Vista Aberta",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "2 DORMITÓRIOS",
+          "desc": "Face Leste – Sol Matinal Aconchegante",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "A 3 minutos a pé do Shopping Anália Franco",
+          "Futura Estação Anália Franco da Linha 2-Verde",
+          "Rooftop com piscina e vista panorâmica da Zona Leste"
+        ]
+      }
+    },
+    "novvo_vila_prudente": {
+      "vault": "13_linha_novvo",
+      "key": "novvo_vila_prudente",
+      "name": "Novvo Vila Prudente",
+      "bairro": "Vila Prudente",
+      "brand_line": "novvo",
+      "category_label": "⚡ Linha Meu Novvo",
+      "address": "Rua Orfanato, 300",
+      "typology": "Smart Living 25 a 39 m²",
+      "lat": -23.5834,
+      "lng": -46.5862,
+      "azimuthOffset": 10,
+      "zerProtected": false,
+      "defaultFloor": 8,
+      "totalFloors": 22,
+      "hero_image": "assets/images/novvo_vila_prudente_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Estação Vila Prudente Metrô",
+          "dir": "Norte",
+          "dist": 250,
+          "height": 20,
+          "type": "commercial"
+        }
+      ],
+      "description": "Conexão direta com a Linha 2-Verde (Paulista em 15 minutos). Localização estratégica com comércio ativo e vida de bairro vibrante.",
+      "floorplan": {
+        "title": "NOVVO VILA PRUDENTE – 39 m² (1 DORM COM VARANDA)",
+        "leftWing": {
+          "label": "SALA & COZINHA INTEGRADA",
+          "desc": "Face Norte – Excelente Incidência Solar",
+          "color": "#10B981"
+        },
+        "rightWing": {
+          "label": "DORMITÓRIO PRINCIPAL",
+          "desc": "Face Leste – Sol Suave Matinal",
+          "color": "#60A5FA"
+        },
+        "highlights": [
+          "250m da Estação Vila Prudente (Linha 2-Verde e Monotrilho)",
+          "Mobilidade total sem precisar de automóvel",
+          "Infraestrutura de lazer com coworking e academia montada"
+        ]
+      }
+    },
+    "novvo_marajoara": {
+      "vault": "13_linha_novvo",
+      "key": "novvo_marajoara",
+      "name": "Novvo Marajoara",
+      "bairro": "Jardim Marajoara",
+      "brand_line": "novvo",
+      "category_label": "⚡ Linha Meu Novvo",
+      "address": "Av. Sargento Geraldo Sant'Ana",
+      "typology": "Smart Living 26 a 41 m²",
+      "lat": -23.6682,
+      "lng": -46.6923,
+      "azimuthOffset": -5,
+      "zerProtected": true,
+      "defaultFloor": 7,
+      "totalFloors": 20,
+      "hero_image": "assets/images/novvo_marajoara_facade.jpg",
+      "neighbors": [
+        {
+          "name": "Casas Arborizadas do Marajoara (ZER)",
+          "dir": "Leste",
+          "dist": 30,
+          "height": 10,
+          "type": "open_green"
+        }
+      ],
+      "description": "Em pleno Jardim Marajoara, cercado por ruas calmas e copas de árvores. Excelente para quem busca tranquilidade e fácil acesso à Chácara Santo Antônio.",
+      "floorplan": {
+        "title": "NOVVO MARAJOARA – 41 m² (2 DORMS)",
+        "leftWing": {
+          "label": "LIVING & SACADA",
+          "desc": "Face Oeste – Pôr do Sol Desobstruído",
+          "color": "#F59E0B"
+        },
+        "rightWing": {
+          "label": "2 DORMITÓRIOS",
+          "desc": "Face Leste – Vista para as Árvores da ZER",
+          "color": "#3B82F6"
+        },
+        "highlights": [
+          "Bairro nobre e estritamente residencial com árvores centenárias",
+          "Próximo aos colégios Chapel e Suíço-Brasileiro",
+          "Preço por m² altamente atrativo na Zona Sul"
+        ]
+      }
+    }
+  }
+}

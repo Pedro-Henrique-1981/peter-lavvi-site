@@ -1,0 +1,73 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-10-28T11:42:00-03:00",
+  "broker_name": "Pedro Soares",
+  "war_name": "Peter",
+  "official_commercial_title": "Peter | Corretor Direto da LAVVI do Grupo Cyrela",
+  "brand": "Peter | Lavvi Private Wealth (Grupo Cyrela)",
+  "canonical_whitelist": {
+    "full_name": "Pedro Soares",
+    "war_name": "Peter",
+    "commercial_name": "Peter Corretor direto da LAVVI do grupo Cyrela",
+    "whatsapp_formatted": "(11) 96610-5952",
+    "whatsapp_url": "https://wa.me/5511966105952",
+    "instagram_handle": "@pedrosoares.lavvi",
+    "instagram_url": "https://instagram.com/pedrosoares.lavvi",
+    "linkedin_url": "https://linkedin.com/in/pedrosoares",
+    "lavvi_official_url": "https://lavvi.com.br",
+    "background_milestones": [
+      "ESPM São Paulo (Administração)",
+      "McGill University (Marketing Digital)",
+      "Montreal, Canadá (5 anos)",
+      "Cambridge CELTA Certified",
+      "Vila Nova Conceição (cresceu no bairro)",
+      "Piracicaba (conexão agro / interior SP)",
+      "Moema, Brooklin e Zona Sul SP"
+    ],
+    "languages": [
+      "Português",
+      "English",
+      "Français",
+      "Italiano",
+      "Español",
+      "Deutsch"
+    ],
+    "lifestyle_anchors": [
+      "Alta Relojoaria Independente (H. Moser & Cie, A. Lange & Söhne, Citizen)",
+      "Tênis, Squash e Padel (Clube Cristóvão Colombo, CHSA)",
+      "Vinhos do Velho Mundo (Douro, Bordeaux, Toscana)",
+      "Cinema Clássico e História Urbana",
+      "Mobilidade a pé e bicicleta pela Zona Sul"
+    ]
+  },
+  "homonym_negative_blacklist": {
+    "youtube_channels": [
+      "youtube.com/@pedrosoares",
+      "@pedrosoares",
+      "https://www.youtube.com/@pedrosoares"
+    ],
+    "blacklisted_topics_and_claims": [
+      "Aulas de Biologia / Cordados",
+      "Aulas de Vestibular / Pré-Vestibular / ENEM",
+      "A crise do populismo Jânio Quadros no YouTube",
+      "442 vídeos públicos de biologia/história no YouTube",
+      "Canal de YouTube @pedrosoares como sendo de Pedro Soares"
+    ],
+    "reason": "O canal @pedrosoares pertence a um homônimo (professor/criador de conteúdo educacional). NÃO pertence ao corretor Pedro Soares."
+  },
+  "forbidden_claims": {
+    "creci_number": {
+      "status": "Aguardando homologação de inscrição de estagiário junto ao CRECI-SP",
+      "rule": "NUNCA inventar ou exibir número de CRECI definitivo ou estagiário antes do registro oficial publicado."
+    },
+    "freemium_watermarks": {
+      "rule": "Proibido sugerir ou incorporar ferramentas com marcas d'água ou bloqueios pagos (Gamma, Tome, Beautiful.ai)."
+    },
+    "generic_stock_photos": {
+      "rule": "Proibido usar fotos genéricas de banco de imagens para representar empreendimentos Lavvi. Usar apenas renders e fotos 4K auditadas em assets/ e Google Drive."
+    }
+  },
+  "multimodal_quarantine_protocol": {
+    "rule": "Qualquer link, canal, aba ou perfil visível em capturas de tela do navegador ou imagens enviadas por Pedro é classificado como DADO EXTERNO NÃO AUDITADO. O agente é estritamente proibido de assumir autoria ou incorporar ao perfil sem confirmação explícita de Pedro em texto."
+  }
+}

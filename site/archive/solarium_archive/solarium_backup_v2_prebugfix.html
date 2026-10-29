@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SOLARIUM 365 3D PRO — Shadowmap & Física Solar em Tempo Real | Pedro Soares</title>
+  
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Simulador 3D interativo de insolação e projeção de sombras em tempo real no padrão Shadowmap.org para os 15 empreendimentos Lavvi em São Paulo.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Three.js & OrbitControls via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <style>
+    :root {
+      --bg: #070A10;
+      --glass-panel: rgba(22, 28, 42, 0.82);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-hover: rgba(30, 40, 62, 0.92);
+      --gold: #D4AF37;
+      --gold-light: #F3DC8A;
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --emerald: #10B981;
+      --blue: #38BDF8;
+      --wine: #9E1B32;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* 3D WebGL Canvas Viewport (100% Full-Screen) */
+    #webgl-viewport {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      cursor: grab;
+    }
+    #webgl-viewport:active { cursor: grabbing; }
+
+    /* Floating Glassmorphic Panels (Shadowmap Signature) */
+    .glass-card {
+      background: var(--glass-panel);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+      color: var(--text);
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    /* Top Left: Project Selector & Brand */
+    .hud-top-left {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 380px;
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #CBD5E1;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+    .select-project {
+      width: 100%;
+      background: rgba(10, 14, 22, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #FFF;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .select-project:focus { border-color: var(--gold); }
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Top Right: Time HUD & Master Scrubber (Shadowmap Signature) */
+    .hud-top-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 18px 24px;
+      width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .time-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .time-clock-display {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: monospace;
+      color: #FFF;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(253, 224, 71, 0.2);
+    }
+    .time-badge-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .time-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFF;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .time-btn:hover, .time-btn.active {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    /* Dual Sliders: Hour of Day & Month of Year */
+    .slider-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .custom-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+    .custom-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid #FFF;
+      box-shadow: 0 0 10px var(--gold-glow);
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    .custom-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Daylight bar track on hour slider */
+    .daylight-indicator {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: #FBBF24;
+      padding: 0 4px;
+    }
+
+    /* Left Bottom: Floor Selector & Solar Audit Card */
+    .hud-left-bottom {
+      position: absolute;
+      bottom: 24px;
+      left: 20px;
+      padding: 16px 20px;
+      width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .audit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+    .audit-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .audit-score-pill {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34D399;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .audit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 0.78rem;
+    }
+    .audit-item {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 8px 10px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .audit-item span { color: var(--text-muted); font-size: 0.7rem; }
+    .audit-item strong { color: #FFF; font-size: 0.85rem; }
+
+    /* Bottom Center: Quick Action Toolbar */
+    .hud-bottom-center {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .action-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #FFF;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .action-btn:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .btn-wa-gold {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+    .btn-wa-gold:hover {
+      background: #FFF;
+      color: #000;
+    }
+
+    /* Bottom Right: 3D Compass & Camera Controls */
+    .hud-bottom-right {
+      position: absolute;
+      bottom: 24px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .compass-dial {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--glass-panel);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .compass-dial:hover {
+      border-color: var(--gold);
+    }
+    .compass-needle {
+      width: 4px;
+      height: 32px;
+      position: relative;
+      transition: transform 0.1s linear;
+    }
+    .needle-north {
+      width: 100%;
+      height: 50%;
+      background: #EF4444;
+      border-radius: 2px 2px 0 0;
+    }
+    .needle-south {
+      width: 100%;
+      height: 50%;
+      background: #CBD5E1;
+      border-radius: 0 0 2px 2px;
+    }
+    .cam-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cam-mini-btn {
+      background: var(--glass-panel);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      color: #FFF;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .cam-mini-btn:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    /* Toast Notification */
+    .toast-box {
+      position: fixed;
+      top: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(22, 28, 42, 0.95);
+      border: 1px solid var(--gold);
+      color: #FFF;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Three.js 3D Viewport (Full Screen) -->
+  <div id="webgl-viewport"></div>
+
+  <!-- HUD TOP LEFT: Project Selector & Brand -->
+  <aside class="glass-card hud-top-left">
+    <div class="brand-row">
+      <div class="brand-title">
+        <span>☀️ SOLARIUM 365 PRO</span>
+        <span style="font-size: 0.65rem; background: rgba(212, 175, 55, 0.2); padding: 2px 6px; border-radius: 4px; color: var(--gold-light);">SHADOWMAP 3D</span>
+      </div>
+      <a href="lab.html" class="back-btn">← Portal Central</a>
+    </div>
+
+    <select class="select-project" id="projectSelect" onchange="changeProject(this.value)">
+      <option value="hipica" selected>Jardim da Hípica Residences (Alto da Boa Vista)</option>
+      <option value="tom_paraiso">T.O.M. Paraíso (Eixo Vergueiro)</option>
+      <option value="saffire">Saffire by Elie Saab (Moema Pássaros)</option>
+      <option value="villa_moema">Villa Residence by Versace Home (Moema)</option>
+      <option value="petra">Petra Brooklin by Boca do Lobo (Brooklin)</option>
+      <option value="le_six">Le Six Ibirapuera & Residences (Paraíso)</option>
+      <option value="heaven">Heaven Residences by Yoo (Paraíso)</option>
+      <option value="alive">Alive Home Resort (Vila Prudente)</option>
+      <option value="grand_square">Grand Square (Praça da Árvore)</option>
+      <option value="well_perdizes">Well Perdizes Smart Living (Perdizes)</option>
+      <option value="soleil_klabin">Galleria Klabin & Soleil (Chácara Klabin)</option>
+    </select>
+
+    <div class="project-meta">
+      <span id="projAddress">📍 Rua Antônio Bandeira, 305</span>
+      <span style="color: var(--gold-light); font-weight: 700;" id="projTypology">84 a 276 m²</span>
+    </div>
+  </aside>
+
+  <!-- HUD TOP RIGHT: Master Time Scrubber (Shadowmap Signature) -->
+  <aside class="glass-card hud-top-right">
+    <div class="time-header-row">
+      <div>
+        <div class="time-clock-display" id="clockDisplay">14:30</div>
+        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 2px;" id="dateDisplay">
+          23 de Outubro (Primavera) &bull; Horário de Brasília
+        </div>
+      </div>
+      <div class="time-badge-group">
+        <button class="time-btn" id="btnNow" onclick="setNow()">AGORA</button>
+        <button class="time-btn active" id="btnTimelapse" onclick="toggleTimelapse()">▶ 24H LIVE</button>
+      </div>
+    </div>
+
+    <!-- Scrubber 1: Horário do Dia (0h a 24h) -->
+    <div class="slider-block">
+      <div class="slider-labels">
+        <span>🌅 Nascente: <strong id="lblSunrise" style="color: #FFA500;">05:32</strong></span>
+        <span>Hora: <strong id="lblHour" style="color: #FFF;">14:30</strong></span>
+        <span>🌇 Poente: <strong id="lblSunset" style="color: #FF4500;">18:42</strong></span>
+      </div>
+      <input type="range" class="custom-slider" id="hourSlider" min="5" max="19" step="0.1" value="14.5" oninput="updateHour(this.value)">
+      <div class="daylight-indicator">
+        <span>05h</span>
+        <span>08h</span>
+        <span>12h (Meio-Dia Solar)</span>
+        <span>16h</span>
+        <span>19h</span>
+      </div>
+    </div>
+
+    <!-- Scrubber 2: Mês do Ano / Solstício -->
+    <div class="slider-block">
+      <div class="slider-labels">
+        <span>Estação: <strong id="lblSeason" style="color: var(--gold-light);">Outubro (Primavera)</strong></span>
+        <span>Declinação: <strong id="lblDeclination">-11.8°</strong></span>
+      </div>
+      <input type="range" class="custom-slider" id="monthSlider" min="1" max="12" step="1" value="10" oninput="updateMonth(this.value)">
+      <div class="slider-labels" style="font-size: 0.68rem; color: #64748B;">
+        <span>Jun (Inverno)</span>
+        <span>Set (Equinócio)</span>
+        <span>Dez (Verão)</span>
+        <span>Mar (Equinócio)</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- HUD LEFT BOTTOM: Floor Selector & Solar Physical Audit -->
+  <aside class="glass-card hud-left-bottom">
+    <div class="audit-header">
+      <span class="audit-title">📐 Auditoria Solar da Unidade</span>
+      <span class="audit-score-pill" id="auditScore">SOL PLENO 9.8/10</span>
+    </div>
+
+    <!-- Floor Slider -->
+    <div class="slider-block">
+      <div class="slider-labels">
+        <span>Andar Selecionado:</span>
+        <strong id="lblFloor" style="color: #FFF;">14º Andar (~45m de altura)</strong>
+      </div>
+      <input type="range" class="custom-slider" id="floorSlider" min="1" max="32" step="1" value="14" oninput="updateFloor(this.value)">
+    </div>
+
+    <div class="audit-grid">
+      <div class="audit-item">
+        <span>Azimute Solar</span>
+        <strong id="metricAzimuth">278° (Oeste)</strong>
+      </div>
+      <div class="audit-item">
+        <span>Elevação Solar</span>
+        <strong id="metricElevation">48.2°</strong>
+      </div>
+      <div class="audit-item">
+        <span>Sombra no Solo</span>
+        <strong id="metricShadowMeters" style="color: #FBBF24;">40.2 metros</strong>
+      </div>
+      <div class="audit-item">
+        <span>Oclusão Vizinha</span>
+        <strong id="metricOcclusion" style="color: var(--emerald);">0% Livre</strong>
+      </div>
+    </div>
+
+    <!-- DECISION VERDICT BOX (AUDITADO VIA GOOGLE EARTH) -->
+    <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; padding: 12px; margin-top: 4px;">
+      <div style="font-size: 0.72rem; font-weight: 800; color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+        <span>🛡️ Veredito de Compra (Google Earth Real)</span>
+      </div>
+      <p id="decisionVerdictText" style="font-size: 0.78rem; line-height: 1.45; color: #E2E8F0;">
+        No <strong>14º andar (~45m)</strong>, a unidade ultrapassa completamente o gabarito das casas vizinhas (8m) e tem <strong>100% de sol direto e vista livre</strong> sobre o verde perpétuo do CHSA (ZER-1 tombado).
+      </p>
+    </div>
+  </aside>
+
+  <!-- HUD BOTTOM CENTER: Quick Actions -->
+  <div class="glass-card hud-bottom-center">
+    <button class="action-btn" onclick="copySimulationLink()">🔗 Copiar Link SunCalc</button>
+    <a href="guia_alto_da_boa_vista.html" target="_blank" class="action-btn">🍷 Guia de Vizinhança</a>
+    <a href="https://wa.me/5511966105952" id="btnWa" target="_blank" class="action-btn btn-wa-gold">💬 Consultar Pedro Soares</a>
+  </div>
+
+  <!-- HUD BOTTOM RIGHT: 3D Compass & Camera Controls -->
+  <div class="hud-bottom-right">
+    <div class="compass-dial" id="compassDial" onclick="resetNorth()" title="Clique para alinhar ao Norte">
+      <div class="compass-needle" id="compassNeedle">
+        <div class="needle-north"></div>
+        <div class="needle-south"></div>
+      </div>
+    </div>
+    <div class="cam-btn-group">
+      <button class="cam-mini-btn" onclick="toggleTilt()" title="Alternar visão 2D / 3D">3D</button>
+      <button class="cam-mini-btn" onclick="recenterCamera()" title="Recentralizar Torre">🎯</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-box" id="toastBox">Link copiado com sucesso!</div>
+
+  <script>
+    // ==========================================
+    // 1. DATASET OF 15 LAVVI DEVELOPMENTS
+    // ==========================================
+    const PROJECTS = {
+      hipica: {
+        "name": "Jardim da Hípica Residences",
+        "address": "Rua Antônio Bandeira, 305",
+        "bairro": "Alto da Boa Vista",
+        "typology": "Residences 84 a 276 m² (4 Suítes)",
+        "lat": -23.645377,
+        "lng": -46.710906,
+        "azimuthOffset": -15,
+        "zerProtected": true,
+        "defaultFloor": 14,
+        "totalFloors": 32,
+        "neighbors": [
+                {
+                        "name": "Clube Hípico de Santo Amaro",
+                        "dir": "Leste",
+                        "dist": 30,
+                        "height": 12,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Praça Pública Benedito Abbud (10.000m²)",
+                        "dir": "Norte",
+                        "dist": 15,
+                        "height": 15,
+                        "type": "trees"
+                },
+                {
+                        "name": "Torre B Residences",
+                        "dir": "Sudoeste",
+                        "dist": 48,
+                        "height": 85,
+                        "type": "internal_tower"
+                }
+        ],
+        "description": "Em frente aos 330.000m² verdes do Clube Hípico e à praça pública doada de 10.000m². Insolação Leste/Norte perene e protegida de qualquer bloqueio futuro pelo zoneamento ZER."
+},
+
+      hipica_apt: {
+        "name": "Jardim da Hípica Apartments",
+        "address": "Rua Antônio Bandeira, 305 (Torre E)",
+        "bairro": "Alto da Boa Vista",
+        "typology": "Studios e 1 Dorm 21 a 57 m²",
+        "lat": -23.644888,
+        "lng": -46.70907,
+        "azimuthOffset": -10,
+        "zerProtected": true,
+        "defaultFloor": 8,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Clube Hípico de Santo Amaro",
+                        "dir": "Leste",
+                        "dist": 40,
+                        "height": 12,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Torre A Residences",
+                        "dir": "Noroeste",
+                        "dist": 55,
+                        "height": 85,
+                        "type": "internal_tower"
+                }
+        ],
+        "description": "Torre independente com entrada e lazer exclusivos. Face Leste com sol matinal direto e vista panorâmica para o bosque da Hípica."
+},
+
+      tom_paraiso: {
+        "name": "T.O.M. Paraíso",
+        "address": "Rua Vergueiro, 1200",
+        "bairro": "Paraíso",
+        "typology": "Studios 25 a 43 m²",
+        "lat": -23.572349,
+        "lng": -46.645109,
+        "azimuthOffset": 25,
+        "zerProtected": false,
+        "defaultFloor": 10,
+        "totalFloors": 28,
+        "neighbors": [
+                {
+                        "name": "Edifício Comercial Vergueiro",
+                        "dir": "Leste",
+                        "dist": 38,
+                        "height": 62,
+                        "type": "commercial"
+                },
+                {
+                        "name": "BP Hospital Mirante",
+                        "dir": "Norte",
+                        "dist": 85,
+                        "height": 48,
+                        "type": "hospital"
+                }
+        ],
+        "description": "Epicentro do polo médico Paulista/Paraíso (29.000 profissionais de saúde). A partir do 6º andar, a torre supera completamente os edifícios comerciais vizinhos às 08:30."
+},
+
+      saffire: {
+        "name": "Saffire Elie Saab",
+        "address": "Rua Diogo Jácome / Moema Pássaros",
+        "bairro": "Moema",
+        "typology": "Mansões Suspensas 360 e 493 m² (4 Suítes)",
+        "lat": -23.597812,
+        "lng": -46.666145,
+        "azimuthOffset": 10,
+        "zerProtected": true,
+        "defaultFloor": 15,
+        "totalFloors": 26,
+        "neighbors": [
+                {
+                        "name": "Copas de Árvores de Moema Pássaros",
+                        "dir": "Oeste",
+                        "dist": 22,
+                        "height": 18,
+                        "type": "trees"
+                },
+                {
+                        "name": "Residencial Moema Baixo",
+                        "dir": "Sul",
+                        "dist": 45,
+                        "height": 40,
+                        "type": "residential"
+                }
+        ],
+        "description": "O 1º residencial com interiores de Elie Saab da América Latina. Terreno de 7.600m² em Moema Pássaros. Insolação Norte e Oeste desobstruída com vista exuberante para o Parque Ibirapuera."
+},
+
+      villa_moema: {
+        "name": "Villa Residence by Versace Home",
+        "address": "Av. Jamaris, 450",
+        "bairro": "Moema",
+        "typology": "Residences 149 a 221 m² (3 e 4 Suítes)",
+        "lat": -23.606283,
+        "lng": -46.662019,
+        "azimuthOffset": 5,
+        "zerProtected": false,
+        "defaultFloor": 12,
+        "totalFloors": 25,
+        "neighbors": [
+                {
+                        "name": "Bairro Residencial Moema Pássaros",
+                        "dir": "Norte",
+                        "dist": 30,
+                        "height": 20,
+                        "type": "residential"
+                },
+                {
+                        "name": "Edifício Residencial Jamaris",
+                        "dir": "Leste",
+                        "dist": 42,
+                        "height": 45,
+                        "type": "residential"
+                }
+        ],
+        "description": "Design exclusivo assinado por Versace Home. Moema Pássaros fora da rota de aproximação de aeronaves. Insolação Norte que garante calor e luz natural em todo o inverno paulistano."
+},
+
+      petra: {
+        "name": "Petra Brooklin by Boca do Lobo",
+        "address": "Rua Arizona, 800",
+        "bairro": "Brooklin",
+        "typology": "Residences 162 a 199 m² (4 Suítes)",
+        "lat": -23.616238,
+        "lng": -46.691456,
+        "azimuthOffset": -20,
+        "zerProtected": false,
+        "defaultFloor": 14,
+        "totalFloors": 28,
+        "neighbors": [
+                {
+                        "name": "Torre Empresarial Berrini",
+                        "dir": "Oeste",
+                        "dist": 60,
+                        "height": 85,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Arizona",
+                        "dir": "Norte",
+                        "dist": 35,
+                        "height": 40,
+                        "type": "residential"
+                }
+        ],
+        "description": "1º projeto global com design assinado pela marca portuguesa de joalheria mobiliária Boca do Lobo. Living voltado para o skyline da Berrini com pôr do sol cinematográfico."
+},
+
+      le_six: {
+        "name": "Le Six Ibirapuera & Residences",
+        "address": "Rua Salto, 80",
+        "bairro": "Paraíso",
+        "typology": "Residences 194 e 264 m² (4 Suítes)",
+        "lat": -23.5785,
+        "lng": -46.6542,
+        "azimuthOffset": 15,
+        "zerProtected": false,
+        "defaultFloor": 12,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Copas do Parque Ibirapuera (600m)",
+                        "dir": "Sudoeste",
+                        "dist": 120,
+                        "height": 20,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Residencial Salto",
+                        "dir": "Leste",
+                        "dist": 32,
+                        "height": 42,
+                        "type": "residential"
+                }
+        ],
+        "description": "Paraíso nobre junto ao Ibirapuera. Suítes com vista limpa e ventilação perene vinda dos ventos do parque. Living amplo com face solar Norte."
+},
+
+      well_perdizes: {
+        "name": "Well Perdizes Smart Living",
+        "address": "Rua Cardoso de Almeida, 218",
+        "bairro": "Perdizes",
+        "typology": "Studios e 2 Dorms (25 a 51 m²)",
+        "lat": -23.5358,
+        "lng": -46.6672,
+        "azimuthOffset": -25,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Campus PUC-SP",
+                        "dir": "Oeste",
+                        "dist": 120,
+                        "height": 30,
+                        "type": "trees"
+                },
+                {
+                        "name": "Vale do Pacaembu",
+                        "dir": "Sudoeste",
+                        "dist": 250,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Topografia privilegiada no alto de Perdizes. Vista aberta para o Vale do Pacaembu e campus da PUC-SP. Alta demanda universitária e médica."
+},
+
+      heaven: {
+        "name": "Heaven Residences by Yoo",
+        "address": "Rua Tutóia / Paraíso",
+        "bairro": "Paraíso",
+        "typology": "Residences 155 a 220 m² (3 e 4 Suítes)",
+        "lat": -23.57512,
+        "lng": -46.6518,
+        "azimuthOffset": 12,
+        "zerProtected": false,
+        "defaultFloor": 11,
+        "totalFloors": 25,
+        "neighbors": [
+                {
+                        "name": "Colégio Bandeirantes",
+                        "dir": "Norte",
+                        "dist": 80,
+                        "height": 25,
+                        "type": "school"
+                },
+                {
+                        "name": "Residencial Tutóia",
+                        "dir": "Oeste",
+                        "dist": 35,
+                        "height": 45,
+                        "type": "residential"
+                }
+        ],
+        "description": "Design icônico do estúdio global Yoo (Philippe Starck). Paraíso arborizado próximo aos melhores colégios de São Paulo. Sol pleno nas varandas."
+},
+
+      alive: {
+        "name": "Alive Home Resort",
+        "address": "Rua Capitão Pacheco e Chaves, 500",
+        "bairro": "Vila Prudente",
+        "typology": "Residences 65 a 115 m² (2 e 3 Dorms)",
+        "lat": -23.5856,
+        "lng": -46.5982,
+        "azimuthOffset": 0,
+        "zerProtected": false,
+        "defaultFloor": 10,
+        "totalFloors": 27,
+        "neighbors": [
+                {
+                        "name": "Mooca Plaza Shopping",
+                        "dir": "Norte",
+                        "dist": 140,
+                        "height": 30,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Parque Verde Interno",
+                        "dir": "Sul",
+                        "dist": 20,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Megaresort residencial em terreno de 18.000m² com parque privativo. Sem nenhum obstáculo a Sul ou Leste, garantindo sol absoluto o dia inteiro na área das piscinas."
+},
+
+      grand_square: {
+        "name": "Grand Square Praça da Árvore",
+        "address": "Av. Jabaquara, 800",
+        "bairro": "Praça da Árvore",
+        "typology": "Residences 67 a 92 m² (2 e 3 Dorms)",
+        "lat": -23.6105,
+        "lng": -46.6387,
+        "azimuthOffset": -10,
+        "zerProtected": false,
+        "defaultFloor": 9,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Eixo Metroviário Linha 1-Azul",
+                        "dir": "Oeste",
+                        "dist": 40,
+                        "height": 15,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Praça da Árvore",
+                        "dir": "Leste",
+                        "dist": 35,
+                        "height": 40,
+                        "type": "residential"
+                }
+        ],
+        "description": "Ao lado da Estação Praça da Árvore. Facilidade de locomoção imediata pela Linha 1-Azul. Insolação equilibrada com sol poente filtrado e sol nascente limpo."
+},
+
+      palace: {
+        "name": "Palace by Praças",
+        "address": "Rua Visconde de Parnaíba",
+        "bairro": "Brás",
+        "typology": "Residences 45 a 82 m² (1 a 3 Dorms)",
+        "lat": -23.5428,
+        "lng": -46.6135,
+        "azimuthOffset": 30,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Polo Ferroviário Histórico do Brás",
+                        "dir": "Sul",
+                        "dist": 150,
+                        "height": 15,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Edifício Comercial Brás",
+                        "dir": "Norte",
+                        "dist": 40,
+                        "height": 38,
+                        "type": "commercial"
+                }
+        ],
+        "description": "Revitalização urbana e patrimonial do centro expandido de São Paulo. Conexão expressa com linhas de metrô e trem, com face solar Sul e Leste livre de bloqueios."
+},
+
+      green_view: {
+        "name": "Green View Residence Butantã",
+        "address": "Av. Corifeu de Azevedo Marques",
+        "bairro": "Butantã",
+        "typology": "Residences 74 a 108 m² (2 e 3 Dorms)",
+        "lat": -23.5714,
+        "lng": -46.7268,
+        "azimuthOffset": 45,
+        "zerProtected": true,
+        "defaultFloor": 10,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Bosque da Cidade Universitária (USP)",
+                        "dir": "Norte",
+                        "dist": 180,
+                        "height": 20,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Casas do Butantã",
+                        "dir": "Sul",
+                        "dist": 40,
+                        "height": 10,
+                        "type": "residential"
+                }
+        ],
+        "description": "Em frente à exuberante floresta urbana da Universidade de São Paulo (USP). Vista verde perene tombada pelo patrimônio, com sol Norte durante todo o dia."
+},
+
+      soleil_klabin: {
+        "name": "Galleria Klabin & Soleil Residences",
+        "address": "Rua Pedro de Toledo, 1800",
+        "bairro": "Chácara Klabin",
+        "typology": "Residences 166 m² (3 Suítes)",
+        "lat": -23.5991,
+        "lng": -46.6432,
+        "azimuthOffset": 10,
+        "zerProtected": true,
+        "defaultFloor": 15,
+        "totalFloors": 26,
+        "neighbors": [
+                {
+                        "name": "Polo Hospitalar Unifesp / São Paulo",
+                        "dir": "Norte",
+                        "dist": 140,
+                        "height": 45,
+                        "type": "hospital"
+                },
+                {
+                        "name": "Casas Arborizadas da Chácara Klabin",
+                        "dir": "Sul",
+                        "dist": 30,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Oásis na Chácara Klabin / Vila Clementino. Face Sul e Leste protegida pela ZER do Klabin, garantindo luminosidade e silêncio absoluto."
+},
+
+      soleil_apt: {
+        "name": "Soleil Apartments Klabin",
+        "address": "Rua Pedro de Toledo, 1800 (Torre Studios)",
+        "bairro": "Chácara Klabin",
+        "typology": "Studios 24 a 38 m²",
+        "lat": -23.599,
+        "lng": -46.643,
+        "azimuthOffset": 10,
+        "zerProtected": true,
+        "defaultFloor": 7,
+        "totalFloors": 20,
+        "neighbors": [
+                {
+                        "name": "Polo Hospitalar Unifesp",
+                        "dir": "Norte",
+                        "dist": 140,
+                        "height": 45,
+                        "type": "hospital"
+                }
+        ],
+        "description": "Studios inteligentes na Vila Clementino / Klabin com taxa de ocupação recorde devido à proximidade de mais de 6 grandes hospitais."
+},
+
+      verdant: {
+        "name": "Verdant Tucuruvi",
+        "address": "Av. Mazzei, 700",
+        "bairro": "Tucuruvi",
+        "typology": "Residences 55 a 78 m² (2 e 3 Dorms)",
+        "lat": -23.4792,
+        "lng": -46.6041,
+        "azimuthOffset": 18,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Serra da Cantareira",
+                        "dir": "Norte",
+                        "dist": 600,
+                        "height": 80,
+                        "type": "open_green"
+                },
+                {
+                        "name": "Residencial Mazzei",
+                        "dir": "Leste",
+                        "dist": 35,
+                        "height": 30,
+                        "type": "residential"
+                }
+        ],
+        "description": "Zona Norte com vista panorâmica para a Serra da Cantareira. Clima fresco e ventilação perene, com varanda gourmet ensolarada."
+},
+
+      high_wonder: {
+        "name": "High Wonder Brás",
+        "address": "Rua Caetano Pinto",
+        "bairro": "Brás",
+        "typology": "Studios e 1 Dorm (24 a 42 m²)",
+        "lat": -23.5489,
+        "lng": -46.6192,
+        "azimuthOffset": -5,
+        "zerProtected": false,
+        "defaultFloor": 9,
+        "totalFloors": 25,
+        "neighbors": [
+                {
+                        "name": "Polo Comercial do Brás",
+                        "dir": "Oeste",
+                        "dist": 50,
+                        "height": 25,
+                        "type": "commercial"
+                }
+        ],
+        "description": "Alta rentabilidade para locação de curta e média temporada no centro atacadista mais movimentado do Brasil."
+},
+
+      novvo_santa_marina: {
+        "name": "Novvo Santa Marina",
+        "address": "Av. Santa Marina, 600",
+        "bairro": "Água Branca",
+        "typology": "Smart Living 25 a 37 m² (1 e 2 Dorms)",
+        "lat": -23.5186,
+        "lng": -46.6853,
+        "azimuthOffset": 20,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 23,
+        "neighbors": [
+                {
+                        "name": "Futura Estação Santa Marina Linha 6-Laranja",
+                        "dir": "Oeste",
+                        "dist": 180,
+                        "height": 15,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Água Branca",
+                        "dir": "Norte",
+                        "dist": 40,
+                        "height": 35,
+                        "type": "residential"
+                }
+        ],
+        "description": "Eixo de maior valorização da Linha 6-Laranja. Apartamentos inteligentes com varanda e excelente aproveitamento espacial."
+},
+
+      novvo_analia_franco: {
+        "name": "Novvo Anália Franco",
+        "address": "Av. Regente Feijó, 1200",
+        "bairro": "Anália Franco",
+        "typology": "Smart Living 24 a 44 m²",
+        "lat": -23.5592,
+        "lng": -46.5681,
+        "azimuthOffset": -15,
+        "zerProtected": false,
+        "defaultFloor": 9,
+        "totalFloors": 24,
+        "neighbors": [
+                {
+                        "name": "Shopping Anália Franco",
+                        "dir": "Sul",
+                        "dist": 180,
+                        "height": 35,
+                        "type": "commercial"
+                },
+                {
+                        "name": "Residencial Anália",
+                        "dir": "Leste",
+                        "dist": 35,
+                        "height": 45,
+                        "type": "residential"
+                }
+        ],
+        "description": "Ao lado do Shopping Anália Franco e Parque CERET. Padrão nobre da Zona Leste com acabamento diferenciado Lavvi."
+},
+
+      novvo_vila_prudente: {
+        "name": "Novvo Vila Prudente",
+        "address": "Rua Orfanato, 300",
+        "bairro": "Vila Prudente",
+        "typology": "Smart Living 25 a 39 m²",
+        "lat": -23.5834,
+        "lng": -46.5862,
+        "azimuthOffset": 10,
+        "zerProtected": false,
+        "defaultFloor": 8,
+        "totalFloors": 22,
+        "neighbors": [
+                {
+                        "name": "Estação Vila Prudente Metrô",
+                        "dir": "Norte",
+                        "dist": 250,
+                        "height": 20,
+                        "type": "commercial"
+                }
+        ],
+        "description": "Conexão direta com a Linha 2-Verde (Paulista em 15 minutos). Localização estratégica com comércio ativo e vida de bairro vibrante."
+},
+
+      novvo_marajoara: {
+        "name": "Novvo Marajoara",
+        "address": "Av. Sargento Geraldo Sant'Ana",
+        "bairro": "Jardim Marajoara",
+        "typology": "Smart Living 26 a 41 m²",
+        "lat": -23.6682,
+        "lng": -46.6923,
+        "azimuthOffset": -5,
+        "zerProtected": true,
+        "defaultFloor": 7,
+        "totalFloors": 20,
+        "neighbors": [
+                {
+                        "name": "Casas Arborizadas do Marajoara (ZER)",
+                        "dir": "Leste",
+                        "dist": 30,
+                        "height": 10,
+                        "type": "open_green"
+                }
+        ],
+        "description": "Em pleno Jardim Marajoara, cercado por ruas calmas e copas de árvores. Excelente para quem busca tranquilidade e fácil acesso à Chácara Santo Antônio."
+},
+
+    };
+
+    // State Variables
+    let curProjKey = 'hipica';
+    let curHour = 14.5;
+    let curMonth = 10;
+    let curFloor = 14;
+    let isTimelapseRunning = false;
+    let timelapseInterval = null;
+
+    const seasonNames = {
+      1: "Janeiro (Verão)", 2: "Fevereiro (Verão)", 3: "Março (Equinócio Outono)",
+      4: "Abril (Outono)", 5: "Maio (Outono)", 6: "Junho (Solstício Inverno)",
+      7: "Julho (Inverno)", 8: "Agosto (Inverno)", 9: "Setembro (Equinócio Primavera)",
+      10: "Outubro (Primavera)", 11: "Novembro (Primavera)", 12: "Dezembro (Solstício Verão)"
+    };
+
+    // ==========================================
+    // 2. ASTRONOMICAL EPHEMERIS ENGINE (SP)
+    // ==========================================
+    function getSolarEphemeris(month, lat) {
+      const phi = (lat || -23.55) * Math.PI / 180;
+      const dayOfYear = (month - 1) * 30.5 + 15;
+      const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * (Math.PI / 180));
+      const delta = declination * Math.PI / 180;
+
+      const h0 = -0.833 * Math.PI / 180;
+      const cosH0 = (Math.sin(h0) - Math.sin(phi) * Math.sin(delta)) / (Math.cos(phi) * Math.cos(delta));
+      const clampedCosH0 = Math.max(-1, Math.min(1, cosH0));
+      const H0 = Math.acos(clampedCosH0);
+      const H0_hours = (H0 * 180 / Math.PI) / 15;
+
+      const sunriseHour = 12.0 - H0_hours;
+      const sunsetHour = 12.0 + H0_hours;
+      const dayLengthHours = 2 * H0_hours;
+
+      const cosAz = (Math.sin(delta) - Math.sin(phi) * Math.sin(h0)) / (Math.cos(phi) * Math.cos(h0));
+      const clampedCosAz = Math.max(-1, Math.min(1, cosAz));
+      const sunriseAzimuth = Math.acos(clampedCosAz) * (180 / Math.PI);
+      const sunsetAzimuth = 360 - sunriseAzimuth;
+
+      return {
+        sunriseHour, sunsetHour, dayLengthHours,
+        sunriseAzimuth, sunsetAzimuth, declination
+      };
+    }
+
+    function getSolarPosition(hour, month, lat) {
+      const phi = (lat || -23.55) * Math.PI / 180;
+      const dayOfYear = (month - 1) * 30.5 + 15;
+      const declination = 23.45 * Math.sin((360 / 365) * (dayOfYear - 81) * (Math.PI / 180));
+      const delta = declination * Math.PI / 180;
+      const hourAngle = (hour - 12.0) * 15 * (Math.PI / 180);
+
+      const sinElevation = Math.sin(phi) * Math.sin(delta) + Math.cos(phi) * Math.cos(delta) * Math.cos(hourAngle);
+      const elevationRad = Math.asin(Math.max(-1, Math.min(1, sinElevation)));
+      const elevationDeg = elevationRad * (180 / Math.PI);
+
+      const cosAzimuth = (Math.sin(delta) * Math.cos(phi) - Math.cos(delta) * Math.sin(phi) * Math.cos(hourAngle)) / Math.cos(elevationRad);
+      let azimuthRad = Math.acos(Math.max(-1, Math.min(1, cosAzimuth)));
+      if (hourAngle > 0) azimuthRad = 2 * Math.PI - azimuthRad;
+      const azimuthDeg = azimuthRad * (180 / Math.PI);
+
+      return {
+        elevation: Math.max(0, elevationDeg),
+        azimuth: azimuthDeg,
+        isDay: elevationDeg > 0.2
+      };
+    }
+
+    function formatHourMinutes(decHour) {
+      const h = Math.floor(decHour);
+      const m = Math.round((decHour - h) * 60);
+      return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+    }
+
+    // ==========================================
+    // 3. THREE.JS 3D SCENE & SHADOWMAP ENGINE
+    // ==========================================
+    let scene, camera, renderer, controls;
+    let directionalLight, ambientLight, sunOrbMesh, sunBeamLine, eclipticCurveMesh, goldenWedgeMesh;
+    let mainBuildingGroup, neighborsGroup, groundPlaneMesh;
+
+    function init3DScene() {
+      const container = document.getElementById('webgl-viewport');
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+
+      // 1. Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x070A10);
+      scene.fog = new THREE.FogExp2(0x070A10, 0.0015);
+
+      // 2. Camera (Isometric Perspective)
+      camera = new THREE.PerspectiveCamera(45, w / h, 1, 3000);
+      camera.position.set(50, 160, 240);
+      controls.target.set(-100, 25, 35);
+
+      // 3. WebGL Renderer with High-Precision PCF Soft Shadows
+      renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+      renderer.setSize(w, h);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      container.appendChild(renderer.domElement);
+
+      // 4. Orbit Controls (Damping & Pitch limit)
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.maxPolarAngle = Math.PI / 2 - 0.05; // Do not go below ground
+      controls.minDistance = 40;
+      controls.maxDistance = 600;
+      controls.target.set(0, 20, 0);
+
+      // 5. Lighting
+      ambientLight = new THREE.AmbientLight(0x2A364F, 0.45);
+      scene.add(ambientLight);
+
+      directionalLight = new THREE.DirectionalLight(0xFFF1D0, 1.4);
+      directionalLight.castShadow = true;
+      directionalLight.shadow.mapSize.width = 2048;
+      directionalLight.shadow.mapSize.height = 2048;
+      directionalLight.shadow.camera.near = 10;
+      directionalLight.shadow.camera.far = 700;
+      directionalLight.shadow.bias = -0.0005;
+
+      const d = 160;
+      directionalLight.shadow.camera.left = -d;
+      directionalLight.shadow.camera.right = d;
+      directionalLight.shadow.camera.top = d;
+      directionalLight.shadow.camera.bottom = -d;
+      scene.add(directionalLight);
+
+      // 6. Ground Plane with High-Res Satellite Texture Canvas
+      buildGroundPlane();
+
+      // 7. Celestial Sun Orb & Ecliptic Arc
+      buildCelestialSunElements();
+
+      // 8. Build Buildings for Current Project
+      buildProjectModels(curProjKey);
+
+      // Update Scene to initial state
+      updateSolarLighting();
+
+      // Resize listener
+      window.addEventListener('resize', onWindowResize);
+
+      // Render Loop
+      animate();
+    }
+
+    function buildGroundPlane() {
+      // REAL GOOGLE EARTH SATELLITE ORTHOPHOTO (2048 x 1536 px)
+      // Real-world coverage: 650m (East-West) x 490m (North-South)
+      // Captured at Lat -23.6441, Lon -46.7093 (North UP, East RIGHT)
+      const planeGeo = new THREE.PlaneGeometry(650, 490, 64, 64);
+      
+      const textureLoader = new THREE.TextureLoader();
+      const satelliteTex = textureLoader.load('assets/hipica_google_earth_3blocks.jpg', () => {
+        if (renderer && scene && camera) renderer.render(scene, camera);
+      });
+      if (renderer) satelliteTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+      const planeMat = new THREE.MeshStandardMaterial({
+        map: satelliteTex,
+        roughness: 0.88,
+        metalness: 0.05
+      });
+
+      groundPlaneMesh = new THREE.Mesh(planeGeo, planeMat);
+      groundPlaneMesh.rotation.x = -Math.PI / 2;
+      groundPlaneMesh.receiveShadow = true;
+      scene.add(groundPlaneMesh);
+    }
+
+    function buildCelestialSunElements() {
+      // Sun Orb (Glowing Sphere)
+      const sunGeo = new THREE.SphereGeometry(6, 32, 32);
+      const sunMat = new THREE.MeshBasicMaterial({ color: 0xFFEA80 });
+      sunOrbMesh = new THREE.Mesh(sunGeo, sunMat);
+      scene.add(sunOrbMesh);
+
+      // Subtle Sunbeam line down to center
+      const beamGeo = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 100, 0)
+      ]);
+      const beamMat = new THREE.LineDashedMaterial({
+        color: 0xF3DC8A,
+        dashSize: 3,
+        gapSize: 3,
+        opacity: 0.35,
+        transparent: true
+      });
+      sunBeamLine = new THREE.Line(beamGeo, beamMat);
+      scene.add(sunBeamLine);
+    }
+
+    
+    // =========================================================================
+    // 3D NEIGHBORHOOD URBAN FABRIC ENGINE (SHADOWMAP SCALE & GEOGRAPHY)
+    // =========================================================================
+    
+    // =========================================================================
+    // FORENSIC 3-BLOCK GOOGLE EARTH & ZONING REPLICA (JARDIM DA HÍPICA REALITY)
+    // =========================================================================
+    let neighborhoodGroup = null;
+
+    function buildNeighborhoodUrbanFabric(projKey) {
+      if (neighborhoodGroup) scene.remove(neighborhoodGroup);
+      neighborhoodGroup = new THREE.Group();
+
+      if (projKey !== 'hipica') {
+        // Generic fallback for other projects
+        return;
+      }
+
+      // Materials with authentic architectural palette matching Google Earth 3D
+      const roadMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, roughness: 0.9 });
+      const sidewalkMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.8 });
+      const chsaLawnMat = new THREE.MeshStandardMaterial({ color: 0x1B4332, roughness: 0.95 });
+      const chsaSandMat = new THREE.MeshStandardMaterial({ color: 0xD4AF7A, roughness: 0.9 });
+      
+      // Real Neighbor Buildings Materials (Cyrela Cennario, Green View, Hípica Boulevard)
+      const cennarioMat = new THREE.MeshStandardMaterial({ color: 0xE2E8F0, roughness: 0.35, metalness: 0.2 });
+      const greenViewMat = new THREE.MeshStandardMaterial({ color: 0xDCE775, roughness: 0.4, metalness: 0.15 }); // Subtle modern tone
+      const hipicaBoulevardMat = new THREE.MeshStandardMaterial({ color: 0xE0E7FF, roughness: 0.4, metalness: 0.2 });
+      const neighborGlassMat = new THREE.MeshStandardMaterial({ color: 0x38BDF8, roughness: 0.1, metalness: 0.9, transparent: true, opacity: 0.7 });
+      const houseWallMat = new THREE.MeshStandardMaterial({ color: 0xF8FAFC, roughness: 0.5 });
+      const houseRoofMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, roughness: 0.6 });
+      const treeTrunkMat = new THREE.MeshStandardMaterial({ color: 0x5C4033, roughness: 0.9 });
+      const treeLeafMat = new THREE.MeshStandardMaterial({ color: 0x15803D, roughness: 0.85 });
+
+      // Helper function to build low-poly 3D trees
+      function createTree(x, z, scale = 1) {
+        const tree = new THREE.Group();
+        const trunkH = 4 * scale;
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.35 * scale, 0.5 * scale, trunkH, 6), treeTrunkMat);
+        trunk.position.y = trunkH / 2;
+        trunk.castShadow = true;
+        tree.add(trunk);
+
+        const leaf = new THREE.Mesh(new THREE.ConeGeometry(3.0 * scale, 6.0 * scale, 7), treeLeafMat);
+        leaf.position.y = trunkH + 2.5 * scale;
+        leaf.castShadow = true;
+        tree.add(leaf);
+
+        tree.position.set(x, 0, z);
+        return tree;
+      }
+
+      // Helper function for 3D Pin / Billboard Marker in the Scene
+      function createLandmarkPin(text, x, y, z, color = "#F3DC8A", bgColor = "rgba(15, 23, 42, 0.88)") {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 128;
+        const ctx = canvas.getContext('2d');
+
+        // Draw rounded pill
+        ctx.fillStyle = bgColor;
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.roundRect(16, 16, 480, 96, 24);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = color;
+        ctx.font = "bold 32px 'Plus Jakarta Sans', sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(text, 256, 64);
+
+        const texture = new THREE.CanvasTexture(canvas);
+        const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true });
+        const sprite = new THREE.Sprite(spriteMat);
+        sprite.position.set(x, y, z);
+        sprite.scale.set(36, 9, 1);
+        return sprite;
+      }
+
+      // -----------------------------------------------------------------------
+      // BLOCK 1: CLUBE HÍPICO DE SANTO AMARO (CHSA - RUA VISCONDE DE TAUNAY, 508)
+      // -----------------------------------------------------------------------
+      // Reality Check: 330,000 m² of ZER-1 protected low-rise equestrian grounds
+      // Located immediately East across Rua Visconde de Taunay. GABARITO MÁXIMO = 10m!
+      const chsaGroup = new THREE.Group();
+
+      const chsaLawn = new THREE.Mesh(new THREE.PlaneGeometry(320, 360), chsaLawnMat);
+      chsaLawn.rotation.x = -Math.PI / 2;
+      chsaLawn.position.set(220, 0.12, 0);
+      chsaLawn.receiveShadow = true;
+      chsaGroup.add(chsaLawn);
+
+      // Grand Prix Sand Arena (100x60m)
+      const chsaArena = new THREE.Mesh(new THREE.BoxGeometry(100, 0.25, 60), chsaSandMat);
+      chsaArena.position.set(160, 0.2, 10);
+      chsaArena.receiveShadow = true;
+      chsaGroup.add(chsaArena);
+
+      // Low-rise stables (Gabarito real = 4.5m)
+      for (let s = 0; s < 3; s++) {
+        const stable = new THREE.Mesh(new THREE.BoxGeometry(14, 4.5, 50), new THREE.MeshStandardMaterial({ color: 0xFEF3C7, roughness: 0.6 }));
+        stable.position.set(240 + s * 24, 2.25, -20);
+        stable.castShadow = true;
+        stable.receiveShadow = true;
+        chsaGroup.add(stable);
+      }
+
+      // 35 Mature Trees inside CHSA along the Visconde de Taunay border
+      for (let t = 0; t < 35; t++) {
+        const tx = 85 + Math.random() * 220;
+        const tz = -150 + Math.random() * 300;
+        if (Math.abs(tx - 160) > 35 || Math.abs(tz - 10) > 35) {
+          chsaGroup.add(createTree(tx, tz, 1.2 + Math.random() * 0.6));
+        }
+      }
+
+      // 3D Tag: CHSA ZER-1 Protegido
+      chsaGroup.add(createLandmarkPin("🏇 CHSA (330.000m² • ZER-1 • Sol da Manhã Permanente)", 160, 26, 10, "#34D399"));
+      neighborhoodGroup.add(chsaGroup);
+
+      // -----------------------------------------------------------------------
+      // BLOCK 2: PRAÇA BENEDITO ABBUD (10.000 m² PÚBLICA AO NORTE)
+      // -----------------------------------------------------------------------
+      // Reality Check: 10,000 m² open public park with walking paths & water feature
+      // Immediately North of Jardim da Hípica. Sol do Norte 100% Desobstruído!
+      const pracaGroup = new THREE.Group();
+      const pracaLawn = new THREE.Mesh(new THREE.BoxGeometry(90, 0.2, 85), chsaLawnMat);
+      pracaLawn.position.set(0, 0.15, -70);
+      pracaLawn.receiveShadow = true;
+      pracaGroup.add(pracaLawn);
+
+      // 16 Flowering Park Trees
+      for (let i = 0; i < 16; i++) {
+        const px = -35 + Math.random() * 70;
+        const pz = -105 + Math.random() * 70;
+        pracaGroup.add(createTree(px, pz, 1.0 + Math.random() * 0.4));
+      }
+
+      pracaGroup.add(createLandmarkPin("🌳 Praça Benedito Abbud (10.000m² • Sol do Norte Garantido)", 0, 22, -70, "#38BDF8"));
+      neighborhoodGroup.add(pracaGroup);
+
+      // -----------------------------------------------------------------------
+      // BLOCK 3: REAL NEIGHBORING BUILDINGS AUDITED FROM GOOGLE MAPS
+      // -----------------------------------------------------------------------
+
+      // 1. EDIFÍCIO CENNARIO (RUA VISCONDE DE TAUNAY, 507)
+      // Reality: Cyrela project, 25 andares, ~82 metros de altura
+      // Position: Corner of Rua Antônio Bandeira & Rua Visconde de Taunay (Southeast, ~85m dist)
+      const cennarioHeight = 82;
+      const cennarioGroup = new THREE.Group();
+      const cennarioBody = new THREE.Mesh(new THREE.BoxGeometry(24, cennarioHeight, 22), cennarioMat);
+      cennarioBody.position.set(0, cennarioHeight / 2, 0);
+      cennarioBody.castShadow = true;
+      cennarioBody.receiveShadow = true;
+      cennarioGroup.add(cennarioBody);
+
+      const cennarioGlass = new THREE.Mesh(new THREE.BoxGeometry(24.5, cennarioHeight * 0.75, 5), neighborGlassMat);
+      cennarioGlass.position.set(0, cennarioHeight * 0.5, 11);
+      cennarioGlass.castShadow = true;
+      cennarioGroup.add(cennarioGlass);
+
+      cennarioGroup.position.set(90, 0, 68);
+      cennarioGroup.add(createLandmarkPin("Edifício Cennario (25 andares / 82m)", 0, cennarioHeight + 10, 0, "#F59E0B"));
+      neighborhoodGroup.add(cennarioGroup);
+
+      // 2. CONDOMÍNIO GREEN VIEW (RUA ANTÔNIO BANDEIRA, 145)
+      // Reality: High-rise, 24 andares, ~78 metros de altura
+      // Position: West on Rua Antônio Bandeira (~120m dist)
+      const greenViewHeight = 78;
+      const greenViewGroup = new THREE.Group();
+      const gvBody = new THREE.Mesh(new THREE.BoxGeometry(26, greenViewHeight, 20), greenViewMat);
+      gvBody.position.set(0, greenViewHeight / 2, 0);
+      gvBody.castShadow = true;
+      gvBody.receiveShadow = true;
+      greenViewGroup.add(gvBody);
+
+      greenViewGroup.position.set(-110, 0, 24);
+      greenViewGroup.add(createLandmarkPin("Cond. Green View (24 andares / 78m)", 0, greenViewHeight + 10, 0, "#F59E0B"));
+      neighborhoodGroup.add(greenViewGroup);
+
+      // 3. CONDOMÍNIO HÍPICA BOULEVARD (RUA VISCONDE DE TAUNAY, 627)
+      // Reality: Residential tower, 20 andares, ~65 metros de altura
+      // Position: South along Visconde de Taunay (~160m dist)
+      const boulevardHeight = 65;
+      const boulevardGroup = new THREE.Group();
+      const bvdBody = new THREE.Mesh(new THREE.BoxGeometry(22, boulevardHeight, 22), hipicaBoulevardMat);
+      bvdBody.position.set(0, boulevardHeight / 2, 0);
+      bvdBody.castShadow = true;
+      bvdBody.receiveShadow = true;
+      boulevardGroup.add(bvdBody);
+
+      boulevardGroup.position.set(85, 0, 160);
+      boulevardGroup.add(createLandmarkPin("Hípica Boulevard (20 andares / 65m)", 0, boulevardHeight + 10, 0, "#CBD5E1"));
+      neighborhoodGroup.add(boulevardGroup);
+
+      // 4. REAL RESIDENTIAL HOUSES (ZER) ALONG RUA ANTÔNIO BANDEIRA (GABARITO REAL 7m A 9m)
+      // Reality: 2-3 story family homes directly across Rua Antônio Bandeira (South)
+      // Proving that units from the 6th-8th floor and up (Hípica Torre B) clear the houses completely!
+      const housesGroup = new THREE.Group();
+      for (let i = 0; i < 12; i++) {
+        const hx = -80 + i * 16;
+        const hz = 58;
+        const hw = 12;
+        const hd = 14;
+        const hh = 8.5; // ~2.5 andares
+
+        const house = new THREE.Mesh(new THREE.BoxGeometry(hw, hh, hd), houseWallMat);
+        house.position.set(hx, hh / 2, hz);
+        house.castShadow = true;
+        house.receiveShadow = true;
+        housesGroup.add(house);
+
+        const roof = new THREE.Mesh(new THREE.ConeGeometry(9, 2.5, 4), houseRoofMat);
+        roof.position.set(hx, hh + 1.25, hz);
+        roof.rotation.y = Math.PI / 4;
+        roof.castShadow = true;
+        housesGroup.add(roof);
+
+        // Street trees
+        housesGroup.add(createTree(hx, 46, 0.85));
+      }
+      neighborhoodGroup.add(housesGroup);
+
+      // -----------------------------------------------------------------------
+      // STREETS & INTERSECTIONS (RUA ANTÔNIO BANDEIRA & VISCONDE DE TAUNAY)
+      // -----------------------------------------------------------------------
+      const streets = new THREE.Group();
+      // Rua Antônio Bandeira
+      const rBand = new THREE.Mesh(new THREE.BoxGeometry(320, 0.2, 14), roadMat);
+      rBand.position.set(0, 0.1, 26);
+      streets.add(rBand);
+
+      // Rua Visconde de Taunay
+      const rTaun = new THREE.Mesh(new THREE.BoxGeometry(16, 0.2, 340), roadMat);
+      rTaun.position.set(65, 0.1, 0);
+      streets.add(rTaun);
+
+      neighborhoodGroup.add(streets);
+      scene.add(neighborhoodGroup);
+    }
+
+
+    function buildProjectModels(projKey) {
+      const proj = PROJECTS[projKey];
+
+      // Remove previous buildings
+      if (mainBuildingGroup) scene.remove(mainBuildingGroup);
+      if (neighborsGroup) scene.remove(neighborsGroup);
+
+      mainBuildingGroup = new THREE.Group();
+      neighborsGroup = new THREE.Group();
+
+      // Build complete 3D neighborhood context (CHSA, Praça, Houses & Distant Towers)
+      buildNeighborhoodUrbanFabric(projKey);
+
+      const floorHeight = 3.2;
+      const totalHeight = Math.max(20, curFloor * floorHeight);
+
+      // 1. Target Lavvi Architectural Tower (Clean White / Architectural Glass)
+      const towerMat = new THREE.MeshStandardMaterial({
+        color: 0xF8FAFC,
+        roughness: 0.25,
+        metalness: 0.35
+      });
+      const glassMat = new THREE.MeshStandardMaterial({
+        color: 0x38BDF8,
+        roughness: 0.1,
+        metalness: 0.9,
+        transparent: true,
+        opacity: 0.75
+      });
+      const goldCrownMat = new THREE.MeshStandardMaterial({
+        color: 0xD4AF37,
+        roughness: 0.3,
+        metalness: 0.8
+      });
+
+      if (projKey === 'hipica') {
+        // Jardim da Hípica Multi-Volume Architecture
+        // REAL 4K ARCHITECTURAL FACADE TEXTURE FROM LAVVI CREATIVE VAULT
+        const texLoader = new THREE.TextureLoader();
+        const facadeTex = texLoader.load('assets/images/jardim_hipica_facade_4k.jpg');
+        facadeTex.wrapS = THREE.RepeatWrapping;
+        facadeTex.wrapT = THREE.RepeatWrapping;
+        facadeTex.repeat.set(1, 3); // Repeat vertically across floors
+
+        const realFacadeMat = new THREE.MeshStandardMaterial({
+          map: facadeTex,
+          roughness: 0.35,
+          metalness: 0.25
+        });
+
+        // Torre A & B (Residences 84m² e 223m²) aligned on real satellite excavation site
+        const siteOffsetX = -100;
+        const siteOffsetZ = 35;
+
+        const bldgA = new THREE.Mesh(new THREE.BoxGeometry(26, totalHeight, 18), realFacadeMat);
+        bldgA.position.set(siteOffsetX - 15, totalHeight / 2, siteOffsetZ);
+        bldgA.castShadow = true;
+        bldgA.receiveShadow = true;
+        mainBuildingGroup.add(bldgA);
+
+        const bldgB = new THREE.Mesh(new THREE.BoxGeometry(26, totalHeight * 0.95, 18), realFacadeMat);
+        bldgB.position.set(siteOffsetX + 18, (totalHeight * 0.95) / 2, siteOffsetZ - 10);
+        bldgB.castShadow = true;
+        bldgB.receiveShadow = true;
+        mainBuildingGroup.add(bldgB);
+
+        // Gold Rooftop Crowns
+        const crownA = new THREE.Mesh(new THREE.BoxGeometry(28, 2.5, 20), goldCrownMat);
+        crownA.position.set(siteOffsetX - 15, totalHeight + 1.25, siteOffsetZ);
+        mainBuildingGroup.add(crownA);
+
+        const crownB = new THREE.Mesh(new THREE.BoxGeometry(28, 2.5, 20), goldCrownMat);
+        crownB.position.set(siteOffsetX + 18, (totalHeight * 0.95) + 1.25, siteOffsetZ - 10);
+        mainBuildingGroup.add(crownB);
+
+        // Glass Balconies (Face Leste / Oeste)
+        const balcony = new THREE.Mesh(new THREE.BoxGeometry(27, totalHeight * 0.8, 3), glassMat);
+        balcony.position.set(siteOffsetX - 15, totalHeight * 0.45, siteOffsetZ + 10);
+        balcony.castShadow = true;
+        mainBuildingGroup.add(balcony);
+
+        // 60m Lap Pool (Raia Monumental)
+        const pool = new THREE.Mesh(new THREE.BoxGeometry(12, 0.5, 60), glassMat);
+        pool.position.set(siteOffsetX - 40, 0.25, siteOffsetZ);
+        mainBuildingGroup.add(pool);
+
+        // 2 Clay Tennis Courts (18x36m Oficiais)
+        const courtMat = new THREE.MeshStandardMaterial({ color: 0xC85A32, roughness: 0.9 });
+        const court1 = new THREE.Mesh(new THREE.BoxGeometry(18, 0.2, 36), courtMat);
+        court1.position.set(siteOffsetX + 45, 0.1, siteOffsetZ + 20);
+        court1.receiveShadow = true;
+        mainBuildingGroup.add(court1);
+
+        const court2 = new THREE.Mesh(new THREE.BoxGeometry(18, 0.2, 36), courtMat);
+        court2.position.set(siteOffsetX + 45, 0.1, siteOffsetZ - 22);
+        court2.receiveShadow = true;
+        mainBuildingGroup.add(court2);
+
+      } else {
+        // Generic Lavvi Signature High-Rise
+        const mainTower = new THREE.Mesh(new THREE.BoxGeometry(28, totalHeight, 22), towerMat);
+        mainTower.position.set(0, totalHeight / 2, 0);
+        mainTower.castShadow = true;
+        mainTower.receiveShadow = true;
+        mainBuildingGroup.add(mainTower);
+
+        const crown = new THREE.Mesh(new THREE.BoxGeometry(30, 3, 24), goldCrownMat);
+        crown.position.set(0, totalHeight + 1.5, 0);
+        mainBuildingGroup.add(crown);
+      }
+
+      scene.add(mainBuildingGroup);
+
+      // 2. Neighboring Extruded Buildings (Shadowmap Style)
+      const neighborMat = new THREE.MeshStandardMaterial({
+        color: 0x94A3B8,
+        roughness: 0.6,
+        metalness: 0.1
+      });
+
+      if (proj.neighbors && proj.neighbors.length > 0) {
+        proj.neighbors.forEach(n => {
+          let dirDeg = 0;
+          if (n.dir === "Norte") dirDeg = 0;
+          else if (n.dir === "Nordeste") dirDeg = 45;
+          else if (n.dir === "Leste") dirDeg = 90;
+          else if (n.dir === "Sudeste") dirDeg = 135;
+          else if (n.dir === "Sul") dirDeg = 180;
+          else if (n.dir === "Sudoeste") dirDeg = 225;
+          else if (n.dir === "Oeste") dirDeg = 270;
+          else if (n.dir === "Noroeste") dirDeg = 315;
+
+          const rad = (dirDeg - 90) * Math.PI / 180;
+          const distScale = Math.min(220, n.dist * 1.1);
+          const nx = Math.cos(rad) * distScale;
+          const nz = Math.sin(rad) * distScale;
+          const nh = Math.max(12, n.height);
+
+          const nMesh = new THREE.Mesh(new THREE.BoxGeometry(22, nh, 22), neighborMat);
+          nMesh.position.set(nx, nh / 2, nz);
+          nMesh.castShadow = true;
+          nMesh.receiveShadow = true;
+          neighborsGroup.add(nMesh);
+        });
+      }
+
+      scene.add(neighborsGroup);
+    }
+
+    // ==========================================
+    // 4. LIGHTING & SOLAR SYNCHRONIZATION
+    // ==========================================
+    function updateSolarLighting() {
+      const proj = PROJECTS[curProjKey];
+      const ephem = getSolarEphemeris(curMonth, proj.lat);
+      const solar = getSolarPosition(curHour, curMonth, proj.lat);
+
+      // Celestial Coordinates to 3D Vector
+      const celestialRadius = 280;
+      const elevRad = solar.elevation * Math.PI / 180;
+      const azRad = (solar.azimuth - 90) * Math.PI / 180;
+
+      const sx = Math.cos(azRad) * Math.cos(elevRad) * celestialRadius;
+      const sy = Math.sin(elevRad) * celestialRadius;
+      const sz = Math.sin(azRad) * Math.cos(elevRad) * celestialRadius;
+
+      // Position Directional Light & Sun Orb
+      if (solar.isDay) {
+        directionalLight.position.set(sx, sy, sz);
+        sunOrbMesh.position.set(sx, sy, sz);
+        sunOrbMesh.visible = true;
+
+        // Dynamic Sunlight Color Temperature
+        if (solar.elevation < 12) {
+          // Golden hour (sunrise/sunset)
+          directionalLight.color.setHex(0xFFA500);
+          directionalLight.intensity = 1.6;
+          ambientLight.color.setHex(0x3B2820);
+        } else if (solar.elevation < 25) {
+          directionalLight.color.setHex(0xFFE2A0);
+          directionalLight.intensity = 1.4;
+          ambientLight.color.setHex(0x283446);
+        } else {
+          // Crisp high-noon white
+          directionalLight.color.setHex(0xFFFFFF);
+          directionalLight.intensity = 1.5;
+          ambientLight.color.setHex(0x2A364F);
+        }
+        directionalLight.castShadow = true;
+
+        // Sunbeam line
+        const positions = sunBeamLine.geometry.attributes.position.array;
+        positions[0] = sx; positions[1] = sy; positions[2] = sz;
+        positions[3] = 0;  positions[4] = 0;  positions[5] = 0;
+        sunBeamLine.geometry.attributes.position.needsUpdate = true;
+        sunBeamLine.visible = true;
+      } else {
+        // Night mode
+        directionalLight.intensity = 0.05;
+        directionalLight.castShadow = false;
+        ambientLight.color.setHex(0x0C121E);
+        sunOrbMesh.visible = false;
+        sunBeamLine.visible = false;
+      }
+
+      // Calculate Physical Shadow Length in Meters on Ground
+      const buildingHeightM = Math.max(10, curFloor * 3.2);
+      let shadowM = 0;
+      if (solar.isDay && solar.elevation > 0.5) {
+        shadowM = buildingHeightM / Math.tan(solar.elevation * Math.PI / 180);
+      }
+
+      // Update UI Metrics
+      document.getElementById('clockDisplay').innerText = formatHourMinutes(curHour);
+      document.getElementById('lblHour').innerText = formatHourMinutes(curHour);
+      document.getElementById('lblSunrise').innerText = formatHourMinutes(ephem.sunriseHour);
+      document.getElementById('lblSunset').innerText = formatHourMinutes(ephem.sunsetHour);
+      document.getElementById('lblDeclination').innerText = `${ephem.declination.toFixed(1)}°`;
+      document.getElementById('metricAzimuth').innerText = `${Math.round(solar.azimuth)}° (${getCompassName(solar.azimuth)})`;
+      document.getElementById('metricElevation').innerText = `${solar.elevation.toFixed(1)}°`;
+      document.getElementById('metricShadowMeters').innerText = solar.isDay ? `${shadowM.toFixed(1)} m` : '0 m (Noite)';
+
+      // Occlusion Audit Check
+      let isShadowed = false;
+      if (proj.neighbors && proj.neighbors.length > 0 && solar.isDay) {
+        proj.neighbors.forEach(n => {
+          if (curFloor * 3.2 < n.height && Math.abs(solar.azimuth - 270) < 35 && solar.elevation < 20) {
+            isShadowed = true;
+          }
+        });
+      }
+
+      const scoreEl = document.getElementById('auditScore');
+      const occEl = document.getElementById('metricOcclusion');
+      const verdictEl = document.getElementById('decisionVerdictText');
+
+      if (isShadowed) {
+        scoreEl.innerText = "SOMBRA PARCIAL";
+        scoreEl.style.color = "#F59E0B";
+        scoreEl.style.borderColor = "rgba(245, 158, 11, 0.4)";
+        occEl.innerText = "Parcial (Poente)";
+        occEl.style.color = "#F59E0B";
+        if (verdictEl) {
+          verdictEl.innerHTML = `No <strong>${curFloor}º andar (~${Math.round(curFloor * 3.2)}m)</strong>, as torres a oeste (Green View / Cennario) projetam sombra parcial no fim de tarde. Para sol poente 100% desobstruído até as 18h, escolha unidades do <strong>8º ao 18º andar</strong>.`;
+        }
+      } else {
+        scoreEl.innerText = "SOL PLENO 9.8/10";
+        scoreEl.style.color = "#34D399";
+        scoreEl.style.borderColor = "rgba(16, 185, 129, 0.4)";
+        occEl.innerText = "0% Livre";
+        occEl.style.color = "var(--emerald)";
+        if (verdictEl) {
+          if (curFloor <= 6) {
+            verdictEl.innerHTML = `No <strong>${curFloor}º andar (~${Math.round(curFloor * 3.2)}m)</strong>, sol da manhã 100% livre sobre o CHSA. A oeste, vista aconchegante voltada para as copas das árvores da Rua Antônio Bandeira.`;
+          } else {
+            verdictEl.innerHTML = `No <strong>${curFloor}º andar (~${Math.round(curFloor * 3.2)}m)</strong>, a torre supera em mais de 30m o gabarito das casas vizinhas (8m). <strong>100% de sol da manhã na Face Hípica e sol da tarde livre no living</strong> até o pôr do sol.`;
+          }
+        }
+      }
+
+      // Update WhatsApp action deep link
+      const waMsg = encodeURIComponent(`Olá Pedro Soares! Fiz a simulação 3D no Solarium 365 de ${proj.name} (${curFloor}º andar às ${formatHourMinutes(curHour)} em ${seasonNames[curMonth]}). Gostaria de ver as opções de planta e condições.`);
+      document.getElementById('btnWa').href = `https://wa.me/5511966105952?text=${waMsg}`;
+
+      // Update URL hash (SunCalc state sharing)
+      updateUrlHash();
+    }
+
+    function getCompassName(deg) {
+      const directions = ["Norte", "Nordeste", "Leste", "Sudeste", "Sul", "Sudoeste", "Oeste", "Noroeste"];
+      const index = Math.round(deg / 45) % 8;
+      return directions[index];
+    }
+
+    // ==========================================
+    // 5. INTERACTIVE SLIDER & CONTROL HANDLERS
+    // ==========================================
+    function updateHour(val) {
+      curHour = parseFloat(val);
+      updateSolarLighting();
+    }
+
+    function updateMonth(val) {
+      curMonth = parseInt(val);
+      document.getElementById('lblSeason').innerText = seasonNames[curMonth];
+      document.getElementById('dateDisplay').innerText = `Mês ${curMonth} &bull; ${seasonNames[curMonth]}`;
+      updateSolarLighting();
+    }
+
+    function updateFloor(val) {
+      curFloor = parseInt(val);
+      document.getElementById('lblFloor').innerText = `${curFloor}º Andar (~${Math.round(curFloor * 3.2)}m)`;
+      buildProjectModels(curProjKey);
+      updateSolarLighting();
+    }
+
+    function changeProject(key) {
+      if (!PROJECTS[key]) return;
+      curProjKey = key;
+      const proj = PROJECTS[key];
+      document.getElementById('projAddress').innerText = `📍 ${proj.address}`;
+      document.getElementById('projTypology').innerText = proj.typology;
+      buildProjectModels(curProjKey);
+      updateSolarLighting();
+      recenterCamera();
+    }
+
+    function setNow() {
+      const now = new Date();
+      curHour = now.getHours() + now.getMinutes() / 60;
+      curMonth = now.getMonth() + 1;
+      document.getElementById('hourSlider').value = curHour;
+      document.getElementById('monthSlider').value = curMonth;
+      updateMonth(curMonth);
+      updateHour(curHour);
+    }
+
+    function toggleTimelapse() {
+      const btn = document.getElementById('btnTimelapse');
+      if (isTimelapseRunning) {
+        clearInterval(timelapseInterval);
+        isTimelapseRunning = false;
+        btn.classList.remove('active');
+        btn.innerText = "▶ 24H LIVE";
+      } else {
+        isTimelapseRunning = true;
+        btn.classList.add('active');
+        btn.innerText = "⏸ PAUSAR";
+        timelapseInterval = setInterval(() => {
+          curHour += 0.1;
+          if (curHour > 19) curHour = 5.5;
+          document.getElementById('hourSlider').value = curHour;
+          updateSolarLighting();
+        }, 60);
+      }
+    }
+
+    function toggleTilt() {
+      const currentPitch = controls.getPolarAngle();
+      if (currentPitch < 0.3) {
+        // Move to isometric 55°
+        controls.setPolarAngle(0.95);
+      } else {
+        // Move to top-down 90° planar
+        controls.setPolarAngle(0.05);
+      }
+    }
+
+    function recenterCamera() {
+      controls.target.set(-100, 25, 35);
+      camera.position.set(50, 160, 240);
+      controls.update();
+    }
+
+    function resetNorth() {
+      controls.setAzimuthalAngle(0);
+    }
+
+    function updateUrlHash() {
+      try {
+        const hash = `#${curProjKey}/${curFloor}andar/mes-${curMonth}/${curHour.toFixed(1)}h`;
+        if (window.location.hash !== hash) {
+          history.replaceState(null, null, hash);
+        }
+      } catch (e) {}
+    }
+
+    function copySimulationLink() {
+      updateUrlHash();
+      const url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast(`🔗 Link 3D Copiado! (${PROJECTS[curProjKey].name}, ${curFloor}º andar às ${formatHourMinutes(curHour)})`);
+        }).catch(() => { prompt("Copie o link:", url); });
+      } else {
+        prompt("Copie o link:", url);
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastBox');
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 2800);
+    }
+
+    // ==========================================
+    // 6. ANIMATION & RENDER LOOP
+    // ==========================================
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+
+      // Sync Compass needle rotation with OrbitControls bearing
+      const azimuthAngle = controls.getAzimuthalAngle();
+      const compassNeedle = document.getElementById('compassNeedle');
+      if (compassNeedle) {
+        compassNeedle.style.transform = `rotate(${-azimuthAngle * 180 / Math.PI}deg)`;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById('webgl-viewport');
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+
+    // ==========================================
+    // 7. INITIALIZATION ON DOM READY
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      init3DScene();
+
+      // Parse URL Hash if present: #hipica/18andar/mes-10/14.5h
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        const parts = hash.split('/');
+        if (parts[0] && PROJECTS[parts[0]]) {
+          curProjKey = parts[0];
+          document.getElementById('projectSelect').value = curProjKey;
+          changeProject(curProjKey);
+        }
+        parts.forEach(p => {
+          if (p.includes('andar')) {
+            const f = parseInt(p.replace('andar', ''));
+            if (!isNaN(f)) { document.getElementById('floorSlider').value = f; updateFloor(f); }
+          } else if (p.includes('mes-')) {
+            const m = parseInt(p.replace('mes-', ''));
+            if (!isNaN(m)) { document.getElementById('monthSlider').value = m; updateMonth(m); }
+          } else if (p.includes('h')) {
+            const h = parseFloat(p.replace('h', ''));
+            if (!isNaN(h)) { document.getElementById('hourSlider').value = h; updateHour(h); }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "agent": "Pedro Soares | Lavvi Private Wealth",
+    "updated_at": "2026-10-26",
+    "whatsapp": "5511966105952",
+    "whatsapp_display": "(11) 96610-5952",
+    "signature": "Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952",
+    "voice_synthesis_lang": "pt-BR",
+    "creci_status": "Estágio em homologação pelo CRECI-SP (sem invenção de número)"
+  },
+  "broker_profile": {
+    "name": "Pedro Soares",
+    "origin": "Vila Nova Conceição, São Paulo (com vivência em Piracicaba no agronegócio paulista)",
+    "international_experience": "5 anos em Montreal (Canadá) • McGill University (Marketing Digital) • Cambridge CELTA",
+    "academic": "Gestão e Negócios pela ESPM São Paulo",
+    "languages": [
+      "Português",
+      "Inglês",
+      "Francês",
+      "Italiano",
+      "Espanhol",
+      "Alemão"
+    ],
+    "passions": [
+      "Tênis",
+      "Squash",
+      "Padel",
+      "Jiu-Jitsu de Elite",
+      "Vinhos do Velho Mundo",
+      "Cinema",
+      "História Urbana",
+      "Alta Gastronomia"
+    ],
+    "mobility": "A pé, bicicleta e transporte de alta conectividade — perspectiva humana de calçada, copas de árvores e caminhabilidade real",
+    "personality_pillars": "Humilde, culto, observador, zero afetação, escuta ativa, conecta como um parceiro de confiança e consultor patrimonial técnico"
+  },
+  "core_themes_and_analogies": {
+    "tax_reform_escudo_patrimonial": {
+      "title": "A Tese do Escudo Patrimonial (Reforma Tributária EC 132/23)",
+      "summary": "Por que antecipar a compra de imóveis na planta em 2026 antes da transição plena do IBS/CBS em 2027.",
+      "analogy": "Assim como nos vinhos de guarda de Bordeaux, onde comprar 'en primeur' (na safra antes do engarrafamento) garante a melhor taxa e isenção de sobretaxas futuras, comprar na planta da Lavvi em 2026 trava o custo tributário histórico da incorporação imobiliária.",
+      "key_facts": [
+        "A Reforma Tributária (EC 132/23 e PLP 68/24) aumentará a tributação sobre transações imobiliárias e incorporações a partir de 2027.",
+        "Contratos firmados em 2026 possuem direito adquirido ao regime de transição do RET (Regime Especial de Tributação) de 4% de patrimônio de afetação.",
+        "O comprador ganha na valorização real da obra e na blindagem fiscal antecipada."
+      ]
+    },
+    "alavancagem_35_65_vs_cdi": {
+      "title": "A Matemática da Alavancagem 35/65 vs. CDI",
+      "summary": "Desembolsar 35% ao longo de 36 meses enquanto 65% do capital rende juros compostos no banco.",
+      "analogy": "É o princípio do 'Carry Trade' aplicado ao patrimônio físico: você trava o ativo a preço de hoje pagando a prazo com inflação da construção (INCC), enquanto a maior parte da sua liquidez permanece rendendo taxa Selic líquida.",
+      "key_facts": [
+        "Sinal e mensais diluídos em 35% do valor do imóvel durante o período de obras.",
+        "65% do saldo devedor quitado nas chaves com financiamento bancário amortizado pelo aluguel ou liquidação estratégica.",
+        "Rentabilidade sobre o capital próprio investido (ROE) muito superior ao CDI no mesmo período."
+      ]
+    },
+    "fracao_ideal_nbr_12721": {
+      "title": "Assimetria Patrimonial da Fração Ideal (ABNT NBR 12.721)",
+      "summary": "O valor da cota de terra em terrenos monumentais como o Jardim da Hípica (~40.000 m²).",
+      "analogy": "Comprar um apartamento em uma torre isolada num terreno de 1.500 m² é como comprar uma ação de uma empresa com ativos limitados; comprar no Jardim da Hípica é deter fração de um latifúndio urbano de 40.000 m² em frente a uma reserva verde de 280.000 m² do Clube Hípico de Santo Amaro.",
+      "key_facts": [
+        "A NBR 12.721 define que cada unidade autônoma possui uma cota de propriedade sobre o terreno total.",
+        "Terrenos monumentais com praças doadas (10.000 m² de Benedito Abbud) são irreplicáveis no Plano Diretor atual.",
+        "Escassez física de grandes glebas na Zona Sul garante barreira intransponível de entrada contra novos concorrentes."
+      ]
+    },
+    "desempenho_acustico_nbr_15575": {
+      "title": "Engenharia de Silêncio Urbano (ABNT NBR 15.575 - Nível Superior S)",
+      "summary": "Como a engenharia Lavvi e Cyrela blindam os apartamentos contra ruído externo e impacto.",
+      "analogy": "É a mesma tecnologia acústica de uma sala de concerto ou estúdio cinematográfico: lajes desacopladas com mantas de alta densidade e caixilhos com câmara estanque de ar.",
+      "key_facts": [
+        "Lajes com manta acústica contra impacto eliminam o ruído de passos de andares superiores.",
+        "Vidros de controle solar e acústico laminados atenuam ruído aéreo urbano.",
+        "Tubulações hidráulicas revestidas com isolamento fonoabsorvente."
+      ]
+    }
+  },
+  "objections_battlecards": [
+    {
+      "id": "obj_eleicao_cdi",
+      "gatilho": [
+        "eleição",
+        "eleicao",
+        "cdi",
+        "selic",
+        "juros",
+        "incerteza",
+        "esperar"
+      ],
+      "burry_challenge": "2026 é ano eleitoral no Brasil, o fiscal está ruidoso e o CDI paga dois dígitos sem esforço. Por que travar capital em tijolo agora?",
+      "pedro_answer": "Excelente ponto de ceticismo. Mas considere a matemática do CDI real: sobre o rendimento nominal do CDI você paga 15% de IR e desconta a inflação. No fluxo 35/65 da Lavvi, você NÃO descapitaliza seu patrimônio: apenas 35% é desembolsado em 36 parcelas suaves de obra, enquanto 65% do seu capital CONTINUA rendendo juros compostos no banco. Além disso, a Reforma Tributária (EC 132/23) aumentará o custo da incorporação em 2027. Comprar em 2026 trava o custo antigo e alavanca seu ganho de capital na entrega.",
+      "whatsapp_cta": "Quero simular a Alavancagem 35/65 vs CDI no meu perfil de investimento"
+    },
+    {
+      "id": "obj_localizacao_hipica",
+      "gatilho": [
+        "hipica",
+        "hípica",
+        "longe",
+        "santo amaro",
+        "alto da boa vista",
+        "distância",
+        "distancia"
+      ],
+      "burry_challenge": "O Jardim da Hípica não fica muito longe dos Jardins e da Faria Lima para quem tem rotina executiva?",
+      "pedro_answer": "Pelo contrário! O Alto da Boa Vista é o segredo mais bem guardado das famílias tradicionais de São Paulo. Pela Ponte Laguna e Chácara Santo Antônio, você chega à Berrini e à Faria Lima em 8 a 12 minutos. Mas o verdadeiro valor está na 'isócrona dos 15 minutos': seus filhos vão a pé para a Escola Suíço-Brasileira ou Chapel School, você treina tênis e monta a cavalo no Clube Hípico (280.000 m² de verde) e vive num terreno de 40.000 m² com praça pública de 10.000 m² projetada por Benedito Abbud. É qualidade de vida europeia dentro de São Paulo.",
+      "whatsapp_cta": "Gostaria de agendar um café para conhecer o projeto e plantas do Jardim da Hípica"
+    },
+    {
+      "id": "obj_yield_paraiso",
+      "gatilho": [
+        "paraiso",
+        "paraíso",
+        "tom",
+        "le six",
+        "médico",
+        "medico",
+        "hospital",
+        "aluguel",
+        "yield",
+        "short stay"
+      ],
+      "burry_challenge": "Comprar studios ou apartamentos compactos no Paraíso dá retorno consistente ou há risco de vacância?",
+      "pedro_answer": "O Paraíso tem uma âncora anticíclica que nenhum outro bairro possui: o maior hub médico da América Latina (HCor, Beneficência Portuguesa, Santa Catarina, Paulistano, Oswaldo Cruz). Há uma demanda contínua de médicos residentes, congressistas e famílias de pacientes do Brasil inteiro que buscam locação de alto padrão por dias, semanas ou meses. Com a gestão profissional da Charlie/Housi com portaria segregada, os yields médios projetados superam de 9% a 12% a.a., muito acima da locação tradicional residencial.",
+      "whatsapp_cta": "Quero o Dossiê Financeiro com projeção de Yield e Rentabilidade do T.O.M. Paraíso"
+    },
+    {
+      "id": "obj_ruido_moema",
+      "gatilho": [
+        "moema",
+        "congonhas",
+        "avião",
+        "aviao",
+        "barulho",
+        "ruído",
+        "ruido",
+        "silêncio"
+      ],
+      "burry_challenge": "Moema sofre com barulho constante de aeronaves de Congonhas. Como garantir tranquilidade?",
+      "pedro_answer": "Existe uma distinção geográfica fundamental que 90% dos compradores desconhece: o cone de aproximação de Congonhas passa sobre Moema Índios (lado da Alameda dos Nhambiquaras/Aratãs). Nossos projetos (Villa Moema Versace e Saffire) estão situados em Moema Pássaros e na borda da Vila Nova Conceição (Gaivota, Pavão, Canário), totalmente FORA do cone direto de voo. Além disso, a engenharia Lavvi aplica a NBR 15.575 Nível Superior (S), com vidros de alta atenuação acústica e lajes duplas fonoabsorventes. O silêncio dentro da unidade é absoluto.",
+      "whatsapp_cta": "Quero receber o book técnico e mapa acústico do Villa Moema Versace"
+    },
+    {
+      "id": "obj_perdizes_perfil",
+      "gatilho": [
+        "perdizes",
+        "well",
+        "pompeia",
+        "pompéia",
+        "zona oeste",
+        "venancio",
+        "venâncio"
+      ],
+      "burry_challenge": "Perdizes tem muitas colinas e trânsito na Sumaré. O Well Perdizes realmente se destaca?",
+      "pedro_answer": "O Well Perdizes está na Rua Venâncio Aires, 600, um trecho plano e arborizado a 3 minutos do Parque da Água Branca e do Bourbon Shopping / Allianz Parque. A grande virada de chave para a valorização é a chegada da Linha 6-Laranja do Metrô a poucos passos. Para quem preza por rotina a pé, você tem o dojô de Jiu-Jitsu Andrei B9 na mesma calçada (nº 434), colégios de topo como o Pentágono a 600m e restaurantes Bib Gourmand Michelin (Komah e Carlota) a 6 minutos.",
+      "whatsapp_cta": "Quero conhecer as unidades disponíveis e tabela do Well Perdizes"
+    }
+  ],
+  "neighborhood_guides": {
+    "alto_da_boa_vista": {
+      "name": "Alto da Boa Vista & Jardim da Hípica",
+      "character": "Bairro-jardim aristocrático, estritamente residencial (ZER), copas centenárias e tradição hípica e internacional.",
+      "highlights": [
+        "Clube Hípico de Santo Amaro (280.000 m² de reserva verde)",
+        "Praça pública de 10.000 m² doada pela Lavvi com paisagismo de Benedito Abbud",
+        "Polo internacional: Escola Suíço-Brasileira (540m), Chapel School (850m) e Rudolf Steiner (390m)",
+        "Gastronomia e Estrelas: Tangará Jean-Georges a 2.4 km via Ponte Laguna"
+      ]
+    },
+    "moema_passaros": {
+      "name": "Moema Pássaros & Vila Nova Conceição",
+      "character": "O ápice da vida 'flâneur' paulistana: ruas planas batizadas com nomes de pássaros, cafés, bistrôs e proximidade do Ibirapuera.",
+      "highlights": [
+        "A 1.1 km do Kinoshita (1 Estrela Michelin) na Vila Nova Conceição",
+        "A 190 metros da Escola Móbile (Top 4 SP no ENEM) e do CONSA",
+        "Alliance Jiu-Jitsu Moema na Alameda dos Arapanés a 7 minutos a pé",
+        "Encounter Board Game Cafe na Nhambiquaras a 1.1 km"
+      ]
+    },
+    "paraiso_ibirapuera": {
+      "name": "Paraíso & Eixo Paulista / Ibirapuera",
+      "character": "Conexão cultural e econômica máxima entre o Parque Ibirapuera, a Avenida Paulista e o polo hospitalar de excelência.",
+      "highlights": [
+        "Maior densidade Michelin da América Latina em <3 km: Kan Suke a 740m, Fame Osteria a 1.8km, D.O.M. a 2.3km",
+        "Educação: Colégio Bandeirantes a 360m (Top 5 ENEM / Líder FUVEST), Etapa III a 1.0 km",
+        "Taverna Medieval a 1.2 km e Ludus Luderia a 1.9 km",
+        "Alliance Paraíso a 450 metros e Barbosa B9 Matriz a 1.1 km"
+      ]
+    },
+    "perdizes_pompeia": {
+      "name": "Perdizes Nobre & Pompéia",
+      "character": "Bairro tradicional com forte identidade cultural, intelectual e gastronômica, acolhendo famílias acadêmicas e médicas.",
+      "highlights": [
+        "Andrei B9 Jiu-Jitsu na mesma calçada (Rua Venâncio Aires, 434 vs 600)",
+        "Colégio Pentágono a 640 metros na Rua Bartira e PUC-SP próxima",
+        "Gastronomia premiada: Komah (Bib Gourmand) a 2.3 km e Metzi (50 Best) a 2.4 km",
+        "Parque da Água Branca e futuro Metrô Linha 6-Laranja"
+      ]
+    }
+  },
+  "curated_soundbites_pedro": [
+    "No mercado de alta renda de São Paulo, você nunca compra apenas metros quadrados; você compra a isócrona de 15 minutos da sua família.",
+    "Um terreno monumental de 40.000 m² no Alto da Boa Vista é uma reserva de valor irreplicável; a cidade de São Paulo não produz mais glebas desse porte na Zona Sul.",
+    "A antecipação de compra em 2026 antes da transição da Reforma Tributária é o verdadeiro 'Escudo Patrimonial' dos family offices mais bem assessorados.",
+    "Praticar jiu-jitsu ou tênis perto de casa sem precisar pegar o trânsito da Marginal Pinheiros devolve duas horas de vida por dia para você e seus filhos."
+  ]
+}
