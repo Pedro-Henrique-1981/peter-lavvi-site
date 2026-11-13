@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema & Streaming Hub 4K • Lavvi Private Wealth</title>
+  <meta name="description" content="Acervo Oficial em Vídeo • Decorados Virtuais, Voos de Drone 4K e Lazer dos Empreendimentos Lavvi e NOVVO em São Paulo.">
+  <link rel="stylesheet" href="assets/css/lavvi-design-system.css">
+  <style>
+    body {
+      background-color: #070B14;
+      color: #F8FAFC;
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Cinematic Header */
+    .cinema-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 66px;
+      line-height: 66px;
+      background: rgba(7, 11, 20, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(149, 123, 43, 0.35);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .cinema-nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #F8FAFC;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 8px 14px;
+      line-height: 1.2;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(149, 123, 43, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .cinema-nav-back:hover {
+      background: #957B2B;
+      color: #FFFFFF;
+      border-color: #957B2B;
+    }
+
+    .cinema-brand-title {
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #D4AF37;
+    }
+
+    .cinema-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
+      color: #000000;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 8px 16px;
+      line-height: 1.2;
+      border-radius: 9999px;
+      transition: opacity 0.2s;
+    }
+
+    .cinema-wa-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Main Container */
+    .cinema-hero {
+      padding: 48px 24px 32px;
+      max-width: 1320px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+
+    .cinema-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(149, 123, 43, 0.2);
+      border: 1px solid rgba(149, 123, 43, 0.4);
+      color: #E2C068;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    .cinema-title {
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 3.2vw, 2.625rem);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .cinema-sub {
+      color: #94A3B8;
+      font-size: clamp(0.875rem, 1.2vw, 1rem);
+      max-width: 720px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    /* Filter Tabs */
+    .streaming-tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .streaming-tab {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #CBD5E1;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .streaming-tab:hover {
+      background: rgba(149, 123, 43, 0.25);
+      border-color: #957B2B;
+      color: #FFFFFF;
+    }
+
+    .streaming-tab.active {
+      background: #957B2B;
+      border-color: #957B2B;
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(149, 123, 43, 0.35);
+    }
+
+    /* Streaming Grid & Cards */
+    .streaming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+      width: 100%;
+    }
+
+    .stream-video-card {
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stream-video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      border-color: #957B2B;
+    }
+
+    .stream-thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .stream-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .stream-video-card:hover .stream-thumb-img {
+      transform: scale(1.05);
+    }
+
+    .stream-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(149, 123, 43, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      transition: all 0.2s ease;
+    }
+
+    .stream-video-card:hover .stream-play-btn {
+      background: #957B2B;
+      transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    .stream-card-body {
+      padding: 18px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .stream-card-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #D4AF37;
+      margin-bottom: 6px;
+    }
+
+    .stream-card-title {
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .stream-card-sub {
+      font-size: 0.85rem;
+      color: #94A3B8;
+      line-height: 1.5;
+    }
+
+    /* Modal Video Player */
+    .lavvi-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(10px);
+      z-index: 100000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lavvi-modal-overlay.active {
+      display: flex;
+    }
+
+    .lavvi-modal-content {
+      background: #0B111E;
+      border: 1px solid rgba(149, 123, 43, 0.4);
+      border-radius: 16px;
+      max-width: 960px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #070B14;
+    }
+
+    .modal-title {
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #D4AF37;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: #94A3B8;
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .modal-close-btn:hover {
+      color: #FFFFFF;
+    }
+
+    .modal-video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .modal-footer-bar {
+      padding: 16px 24px;
+      background: #070B14;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .modal-sub {
+      color: #94A3B8;
+      font-size: 0.85rem;
+    }
+
+    .modal-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: #000000;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .modal-wa-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Footer Air-Gap Signature */
+    .cinema-footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 32px 24px;
+      text-align: center;
+      color: #64748B;
+      font-size: 0.85rem;
+      background: #05080E;
+    }
+
+    .cinema-footer a {
+      color: #D4AF37;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 66px Fixed Return Navigation Bar -->
+  <header class="cinema-header">
+    <a href="index.html" class="cinema-nav-back" title="Retornar ao Portal Principal Lavvi">
+      ← Voltar ao Portal
+    </a>
+    <div class="cinema-brand-title">
+      LAVVI <span style="color: #957B2B;">• CINEMA & STREAMING HUB 4K</span>
+    </div>
+    <a href="https://wa.me/5511966105952" target="_blank" class="cinema-wa-btn">
+      💬 WhatsApp Peter: (11) 96610-5952
+    </a>
+  </header>
+
+  <!-- Hero Banner -->
+  <div class="cinema-hero">
+    <div class="cinema-tag">Acervo Oficial em Vídeo • Tours Decorados & Drones 4K</div>
+    <h1 class="cinema-title">Cinema Lavvi Private Wealth</h1>
+    <p class="cinema-sub">
+      Explore os decorados virtuais, maquetes dinâmicas, infraestrutura de lazer e sobrevoos dos empreendimentos de alto padrão da Lavvi e NOVVO em São Paulo.
+    </p>
+
+    <!-- Filter Category Pills -->
+    <div class="streaming-tabs-bar" id="streaming-tabs-bar">
+      <button class="streaming-tab active" onclick="filterStreamingVideos('todos', this)">🌟 Todos (39)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('hipica', this)">🐎 Jardim da Hípica (8)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('tom', this)">🏥 T.O.M. Paraíso (3)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('lesix', this)">🌿 Le Six Paraíso (4)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('saffire', this)">💎 Saffire Elie Saab (3)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('versace', this)">🏛️ Villa Versace (2)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('palace', this)">🏰 Palace (4)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('greenview', this)">🌳 Green View (3)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('alive', this)">🏊 Alive Home Resort (5)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('heaven', this)">✨ Heaven YOO (3)</button>
+      <button class="streaming-tab" onclick="filterStreamingVideos('grandsquare', this)">📍 Grand Square (4)</button>
+    </div>
+  </div>
+
+  <!-- Video Cards Grid -->
+  <main class="streaming-grid" id="streaming-grid-container">
+    <!-- Rendered dynamically by JavaScript -->
+  </main>
+
+  <!-- Responsive Widescreen Video Player Modal -->
+  <div class="lavvi-modal-overlay" id="video-player-modal" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+    <div class="lavvi-modal-content">
+      <div class="modal-header-bar">
+        <div class="modal-title" id="video-modal-title">Vídeo Oficial</div>
+        <button class="modal-close-btn" onclick="closeVideoPlayerModal()" aria-label="Fechar vídeo">×</button>
+      </div>
+
+      <div class="modal-video-wrapper aspect-video" id="video-player-frame-box">
+        <!-- Video or Iframe rendered here -->
+      </div>
+
+      <div class="modal-footer-bar">
+        <div class="modal-sub" id="video-modal-sub">
+          Curadoria Independente • Pedro Soares | Lavvi Private Wealth
+        </div>
+        <div class="modal-cta-group">
+          <a href="index.html#catalogo" class="cinema-nav-back" style="font-size: 0.85rem;">
+            Ver Catálogo de Plantas
+          </a>
+          <a id="video-modal-wa-btn" href="https://wa.me/5511966105952" target="_blank" class="modal-wa-btn">
+            💬 Agendar Visita no WhatsApp →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Air-Gap Compliance -->
+  <footer class="cinema-footer">
+    <p style="margin: 0 0 8px 0; font-weight: 600; color: #CBD5E1;">
+      Pedro Soares | Lavvi Private Wealth • WhatsApp: <a href="https://wa.me/5511966105952" target="_blank">(11) 96610-5952</a>
+    </p>
+    <p style="margin: 0; font-size: 0.78rem;">
+      Atendimento consultivo e agendamento direto de visitas aos estandes e decorados oficiais Lavvi e NOVVO.
+    </p>
+  </footer>
+
+  <script>
+    const streamingVideos = [
+      {
+        "id": "h1",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Tour Decorado 84 m² (Paula Aveiro)",
+        "sub": "3 Dorms (1 Suíte) • Varanda Gourmet • Alto da Boa Vista",
+        "thumb": "assets/images/jardim_hipica_facade_4k.jpg",
+        "src": "assets/videos/jardim_hipica_decorado_84.mp4",
+        "dur": "2m 15s"
+      },
+      {
+        "id": "h2",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Tour Decorado 133 m² (Paula Aveiro)",
+        "sub": "3 Suítes • Vista Clube Hípico de Santo Amaro",
+        "thumb": "assets/hipica_jardim.jpg",
+        "src": "assets/videos/jardim_hipica_decorado_133.mp4",
+        "dur": "3m 10s"
+      },
+      {
+        "id": "h3",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Tour Decorado 184 m² (Cassia Kroeff)",
+        "sub": "4 Suítes • Hall Privativo • Vista Definitiva CHSA",
+        "thumb": "assets/images/jardim_hipica_facade_4k.jpg",
+        "src": "assets/videos/jardim_hipica_decorado_184.mp4",
+        "dur": "3m 45s"
+      },
+      {
+        "id": "h4",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Tour Decorado 223 m² (Cassia Kroeff)",
+        "sub": "4 Suítes • Elevador Privativo • Private House",
+        "thumb": "assets/hipica_private_house.jpg",
+        "src": "assets/videos/jardim_hipica_decorado_223.mp4",
+        "dur": "4m 05s"
+      },
+      {
+        "id": "h5",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Tour Decorado 276 m² (Cassia Kroeff)",
+        "sub": "4 Suítes Master • Mansão Suspensa Torre A • 3 Vagas",
+        "thumb": "assets/hipica_piscina60m.jpg",
+        "src": "assets/videos/jardim_hipica_decorado_276.mp4",
+        "dur": "4m 30s"
+      },
+      {
+        "id": "h6",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Tour Decorado 56 m² c/ Vaga (Torre E)",
+        "sub": "2 Dorms (1 Suíte) + Vaga • Lazer Exclusivo no 4º Pavimento",
+        "thumb": "assets/hipica_jardim.jpg",
+        "src": "assets/videos/jardim_hipica_decorado_56_studio.mp4",
+        "dur": "2m 00s"
+      },
+      {
+        "id": "h7",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Piscina 60m & 2 Quadras de Tênis Oficiais",
+        "sub": "Terreno de ~40.000 m² + Praça Pública de 10.000 m² (Benedito Abbud)",
+        "thumb": "assets/hipica_piscina60m.jpg",
+        "src": "assets/videos/jardim_hipica_produto.mp4",
+        "dur": "2m 45s"
+      },
+      {
+        "id": "h8",
+        "cat": "hipica",
+        "title": "Jardim da Hípica: Serviços Exclusivos CBRE & Body Care",
+        "sub": "Assessoria Esportiva e Concierge Internacional Inclusos no Condomínio",
+        "thumb": "assets/hipica_private_house.jpg",
+        "src": "assets/videos/jardim_hipica_servicos.mp4",
+        "dur": "1m 50s"
+      },
+      {
+        "id": "t1",
+        "cat": "tom",
+        "title": "T.O.M. Paraíso: Filme Oficial & Conceitual",
+        "sub": "Rua Desembargador Eliseu Guilherme • A 240m do Metrô Paraíso e 350m do HCor",
+        "thumb": "assets/tom_beach_tennis.jpg",
+        "src": "assets/videos/tom_paraiso_filme.mp4",
+        "dur": "2m 50s"
+      },
+      {
+        "id": "t2",
+        "cat": "tom",
+        "title": "T.O.M. Paraíso: Tour Decorado 25 m² Studio Smart",
+        "sub": "Rentabilidade Short-Stay • Ao lado da Av. Paulista",
+        "thumb": "assets/tom_beach_tennis.jpg",
+        "src": "assets/videos/tom_paraiso_25m.mp4",
+        "dur": "2m 10s"
+      },
+      {
+        "id": "t3",
+        "cat": "tom",
+        "title": "T.O.M. Paraíso: Tour Decorado 40 m² 1 Suíte",
+        "sub": "Design Inteligente • Varanda Gourmet • Lazer c/ Beach Tennis",
+        "thumb": "assets/tom_rooftop_pool.jpg",
+        "src": "assets/videos/tom_paraiso_40m.mp4",
+        "dur": "2m 35s"
+      },
+      {
+        "id": "l1",
+        "cat": "lesix",
+        "title": "Le Six Paraíso: Filme de Produto Oficial",
+        "sub": "156, 203 e 264 m² • Rua Cubatão, 33 / Paraíso • Quadra de Tênis",
+        "thumb": "assets/images/le_six_gal_1.jpeg",
+        "src": "assets/videos/le_six_filme_produto.mp4",
+        "dur": "2m 40s"
+      },
+      {
+        "id": "l2",
+        "cat": "lesix",
+        "title": "Le Six Paraíso: Tour Decorado 156 m² (3 Suítes)",
+        "sub": "Hall Privativo • Varanda Gourmet • Entre Paulista e Ibirapuera",
+        "thumb": "assets/images/le_six_gal_1.jpeg",
+        "src": "assets/videos/le_six_decorado_156.mp4",
+        "dur": "2m 15s"
+      },
+      {
+        "id": "l3",
+        "cat": "lesix",
+        "title": "Le Six Paraíso: Tour Decorado 264 m² (4 Suítes Master)",
+        "sub": "Mansão Suspensa • Elevador Privativo • 4 Vagas",
+        "thumb": "assets/images/le_six_gal_1.jpeg",
+        "src": "assets/videos/le_six_decorado_264.mp4",
+        "dur": "3m 20s"
+      },
+      {
+        "id": "l4",
+        "cat": "lesix",
+        "title": "Le Six Paraíso: Serviços CBRE & Body Care (3 Anos Inclusos)",
+        "sub": "Gestão Patrimonial CBRE e Assessoria Esportiva Body Care por 3 anos",
+        "thumb": "assets/images/le_six_gal_1.jpeg",
+        "src": "assets/videos/le_six_servicos.mp4",
+        "dur": "1m 55s"
+      },
+      {
+        "id": "s1",
+        "cat": "saffire",
+        "title": "Saffire by Elie Saab: O Filme Oficial da Marca",
+        "sub": "Mansões Suspensas de 360 e 493 m² em Moema Pássaros",
+        "thumb": "assets/images/saffire_elie_saab_facade_4k.jpg",
+        "src": "assets/videos/saffire_elie_saab_filme.mp4",
+        "dur": "3m 15s"
+      },
+      {
+        "id": "s2",
+        "cat": "saffire",
+        "title": "Saffire by Elie Saab: Tour Decorado 360 m²",
+        "sub": "4 Suítes • 5 Vagas • Interiores Assinados por Elie Saab",
+        "thumb": "assets/images/saffire_elie_saab_facade_4k.jpg",
+        "src": "assets/videos/saffire_decorado_360.mp4",
+        "dur": "3m 50s"
+      },
+      {
+        "id": "s3",
+        "cat": "saffire",
+        "title": "Saffire by Elie Saab: Tour Decorado 493 m²",
+        "sub": "4 a 5 Suítes • 6 Vagas • Vista Parque Ibirapuera",
+        "thumb": "assets/images/saffire_elie_saab_facade_4k.jpg",
+        "src": "assets/videos/saffire_decorado_493.mp4",
+        "dur": "4m 20s"
+      },
+      {
+        "id": "v1",
+        "cat": "versace",
+        "title": "Villa Versace: Tour Decorado 221 m²",
+        "sub": "Moema Pássaros • Mobiliário Oficial Versace Home (Pronto para Morar)",
+        "thumb": "assets/images/villa_moema_versace_facade_4k.jpg",
+        "src": "assets/videos/villa_versace_decorado.mp4",
+        "dur": "3m 45s"
+      },
+      {
+        "id": "v2",
+        "cat": "versace",
+        "title": "Villa Versace: Filme Oficial de Produto & Lazer",
+        "sub": "150 a 221 m² e Duplex 404 m² • Pronto em Moema Pássaros",
+        "thumb": "assets/images/villa_moema_versace_facade_4k.jpg",
+        "src": "assets/videos/villa_versace_produto.mp4",
+        "dur": "2m 30s"
+      },
+      {
+        "id": "p1",
+        "cat": "palace",
+        "title": "Palace: Filme Oficial do Empreendimento",
+        "sub": "Plantas de 86, 142 e 164 m² • Parque Linear de 4.200 m²",
+        "thumb": "assets/images/palace_gal_1.jpeg",
+        "src": "assets/videos/palace_filme.mp4",
+        "dur": "2m 30s"
+      },
+      {
+        "id": "p2",
+        "cat": "palace",
+        "title": "Palace: Tour Decorado 86 m² (2 Suítes)",
+        "sub": "2 Suítes • Lavabo • Varanda Gourmet Integrada",
+        "thumb": "assets/images/palace_gal_1.jpeg",
+        "src": "assets/videos/palace_decorado_86.mp4",
+        "dur": "2m 10s"
+      },
+      {
+        "id": "p3",
+        "cat": "palace",
+        "title": "Palace: Tour Decorado 142 m² (3 Suítes)",
+        "sub": "3 Suítes • Hall Privativo • Varanda Gourmet",
+        "thumb": "assets/images/palace_gal_1.jpeg",
+        "src": "assets/videos/palace_decorado_142.mp4",
+        "dur": "2m 45s"
+      },
+      {
+        "id": "p4",
+        "cat": "palace",
+        "title": "Palace: Tour Decorado 164 m² (4 Dorms / 2 Suítes)",
+        "sub": "4 Dormitórios (2 Suítes) • Terraço Widescreen",
+        "thumb": "assets/images/palace_gal_1.jpeg",
+        "src": "assets/videos/palace_decorado_164.mp4",
+        "dur": "3m 15s"
+      },
+      {
+        "id": "g1",
+        "cat": "greenview",
+        "title": "Green View: Tour Decorado 132 m² (3 Suítes)",
+        "sub": "Rua Alvarenga, 1260 • Pronto para Morar • Vista USP",
+        "thumb": "assets/images/green_view_gal_1.jpg",
+        "src": "assets/videos/green_view_decorado_132.mp4",
+        "dur": "2m 45s"
+      },
+      {
+        "id": "g2",
+        "cat": "greenview",
+        "title": "Green View: Tour Decorado 159 m² (4 Dorms / 3 Suítes)",
+        "sub": "Quadra de Tênis & Piscina c/ Raia • Pronto para Morar",
+        "thumb": "assets/images/green_view_gal_1.jpg",
+        "src": "assets/videos/green_view_decorado_159.mp4",
+        "dur": "3m 05s"
+      },
+      {
+        "id": "g3",
+        "cat": "greenview",
+        "title": "Green View: Tour Decorado Studios",
+        "sub": "Studios Prontos ao lado do Metrô Butantã e USP",
+        "thumb": "assets/images/green_view_gal_1.jpg",
+        "src": "assets/videos/green_view_studios.mp4",
+        "dur": "2m 30s"
+      },
+      {
+        "id": "a1",
+        "cat": "alive",
+        "title": "Alive Home Resort: Filme Oficial",
+        "sub": "Parque Aquático de 2.000 m² & Quadra de Tênis Oficial",
+        "thumb": "assets/images/alive_gal_1.jpg",
+        "src": "assets/videos/alive_filme.mp4",
+        "dur": "3m 30s"
+      },
+      {
+        "id": "a2",
+        "cat": "alive",
+        "title": "Alive Home Resort: Tour Decorado 85 m²",
+        "sub": "3 Dorms (1 Suíte) • Varanda Gourmet",
+        "thumb": "assets/images/alive_gal_1.jpg",
+        "src": "assets/videos/alive_decorado_85.mp4",
+        "dur": "2m 20s"
+      },
+      {
+        "id": "a3",
+        "cat": "alive",
+        "title": "Alive Home Resort: Tour Decorado 113 m²",
+        "sub": "3 Suítes • Hall Privativo • Varanda Gourmet",
+        "thumb": "assets/images/alive_gal_1.jpg",
+        "src": "assets/videos/alive_decorado_113.mp4",
+        "dur": "2m 40s"
+      },
+      {
+        "id": "a4",
+        "cat": "alive",
+        "title": "Alive Home Resort: Tour Decorado 139 m²",
+        "sub": "3 Suítes • Living Ampliado • Varanda Gourmet",
+        "thumb": "assets/images/alive_gal_1.jpg",
+        "src": "assets/videos/alive_decorado_139.mp4",
+        "dur": "2m 50s"
+      },
+      {
+        "id": "a5",
+        "cat": "alive",
+        "title": "Alive Home Resort: Tour Decorado 188 m²",
+        "sub": "4 Suítes • Elevador Privativo • 3 Vagas",
+        "thumb": "assets/images/alive_gal_1.jpg",
+        "src": "assets/videos/alive_decorado_188.mp4",
+        "dur": "3m 15s"
+      },
+      {
+        "id": "hw1",
+        "cat": "heaven",
+        "title": "Heaven Residences by YOO: Filme Oficial",
+        "sub": "Rua Maestro Cardim, 915 • Design YOO Studio (Philippe Starck)",
+        "thumb": "assets/images/heaven_gal_1.jpg",
+        "src": "assets/videos/heaven_filme_residences.mp4",
+        "dur": "2m 55s"
+      },
+      {
+        "id": "hw2",
+        "cat": "heaven",
+        "title": "Heaven Residences: Tour Decorado 187/190 m²",
+        "sub": "3 Suítes • 3 Vagas • Alto Padrão no Paraíso",
+        "thumb": "assets/images/heaven_gal_1.jpg",
+        "src": "assets/videos/heaven_190.mp4",
+        "dur": "3m 10s"
+      },
+      {
+        "id": "hw3",
+        "cat": "heaven",
+        "title": "Heaven Residences: Tour Decorado 258 m²",
+        "sub": "4 Suítes • 4 Vagas • Hall Privativo no Paraíso",
+        "thumb": "assets/images/heaven_gal_1.jpg",
+        "src": "assets/videos/heaven_258.mp4",
+        "dur": "4m 00s"
+      },
+      {
+        "id": "gs1",
+        "cat": "grandsquare",
+        "title": "Grand Square: Filme Oficial de Apresentação",
+        "sub": "Pronto para Morar • Ao lado do Metrô Praça da Árvore",
+        "thumb": "assets/images/grand_square_gal_1.jpeg",
+        "src": "assets/videos/grand_square_filme.mp4",
+        "dur": "2m 40s"
+      },
+      {
+        "id": "gs2",
+        "cat": "grandsquare",
+        "title": "Grand Square: Tour Decorado 32 m² Studio",
+        "sub": "Studio Pronto • Passo do Metrô Praça da Árvore",
+        "thumb": "assets/images/grand_square_gal_1.jpeg",
+        "src": "assets/videos/grand_square_decorado_32.mp4",
+        "dur": "1m 50s"
+      },
+      {
+        "id": "gs3",
+        "cat": "grandsquare",
+        "title": "Grand Square: Tour Decorado 65 m² (2 Dorms / 1 Suíte)",
+        "sub": "Pronto para Morar • Terraço Gourmet + 1 Vaga",
+        "thumb": "assets/images/grand_square_gal_1.jpeg",
+        "src": "assets/videos/grand_square_decorado_65.mp4",
+        "dur": "2m 20s"
+      },
+      {
+        "id": "gs4",
+        "cat": "grandsquare",
+        "title": "Grand Square: Tour Decorado 79 m² (3 Dorms / 1 Suíte)",
+        "sub": "Pronto para Morar • Varanda Gourmet + 1 ou 2 Vagas",
+        "thumb": "assets/images/grand_square_gal_1.jpeg",
+        "src": "assets/videos/grand_square_decorado_75.mp4",
+        "dur": "2m 15s"
+      },
+      {
+        "id": "yt1",
+        "cat": "saffire",
+        "title": "Saffire by Elie Saab: Tour Oficial YouTube (Moema Pássaros)",
+        "sub": "Mansões Suspensas 360 e 493 m² • 1º Elie Saab da América Latina",
+        "thumb": "assets/images/saffire_elie_saab_facade_4k.jpg",
+        "src": null,
+        "vid": "Tlz8lbwfa8A",
+        "dur": "2m 30s"
+      },
+      {
+        "id": "yt2",
+        "cat": "hipica",
+        "title": "Jardim da Hípica Apartments: Tour Decorado 56 m² (YouTube)",
+        "sub": "Torre E • 2 Dorms (1 Suíte) c/ Vaga • Alto da Boa Vista",
+        "thumb": "assets/images/hipica_apartments_piscina_25m.jpg",
+        "src": null,
+        "vid": "z2mzeHU4HHA",
+        "dur": "2m 00s"
+      },
+      {
+        "id": "yt3",
+        "cat": "tom",
+        "title": "T.O.M. Paraíso: Filme Oficial YouTube (240m Metrô Paraíso)",
+        "sub": "Studios e 1 Dorm 25 a 43 m² • 27 Itens de Lazer • 350m HCor",
+        "thumb": "assets/tom_beach_tennis.jpg",
+        "src": null,
+        "vid": "aApzhKFOjzE",
+        "dur": "2m 50s"
+      },
+      {
+        "id": "yt4",
+        "cat": "lesix",
+        "title": "Le Six Residences: Filme Oficial YouTube (Paraíso)",
+        "sub": "156, 203 e 264 m² • CBRE Concierge + Body Care Inclusos",
+        "thumb": "assets/images/le_six_gal_1.jpeg",
+        "src": null,
+        "vid": "Z-sgdXxgQN8",
+        "dur": "2m 40s"
+      },
+      {
+        "id": "yt5",
+        "cat": "versace",
+        "title": "Villa Studios by Versace: Tour Decorado YouTube (Moema)",
+        "sub": "Studios Prontos 28 a 32 m² • Moema Pássaros",
+        "thumb": "assets/images/villa_moema_versace_facade_4k.jpg",
+        "src": null,
+        "vid": "ycuDVuI7xyo",
+        "dur": "2m 30s"
+      },
+      {
+        "id": "yt6",
+        "cat": "greenview",
+        "title": "Green View Residence: Tour Decorado 159 m² YouTube (Butantã)",
+        "sub": "Pronto para Morar • 132 e 159 m² • Quadra de Tênis & Piscina",
+        "thumb": "assets/images/green_view_gal_1.jpg",
+        "src": null,
+        "vid": "gO9RMWwNS6k",
+        "dur": "3m 05s"
+      },
+      {
+        "id": "yt7",
+        "cat": "grandsquare",
+        "title": "Grand Square: Filme Oficial YouTube (Praça da Árvore)",
+        "sub": "Pronto para Morar • 32 a 79 m² • Ao lado do Metrô Linha 1-Azul",
+        "thumb": "assets/images/grand_square_gal_1.jpeg",
+        "src": null,
+        "vid": "RAnjfPX5ndw",
+        "dur": "2m 40s"
+      },
+      {
+        "id": "yt8",
+        "cat": "todos",
+        "title": "Verdant Parque Resort: Tour Decorado YouTube (Tucuruvi)",
+        "sub": "Pronto para Morar • 129, 132 e 155 m² • Terreno Resort 8.937 m²",
+        "thumb": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/verdant/imagens/thumbnail/Thumb.webp",
+        "src": null,
+        "vid": "sCAwNApB0AQ",
+        "dur": "2m 30s"
+      },
+      {
+        "id": "yt9",
+        "cat": "todos",
+        "title": "Novvo Barra Funda: Filme Oficial YouTube (Linha Meu Novvo)",
+        "sub": "Pronto • 1 e 2 Dorms c/ Terraço • A 550m do Terminal Barra Funda",
+        "thumb": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/9b593e25-2438-47b5-bd22-3f287da03ccc_20261008_122124_tratada_1.jpg",
+        "src": null,
+        "vid": "WQi93Q4UX7w",
+        "dur": "2m 20s"
+      }
+    ];
+
+    function renderStreamingHub(filter = 'todos') {
+      const container = document.getElementById('streaming-grid-container');
+      if (!container) return;
+      container.innerHTML = '';
+      const list = filter === 'todos' ? streamingVideos : streamingVideos.filter(v => v.cat === filter);
+
+      list.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'stream-video-card';
+        card.onclick = () => openDirectVideoModal(v);
+        card.innerHTML = `
+          <div class="stream-thumb-wrap aspect-video">
+            <img src="${v.thumb}" alt="${v.title}" class="stream-thumb-img" onerror="this.src='assets/images/jardim_hipica_facade_4k.jpg'">
+            <div class="stream-play-btn">▶</div>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.85); color: #fff; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; font-weight: 600;">${v.dur}</span>
+          </div>
+          <div class="stream-card-body">
+            <div class="stream-card-tag">4K ULTRA HD • TOUR OFICIAL</div>
+            <div class="stream-card-title">${v.title}</div>
+            <div class="stream-card-sub">${v.sub}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function filterStreamingVideos(cat, btn) {
+      document.querySelectorAll('.streaming-tab').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderStreamingHub(cat);
+    }
+
+    function openDirectVideoModal(v) {
+      if (!v) return;
+      const modal = document.getElementById('video-player-modal');
+      const titleEl = document.getElementById('video-modal-title');
+      const box = document.getElementById('video-player-frame-box');
+      const waBtn = document.getElementById('video-modal-wa-btn');
+
+      if (titleEl) titleEl.innerText = v.title || 'Vídeo Oficial';
+      if (waBtn) {
+        waBtn.href = `https://wa.me/5511966105952?text=${encodeURIComponent('Olá Pedro, acabei de assistir ao vídeo: "' + (v.title || '') + '" no Cinema Lavvi e gostaria de agendar uma visita ao decorado.')}`;
+      }
+
+      if (box) {
+        box.innerHTML = '';
+        if (v.src && (v.src.endsWith('.mp4') || v.src.endsWith('.webm'))) {
+          box.innerHTML = `
+            <video 
+              id="direct-active-video-element"
+              src="${v.src}" 
+              controls 
+              autoplay 
+              playsinline 
+              preload="auto"
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; object-fit: contain;">
+            </video>
+          `;
+          const vidEl = box.querySelector('video');
+          if (vidEl) {
+            const playPromise = vidEl.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {
+                vidEl.muted = true;
+                vidEl.play().catch(e => console.log('Autoplay blocked:', e));
+              });
+            }
+            vidEl.onerror = () => {
+              renderVaultFallback(box, v);
+            };
+          }
+        } else if (v.vid) {
+          box.innerHTML = `
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/${v.vid}?autoplay=1&rel=0&modestbranding=1" 
+              title="${v.title || 'Vídeo Lavvi'}" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen 
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+            </iframe>
+          `;
+        } else {
+          renderVaultFallback(box, v);
+        }
+      }
+
+      if (modal) modal.classList.add('active');
+    }
+
+    function renderVaultFallback(box, v) {
+      box.innerHTML = `
+        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 24px; text-align: center; background: radial-gradient(circle at center, #131F33 0%, #06090F 100%);">
+          <div style="font-size: 2.8rem; margin-bottom: 12px;">🎬</div>
+          <p style="font-size: 1.15rem; color: #D4AF37; font-weight: 700; margin-bottom: 6px;">Acervo 4K Disponível no Cofre Privado</p>
+          <p style="font-size: 0.85rem; color: #CBD5E1; max-width: 480px; line-height: 1.5; margin-bottom: 18px;">O vídeo original em altíssima resolução, perspectivas e tour guiado deste empreendimento estão sob curadoria direta de Pedro Soares.</p>
+          <a href="https://wa.me/5511966105952?text=${encodeURIComponent('Olá Pedro, acabei de consultar o ' + (v.title || 'empreendimento') + ' no Cinema Lavvi e gostaria de receber os vídeos em 4K e a apresentação completa.')}" target="_blank" class="modal-wa-btn">
+            💬 Solicitar Acervo 4K no WhatsApp →
+          </a>
+        </div>
+      `;
+    }
+
+    function closeVideoPlayerModal() {
+      const modal = document.getElementById('video-player-modal');
+      const box = document.getElementById('video-player-frame-box');
+      if (box) box.innerHTML = '';
+      if (modal) modal.classList.remove('active');
+    }
+
+    // Keyboard ESC to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeVideoPlayerModal();
+      }
+    });
+
+    // Close on backdrop click
+    document.getElementById('video-player-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeVideoPlayerModal();
+      }
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderStreamingHub('todos');
+    });
+  </script>
+</body>
+</html>

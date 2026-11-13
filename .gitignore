@@ -1,4 +1,3 @@
-
 site/data/apify_token.txt
 *.wav
 *.mp4
@@ -6,3 +5,20 @@ site/data/apify_token.txt
 *.blend1
 *.glb
 
+# Credentials, tokens, sessions & auth hashes (hardened security hygiene)
+site/data/gemini_api_key.txt
+site/data/telegram_credentials.json
+site/data/telegram_config.json
+site/data/pedro_telethon.session
+site/data/email_config.json
+site/data/phone_code_hash.txt
+site/data/ntfy_config.json
+*.session
+
+# Commercial leads CSV & scratch browser/eval JS dumps (PII protection)
+**/LEADS_QUALIFICADOS_ZONA_SUL_LAVVI.csv
+site/data/eval_script_*.js
+site/data/temp_*.js
+
+# Uncompressed high-res master asset backups
+backup_raw_assets/

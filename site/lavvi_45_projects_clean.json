@@ -70,7 +70,7 @@
         "vagas": "2"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+    "mat": "assets/books/book_jardim_da_hipica.pdf",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp",
     "gallery": [
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/6a7af7a5-8150-41f9-9417-4b0f8baa165c_thumbhipicavaranda.webp",
@@ -83,7 +83,15 @@
     "avail_count": 184,
     "total_count": 946,
     "avail_info": "🟢 184 Livres (Torres A–D) • Tabela Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "tour_360": "https://tour.lavvi.com.br/jardim-hipica/",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/31280147-8fb3-4895-80af-a43de66a21bd_planta276m.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/b82ba7d9-8932-442b-94cf-bb58ca027848_planta223m.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/61bf1520-0f18-4f63-92f4-8e624391f885_planta184m.webp"
+    ],
+    "m2": "84 a 276 m²"
   },
   {
     "nome": "Jardim da Hípica Apartments",
@@ -132,7 +140,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1mQtsjg_qP0NY1O0PeNbwiztuxS5ZLaSS",
+    "mat": "assets/books/book_hipica_apartments.pdf",
     "hero_image": "assets/images/hipica_apartments_piscina_25m.jpg",
     "gallery": [
       "assets/images/hipica_apartments_fachada_oficial.jpg",
@@ -152,7 +160,14 @@
     "avail_count": 215,
     "total_count": 630,
     "avail_info": "🟢 Torre E Ativa (630 unid. • Torre F não lançada) • Tabela Out/2026",
-    "table_ref": "Out/2026 (v1)"
+    "table_ref": "Out/2026 (v1)",
+    "brand_line": "lavvi",
+    "tour_360": "https://tour.lavvi.com.br/jardim-hipica/",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/2b67ba4e-0aa8-4e43-9ac6-e3b46b249a26_plantatipo56m.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d09b3167-d678-4014-8a4c-a6deabff7a15_plantatipo48m.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/ef79803f-6e28-406f-9464-db6645eb7d7a_plantatipo28m.webp"
+    ]
   },
   {
     "nome": "Le Six Residences",
@@ -195,7 +210,7 @@
         "vagas": "4"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1Om79HE4jq40ctTNqFqxcZhbdkaJsr0T8",
+    "mat": "assets/books/book_le_six_residences.pdf",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e6441bdd-de71-4272-be23-d4944fe5f802_piscinacoberta.webp",
     "official_status_2026": "Em Obras",
     "lancamento": "Mai/2025",
@@ -204,13 +219,21 @@
     "avail_count": 57,
     "total_count": 522,
     "avail_info": "🟢 57 Livres (401 Vendidas) • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "tour_360": "https://tour.lavvi.com.br/lesix/",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/33ca18d2-a710-4b4e-958a-c092ebbf15f7_1plantatipo264m4suites.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/9988d688-3f02-49e3-9294-3ab29cf8103e_3plantatipo203m4suites.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/2d3726c8-33fa-4665-9514-b1d2de9df156_5plantatipo156m3suites.webp"
+    ],
+    "m2": "156, 203 e 264m²"
   },
   {
     "nome": "Villa Residence",
     "bairro": "Moema",
-    "cat": "pronto",
-    "status": "Pronto para Morar",
+    "cat": "vendido",
+    "status": "Pronto - 100% vendido",
     "data": "Pronto (Ago/2025)",
     "ll": [
       -23.60034,
@@ -241,19 +264,21 @@
         "vagas": "2"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/19AIPzOtqk3Iz8wYCZQbm_mQltfzsgvHz",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/418f77ea-fe57-41a4-9e90-c4199fc0d13d_3_foto_da_fachada.webp",
+    "mat": "assets/books/book_villa_versace.pdf",
+    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-residence/imagens/thumbnail/foto_da_area_de_lazer.webp",
     "gallery": [
       "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-residence/imagens/thumbnail/foto_da_area_de_lazer.webp"
     ],
-    "official_status_2026": "Pronto Para Morar",
+    "official_status_2026": "100% Vendido",
     "lancamento": "Jun/2021",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
     "fluxo_obra": "Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista)",
     "avail_count": 8,
     "total_count": 403,
     "avail_info": "⚡ Últimas 8 Unidades Prontas • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "m2": "149 e 221 m²"
   },
   {
     "nome": "Villa Studios",
@@ -284,7 +309,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/19AIPzOtqk3Iz8wYCZQbm_mQltfzsgvHz",
+    "mat": "assets/books/book_villa_versace.pdf",
     "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/banner/BannerPrincipalVillaStudios.webp",
     "gallery": [
       "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/galeria/1_-_foto_da_area_de_lazer_do_rooftop.webp",
@@ -297,7 +322,14 @@
     "avail_count": 5,
     "total_count": 120,
     "avail_info": "⚡ Últimos 5 Studios Prontos • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "tour_360": "https://tour.lavvi.com.br/villa-studio",
+    "floor_plans": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/plantas/1_-_planta_tipo_31_m_2.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/plantas/2_-_planta_tipo_28_m_2.webp"
+    ],
+    "m2": "28 a 32 m²"
   },
   {
     "nome": "Green View Residence",
@@ -328,7 +360,7 @@
         "vagas": "2"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/18vT-N8Y4kY6oQ_55oU4F2oPZ8a_uQe11",
+    "mat": "assets/books/book_green_view.pdf",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/30349a37-5ea0-4d44-be1f-e90fc5311463_1_foto_da_fachada.webp",
     "official_status_2026": "Pronto Para Morar",
     "lancamento": "Jun/2022",
@@ -337,7 +369,9 @@
     "avail_count": 11,
     "total_count": 433,
     "avail_info": "⚡ Últimas 11 Unidades Prontas • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "m2": "132 e 159m²"
   },
   {
     "nome": "Alive",
@@ -404,7 +438,7 @@
         "vagas": "1"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1jXk45L40s6fG7eG10i7rYkLh00n7P_3U",
+    "mat": "assets/books/book_alive.pdf",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f326a0b9-5c4a-43cf-ae17-21b333469145_1_foto_da_fachada.webp",
     "official_status_2026": "Em Obras",
     "lancamento": "Mar/2024",
@@ -413,7 +447,14 @@
     "avail_count": 172,
     "total_count": 1400,
     "avail_info": "🟢 172 Livres • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "tour_360": "https://tour.lavvi.com.br/alive/",
+    "floor_plans": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/alive/plantas/1_-_planta_188_m_2_tipo_-_4_suites.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/alive/plantas/2_-_planta_170_m_2_tipo_-_3_suites.webp"
+    ],
+    "m2": "72 a 188m²"
   },
   {
     "nome": "Heaven Residences",
@@ -450,7 +491,7 @@
         "vagas": "3"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1h6B1e7dGz89v9Z6v0562s8Z0g0H04y12",
+    "mat": "https://www.lavvi.com.br/empreendimentos/heaven-residences",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d316e6d1-dcf3-4ba9-b3e6-fa1ee0ae6692_bannerheavenresidences.jpg",
     "official_status_2026": "Em Obras",
     "lancamento": "Out/2024",
@@ -459,7 +500,13 @@
     "avail_count": 66,
     "total_count": 947,
     "avail_info": "🟢 66 Livres (870 Vendidas) • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "floor_plans": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/heaven-residences/plantas/1-Planta-tipo-de-258-m-4-suites.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/heaven-residences/plantas/3-Planta-tipo-de-189-m-3-suites.webp"
+    ],
+    "m2": "190 m² e 258 m²"
   },
   {
     "nome": "Palace",
@@ -502,14 +549,24 @@
         "vagas": "1"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1eT6b7e65yZ9h8q7kL9h8Z6v54q8Z9y0",
+    "mat": "assets/books/book_palace.pdf",
     "lancamento": "Abr/2024",
     "fluxo_curto": "Fluxo 37% Obra / 63% Chaves",
     "fluxo_obra": "37% Obra (5% Sinal + 5% em 2x + 14% em 9 mensais + 8% Anual + 5% Única Nov/27) + 63% Financiamento (Dez/2027)",
     "avail_count": 19,
     "total_count": 216,
     "avail_info": "🟢 19 Livres (194 Vendidas) • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "official_status_2026": "Em Obras",
+    "hero_image": "assets/images/palace_gallery_1.jpg",
+    "tour_360": "https://tour.lavvi.com.br/palace",
+    "floor_plans": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/palace/plantas/1_-_planta_tipo_86_m_2_-_3_dorms.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/palace/plantas/2_-_planta_tipo_142_m_2_-_4_dorms.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/palace/plantas/3_-_planta_tipo_164_m_2_-_4_dorms.webp"
+    ],
+    "m2": "86, 142 e 164 m²"
   },
   {
     "nome": "Petra",
@@ -522,8 +579,8 @@
       -46.689033
     ],
     "url": "https://www.lavvi.com.br/empreendimentos/petra",
-    "vidurl": "https://www.youtube.com/watch?v=B65r8H5k0d8",
-    "vid": "B65r8H5k0d8",
+    "vidurl": "https://www.youtube.com/watch?v=dcKli37SgJE",
+    "vid": "dcKli37SgJE",
     "fase": "Em Obras",
     "entrega": "Jul/2028",
     "units": [
@@ -546,14 +603,23 @@
         "vagas": "2"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1sYt8b0h6y89u9kL0e4y98h6v70G61Pq",
+    "mat": "assets/books/book_petra.pdf",
     "lancamento": "Set/2024",
     "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
     "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 16 mensais + 8% em 2 anuais + 5% Única Jun/28) + 53% Financiamento (Jul/2028)",
     "avail_count": 53,
     "total_count": 407,
     "avail_info": "🟢 53 Livres (344 Vendidas) • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "official_status_2026": "Em Obras",
+    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/petra/banner/Perspectiva+ilustrada+do+sal%C3%A3o+de+festas.webp",
+    "tour_360": "https://tour.lavvi.com.br/petra",
+    "floor_plans": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/petra/plantas/1_-_planta_tipo_162m_3_suites.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/petra/plantas/3_-_planta_tipo_198m_4_suites.webp"
+    ],
+    "m2": "162 e 199 m²"
   },
   {
     "nome": "Saffire",
@@ -566,8 +632,8 @@
       -46.656078
     ],
     "url": "https://www.lavvi.com.br/empreendimentos/saffire-elie-saab",
-    "vidurl": "https://www.youtube.com/watch?v=W02Hk963sL8",
-    "vid": "W02Hk963sL8",
+    "vidurl": "https://www.youtube.com/watch?v=Tlz8lbwfa8A",
+    "vid": "Tlz8lbwfa8A",
     "fase": "Em Obras",
     "entrega": "Nov/2026",
     "units": [
@@ -584,14 +650,18 @@
         "vagas": "5"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1SRC24jZK80BXeSsIAjqgIEQzNBW-hhbf",
+    "mat": "assets/books/book_saffire_elie_saab.pdf",
     "lancamento": "Abr/2023",
     "fluxo_curto": "Fluxo 30% Chaves / 70% Financ.",
     "fluxo_obra": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Parcela Única na Entrega (Nov/26) + 70% Financiamento",
     "avail_count": 23,
     "total_count": 147,
     "avail_info": "🟢 23 Livres (124 Vendidas) • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "official_status_2026": "Em Obras",
+    "hero_image": "assets/images/saffire_elie_saab_facade_4k.jpg",
+    "m2": "360 m² a 493 m²"
   },
   {
     "nome": "Soleil Apartments",
@@ -622,14 +692,23 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1v6H8k0l9yZ6v0562s8Z0g0H04y12L0",
+    "mat": "https://www.lavvi.com.br/empreendimentos/soleil-apartments",
     "lancamento": "Mar/2025",
     "fluxo_curto": "Fluxo 47% Obra / 53% Chaves",
     "fluxo_obra": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029)",
     "avail_count": 19,
     "total_count": 80,
     "avail_info": "🟢 19 Studios Livres • Simulador Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "official_status_2026": "Em Obras",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/41dcce59-d2b0-4d5a-b561-f80aaa35c28b_thumbsoleilapartments.webp",
+    "tour_360": "https://tour.lavvi.com.br/soleil/",
+    "floor_plans": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/soleil-apartments/plantas/1-Planta-de-30m.webp",
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/soleil-apartments/plantas/2-Planta-de-24m.webp"
+    ],
+    "m2": "30m²"
   },
   {
     "nome": "Soleil Residences",
@@ -666,7 +745,7 @@
         "vagas": "3 e 4"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1v6H8k0l9yZ6v0562s8Z0g0H04y12L0",
+    "mat": "https://www.lavvi.com.br/empreendimentos/soleil-residences",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e94d8692-a1f4-44b4-a4f0-4663e2dcf237_1_foto_da_fachada.webp",
     "official_status_2026": "Em Obras",
     "lancamento": "Mar/2025",
@@ -675,7 +754,13 @@
     "avail_count": 38,
     "total_count": 154,
     "avail_info": "🟢 38 Livres (104 Vendidas) • Simulador Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "tour_360": "https://tour.lavvi.com.br/soleil/",
+    "floor_plans": [
+      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/soleil-residences/plantas/1-Planta-de-246m-com-4-suites.webp"
+    ],
+    "m2": "246 m²"
   },
   {
     "nome": "Verdant",
@@ -688,8 +773,8 @@
       -46.602511
     ],
     "url": "https://www.lavvi.com.br/empreendimentos/verdant",
-    "vidurl": "https://www.youtube.com/watch?v=P9s5G2m1l90",
-    "vid": "P9s5G2m1l90",
+    "vidurl": "https://www.youtube.com/watch?v=sCAwNApB0AQ",
+    "vid": "sCAwNApB0AQ",
     "fase": "Pronto Para Morar",
     "entrega": "Pronto (Fev/2026)",
     "units": [
@@ -718,14 +803,19 @@
         "vagas": "2"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1yZ6v0562s8Z0g0H04y12L01v6H8k0",
+    "mat": "https://www.lavvi.com.br/empreendimentos/verdant",
     "lancamento": "Abr/2022",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
     "fluxo_obra": "Imóvel Pronto (Entregue Dez/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
     "avail_count": 2,
     "total_count": 174,
     "avail_info": "⚡ Últimas 2 Unidades Prontas (171 Vend.) • Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "official_status_2026": "Pronto Para Morar",
+    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/verdant/imagens/thumbnail/Thumb.webp",
+    "tour_360": "https://tour.lavvi.com.br/verdant",
+    "m2": "129, 132 e 155 m²"
   },
   {
     "nome": "Grand Square",
@@ -738,8 +828,8 @@
       -46.637822
     ],
     "url": "https://www.lavvi.com.br/empreendimentos/grand-square",
-    "vidurl": "https://www.youtube.com/watch?v=7h7K9s2j401",
-    "vid": "7h7K9s2j401",
+    "vidurl": "https://www.youtube.com/watch?v=RAnjfPX5ndw",
+    "vid": "RAnjfPX5ndw",
     "fase": "Pronto Para Morar",
     "entrega": "Pronto (Mai/2026)",
     "units": [
@@ -762,7 +852,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1k8L0e4y98h6v70G61PqsYt8b0h6y89u",
+    "mat": "https://www.lavvi.com.br/empreendimentos/grand-square",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d63ea75e-88fe-4e5c-9c02-7c9367d3e098_1_foto_da_fachada.webp",
     "official_status_2026": "Pronto Para Morar",
     "lancamento": "Ago/2022",
@@ -771,7 +861,9 @@
     "avail_count": 62,
     "total_count": 343,
     "avail_info": "🟢 62 Prontos Livres (260 Vend.) • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "m2": "32, 45, 65 e 79m²"
   },
   {
     "nome": "Le Six Ibirapuera",
@@ -815,7 +907,9 @@
     "avail_count": 239,
     "total_count": 250,
     "avail_info": "🟢 239 no Estoque Lior • Pré-Lançamento Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "m2": "194 e 264 m²"
   },
   {
     "nome": "Le Six Ibirapuera Apartments",
@@ -859,7 +953,9 @@
     "avail_count": 110,
     "total_count": 120,
     "avail_info": "🟢 Estoque Lior Ativo • Pré-Lançamento Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "m2": "28 m² a 45 m²"
   },
   {
     "nome": "T.O.M. Paraíso",
@@ -872,8 +968,8 @@
       -46.6465
     ],
     "url": "https://www.lavvi.com.br/empreendimentos/tom-paraiso",
-    "vidurl": null,
-    "vid": null,
+    "vidurl": "https://www.youtube.com/watch?v=aApzhKFOjzE",
+    "vid": "aApzhKFOjzE",
     "fase": "Breve Lançamento",
     "entrega": "Jul/2030",
     "units": [
@@ -923,7 +1019,14 @@
     "avail_count": 380,
     "total_count": 901,
     "avail_info": "🟢 380 Livres de 901 • Simulador Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/31215fb1-3a45-4c00-a52f-271c5dc046bf_plantatipo43m2f14a.png",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/a742b520-bc51-4ef5-895e-bc4fb67df7d7_plantatipo40m2f1a.png",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e1d26e9d-7f24-4ef6-88ca-054ec032e3c8_plantatipo25m2f7a.png"
+    ],
+    "m2": "25 a 43 m²"
   },
   {
     "nome": "Casa Cerâmica",
@@ -948,7 +1051,11 @@
     "avail_count": 29,
     "total_count": 39,
     "avail_info": "🟢 29 Livres de 39 (Lior API) • Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/casa-ceramica/thumbnail/Perspectiva+ilustrada+do+Voo+Lazer.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "130, 171 e 242 m²"
   },
   {
     "nome": "Heaven Apartments",
@@ -973,7 +1080,11 @@
     "avail_count": 28,
     "total_count": 320,
     "avail_info": "🟢 28 Livres • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/heaven-apartments/thumbnail/PERSPECTIVA+ILUSTRADA+ENTRANCE+GALLERY.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "46 m², 85 m²"
   },
   {
     "nome": "Le Six Apartments",
@@ -998,7 +1109,11 @@
     "avail_count": 22,
     "total_count": 180,
     "avail_info": "🟢 22 Studios Livres • Tabela 26.10",
-    "table_ref": "Out/2026 (26.10)"
+    "table_ref": "Out/2026 (26.10)",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bf336663-4084-40bc-8e78-5639f9b0d1bd_thumblesixapartmentsselonovo.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "24 a 35 m²"
   },
   {
     "nome": "Wonder Residence",
@@ -1019,7 +1134,11 @@
     "mat": null,
     "lancamento": "Ago/2021",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/wonder-residence/imagens/thumbnail/FotoThumbWonderIpiranga.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "82, 105 e 122 m²"
   },
   {
     "nome": "Praça Mooca",
@@ -1040,7 +1159,11 @@
     "mat": null,
     "lancamento": "Concluído",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/4d83ef75-aa8d-4eae-ab19-ab1fb7737960_1_foto_da_fachada.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "55 e 68 m²"
   },
   {
     "nome": "Eden by Dror",
@@ -1061,7 +1184,11 @@
     "mat": null,
     "lancamento": "Concluído",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/a9c5f4ba-7a95-4fa6-96ac-a323439309d0_14_foto_da_piscina.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "77, 94, 123 e 134 m²"
   },
   {
     "nome": "Grand Vitrali",
@@ -1082,7 +1209,11 @@
     "mat": null,
     "lancamento": "Out/2021",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Nov/2024): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Nov/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/52b9d4d2-8136-4fb3-97a9-97bde5f8de18_4_foto_da_praca.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "25, 26, 41 e 61 m²"
   },
   {
     "nome": "High Wonder",
@@ -1103,7 +1234,11 @@
     "mat": null,
     "lancamento": "Fev/2022",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Nov/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato"
+    "fluxo_obra": "Imóvel Pronto (Entregue Nov/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/0fcc9967-863d-4768-bc5f-f1daa8716212_4_foto_da_praca.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "84, 111 e 126 m²"
   },
   {
     "nome": "Lumiere Residence",
@@ -1124,7 +1259,11 @@
     "mat": null,
     "lancamento": "Nov/2020",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/a7ceba5d-d607-40c8-ad25-332b08912a8f_6_foto_da_piscina_coberta.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "123 e 144 m²"
   },
   {
     "nome": "Lumiere Studios",
@@ -1145,7 +1284,11 @@
     "mat": null,
     "lancamento": "Nov/2020",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/cf938e4b-f516-44b9-be2b-e3b430f530c4_3_foto_da_churrasqueira.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "26 m²"
   },
   {
     "nome": "Movva Luz",
@@ -1166,7 +1309,11 @@
     "mat": null,
     "lancamento": "Set/2017",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/0d4f146d-1984-4584-bd3e-6f5ac947483b_3_foto_da_entrada_social.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "24 a 38 m²"
   },
   {
     "nome": "Nativ Tatuapé",
@@ -1187,7 +1334,11 @@
     "mat": null,
     "lancamento": "Mai/2019",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/c80f160b-aca1-4716-9593-f10951d97735_1_foto_da_fachada.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "68, 96 e 115 m²"
   },
   {
     "nome": "One Park Perdizes",
@@ -1208,7 +1359,11 @@
     "mat": null,
     "lancamento": "Concluído",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/867fae86-d657-4f69-8133-c6524e3f2bea_4_foto_da_entrada_social.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "173, 312 e 342 m²"
   },
   {
     "nome": "Palazzo Vila Mariana",
@@ -1229,7 +1384,11 @@
     "mat": null,
     "lancamento": "Concluído",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d5dff7ce-154d-49e4-ae0c-b8613e3c00e7_8_foto_da_piscina.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "120 e 163 m²"
   },
   {
     "nome": "Boulevard Lapa",
@@ -1250,7 +1409,11 @@
     "mat": null,
     "lancamento": "Concluído",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/b821f713-8dfa-4cca-9d89-1333d0f4b0e3_2_foto_da_piscina.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "59, 60 e 76 m²"
   },
   {
     "nome": "Praça Piratininga",
@@ -1271,7 +1434,11 @@
     "mat": null,
     "lancamento": "Concluído",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e3c1918c-3e16-44ba-afcc-e4c5b289fa54_12_foto_da_piscina.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "36 a 61 m²"
   },
   {
     "nome": "Studios Elie Saab",
@@ -1296,10 +1463,14 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1SRC24jZK80BXeSsIAjqgIEQzNBW-hhbf",
+    "mat": "https://www.lavvi.com.br/empreendimentos/studios-elie-saab",
     "lancamento": "Abr/2023",
     "fluxo_curto": "Fluxo 30% Chaves / 70% Financ.",
-    "fluxo_obra": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Única na Entrega (Nov/26) + 70% Financiamento"
+    "fluxo_obra": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Única na Entrega (Nov/26) + 70% Financiamento",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/3f73cfd8-e1dd-4173-af1f-87c91cec639b_6_foto_da_piscina.jpg",
+    "official_status_2026": "100% Vendido",
+    "m2": "29, 31 e 34 m²"
   },
   {
     "nome": "Vitrali Moema",
@@ -1320,7 +1491,11 @@
     "mat": null,
     "lancamento": "Concluído",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/1b1d9545-ee17-4e60-9666-3d769eca979d_12_foto_da_praca.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "24 a 39 m²"
   },
   {
     "nome": "Wonder by Praças da Cidade",
@@ -1341,7 +1516,11 @@
     "mat": null,
     "lancamento": "Out/2020",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2023): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Dez/2023): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/a8fa506f-35f0-4721-a0b5-e6944747f6b3_13_foto_da_academia.webp",
+    "official_status_2026": "100% Vendido",
+    "m2": "82, 105 e 121 m²"
   },
   {
     "nome": "Wonder Ipiranga Studios",
@@ -1362,13 +1541,17 @@
     "mat": null,
     "lancamento": "Ago/2021",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "lavvi",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/33fc6bfb-69e3-4333-85e8-249fec54dfb2_2_foto_da_piscina.jpg",
+    "official_status_2026": "100% Vendido",
+    "m2": "27 a 38 m²"
   },
   {
     "nome": "Galleria Klabin",
     "bairro": "Chácara Klabin",
-    "cat": "pronto",
-    "status": "Pronto para Morar",
+    "cat": "vendido",
+    "status": "Em Obras - 100% vendido",
     "data": "Pronto (Ago/2026)",
     "ll": [
       -23.596182,
@@ -1394,7 +1577,11 @@
     "avail_count": 1,
     "total_count": 606,
     "avail_info": "⚡ Última Unidade Pronta (166 m²) • Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "lavvi",
+    "official_status_2026": "100% Vendido",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/11f5cebc-eb0a-4bd6-bdfd-47c735b12457_5_foto_da_piscina.webp",
+    "m2": "175 e 230 m²"
   },
   {
     "nome": "Novvo Santa Marina",
@@ -1425,7 +1612,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "mat": "https://meunovvo.com.br/santamarina/",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/901b5485-463a-4fc7-8378-2e9a2fdba51c_anyconvcom_cinema_ao_ar_livre.webp",
     "official_status_2026": "Lançamento",
     "lancamento": "Mar/2026",
@@ -1434,7 +1621,13 @@
     "avail_count": 160,
     "total_count": 462,
     "avail_info": "🟢 160 Livres (289 Vendidas) • Simulador Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "novvo",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/99875e5a-8e56-4808-8994-1d484d95fa7a_implantacao_lazer_externo.jpg",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/792ab09b-02fa-4073-b91e-34b3c02b323b_planta_tipo_37m_2_dorms.jpg"
+    ],
+    "m2": "31 m² a 41 m²"
   },
   {
     "nome": "Novvo Anália Franco",
@@ -1465,7 +1658,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "mat": "https://meunovvo.com.br/novvoanaliafranco/",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/ab6bb83a-fed4-4e86-8a23-ed34a3b33810_2_perspectiva_ilustrada_da_piscina.webp",
     "official_status_2026": "Lançamento",
     "lancamento": "Nov/2025",
@@ -1474,7 +1667,13 @@
     "avail_count": 23,
     "total_count": 594,
     "avail_info": "⚡ Últimas 23 Unidades (569 Vend.) • Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "novvo",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/35790057-08a1-43bd-bc3c-1b027b56b08c_1_planta_tipo_39_m_2_2_dorms_c_terraco.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/83440bd3-a340-4fa4-89ef-2eb7d1c6525a_2_planta_tipo_31_m_2_1_dorm_c_terraco.webp"
+    ],
+    "m2": "31 m² a 41 m²"
   },
   {
     "nome": "Novvo Vila Prudente",
@@ -1505,7 +1704,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "mat": "https://meunovvo.com.br/vilaprudente/",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/7f8be81c-0798-4ff1-b96d-b54f542a4881_9_perspectiva_ilustrada_da_quadra_recreativa_gramada.webp",
     "official_status_2026": "Em Obras",
     "lancamento": "Set/2025",
@@ -1514,7 +1713,13 @@
     "avail_count": 290,
     "total_count": 900,
     "avail_info": "🟢 290 Livres (590 Vendidas) • Simulador Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "novvo",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f6a82d16-4fb3-4f16-a181-8c825909270e_1_planta_41_m_2_tipo_2_dorms.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/94158b1f-cf16-42c2-96d3-c2d9a3d0df85_2_planta_31_m_2_tipo_1_dorm.webp"
+    ],
+    "m2": "31 m² a 41 m²"
   },
   {
     "nome": "Novvo Marajoara",
@@ -1545,7 +1750,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "mat": "https://meunovvo.com.br/novvo-marajoara/",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/68d65571-9db9-4fad-8dc6-b924e92726f4_perspectiva_ilustrada_da_piscina_adulto_2.webp",
     "official_status_2026": "Em Obras",
     "lancamento": "Nov/2024",
@@ -1554,7 +1759,13 @@
     "avail_count": 1,
     "total_count": 794,
     "avail_info": "⚡ Última Unidade (792 Vendidas) • Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "novvo",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e49cb9c9-0fa9-45a2-b680-369a4a10f9be_planta_41_m_2_tipo_2_dorms.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/04804bf2-9bd3-4902-a3ab-4fd61e1df265_planta_31_m_2_tipo_1_dorm.webp"
+    ],
+    "m2": "31 m² a 41 m²"
   },
   {
     "nome": "Novvo Barra Funda",
@@ -1567,8 +1778,8 @@
       -46.667513
     ],
     "url": "https://meunovvo.com.br/novvo-barra-funda/",
-    "vidurl": null,
-    "vid": null,
+    "vidurl": "https://www.youtube.com/watch?v=WQi93Q4UX7w",
+    "vid": "WQi93Q4UX7w",
     "fase": "Em obras",
     "entrega": "Pronto (Jul/2026)",
     "units": [
@@ -1585,12 +1796,18 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "mat": "https://meunovvo.com.br/novvo-barra-funda/",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/9b593e25-2438-47b5-bd22-3f287da03ccc_20261008_122124_tratada_1.jpg",
     "official_status_2026": "Em Obras",
     "lancamento": "Out/2023",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
-    "fluxo_obra": "Imóvel Pronto (Entregue Jul/2026): 30% Sinal / Ato + 70% Financiamento Bancário"
+    "fluxo_obra": "Imóvel Pronto (Entregue Jul/2026): 30% Sinal / Ato + 70% Financiamento Bancário",
+    "brand_line": "novvo",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/b804556a-3b30-4f86-9833-2d33b8681271_planta_42m2_2_dorms_com_suite.webp",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/42c3cf89-1b21-4bc4-942c-7e78b7e34399_planta_32m2_2_dorms.webp"
+    ],
+    "m2": "31 m² a 41 m²"
   },
   {
     "nome": "Well Perdizes",
@@ -1639,7 +1856,7 @@
         "vagas": "-"
       }
     ],
-    "mat": "https://drive.google.com/drive/folders/1MSyxXGw0W6ge7-A6lV04hW9gV4ghTiq8",
+    "mat": "assets/books/book_well_perdizes.pdf",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/4150ee13-4f2f-4286-99fa-a3b80ab619dd_22_novvo_cardoso_voo_de_passaro_r03.jpg",
     "gallery": [
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bcd59772-3885-49ca-a15f-282f2ad98a42_01_novvo_cardoso_fachada_torre_a_r03a.jpg",
@@ -1652,6 +1869,65 @@
     "avail_count": 805,
     "total_count": 1252,
     "avail_info": "🟢 805 Livres (Lior API) • Simulador Out/2026",
-    "table_ref": "Out/2026"
+    "table_ref": "Out/2026",
+    "brand_line": "novvo",
+    "floor_plans": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/81767346-81a3-4633-8f7a-b07b08505f0e_planta_51m_2_suites.jpg",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/24903f91-0e91-4527-9d4e-13965cc3b102_planta_35m_2_dorms.jpg",
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/03284f07-7a1d-4d04-9530-883786872830_planta_25m_1_dorm.jpg"
+    ],
+    "m2": "25 m² a 51 m²"
+  },
+  {
+    "nome": "Novvo Largo Treze",
+    "bairro": "Santo Amaro",
+    "cat": "novvo",
+    "brand_line": "novvo",
+    "status": "Breve Lançamento",
+    "official_status_2026": "Breve Lançamento",
+    "data": "Breve Lançamento",
+    "fase": "Breve Lançamento",
+    "entrega": "Out/2029",
+    "lancamento": "Breve Lançamento",
+    "ll": [
+      -23.6512,
+      -46.7058
+    ],
+    "url": "https://www.meunovvo.com.br/empreendimentos/novvo-largo-treze",
+    "vidurl": null,
+    "vid": null,
+    "m2": "25 m² a 43 m²",
+    "endereco": "Rua Suzana Rodrigues, 175 - Santo Amaro",
+    "units": [
+      {
+        "tipo": "1 Dorm",
+        "m2": 25,
+        "planta": "1 Dormitório",
+        "vagas": "-"
+      },
+      {
+        "tipo": "2 Dorms",
+        "m2": 35,
+        "planta": "2 Dormitórios c/ Terraço",
+        "vagas": "-"
+      },
+      {
+        "tipo": "2 Dorms",
+        "m2": 43,
+        "planta": "2 Dorms c/ Suíte + Terraço",
+        "vagas": "-"
+      }
+    ],
+    "mat": "https://www.meunovvo.com.br/empreendimentos/novvo-largo-treze",
+    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/b5a22046-ed57-4618-8970-d8affac85fbe_07_novvo_suzana_piscina_r03.jpg",
+    "gallery": [
+      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/b5a22046-ed57-4618-8970-d8affac85fbe_07_novvo_suzana_piscina_r03.jpg"
+    ],
+    "fluxo_curto": "Fluxo Facilitado 41% Obra / 59% Chaves",
+    "fluxo_obra": "Condição Especial Breve Lançamento Novvo Largo Treze (Rua Suzana Rodrigues, 175 — a passos do Metrô Largo Treze Linha 5-Lilás): Entrada parcelada + mensais durante a obra e financiamento Caixa / bancário.",
+    "avail_count": 480,
+    "total_count": 480,
+    "avail_info": "🟢 Breve Lançamento • Ao lado do Metrô Largo Treze (Santo Amaro)",
+    "table_ref": "Pré-Lançamento 2026"
   }
 ]

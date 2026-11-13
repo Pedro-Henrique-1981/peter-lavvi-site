@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Peter Soares • Lavvi Mobile Cockpit</title>
+    <meta name="theme-color" content="#0a0c10">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0c10;
+            --surface: #131722;
+            --card: #181d2a;
+            --border: rgba(212, 175, 55, 0.25);
+            --gold: #d4af37;
+            --gold-light: #f5e6b3;
+            --green: #25d366;
+            --text: #f0f2f5;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 16px 14px 60px 14px;
+            font-size: 14px;
+        }
+        .header {
+            text-align: center;
+            padding: 12px 0 16px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 16px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(212,175,55,0.15);
+            color: var(--gold-light);
+            border: 1px solid var(--gold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #fff;
+        }
+        h1 span { color: var(--gold); }
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        
+        /* Hardware Matrix Bar */
+        .hardware-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        .hw-card {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .hw-title { font-size: 10px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+        .hw-name { font-size: 12px; font-weight: 700; color: #fff; margin: 2px 0; }
+        .hw-role { font-size: 10px; color: var(--gold); }
+
+        /* Section Tabs */
+        .section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            font-weight: 800;
+            margin: 16px 0 10px 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Tool Cards */
+        .tools-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .tool-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+        .tool-card:active {
+            transform: scale(0.98);
+            background: #1f2638;
+        }
+        .tool-info {
+            flex: 1;
+            padding-right: 12px;
+        }
+        .tool-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tool-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 3px;
+            line-height: 1.4;
+        }
+        .tool-btn {
+            background: var(--gold);
+            color: #000;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        /* Push Ping Test */
+        .ping-box {
+            background: rgba(37,211,102,0.1);
+            border: 1px solid rgba(37,211,102,0.3);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 16px;
+            text-align: center;
+        }
+        .ping-box p { font-size: 12px; color: #cbd5e1; margin-bottom: 10px; }
+        .btn-ping {
+            background: var(--green);
+            color: #fff;
+            border: none;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span class="badge">🛡️ LAVVI PRIVATE WEALTH • FIELD TEST</span>
+        <h1>Peter Soares <span>Mobile Cockpit</span></h1>
+        <p class="subtitle">Central de Testes de Campo • 100% Leve para Samsung & Android</p>
+    </div>
+
+    <!-- Hardware Trio Allocation -->
+    <div class="hardware-bar">
+        <div class="hw-card">
+            <div class="hw-title">PC 1 • GPU</div>
+            <div class="hw-name">Home Master</div>
+            <div class="hw-role">Fábrica / Vídeo</div>
+        </div>
+        <div class="hw-card">
+            <div class="hw-title">PC 2 • ARM</div>
+            <div class="hw-name">Portátil</div>
+            <div class="hw-role">Servidor & Código</div>
+        </div>
+        <div class="hw-card" style="border-color: var(--green);">
+            <div class="hw-title" style="color: var(--green);">Hardware 3</div>
+            <div class="hw-name">Samsung</div>
+            <div class="hw-role" style="color: var(--green);">Campo & Testes</div>
+        </div>
+    </div>
+<style>
+    .hw-card { cursor: pointer; transition: border-color .2s, background .2s; }
+    .hw-card.active { border-color: var(--gold); background: rgba(212,175,55,.08); }
+    #hwPanel { margin: 10px 0 18px; padding: 12px; border: 1px solid var(--gold); border-radius: 10px; background: rgba(255,255,255,.03); }
+    #hwPanel h4 { margin: 0 0 8px; font-size: 13px; color: var(--gold); }
+    #hwPanel label { display: block; font-size: 12px; line-height: 1.5; margin: 6px 0; color: #e8e8e8; }
+    #hwPanel code { font-size: 11px; color: var(--gold-light); }
+    #hwDiag { font-size: 11px; opacity: .85; margin-top: 10px; white-space: pre-wrap; }
+    .hw-diag-btn { margin-top: 10px; padding: 8px 12px; font-size: 12px; border-radius: 8px; border: 1px solid var(--gold); background: transparent; color: var(--gold); cursor: pointer; }
+</style>
+<div id="hwPanel"></div>
+<script>
+    const HW_TESTS = {
+        pc1: { title: 'PC 1 &middot; Home Master (GPU)', items: [
+            'Comparador de Bairros 2D abre instantâneo e gera comparativo no WhatsApp',
+            'Deck Executivo: Ctrl+P gera PDF 4K sem cortes',
+            'Copilot WhatsApp: copiar mensagem e colar no WhatsApp Web',
+            'Rodar <code>python scripts\\heartbeat.py --name PC1 --loop 300</code> e ver &#128994; no painel 4',
+            'Fila de renderiza&ccedil;&atilde;o pesada (Flow/Veo) n&atilde;o derruba o navegador'
+        ]},
+        pc2: { title: 'PC 2 &middot; Port&aacute;til (ARM)', items: [
+            'Hub e as 5 ferramentas abrem sem erro no Chrome ARM',
+            'Comparador de Bairros 2D alterna entre bairros sem latência',
+            'Rodar <code>python scripts\\cosimo_sentinel.py</code> e ver STATUS VERDE',
+            'Rodar <code>python scripts\\heartbeat.py --name PC2 --loop 300</code> e ver &#128994; no painel 4',
+            'Arquivo novo no Drive aparece no outro PC em at&eacute; 2 min'
+        ]},
+        phone: { title: 'Samsung &middot; Campo &amp; Testes', items: [
+            'Hub abre no 4G/5G com os dois PCs desligados',
+            'Copilot WhatsApp: 1 toque abre o WhatsApp com a mensagem pronta',
+            'Disparar Notifica&ccedil;&atilde;o: push chega na barra do celular',
+            'Comparador 2D: troca de bairros e botão WhatsApp funcionam com 1 toque',
+            'Deck em tela vertical: texto leg&iacute;vel sem zoom'
+        ]}
+    };
+    function renderHw(key) {
+        document.querySelectorAll('.hw-card').forEach(c => c.classList.toggle('active', c.dataset.hw === key));
+        const t = HW_TESTS[key];
+        const saved = JSON.parse(localStorage.getItem('hwtests_' + key) || '{}');
+        let h = '<h4>Testar em: ' + t.title + '</h4>';
+        t.items.forEach((it, i) => {
+            h += '<label><input type="checkbox" ' + (saved[i] ? 'checked ' : '') + 'onchange="saveHw(\'' + key + '\',' + i + ',this.checked)"> ' + it + '</label>';
+        });
+        h += '<button class="hw-diag-btn" onclick="runDiag()">&#128269; Diagn&oacute;stico deste aparelho</button><div id="hwDiag"></div>';
+        document.getElementById('hwPanel').innerHTML = h;
+    }
+    function saveHw(key, i, v) {
+        const s = JSON.parse(localStorage.getItem('hwtests_' + key) || '{}');
+        s[i] = v; localStorage.setItem('hwtests_' + key, JSON.stringify(s));
+    }
+    function runDiag() {
+        let gpu = 'n/d';
+        try {
+            const gl = document.createElement('canvas').getContext('webgl');
+            const ext = gl && gl.getExtension('WEBGL_debug_renderer_info');
+            gpu = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : (gl ? 'WebGL ativo' : 'sem WebGL');
+        } catch (e) {}
+        const c = navigator.connection || {};
+        document.getElementById('hwDiag').textContent =
+            'GPU: ' + gpu + '\nN\u00facleos: ' + (navigator.hardwareConcurrency || 'n/d') +
+            '\nMem\u00f3ria: ' + (navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'n/d') +
+            '\nTela: ' + screen.width + 'x' + screen.height + ' @' + devicePixelRatio + 'x' +
+            '\nRede: ' + (c.effectiveType || 'n/d') + '\nNavegador: ' + navigator.userAgent.slice(0, 90);
+    }
+    const hwCards = document.querySelectorAll('.hw-card');
+    ['pc1', 'pc2', 'phone'].forEach((k, i) => { hwCards[i].dataset.hw = k; hwCards[i].addEventListener('click', () => renderHw(k)); });
+    renderHw(/Android|iPhone/i.test(navigator.userAgent) ? 'phone' : 'pc1');
+</script>
+
+
+    <!-- Seção 1: Ferramentas de Fechamento de Vendas (WhatsApp / Stand) -->
+    <div class="section-title">⚡ 1. Fechamento & WhatsApp (Zero Latência)</div>
+    <div class="tools-grid">
+        <a href="copilot_whatsapp.html" class="tool-card">
+            <div class="tool-info">
+                <div class="tool-name">💬 Copilot WhatsApp (45 Projetos • Nov/26)</div>
+                <div class="tool-desc">Respostas socráticas prontas e battlecards para colar no WhatsApp do cliente em 3s.</div>
+            </div>
+            <span class="tool-btn">Abrir</span>
+        </a>
+
+        <a href="relocation_matcher.html" class="tool-card">
+            <div class="tool-info">
+                <div class="tool-name">🧭 Comparador de Bairros 2D</div>
+                <div class="tool-desc">Comparativo instantâneo 2D: Hípica x Moema x Paraíso x Brooklin + Battlecards 1-toque.</div>
+            </div>
+            <span class="tool-btn">Abrir</span>
+        </a>
+
+        <a href="deck.html" class="tool-card">
+            <div class="tool-info">
+                <div class="tool-name">💎 Deck Executivo Lavvi</div>
+                <div class="tool-desc">Apresentação limpa para abrir na frente do cliente no café ou stand.</div>
+            </div>
+            <span class="tool-btn">Abrir</span>
+        </a>
+    </div>
+
+    <!-- Seção 2: Simulações & Inteligência Financeira -->
+    <div class="section-title">📊 2. Inteligência & Auditoria</div>
+    <div class="tools-grid">
+        <a href="infografico_alavancagem.html" class="tool-card">
+            <div class="tool-info">
+                <div class="tool-name">📈 Alavancagem Fluxo 35/65</div>
+                <div class="tool-desc">Arbitragem financeira do CDI vs. desembolso da obra sem pagar juros bancários.</div>
+            </div>
+            <span class="tool-btn">Abrir</span>
+        </a>
+
+        <a href="holding_simulator.html" class="tool-card">
+            <div class="tool-info">
+                <div class="tool-name">🏛️ Simulador Holding Familiar</div>
+                <div class="tool-desc">Planejamento sucessório e proteção patrimonial pré-reforma tributária.</div>
+            </div>
+            <span class="tool-btn">Abrir</span>
+        </a>
+    </div>
+
+    <div class="section-title">&#129514; Sandbox de Perfei&ccedil;&atilde;o (Isolado &bull; Dias Alternados 18h)</div>
+    <div class="tools-grid">
+        <a href="lab/lab_followup_machine.html" class="tool-card" style="border-color: rgba(212,175,55,0.65);"><div class="tool-info"><div class="tool-name">&#9889; M&aacute;quina de Follow-up &amp; Vitrine 90 Dias</div><div class="tool-desc">4 gatilhos para fazer lead mudo responder em 5s + Roteiro di&aacute;rio de 3 Beats.</div></div><span class="tool-btn">Reativar</span></a>
+        <a href="lab/lab_bot_arena.html" class="tool-card" style="border-color: rgba(212,175,55,0.45);">
+            <div class="tool-info">
+                <div class="tool-name">&#127919; Dia B: Arena Omnichannel do Bot (30 Perguntas)</div>
+                <div class="tool-desc">Mesmo c&eacute;rebro (45 projetos) em WhatsApp, Telegram e E-mail. Meta: 30/30 antes de ir a p&uacute;blico.</div>
+            </div>
+            <span class="tool-btn">Testar</span>
+        </a>
+        <a href="lab/lab_michel_auditor.html" class="tool-card" style="border-color: rgba(212,175,55,0.45);">
+            <div class="tool-info">
+                <div class="tool-name">&#128203; Dia A: Auditor Grupo do Michel &amp; Lavvi Oficial</div>
+                <div class="tool-desc">Cole avisos do Michel no WhatsApp e veja na hora o que mudou frente &agrave; nossa Base Oficial.</div>
+            </div>
+            <span class="tool-btn">Auditar</span>
+        </a>
+    </div>
+
+    <!-- Seção 3: Teste de Notificação Push -->
+    <div class="section-title">🔔 3. Canal de Alertas 24/7 (ntfy)</div>
+    <div class="ping-box">
+        <p>Dispare um teste real de notificação para o seu celular agora para confirmar que o canal está ativo.</p>
+        <button class="btn-ping" onclick="sendTestPush()">📡 Disparar Notificação no Samsung</button>
+        <div id="pingStatus" style="font-size: 11px; margin-top: 8px; color: var(--gold-light); display: none;"></div>
+    </div>
+
+    <!-- Status dos PCs (heartbeat via ntfy) -->
+    <div class="section-title">4. Status dos PCs</div>
+    <div class="ping-box" id="pcStatus">
+        <div id="pcList" style="font-size:13px;line-height:1.9;">Carregando...</div>
+        <div style="font-size:11px;margin-top:8px;opacity:.7;">Verde = sinal nos &uacute;ltimos 15 min. Rode <code>heartbeat.py --name PC1</code> no computador.</div>
+    </div>
+
+    <div class="footer">
+        Pedro Soares • Peter Corretor Direto Lavvi Cyrela<br>
+        WhatsApp: (11) 96610-5952 • Ambiente de Teste Otimizado
+    </div>
+
+    <script>
+        async function loadPcStatus() {
+            const el = document.getElementById('pcList');
+            try {
+                const r = await fetch('https://ntfy.sh/lavvi-3be8151a106beace199f/json?poll=1&since=24h&tags=heartbeat');
+                const lines = (await r.text()).trim().split('\n').filter(Boolean);
+                const last = {};
+                lines.forEach(l => {
+                    try {
+                        const m = JSON.parse(l);
+                        if (m.event !== 'message') return;
+                        const d = JSON.parse(m.message);
+                        if (!last[d.pc] || m.time > last[d.pc].time) last[d.pc] = { time: m.time, tools: d.tools };
+                    } catch (e) {}
+                });
+                const now = Date.now() / 1000;
+                el.innerHTML = ['PC1', 'PC2'].map(pc => {
+                    const s = last[pc];
+                    if (!s) return '&#9898; <b>' + pc + '</b>: sem sinal nas &uacute;ltimas 24h';
+                    const min = Math.round((now - s.time) / 60);
+                    const on = min <= 15;
+                    return (on ? '&#128994;' : '&#128308;') + ' <b>' + pc + '</b>: ' + (on ? 'online' : 'offline') +
+                        ' (h&aacute; ' + min + ' min) &middot; ferramentas ' + s.tools;
+                }).join('<br>');
+            } catch (e) {
+                el.textContent = 'Nao consegui consultar o canal agora.';
+            }
+        }
+        loadPcStatus();
+        setInterval(loadPcStatus, 60000);
+    </script>
+    <script>
+        function sendTestPush() {
+            const status = document.getElementById('pingStatus');
+            status.style.display = 'block';
+            status.innerText = "Enviando alerta para o tópico lavvi-3be8151a106beace199f...";
+
+            fetch('https://ntfy.sh/lavvi-3be8151a106beace199f', {
+                method: 'POST',
+                headers: {
+                    'Title': '👑 Peter Lavvi Cockpit • Teste Samsung',
+                    'Priority': 'high',
+                    'Tags': 'shield,crown,zap'
+                },
+                body: 'Conexão confirmada com sucesso no Samsung! O ecossistema está operando em sincronia total.'
+            })
+            .then(res => {
+                if (res.ok) {
+                    status.innerText = "✅ Notificação disparada! Confira a barra de notificações do seu celular.";
+                } else {
+                    status.innerText = "❌ Erro ao disparar. Verifique sua conexão com a internet.";
+                }
+            })
+            .catch(err => {
+                status.innerText = "❌ Erro de rede: " + err.message;
+            });
+        }
+    </script>
+</body>
+</html>

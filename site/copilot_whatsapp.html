@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Copilot WhatsApp • 45 Projetos Lavvi (Nov/2026)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0c10;
+            --surface: #12151c;
+            --gold: #d4af37;
+            --gold-bright: #f3e5ab;
+            --whatsapp-green: #25d366;
+            --text-main: #f0f2f5;
+            --text-muted: #9aa0a6;
+            --border: rgba(212, 175, 55, 0.25);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 20px 14px 48px;
+            line-height: 1.55;
+        }
+        .container { max-width: 1040px; margin: 0 auto; }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .back-link {
+            color: var(--gold-bright);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(212,175,55,0.08);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+        .badge-top {
+            display: inline-block;
+            background: rgba(37, 211, 102, 0.14);
+            color: var(--whatsapp-green);
+            border: 1px solid var(--whatsapp-green);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        h1 span { color: var(--gold); }
+        .lead { color: var(--text-muted); font-size: 13.5px; max-width: 720px; margin: 0 auto; }
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        @media (max-width: 820px) { .app-grid { grid-template-columns: 1fr; } }
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+        }
+        .panel-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .quick-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .chip {
+            background: rgba(255,255,255,0.06);
+            color: var(--gold-bright);
+            font-size: 11.5px;
+            padding: 6px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+        .chip:hover { background: var(--gold); color: #000; font-weight: 600; }
+        label { font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 5px; font-weight: 600; }
+        input, textarea, select {
+            width: 100%;
+            background: #0d1117;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 13.5px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+        textarea { min-height: 95px; resize: vertical; }
+        .fact-card {
+            background: rgba(212, 175, 55, 0.08);
+            border-left: 3px solid var(--gold);
+            padding: 10px 12px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #e2e8f0;
+        }
+        .fact-card strong { color: var(--gold-bright); }
+        .btn-generate {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold) 0%, #b89328 100%);
+            color: #000;
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .output-box {
+            background: #0d1117;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            padding: 14px;
+            min-height: 210px;
+            white-space: pre-wrap;
+            font-size: 13.5px;
+            color: #e2e8f0;
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+        .action-btns { display: flex; gap: 10px; }
+        .btn-whatsapp {
+            flex: 1;
+            background: #25d366;
+            color: #041e0d;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13.5px;
+        }
+        .btn-copy {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <a href="index.html" class="back-link">← Voltar ao Portal</a>
+            <span style="font-size:11px;color:var(--gold-bright);">46 Empreendimentos • Tabelas 26.11</span>
+        </div>
+
+        <div class="header">
+            <span class="badge-top">🤖 COPILOTO WHATSAPP • 45 PROJETOS + TABELAS NOV/2026</span>
+            <h1>WhatsApp <span>Real Estate Copilot</span></h1>
+            <p class="lead">Respostas cirúrgicas em 2 a 3 frases com os dados oficiais de Novembro/2026 (26.11), FAQ de Engenharia R01 e regras ABNT.</p>
+        </div>
+
+        <div class="app-grid">
+            <div class="panel">
+                <div class="panel-title">📩 1. Selecione o Projeto & Pergunta do Cliente</div>
+
+                <label>Atalhos de Perguntas Reais (1 Toque):</label>
+                <div class="quick-chips">
+                    <span class="chip" onclick="sim('Jardim da Hípica', 'Oi Peter! Quantas quadras de tênis, piscinas e elevadores tem o Jardim da Hípica? E qual o fluxo da tabela de Novembro?')">🎾 Hípica (FAQ R01 + Fluxo 26.11)</span>
+                    <span class="chip" onclick="sim('T.O.M. Paraíso', 'Peter, como funciona o novo fluxo facilitado de 30% na obra do T.O.M. Paraíso? Posso fazer Airbnb?')">🏥 TOM Paraíso (Fluxo 30% + Airbnb)</span>
+                    <span class="chip" onclick="sim('Saffire by Elie Saab', 'Pedro, por que investir em obra no Saffire se o CDI está pagando mais de 1% ao mês líquido?')">📈 CDI vs Fluxo Obra (Saffire)</span>
+                    <span class="chip" onclick="sim('Jardim da Hípica', 'Posso derrubar parede para ampliar a sala? E o isolamento acústico entre apartamentos é drywall ou alvenaria?')">🧱 Engenharia ABNT (Paredes & Acústica)</span>
+                    <span class="chip" onclick="sim('Grand Square', 'Posso remover paredes internas no Grand Square para integrar a varanda?')">⚠️ Alvenaria Estrutural (Grand Square)</span>
+                    <span class="chip" onclick="sim('Galleria Klabin', 'Qual o fluxo de pagamento atualizado de Novembro para o Galleria Klabin e quando entrega?')">🚇 Galleria Klabin (Fluxo 30/70)</span>
+                </div>
+
+                <label for="projectSelect">Empreendimento (Todos os 45 Projetos Lavvi):</label>
+                <select id="projectSelect" onchange="updateAnchor()"></select>
+
+                <div id="factAnchorBox" class="fact-card"></div>
+
+                <label for="leadName">Nome do Cliente:</label>
+                <input type="text" id="leadName" value="Dr. Roberto">
+
+                <label for="leadMessage">Pergunta ou Objeção do Cliente:</label>
+                <textarea id="leadMessage">Oi Peter! Quantas quadras de tênis, piscinas e elevadores tem o Jardim da Hípica? E qual o fluxo da tabela de Novembro?</textarea>
+
+                <label for="leadPhone">WhatsApp do Cliente (com DDD, opcional):</label>
+                <input type="text" id="leadPhone" placeholder="11999999999" value="">
+
+                <button class="btn-generate" onclick="generateReply()">⚡ Gerar Resposta Consultiva (2-3 Frases)</button>
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">💎 2. Resposta Pronta (Padrão Quiet Luxury)</div>
+                <div class="output-box" id="outputReply"></div>
+                <div class="action-btns">
+                    <button class="btn-copy" onclick="copyText()">📋 Copiar</button>
+                    <a href="#" id="waLink" class="btn-whatsapp" target="_blank">🟢 Enviar no WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PROJECTS = [{"nome": "Jardim da Hípica", "bairro": "Alto da Boa Vista", "status": "Em Obras", "entrega": "Mar/2031", "fluxo": "55% Obra (6,5% Sinal + 6,5% em 2x 60/90d + 27% em 49 mensais + 10% em 3 anuais + 5% Única Mar/2031) + 45% Financiamento (Mar/2031)", "units": "Torre A (276m², Torre A (180m², Torre B (149m², Torre B (133m², Torre C (170m²", "anchor": "Terreno 39.553 m² (~40 mil m²) + Praça 10.000 m² | 02 Quadras Tênis Oficiais (18x36m) + 02 Beach + Raia 60m + Body Care & CBRE | 34 Elevadores | 1.806 Vagas | 12 Piscinas | 4 Private Houses (102-180m²) | Fluxo 26.11: 55% Obra / 45% Chaves (Entrega 03/2031).", "extra": "Na engenharia auditada R01 (Nov/2026), são 34 elevadores no complexo, gerador atendendo elevadores, bombas e áreas comuns com ponto de luz/tomada na unidade, ar-condicionado VRF nas prumadas principais e estrutura em concreto armado convencional (permite integrar salas)."}, {"nome": "Jardim da Hípica Apartments", "bairro": "Alto da Boa Vista", "status": "Em Obras", "entrega": "Mar/2031", "fluxo": "55% Obra (6,5% Sinal + 6,5% em 2x 60/90d + 27% em 49 mensais + 10% em 3 anuais + 5% Única Mar/2031) + 45% Financiamento (Mar/2031)", "units": "Apto (57m², Apto (48m², 1 Dorm (28m², 1 Dorm (26m², Studio (21m²", "anchor": "Terreno 39.553 m² (~40 mil m²) + Praça 10.000 m² | 02 Quadras Tênis Oficiais (18x36m) + 02 Beach + Raia 60m + Body Care & CBRE | 34 Elevadores | 1.806 Vagas | 12 Piscinas | 4 Private Houses (102-180m²) | Fluxo 26.11: 55% Obra / 45% Chaves (Entrega 03/2031).", "extra": "Na engenharia auditada R01 (Nov/2026), são 34 elevadores no complexo, gerador atendendo elevadores, bombas e áreas comuns com ponto de luz/tomada na unidade, ar-condicionado VRF nas prumadas principais e estrutura em concreto armado convencional (permite integrar salas)."}, {"nome": "Le Six Residences", "bairro": "Paraíso", "status": "Em Obras", "entrega": "Jun/2029", "fluxo": "35% Obra (5% Sinal + 5% em 2x + 15% em 27 mensais + 5% em 2 anuais + 5% Única Jun/29) + 65% Financiamento", "units": "Apto Tipo (156m², Apto Tipo (203m², Apto Tipo (264m², Cobertura Duplex (521m²", "anchor": "Região Ibirapuera | Le Six Residences & Studios | Tabela 26.11 (Entrega 04/2029): Fluxo 35% Obra / 65% Chaves | Residences de R$ 6,16M a R$ 15,28M | Studios NR de R$ 635k a R$ 814k.", "extra": "Operação com alavancagem clássica 35% obra / 65% chaves na tabela 26.11, tanto nas mansões suspensas Residences quanto nos Studios."}, {"nome": "Villa Residence", "bairro": "Moema", "status": "Pronto Para Morar", "entrega": "Pronto (Fev/2026)", "fluxo": "Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista)", "units": "Duplex (404m², Apto Tipo (220m², Apto Tipo (150m²", "anchor": "Bairro: Moema | Status: Pronto Para Morar | Entrega: Pronto (Fev/2026) | Fluxo: Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista) | Tipologias: Duplex (404m², Apto Tipo (220m², Apto Tipo (150m² (Tabela Nov/2026).", "extra": "No Villa Residence (Moema), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Villa Studios", "bairro": "Moema", "status": "Pronto Para Morar", "entrega": "Pronto (Ago/2025)", "fluxo": "Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista)", "units": "Studio (31m², Studio (28m²", "anchor": "Bairro: Moema | Status: Pronto Para Morar | Entrega: Pronto (Ago/2025) | Fluxo: Imóvel Pronto (Entregue Ago/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato (ou À Vista) | Tipologias: Studio (31m², Studio (28m² (Tabela Nov/2026).", "extra": "No Villa Studios (Moema), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Green View Residence", "bairro": "Butantã", "status": "Pronto Para Morar", "entrega": "Pronto (Fev/2026)", "fluxo": "Imóvel Pronto (Entregue Mar/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato", "units": "Apto Tipo (159m², Apto Tipo (132m²", "anchor": "Bairro: Butantã | Status: Pronto Para Morar | Entrega: Pronto (Fev/2026) | Fluxo: Imóvel Pronto (Entregue Mar/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato | Tipologias: Apto Tipo (159m², Apto Tipo (132m² (Tabela Nov/2026).", "extra": "No Green View Residence (Butantã), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Alive", "bairro": "Vila Prudente", "status": "Em Obras", "entrega": "Abr/2028", "fluxo": "35% Obra (5% Sinal + 5% em 2x + 10% em 13 mensais + 5% Anual + 10% Única Mar/28) + 65% Financiamento (Abr/2028)", "units": "Cobertura Duplex (350m², Penthouse (211m², Apto Tipo (188m², Apto Tipo (170m², Apto Tipo (139m²", "anchor": "Ipiranga | Home Resort Completo com Acqua Park | Tabela 26.11 (Entrega 05/2027): Fluxo 30% Obra / 70% Chaves | Unidades de R$ 1,59M a R$ 3,68M.", "extra": "Verdadeiro clube familiar no Ipiranga com apenas 30% de desembolso até as chaves em Maio/2027 na tabela 26.11."}, {"nome": "Heaven Residences", "bairro": "Paraíso", "status": "Em Obras", "entrega": "Mar/2029", "fluxo": "35% Obra (5% Sinal + 5% em 2x + 15% em 24 mensais + 5% em 2 anuais + 5% Única Fev/29) + 65% Financiamento (Mar/2029)", "units": "Cobertura Duplex (513m², Apto Tipo (258m², Apto Tipo (187m²", "anchor": "Bairro: Paraíso | Status: Em Obras | Entrega: Mar/2029 | Fluxo: 35% Obra (5% Sinal + 5% em 2x + 15% em 24 mensais + 5% em 2 anuais + 5% Única Fev/29) + 65% Financiamento (Mar/2029) | Tipologias: Cobertura Duplex (513m², Apto Tipo (258m², Apto Tipo (187m² (Tabela Nov/2026).", "extra": "No Heaven Residences (Paraíso), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Palace", "bairro": "Brás", "status": "Em Obras", "entrega": "Dez/2027", "fluxo": "37% Obra (5% Sinal + 5% em 2x + 14% em 9 mensais + 8% Anual + 5% Única Nov/27) + 63% Financiamento (Dez/2027)", "units": "Cobertura Duplex (370m², Apto Tipo (164m², Apto Tipo (142m², Apto Tipo (86m²", "anchor": "Bairro: Brás | Status: Em Obras | Entrega: Dez/2027 | Fluxo: 37% Obra (5% Sinal + 5% em 2x + 14% em 9 mensais + 8% Anual + 5% Única Nov/27) + 63% Financiamento (Dez/2027) | Tipologias: Cobertura Duplex (370m², Apto Tipo (164m², Apto Tipo (142m², Apto Tipo (86m² (Tabela Nov/2026).", "extra": "No Palace (Brás), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Petra", "bairro": "Brooklin", "status": "Em Obras", "entrega": "Jul/2028", "fluxo": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 16 mensais + 8% em 2 anuais + 5% Única Jun/28) + 53% Financiamento (Jul/2028)", "units": "Cobertura (305m², Apto Tipo (199m², Apto Tipo (162m²", "anchor": "Bairro: Brooklin | Status: Em Obras | Entrega: Jul/2028 | Fluxo: 47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 16 mensais + 8% em 2 anuais + 5% Única Jun/28) + 53% Financiamento (Jul/2028) | Tipologias: Cobertura (305m², Apto Tipo (199m², Apto Tipo (162m² (Tabela Nov/2026).", "extra": "No Petra (Brooklin), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Saffire", "bairro": "Moema", "status": "Em Obras", "entrega": "Nov/2026", "fluxo": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Parcela Única na Entrega (Nov/26) + 70% Financiamento", "units": "Mansão Suspensa (493m², Mansão Suspensa (360m²", "anchor": "Bairro: Moema | Status: Em Obras | Entrega: Nov/2026 | Fluxo: Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Parcela Única na Entrega (Nov/26) + 70% Financiamento | Tipologias: Mansão Suspensa (493m², Mansão Suspensa (360m² (Tabela Nov/2026).", "extra": "No Saffire (Moema), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Soleil Apartments", "bairro": "Chácara Klabin", "status": "Em Obras", "entrega": "Abr/2029", "fluxo": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029)", "units": "Studio (31m², Studio (23m²", "anchor": "Bairro: Chácara Klabin | Status: Em Obras | Entrega: Abr/2029 | Fluxo: 47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029) | Tipologias: Studio (31m², Studio (23m² (Tabela Nov/2026).", "extra": "No Soleil Apartments (Chácara Klabin), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Soleil Residences", "bairro": "Chácara Klabin", "status": "Em Obras", "entrega": "Abr/2029", "fluxo": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029)", "units": "Cobertura Duplex (487m², Garden (376m², Mansão Suspensa (246m²", "anchor": "Bairro: Chácara Klabin | Status: Em Obras | Entrega: Abr/2029 | Fluxo: 47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 25 mensais + 8% em 2 anuais + 5% Única Mar/29) + 53% Financiamento (Abr/2029) | Tipologias: Cobertura Duplex (487m², Garden (376m², Mansão Suspensa (246m² (Tabela Nov/2026).", "extra": "No Soleil Residences (Chácara Klabin), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Verdant", "bairro": "Tucuruvi", "status": "Pronto para Morar", "entrega": "Pronto (Fev/2026)", "fluxo": "Imóvel Pronto (Entregue Dez/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato", "units": "Cobertura (261m², Apto Tipo (155m², Apto Tipo (133m², Apto Tipo (129m²", "anchor": "Bairro: Tucuruvi | Status: Pronto para Morar | Entrega: Pronto (Fev/2026) | Fluxo: Imóvel Pronto (Entregue Dez/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato | Tipologias: Cobertura (261m², Apto Tipo (155m², Apto Tipo (133m², Apto Tipo (129m² (Tabela Nov/2026).", "extra": "No Verdant (Tucuruvi), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Grand Square", "bairro": "Praça da Árvore", "status": "Pronto Para Morar", "entrega": "Pronto (Mai/2026)", "fluxo": "Imóvel Pronto (Entregue Mai/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato", "units": "Apto Tipo (79m², Apto Tipo (65m², Studio (32m²", "anchor": "Chácara Santo Antônio | Residences & Apartments | Estrutura: Do 4º ao 18º pav. Araré é Alvenaria Estrutural (vedada remoção de paredes).", "extra": "Atenção técnica ABNT: do 4º ao 18º pavimento Araré o sistema é alvenaria estrutural autoportante (não permite remover paredes)."}, {"nome": "Le Six Ibirapuera", "bairro": "Moema", "status": "Breve Lançamento", "entrega": "Out/2030", "fluxo": "35% Período de Obra (10% Entrada + 25% Mensais/Anuais sem juros) + 65% nas Chaves (Out/2030)", "units": "Apto Tipo (264m², Apto Tipo (194m²", "anchor": "Região Ibirapuera | Le Six Residences & Studios | Tabela 26.11 (Entrega 04/2029): Fluxo 35% Obra / 65% Chaves | Residences de R$ 6,16M a R$ 15,28M | Studios NR de R$ 635k a R$ 814k.", "extra": "Operação com alavancagem clássica 35% obra / 65% chaves na tabela 26.11, tanto nas mansões suspensas Residences quanto nos Studios."}, {"nome": "Le Six Ibirapuera Apartments", "bairro": "Moema", "status": "Breve Lançamento", "entrega": "Out/2030", "fluxo": "35% Período de Obra (10% Entrada + 25% Mensais/Anuais sem juros) + 65% nas Chaves (Out/2030)", "units": "Compactos (28m², Compactos (45m²", "anchor": "Região Ibirapuera | Le Six Residences & Studios | Tabela 26.11 (Entrega 04/2029): Fluxo 35% Obra / 65% Chaves | Residences de R$ 6,16M a R$ 15,28M | Studios NR de R$ 635k a R$ 814k.", "extra": "Operação com alavancagem clássica 35% obra / 65% chaves na tabela 26.11, tanto nas mansões suspensas Residences quanto nos Studios."}, {"nome": "T.O.M. Paraíso", "bairro": "Paraíso", "status": "Lançamento", "entrega": "Jul/2030", "fluxo": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 39 mensais + 8% em 3 anuais + 5% Única Jul/30) + 53% Financiamento (Jul/2030)", "units": "Apto R2V (44m², Apto R2V (40m², 1 Dorm R2V (34m², Studio HMP/R2V (27m², Studio HIS-2/R2V (25m²", "anchor": "Eixo Hospitalar Pauline/Paraíso | Tabela Nov/2026 (26.11): Opção 1 Padrão (47% Obra / 53% Chaves, a partir de R$ 203.327) OU Opção 2 Fluxo Facilitado v2 (apenas 30,27% Obra / 69,73% Financiamento, a partir de R$ 394.350) | Unidades R2V com Airbnb liberado na Minuta de Convenção (HIS/HMP vedado Airbnb).", "extra": "Na tabela vigente 26.11, o T.O.M. Paraíso lançou o Fluxo Facilitado v2 onde o investidor desembolsa apenas 30,27% durante toda a obra (3% sinal + 6% + 10,09% mensais + 8,65% anuais + 2,88% única) e 69,73% nas chaves em 07/2030."}, {"nome": "Casa Cerâmica", "bairro": "Espaço Cerâmica (São Caetano do Sul)", "status": "Pronto - 100% Vendido", "entrega": "Mar/2030", "fluxo": "47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 36 mensais + 8% em 2 anuais + 5% Única Fev/30) + 53% Financiamento (Mar/2030)", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Espaço Cerâmica (São Caetano do Sul) | Status: Pronto - 100% Vendido | Entrega: Mar/2030 | Fluxo: 47% Obra (7,5% Sinal + 7,5% em 2x + 19% em 36 mensais + 8% em 2 anuais + 5% Única Fev/30) + 53% Financiamento (Mar/2030) | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Casa Cerâmica (Espaço Cerâmica (São Caetano do Sul)), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Heaven Apartments", "bairro": "Paraíso", "status": "100% Vendido", "entrega": "Mar/2029", "fluxo": "35% Obra (5% Sinal + 5% em 2x + 15% em 24 mensais + 5% em 2 anuais + 5% Única Fev/29) + 65% Financiamento (Mar/2029)", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Paraíso | Status: 100% Vendido | Entrega: Mar/2029 | Fluxo: 35% Obra (5% Sinal + 5% em 2x + 15% em 24 mensais + 5% em 2 anuais + 5% Única Fev/29) + 65% Financiamento (Mar/2029) | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Heaven Apartments (Paraíso), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Le Six Apartments", "bairro": "Paraíso", "status": "100% Vendido", "entrega": "Jun/2029", "fluxo": "35% Obra (5% Sinal + 5% em 2x + 15% em 27 mensais + 5% em 2 anuais + 5% Única Jun/29) + 65% Financiamento", "units": "Plantas sob consulta na tabela vigente", "anchor": "Região Ibirapuera | Le Six Residences & Studios | Tabela 26.11 (Entrega 04/2029): Fluxo 35% Obra / 65% Chaves | Residences de R$ 6,16M a R$ 15,28M | Studios NR de R$ 635k a R$ 814k.", "extra": "Operação com alavancagem clássica 35% obra / 65% chaves na tabela 26.11, tanto nas mansões suspensas Residences quanto nos Studios."}, {"nome": "Wonder Residence", "bairro": "Ipiranga", "status": "100% Vendido", "entrega": "Pronto (Jun/2025)", "fluxo": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Ipiranga | Status: 100% Vendido | Entrega: Pronto (Jun/2025) | Fluxo: Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Wonder Residence (Ipiranga), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Praça Mooca", "bairro": "Mooca", "status": "100% Vendido", "entrega": "Pronto (Entregue)", "fluxo": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Mooca | Status: 100% Vendido | Entrega: Pronto (Entregue) | Fluxo: Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Praça Mooca (Mooca), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Eden by Dror", "bairro": "Brooklin", "status": "100% Vendido", "entrega": "Pronto (Entregue)", "fluxo": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Brooklin | Status: 100% Vendido | Entrega: Pronto (Entregue) | Fluxo: Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Eden by Dror (Brooklin), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Grand Vitrali", "bairro": "Moema", "status": "100% Vendido", "entrega": "Pronto (Nov/2024)", "fluxo": "Imóvel Pronto (Entregue Nov/2024): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Moema | Status: 100% Vendido | Entrega: Pronto (Nov/2024) | Fluxo: Imóvel Pronto (Entregue Nov/2024): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Grand Vitrali (Moema), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "High Wonder", "bairro": "Brás", "status": "100% Vendido", "entrega": "Pronto (Nov/2025)", "fluxo": "Imóvel Pronto (Entregue Nov/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Brás | Status: 100% Vendido | Entrega: Pronto (Nov/2025) | Fluxo: Imóvel Pronto (Entregue Nov/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No High Wonder (Brás), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Lumiere Residence", "bairro": "Chácara Klabin", "status": "100% Vendido", "entrega": "Pronto (Out/2024)", "fluxo": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Chácara Klabin | Status: 100% Vendido | Entrega: Pronto (Out/2024) | Fluxo: Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Lumiere Residence (Chácara Klabin), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Lumiere Studios", "bairro": "Chácara Klabin", "status": "100% Vendido", "entrega": "Pronto (Out/2024)", "fluxo": "Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Chácara Klabin | Status: 100% Vendido | Entrega: Pronto (Out/2024) | Fluxo: Imóvel Pronto (Entregue Out/2024): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Lumiere Studios (Chácara Klabin), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Movva Luz", "bairro": "Luz", "status": "100% Vendido", "entrega": "Pronto (Dez/2024)", "fluxo": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Luz | Status: 100% Vendido | Entrega: Pronto (Dez/2024) | Fluxo: Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Movva Luz (Luz), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Nativ Tatuapé", "bairro": "Tatuapé", "status": "100% Vendido", "entrega": "Pronto (Dez/2024)", "fluxo": "Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Tatuapé | Status: 100% Vendido | Entrega: Pronto (Dez/2024) | Fluxo: Imóvel Pronto (Entregue Dez/2024): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Nativ Tatuapé (Tatuapé), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "One Park Perdizes", "bairro": "Perdizes", "status": "100% Vendido", "entrega": "Pronto (Entregue)", "fluxo": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Perdizes | Status: 100% Vendido | Entrega: Pronto (Entregue) | Fluxo: Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No One Park Perdizes (Perdizes), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Palazzo Vila Mariana", "bairro": "Vila Mariana", "status": "100% Vendido", "entrega": "Pronto (Entregue)", "fluxo": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Vila Mariana | Status: 100% Vendido | Entrega: Pronto (Entregue) | Fluxo: Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Palazzo Vila Mariana (Vila Mariana), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Boulevard Lapa", "bairro": "Lapa", "status": "100% Vendido", "entrega": "Pronto (Entregue)", "fluxo": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Lapa | Status: 100% Vendido | Entrega: Pronto (Entregue) | Fluxo: Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Boulevard Lapa (Lapa), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Praça Piratininga", "bairro": "Brás", "status": "100% Vendido", "entrega": "Pronto (Entregue)", "fluxo": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Brás | Status: 100% Vendido | Entrega: Pronto (Entregue) | Fluxo: Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Praça Piratininga (Brás), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Studios Elie Saab", "bairro": "Moema", "status": "Em Obras - 100% vendido", "entrega": "Nov/2026", "fluxo": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Única na Entrega (Nov/26) + 70% Financiamento", "units": "Studio NR (29m²", "anchor": "Bairro: Moema | Status: Em Obras - 100% vendido | Entrega: Nov/2026 | Fluxo: Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Única na Entrega (Nov/26) + 70% Financiamento | Tipologias: Studio NR (29m² (Tabela Nov/2026).", "extra": "No Studios Elie Saab (Moema), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Vitrali Moema", "bairro": "Moema", "status": "Pronto - 100% vendido", "entrega": "Pronto (Entregue)", "fluxo": "Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Moema | Status: Pronto - 100% vendido | Entrega: Pronto (Entregue) | Fluxo: Imóvel Pronto e Entregue (Revenda / Repasse): 30% Sinal + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Vitrali Moema (Moema), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Wonder by Praças da Cidade", "bairro": "Brás", "status": "Pronto - 100% vendido", "entrega": "Pronto (Dez/2023)", "fluxo": "Imóvel Pronto (Entregue Dez/2023): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Brás | Status: Pronto - 100% vendido | Entrega: Pronto (Dez/2023) | Fluxo: Imóvel Pronto (Entregue Dez/2023): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Wonder by Praças da Cidade (Brás), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Wonder Ipiranga Studios", "bairro": "Ipiranga", "status": "Pronto - 100% vendido", "entrega": "Pronto (Jun/2025)", "fluxo": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "Plantas sob consulta na tabela vigente", "anchor": "Bairro: Ipiranga | Status: Pronto - 100% vendido | Entrega: Pronto (Jun/2025) | Fluxo: Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: Plantas sob consulta na tabela vigente (Tabela Nov/2026).", "extra": "No Wonder Ipiranga Studios (Ipiranga), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Galleria Klabin", "bairro": "Chácara Klabin", "status": "Pronto para Morar", "entrega": "Pronto (Jul/2026)", "fluxo": "Imóvel Pronto (Entregue Ago/2026): 30% Sinal / Ato + 70% Financiamento Bancário Imediato", "units": "Apto Tipo (166m²", "anchor": "Chácara Klabin | 100% Residencial Alto Padrão | Tabela 26.11 (Entrega 11/2027): Fluxo 30% Obra / 70% Chaves | Unidades de R$ 2,52M a R$ 6,07M.", "extra": "Na Chácara Klabin com apenas 30% durante a obra e 70% no financiamento (entrega 11/2027, tabela 26.11)."}, {"nome": "Novvo Santa Marina", "bairro": "Água Branca", "status": "Lançamento", "entrega": "Set/2029", "fluxo": "54% Obra (6% Sinal + 6% em 2x + 30% em 31 mensais + 7% em 3 anuais + 5% Única Ago/29) + 46% Financiamento (Set/2029)", "units": "1 dorm (31m², 2 dorms (41m²", "anchor": "Bairro: Água Branca | Status: Lançamento | Entrega: Set/2029 | Fluxo: 54% Obra (6% Sinal + 6% em 2x + 30% em 31 mensais + 7% em 3 anuais + 5% Única Ago/29) + 46% Financiamento (Set/2029) | Tipologias: 1 dorm (31m², 2 dorms (41m² (Tabela Nov/2026).", "extra": "No Novvo Santa Marina (Água Branca), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Novvo Anália Franco", "bairro": "Anália Franco", "status": "Lançamento", "entrega": "Nov/2028", "fluxo": "R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 21 mensais + 7% em 2 anuais + 5% Única Nov/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves", "units": "1 dorm (31m², 2 dorms (41m²", "anchor": "Bairro: Anália Franco | Status: Lançamento | Entrega: Nov/2028 | Fluxo: R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 21 mensais + 7% em 2 anuais + 5% Única Nov/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves | Tipologias: 1 dorm (31m², 2 dorms (41m² (Tabela Nov/2026).", "extra": "No Novvo Anália Franco (Anália Franco), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Novvo Vila Prudente", "bairro": "Vila Prudente", "status": "Em Obras", "entrega": "Out/2028", "fluxo": "R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 20 mensais + 7% em 2 anuais + 5% Única Out/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves", "units": "1 dorm (31m², 2 dorms (41m²", "anchor": "Bairro: Vila Prudente | Status: Em Obras | Entrega: Out/2028 | Fluxo: R2V: 41% Obra (6% Sinal + 6% em 2x + 17% em 20 mensais + 7% em 2 anuais + 5% Única Out/28) + 59% Chaves | HIS: 54% Obra / 46% Chaves | Tipologias: 1 dorm (31m², 2 dorms (41m² (Tabela Nov/2026).", "extra": "No Novvo Vila Prudente (Vila Prudente), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Novvo Marajoara", "bairro": "Jardim Marajoara", "status": "Em Obras", "entrega": "Fev/2028", "fluxo": "54% Obra (6% Sinal + 6% em 2x + 30% em 12 mensais + 7% em 2 anuais + 5% Única Fev/28) + 46% Financiamento (Fev/2028)", "units": "1 dorm (31m², 2 dorms (41m²", "anchor": "Bairro: Jardim Marajoara | Status: Em Obras | Entrega: Fev/2028 | Fluxo: 54% Obra (6% Sinal + 6% em 2x + 30% em 12 mensais + 7% em 2 anuais + 5% Única Fev/28) + 46% Financiamento (Fev/2028) | Tipologias: 1 dorm (31m², 2 dorms (41m² (Tabela Nov/2026).", "extra": "No Novvo Marajoara (Jardim Marajoara), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Novvo Barra Funda", "bairro": "Barra Funda", "status": "Em Obras", "entrega": "Pronto (Jul/2026)", "fluxo": "Imóvel Pronto (Entregue Jul/2026): 30% Sinal / Ato + 70% Financiamento Bancário", "units": "1 dorm (31m², 2 dorms (41m²", "anchor": "Bairro: Barra Funda | Status: Em Obras | Entrega: Pronto (Jul/2026) | Fluxo: Imóvel Pronto (Entregue Jul/2026): 30% Sinal / Ato + 70% Financiamento Bancário | Tipologias: 1 dorm (31m², 2 dorms (41m² (Tabela Nov/2026).", "extra": "No Novvo Barra Funda (Barra Funda), trabalhamos com Patrimônio de Afetação segregado (LAVV3/Cyrela), paredes divisórias entre unidades em alvenaria sólida e manta acústica no contrapiso das lajes (ABNT NBR 15.575)."}, {"nome": "Well Perdizes", "bairro": "Perdizes", "status": "Lançamento", "entrega": "Fev/2030", "fluxo": "41% Obra (6% Sinal + 6% em 2x + 17% em 32 mensais + 7% em 2 anuais + 5% Única Out/29) + 59% Financiamento (Fev/2030)", "units": "2 Suítes R2V (51m², 2 Suítes R2V (47m², 2 Dorms R2V/HIS (35m², Studio NR (30m², 1 Dorm HIS-2 (25m²", "anchor": "Perdizes | Residencial & Studios | Tabela 26.11 (Entrega 10/2027): Fluxo 30-31% Obra / 69-70% Chaves | Unidades a partir de R$ 310k (Studios) e R$ 1,35M (Residencial).", "extra": "Localização nobre em Perdizes com fluxo 30% obra / 70% chaves na tabela 26.11."}];
+        const sel = document.getElementById('projectSelect');
+
+        PROJECTS.forEach((p, idx) => {
+            const opt = document.createElement('option');
+            opt.value = p.nome;
+            opt.textContent = p.nome + (p.bairro ? ' (' + p.bairro + ')' : '');
+            sel.appendChild(opt);
+        });
+
+        function getProj() {
+            const val = sel.value;
+            return PROJECTS.find(p => p.nome === val) || PROJECTS[0];
+        }
+
+        function updateAnchor() {
+            const p = getProj();
+            document.getElementById('factAnchorBox').innerHTML = '<strong>Âncora Auditada (Nov/2026):</strong> ' + p.anchor;
+        }
+
+        function sim(projName, msg) {
+            const found = PROJECTS.find(p => p.nome.toLowerCase().includes(projName.toLowerCase()));
+            if (found) sel.value = found.nome;
+            document.getElementById('leadMessage').value = msg;
+            updateAnchor();
+            generateReply();
+        }
+
+        function generateReply() {
+            const p = getProj();
+            const name = (document.getElementById('leadName').value || 'tudo bem').trim();
+            const q = document.getElementById('leadMessage').value.toLowerCase();
+            let body = '';
+
+            if (q.includes('parede') || q.includes('derrubar') || q.includes('acústic') || q.includes('drywall') || q.includes('estrutural')) {
+                if (p.nome.toLowerCase().includes('grand square') || p.nome.toLowerCase().includes('green view')) {
+                    body = `${name}, ponto técnico fundamental: no ${p.nome} (especificamente do 4º ao 18º pav. Araré no Grand Square e na Torre 2 Studios do Green View), o sistema é em alvenaria estrutural autoportante, portanto não é permitido remover paredes ou abrir rasgos. Já o isolamento de impacto conta com manta acústica no contrapiso das lajes conforme a ABNT NBR 15.575.`;
+                } else {
+                    body = `${name}, no ${p.nome} a estrutura é em concreto armado convencional (pilares, vigas e lajes), então você tem liberdade para integrar e personalizar as paredes internas de vedação. Além disso, as divisórias entre apartamentos são em alvenaria sólida convencional e entregamos manta acústica no contrapiso flutuante das lajes (ABNT NBR 15.575).`;
+                }
+            } else if (q.includes('airbnb') || q.includes('temporada') || q.includes('short') || q.includes('his')) {
+                body = `${name}, excelente pergunta jurídica: no ${p.nome}, as unidades R2V (Livre) possuem liberação para short-stay/Airbnb amparada na Minuta de Convenção, enquanto unidades enquadradas como HIS ou HMP têm vedação legal expressa para Airbnb pela legislação municipal. Na tabela vigente de Novembro (26.11), também temos a opção do Fluxo Facilitado com apenas 30,27% durante a obra e 69,73% nas chaves.`;
+            } else if (q.includes('cdi') || q.includes('selic') || q.includes('juros') || q.includes('renda fixa')) {
+                body = `${name}, o segredo do fluxo da Lavvi no ${p.nome} é justamente você não descapitalizar à vista: você desembolsa apenas a fração de obra de forma escalonada (${p.fluxo}) mantendo a maior parte do seu patrimônio rendendo juros compostos no CDI líquido, enquanto captura 100% da valorização imobiliária sobre o VGV total.`;
+            } else {
+                body = `${name}, no *${p.nome}* temos hoje um cenário técnico muito forte: ${p.anchor} ${p.extra}`;
+            }
+
+            const cta = `\n\nPrefere que eu te mande aqui a tabela 26.11 detalhada dessa prumada ou agendamos 15 minutos para ver a planta?\n\nPedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952`;
+            const full = body + cta;
+            document.getElementById('outputReply').textContent = full;
+
+            const phone = document.getElementById('leadPhone').value.replace(/\D/g, '');
+            const waBase = phone ? `https://wa.me/55${phone}` : `https://wa.me/`;
+            document.getElementById('waLink').href = `${waBase}?text=${encodeURIComponent(full)}`;
+        }
+
+        function copyText() {
+            const txt = document.getElementById('outputReply').textContent;
+            navigator.clipboard.writeText(txt);
+            const btn = document.querySelector('.btn-copy');
+            btn.textContent = '✅ Copiado!';
+            setTimeout(() => btn.textContent = '📋 Copiar', 2000);
+        }
+
+        updateAnchor();
+        generateReply();
+    </script>
+</body>
+</html>

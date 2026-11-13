@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pedro Soares | Lavvi Private Wealth • Apresentação Executiva</title>
+  <link rel="stylesheet" href="assets/css/lavvi-design-system.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +43,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 60px;
+      height: 66px;
       background: rgba(10, 12, 16, 0.85);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
@@ -469,9 +470,14 @@
 
   <!-- Top Navigation Bar -->
   <header class="deck-top-bar">
-    <div class="brand-title">
-      <span>Lavvi Private Wealth</span>
-      <span class="brand-badge">Deck Executivo 4K</span>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="index.html" class="btn-action" title="Voltar ao Portal Oficial" style="font-weight: 600;">
+        ← Voltar ao Portal Oficial
+      </a>
+      <div class="brand-title">
+        <span>Lavvi Private Wealth</span>
+        <span class="brand-badge">Deck Executivo 4K</span>
+      </div>
     </div>
 
     <div class="deck-controls">
@@ -547,15 +553,15 @@
             type: "split_rev",
             category: "ESPORTE & BEM-ESTAR",
             title: "Complexo de Raquete & Raia de 60m",
-            desc: "Infraestrutura de resort internacional sem sair de casa. Quadras de tênis oficiais de saibro, quadras de beach tennis e a maior piscina residencial da região com raia de 60 metros.",
+            desc: "Infraestrutura de resort internacional sem sair de casa. 02 Quadras de Tênis Oficiais (18x36m), quadras de beach tennis e a maior piscina residencial da região com raia de 60 metros.",
             stats: [
-              { val: "02 Quadras", lbl: "Tênis de Saibro Oficiais (18x36m)" },
+              { val: "02 Quadras", lbl: "Tênis Oficiais (18x36m)" },
               { val: "02 Quadras", lbl: "Beach Tennis em Areia de Sílica" },
               { val: "60 Metros", lbl: "Piscina com Raia Olímpica" },
               { val: "Body Care", lbl: "Assessoria Esportiva Inclusa" }
             ],
             media: "assets/hipica_tenis.jpg",
-            caption: "Quadras Oficiais de Saibro (18x36m)"
+            caption: "02 Quadras de Tênis Oficiais (18x36m)"
           },
           {
             type: "split",
@@ -599,7 +605,6 @@
             desc: "Atendimento consultivo personalizado para aquisição de unidades no Jardim da Hípica. Tour privativo pelos decorados e simulação detalhada de fluxo de obra.",
             brokerPhoto: "assets/pedro_hipica_suit.jpg",
             phone: "(11) 96610-5952",
-            email: "pedro.soares@lavvi.com.br",
             creci: "CRECI-SP (Estágio em homologação)"
           }
         ]
@@ -638,7 +643,6 @@
             desc: "Solicite o memorial descritivo dos acabamentos importados e o catálogo de plantas privativas com Pedro Soares.",
             brokerPhoto: "assets/pedro_hipica_suit.jpg",
             phone: "(11) 96610-5952",
-            email: "pedro.soares@lavvi.com.br",
             creci: "CRECI-SP (Estágio em homologação)"
           }
         ]
@@ -677,7 +681,6 @@
             desc: "Ideal para moradia ou investimento com alta taxa de ocupação para médicos e executivos.",
             brokerPhoto: "assets/pedro_hipica_suit.jpg",
             phone: "(11) 96610-5952",
-            email: "pedro.soares@lavvi.com.br",
             creci: "CRECI-SP (Estágio em homologação)"
           }
         ]
@@ -795,7 +798,6 @@
             <div style="margin-top:20px; display:flex; flex-direction:column; gap:12px;">
               <div style="font-size:16px; color:#fff;">👤 <strong>Pedro Soares</strong> (${s.creci})</div>
               <div style="font-size:15px; color:var(--gold-light);">📱 <strong>WhatsApp:</strong> ${s.phone}</div>
-              <div style="font-size:14px; color:var(--text-muted);">✉️ <strong>E-mail:</strong> ${s.email}</div>
             </div>
             <div style="margin-top:28px;">
               <a href="https://wa.me/5511966105952" target="_blank" class="btn-action btn-action-gold" style="display:inline-flex; padding:12px 24px; font-size:15px;">

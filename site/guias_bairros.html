@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guias de Bairros & Lifestyle • Lavvi Private Wealth</title>
+  <meta name="description" content="Curadoria de vizinhança, escolas internacionais, hospitais de excelência, esportes e alta gastronomia nos 8 principais bairros nobres de São Paulo por Pedro Soares.">
+  <link rel="stylesheet" href="assets/css/lavvi-design-system.css">
+  <style>
+    body {
+      background-color: #F8FAFC;
+      color: #182842;
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .guias-main {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .guias-header {
+      border-bottom: 1px solid rgba(24, 40, 66, 0.08);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .guias-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(149, 123, 43, 0.12);
+      border: 1px solid rgba(149, 123, 43, 0.3);
+      border-radius: 9999px;
+      padding: 4px 14px;
+      margin-bottom: 12px;
+      color: #957B2B;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .guias-title {
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 3.2vw, 2.625rem);
+      font-weight: 700;
+      color: #182842;
+      margin: 0 0 10px 0;
+      line-height: 1.2;
+    }
+
+    .guias-sub {
+      color: #64748B;
+      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0;
+    }
+
+    /* Bairro Tabs Bar */
+    .bairro-tabs-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .bairro-tab-btn {
+      background: #FFFFFF;
+      border: 1px solid rgba(24, 40, 66, 0.12);
+      color: #334155;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bairro-tab-btn:hover {
+      border-color: #957B2B;
+      color: #182842;
+      background: #F8FAFC;
+    }
+
+    .bairro-tab-btn.active {
+      background: #182842;
+      border-color: #182842;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(24, 40, 66, 0.2);
+    }
+
+    /* Deep Guide Cross-Link Banner */
+    .deep-guide-banner {
+      background: linear-gradient(135deg, #182842 0%, #0d1726 100%);
+      border: 1px solid rgba(149, 123, 43, 0.4);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: #FFFFFF;
+    }
+
+    .deep-guide-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #957B2B;
+      color: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.2s ease;
+    }
+
+    .deep-guide-btn:hover {
+      background: #6B5820;
+    }
+
+    /* Bento Grid Layout */
+    .guide-bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .guide-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(24, 40, 66, 0.08);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .guide-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .guide-card-title {
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #182842;
+      margin: 0 0 16px 0;
+    }
+
+    .guide-card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .guide-card-list li {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #475569;
+      border-left: 2px solid rgba(149, 123, 43, 0.4);
+      padding-left: 10px;
+    }
+
+    .guide-card-list li strong {
+      color: #182842;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Walk Strip */
+    .walk-strip {
+      background: rgba(24, 40, 66, 0.03);
+      border: 1px solid rgba(24, 40, 66, 0.08);
+      border-radius: 14px;
+      padding: 24px;
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .walk-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .walk-cell strong {
+      color: #182842;
+      font-size: 0.85rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .walk-cell p {
+      font-size: 0.82rem;
+      color: #64748B;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .day-in-life-box {
+      background: rgba(149, 123, 43, 0.08);
+      border-left: 3px solid #957B2B;
+      padding: 20px 24px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+
+    .day-in-life-box strong {
+      color: #182842;
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 6px;
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+    }
+
+    .day-in-life-box p {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .guias-footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(24, 40, 66, 0.08);
+      padding: 28px 24px;
+      text-align: center;
+      color: #64748B;
+      font-size: 0.85rem;
+      background: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 66px Fixed Return Navigation Bar -->
+  <header class="companion-header">
+    <div class="companion-nav-left">
+      <a href="index.html" class="companion-return-btn" title="Retornar ao Portal Principal Lavvi">
+        ← Voltar ao Portal
+      </a>
+    </div>
+    <div class="companion-nav-title">
+      LAVVI <span style="color: #957B2B;">• GUIAS DE BAIRROS & LIFESTYLE</span>
+    </div>
+    <div class="companion-nav-right">
+      <a href="https://wa.me/5511966105952" target="_blank" class="companion-wa-btn">
+        💬 WhatsApp Peter: (11) 96610-5952
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="guias-main">
+
+    <!-- Header Section -->
+    <div class="guias-header">
+      <div>
+        <div class="guias-tag">04 / CURADORIA LOCAL & VIVÊNCIA</div>
+        <h1 class="guias-title">Guia de Vizinhança & Atividades Locais</h1>
+        <p class="guias-sub">
+          Mapeamento humano e estratégico do estilo de vida nos 8 bairros nobres onde estão implantados os empreendimentos Lavvi e NOVVO. Colégios de elite, hospitais de referência, clubes esportivos e gastronomia de autor.
+        </p>
+      </div>
+
+      <div>
+        <span style="font-size: 0.82rem; color: #64748B; font-weight: 600;">
+          Curadoria Pessoal: Pedro Soares
+        </span>
+      </div>
+    </div>
+
+    <!-- 8 Prime Neighborhood Tabs -->
+    <div class="bairro-tabs-bar" id="bairro-tabs-bar">
+      <button class="bairro-tab-btn active" onclick="switchBairroGuide('hipica', this)">🏇 Alto da Boa Vista</button>
+      <button class="bairro-tab-btn" onclick="switchBairroGuide('moema', this)">🕊️ Moema</button>
+      <button class="bairro-tab-btn" onclick="switchBairroGuide('paraiso', this)">🌿 Paraíso & Jardins</button>
+      <button class="bairro-tab-btn" onclick="switchBairroGuide('brooklin', this)">🏙️ Brooklin & Berrini</button>
+      <button class="bairro-tab-btn" onclick="switchBairroGuide('perdizes', this)">🎭 Perdizes & Pompéia</button>
+      <button class="bairro-tab-btn" onclick="switchBairroGuide('klabin', this)">🌳 Chácara Klabin</button>
+      <button class="bairro-tab-btn" onclick="switchBairroGuide('analia_franco', this)">💎 Anália Franco</button>
+      <button class="bairro-tab-btn" onclick="switchBairroGuide('marajoara', this)">⛳ Jardim Marajoara</button>
+    </div>
+
+    <!-- Deep Guide Cross-Link Banner -->
+    <div class="deep-guide-banner" id="deep-guide-banner">
+      <div>
+        <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #D4AF37; font-weight: 700;">Guia Especial Aprofundado</div>
+        <div style="font-size: 1.15rem; font-weight: 700; margin-top: 2px;">A Rota Oculta de Vinhos & Lifestyle no Alto da Boa Vista</div>
+        <div style="font-size: 0.82rem; color: #CBD5E1; margin-top: 4px;">Explore o roteiro gastronômico, adegas raras e caminhadas bucólicas ao redor do Jardim da Hípica.</div>
+      </div>
+      <a href="guia_alto_da_boa_vista.html" class="deep-guide-btn">
+        Acessar Guia Aprofundado &rarr;
+      </a>
+    </div>
+
+    <!-- Dynamic Bento Content Container -->
+    <div id="guide-content-container">
+      <!-- Populated via JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- Footer Air-Gap Compliance -->
+  <footer class="guias-footer">
+    <p style="margin: 0 0 6px 0; font-weight: 600; color: #182842;">
+      Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952
+    </p>
+    <p style="margin: 0; font-size: 0.78rem;">
+      Atendimento consultivo e assessoria de realocação para famílias e investidores na Zona Sul de São Paulo.
+    </p>
+  </footer>
+
+  <script>
+    const neighborhoodGuides = {
+      hipica: {
+        title: "Alto da Boa Vista & Jardim da Hípica",
+        schools: [
+          { name: "Chapel School (Escola Maria Imaculada)", desc: "Tradicional currículo americano e IB (a 8 min de carro)" },
+          { name: "Escola Suíço-Brasileira de São Paulo", desc: "Bilinguismo alemão/inglês e padrão internacional europeu" },
+          { name: "Escola Rudolf Steiner (Waldorf)", desc: "Pioneira na pedagogia antroposófica e campus integrado à natureza" }
+        ],
+        hospitals: [
+          { name: "Hospital Israelita Albert Einstein (Unidade Chácara Flora)", desc: "Atendimento ambulatorial e diagnóstico de ponta a 5 minutos" },
+          { name: "Fleury Medicina Diagnóstica", desc: "Unidade nobre de exames na Av. Adolfo Pinheiro" },
+          { name: "Hospital São Luiz Morumbi", desc: "Pronto-atendimento de alta complexidade a poucos minutos pela Ponte Laguna" }
+        ],
+        sports: [
+          { name: "Clube Hípico de Santo Amaro (CHSA)", desc: "330.000 m² de verde preservado exatamente em frente ao Jardim da Hípica" },
+          { name: "Parque Severo Gomes", desc: "Santuário verde com bosque de amoreiras e pista de cooper silenciosa na Granja Julieta" },
+          { name: "Complexo de Lazer Jardim da Hípica", desc: "02 Quadras de Tênis Oficiais (18x36m) + 02 Beach Tennis + Piscina com raia de 60m" }
+        ],
+        gastro: [
+          { name: "Ristorante Vicolo Nostro", desc: "Alta culinária italiana com pátio romântico e adega clássica na Granja Julieta" },
+          { name: "St. Marche — Chácara Flora", desc: "Empório gourmet, padaria artesanal e queijos selecionados na Rua Sócrates" },
+          { name: "Bráz Pizzaria", desc: "Área de atendimento e delivery da pizzaria mais premiada da cidade" }
+        ],
+        walkscore: {
+          fiveMin: "Praça Pública de 10.000 m² (Benedito Abbud) e portaria do Clube Hípico de Santo Amaro",
+          tenMin: "Cafés artesanais, padarias tradicionais e farmácias boutique na Adolfo Pinheiro",
+          fifteenMin: "Parque Severo Gomes e Estação Alto da Boa Vista (Metrô Linha 5-Lilás)"
+        },
+        dayInLife: "Um sábado perfeito: despertar com sol suave nas suítes voltadas para a Praça de 10.000 m², caminhar sob a copa das árvores centenárias até o Parque Severo Gomes para um café artesanal, voltar para uma partida de tênis na quadra oficial do condomínio e terminar o dia assistindo ao pôr do sol sobre o Clube Hípico no terraço privativo."
+      },
+      moema: {
+        title: "Moema Pássaros & Moema Índios",
+        schools: [
+          { name: "Escola Móbile", desc: "Uma das escolas mais bem pontuadas do ENEM e vestibulares de SP (a 190m do Villa Moema)" },
+          { name: "Colégio Vértice", desc: "Excelência acadêmica, disciplina e formação integral de liderança" },
+          { name: "CONSA (Colégio Franciscano N. Sra. Aparecida)", desc: "Mais de 80 anos de tradição em campus arborizado de 20.000 m²" }
+        ],
+        hospitals: [
+          { name: "Hospital Alvorada Moema", desc: "Referência em cirurgia e pronto-socorro ortopédico de alta complexidade" },
+          { name: "Alta Excelência Diagnóstica Moema", desc: "Medicina laboratorial e genética premium" },
+          { name: "Hospital e Maternidade Santa Joana / Pro Matre", desc: "Acesso rápido pela Av. 23 de Maio" }
+        ],
+        sports: [
+          { name: "Parque do Ibirapuera", desc: "O coração verde de São Paulo a poucas quadras de caminhada plana e arborizada" },
+          { name: "Clube Atlético Monte Líbano & Esporte Clube Sírio", desc: "Clubes de tradição secular e alta convivência social" },
+          { name: "Play Padel Moema & Bodytech Lavandisca", desc: "Centros esportivos modernos com quadras panorâmicas e raias aquecidas" }
+        ],
+        gastro: [
+          { name: "Bráz Pizzaria Moema", desc: "A pizzaria mais premiada do Brasil na Rua Graúna" },
+          { name: "Restaurantes e Empórios das Ruas Gaivota e Canário", desc: "Caminhadas gastronômicas com bistrôs italianos e adegas boutique" },
+          { name: "Kinoshita (Vila Nova Conceição)", desc: "1 Estrela Michelin a 14 minutos a pé de Moema Pássaros" }
+        ],
+        walkscore: {
+          fiveMin: "Padarias artesanais, quitandas nobres e empórios gourmet no quadrilátero nobre",
+          tenMin: "Estação Moema ou Eucaliptos (Metrô Linha 5-Lilás) e Shopping Ibirapuera",
+          fifteenMin: "Portão 7 do Parque do Ibirapuera para cooper matinal"
+        },
+        dayInLife: "A rotina em Moema é feita a pé: caminhar sem tirar o carro da garagem para buscar pão fresco na Gaivota, estender até o Parque Ibirapuera para uma corrida ao redor do lago, almoçar em uma cantina charmosa na Canário e voltar para a tranquilidade de um empreendimento protegido pelo gabarito de Congonhas."
+      },
+      paraiso: {
+        title: "Paraíso & Eixo Paulista / Jardins",
+        schools: [
+          { name: "Colégio Dante Alighieri", desc: "Tradição italiana e uma das mais nobres instituições de ensino do país" },
+          { name: "Colégio Bandeirantes", desc: "Polo de excelência em ciências exatas e aprovação nos vestibulares mais disputados" },
+          { name: "Colégio Santo Américo (acesso rápido)", desc: "Formação humanista beneditina tradicional" }
+        ],
+        hospitals: [
+          { name: "HCor (Hospital do Coração)", desc: "Referência latino-americana em cardiologia a passos do T.O.M. Paraíso" },
+          { name: "Beneficência Portuguesa de São Paulo (BP Mirante)", desc: "Maior polo médico privado da América Latina" },
+          { name: "Hospital Alemão Oswaldo Cruz & Santa Catarina", desc: "Centros médicos de padrão internacional na Av. Paulista" }
+        ],
+        sports: [
+          { name: "Parque da Aclimação", desc: "Lago sereno e área verde preservada para caminhadas matinais" },
+          { name: "Bodytech Paulista & Jardins", desc: "Academias completas de alto padrão na região" }
+        ],
+        gastro: [
+          { name: "Japan House & Eixo Cultural da Paulista", desc: "Cultura, gastronomia japonesa de autor e arte contemporânea" },
+          { name: "Bistrôs das Ruas Tutóia e Abílio Soares", desc: "Almoços de negócios discretos e alta culinária internacional" }
+        ],
+        walkscore: {
+          fiveMin: "Estação Paraíso (Conexão Linhas 1-Azul e 2-Verde) e HCor",
+          tenMin: "Avenida Paulista, Sesc Paulista e Japan House",
+          fifteenMin: "Shopping Pátio Paulista e Parque da Aclimação"
+        },
+        dayInLife: "O dinamismo cosmopolita de quem faz tudo a pé: metrô na porta para cruzar a cidade em minutos, polo médico global para médicos e investidores de saúde, e o privilégio de caminhar até a Paulista para exposições e restaurantes premiados."
+      },
+      brooklin: {
+        title: "Brooklin & Polo Chucri Zaidan",
+        schools: [
+          { name: "Colégio Anhembi Morumbi", desc: "Tradição de ensino sólido na Zona Sul" },
+          { name: "Escola Waldorf Rudolf Steiner (fácil acesso)", desc: "Formação humanista balanceada" },
+          { name: "Graded School (São Paulo Graded - acesso Marginal)", desc: "A mais conceituada escola internacional americana de SP" }
+        ],
+        hospitals: [
+          { name: "Hospital Moriah", desc: "Hotelaria hospitalar e cirurgia robótica de ponta" },
+          { name: "Hospital Israelita Albert Einstein (Morumbi)", desc: "Acesso rápido pela Ponte Estaiada ou Laguna" },
+          { name: "Hospital São Luiz Morumbi", desc: "Pronto-atendimento de alta complexidade" }
+        ],
+        sports: [
+          { name: "Sociedade Hípica Paulista (Berrini)", desc: "Tradição equestre e esportiva no coração corporativo" },
+          { name: "Parque Burle Marx", desc: "Jardins históricos projetados pelo mestre Roberto Burle Marx" },
+          { name: "Ciclovia do Rio Pinheiros", desc: "Mobilidade ativa e lazer seguro à beira do rio" }
+        ],
+        gastro: [
+          { name: "Restaurantes do MorumbiShopping e Market Place", desc: "Mais de 80 opções gastronômicas nacionais e internacionais" },
+          { name: "Bistrôs e Wine Bars da Padre Antônio José", desc: "O charme das ruas arborizadas e tranquilas do Brooklin Velho" }
+        ],
+        walkscore: {
+          fiveMin: "Eixo corporativo Chucri Zaidan e shoppings de padrão internacional",
+          tenMin: "Estação Morumbi (Linha 9-Esmeralda / futura Linha 17-Ouro)",
+          fifteenMin: "Parque Bruno Covas e Ponte Estaiada"
+        },
+        dayInLife: "Para o executivo ou investidor que valoriza o tempo: morar a minutos a pé dos principais centros financeiros do país, sem trânsito, com infraestrutura de lazer completa e valorização assegurada pelo adensamento planejado da Operação Urbana."
+      },
+      perdizes: {
+        title: "Perdizes & Pompéia (Eixo Well Perdizes)",
+        schools: [
+          { name: "Colégio Santa Marcelina", desc: "Tradição centenária e formação humanista de excelência em Perdizes" },
+          { name: "Colégio Pentágono", desc: "Excelência pedagógica e programa internacional bilíngue" },
+          { name: "PUC-SP (Pontifícia Universidade Católica)", desc: "Polo acadêmico e cultural histórico de São Paulo" }
+        ],
+        hospitals: [
+          { name: "Hospital Albert Einstein — Unidade Perdizes", desc: "Pronto-atendimento, clínica diagnóstica e cirurgias ambulatoriais" },
+          { name: "Hospital São Camilo Pompéia", desc: "Complexo hospitalar geral de excelência médica" },
+          { name: "Hospital Samaritano Higienópolis", desc: "Acesso rápido pela Avenida Pacaembu" }
+        ],
+        sports: [
+          { name: "Parque da Água Branca", desc: "137.000 m² de área verde rústica com feiras de orgânicos e trilhas sombreadas" },
+          { name: "Allianz Parque & Arena Palmeiras", desc: "Shows internacionais, centro de convenções e eventos esportivos" },
+          { name: "Clube Espéria & Academias Boutique", desc: "Infraestrutura esportiva para todas as idades" }
+        ],
+        gastro: [
+          { name: "Pizzarias Artesanais de Perdizes", desc: "Cantinas italianas de tradição na Cardoso de Almeida e Monte Alegre" },
+          { name: "Cafés e Bistrôs da Rua Itapicuru", desc: "Rotas gastronômicas intimistas e padarias artesanais de fermentação natural" }
+        ],
+        walkscore: {
+          fiveMin: "Comércio de bairro nobre, padarias e farmácias na Cardoso de Almeida",
+          tenMin: "PUC-SP, Teatro TUCA e Parque da Água Branca",
+          fifteenMin: "Shopping Bourbon e Allianz Parque"
+        },
+        dayInLife: "Caminhadas tranquilas pelas ladeiras charmosas de Perdizes, comprando frutas frescas na feira de orgânicos do Parque da Água Branca aos domingos e aproveitando a conveniência de um dos bairros mais tradicionais e arborizados da Zona Oeste."
+      },
+      klabin: {
+        title: "Chácara Klabin & Vila Mariana",
+        schools: [
+          { name: "Colégio Marista Arquidiocesano", desc: "Um dos maiores e mais tradicionais colégios de São Paulo, fundado em 1858" },
+          { name: "Liceu Pasteur (Currículo Franco-Brasileiro)", desc: "Excelência pedagógica internacional com diploma francês" },
+          { name: "Colégio Viver Modo de Saber", desc: "Inovação pedagógica e campus acolhedor" }
+        ],
+        hospitals: [
+          { name: "Hospital Sepaco", desc: "Referência em cirurgia e atendimento pediátrico e adulto" },
+          { name: "Hospital Santa Cruz", desc: "Tradição em clínica médica e diagnósticos avançados" },
+          { name: "Hospital São Paulo (Unifesp)", desc: "Polo de pesquisa e excelência médica acadêmica" }
+        ],
+        sports: [
+          { name: "Parque da Aclimação", desc: "Lago natural, pistas de corrida e gramados para relaxamento a poucos minutos" },
+          { name: "Praça Giordano Bruno", desc: "Espaço de convivência ao ar livre e caminhadas com pets" },
+          { name: "Clubes de Raquete & Academias", desc: "Centros de tênis e natação no miolo plano da Klabin" }
+        ],
+        gastro: [
+          { name: "Restaurantes e Empórios da Rua Vergueiro", desc: "Gastronomia variada, adegas e padarias nobres de estilo europeu" },
+          { name: "Pizzarias Tradicionais da Vila Mariana", desc: "Tradição paulistana com forno a lenha e massas artesanais" }
+        ],
+        walkscore: {
+          fiveMin: "Estação Chácara Klabin (Integração Linhas 2-Verde e 5-Lilás)",
+          tenMin: "Empórios gourmet e padarias da Rua Pedro Pomponazzi",
+          fifteenMin: "Parque da Aclimação e Shopping Metrô Santa Cruz"
+        },
+        dayInLife: "A tranquilidade de um bairro planejado com ruas largas e arborizadas, duas linhas de metrô para acessar a Paulista em 8 minutos e a Faria Lima em 15, com segurança comunitária exemplar para caminhadas a qualquer hora."
+      },
+      analia_franco: {
+        title: "Anália Franco & Tatuapé",
+        schools: [
+          { name: "Colégio Agostiniano Mendel", desc: "Top 10 do ENEM em São Paulo com tradição acadêmica rigorosa" },
+          { name: "Colégio Santo Antônio de Lisboa", desc: "Tradição secular e infraestrutura esportiva completa" },
+          { name: "Colégio Espírito Santo", desc: "Formação integral bilíngue e projetos socioambientais" }
+        ],
+        hospitals: [
+          { name: "Hospital e Maternidade São Luiz — Anália Franco", desc: "Complexo hospitalar de referência com heliponto e hotelaria de ponta" },
+          { name: "Hospital Vitória (Rede Américas)", desc: "Centro de excelência médica e cirurgia de alta complexidade" },
+          { name: "Fleury Anália Franco", desc: "Unidade nobre de medicina diagnóstica" }
+        ],
+        sports: [
+          { name: "Parque CERET (Centro Esportivo)", desc: "286.000 m² de área verde com piscina pública gigante, pistas de atletismo e quadras de tênis" },
+          { name: "Sport Club Corinthians Paulista (Parque São Jorge)", desc: "Clube esportivo tradicional e parque aquático" },
+          { name: "Academias de Beach Tennis & Padel", desc: "Arenas de areia cobertas e climatizadas no Jardim Anália Franco" }
+        ],
+        gastro: [
+          { name: "Polo Gastronômico da Rua Itapura e Azevedo Soares", desc: "Restaurantes de alta gastronomia, casas de carnes nobres e bares sofisticados" },
+          { name: "Shopping Anália Franco", desc: "Grifes de luxo, livrarias e cinema Prime" }
+        ],
+        walkscore: {
+          fiveMin: "Parque CERET para corridas e atividades ao ar livre",
+          tenMin: "Shopping Anália Franco e polo gastronômico da Eduardo Cotching",
+          fifteenMin: "Futura Estação Vila Formosa (Metrô Linha 2-Verde)"
+        },
+        dayInLife: "O glamour e a pujança da Zona Leste: correr pelas manhãs sob o verde do CERET, fazer compras com calma no Shopping Anália Franco e jantar em uma das dezenas de opções da Rua Itapura, com mobilidade expressa pelo prolongamento do Metrô Verde."
+      },
+      marajoara: {
+        title: "Jardim Marajoara & Eixo Interlagos",
+        schools: [
+          { name: "Colégio Santa Maria", desc: "Mais de 180.000 m² de campus verde com metodologia humanista consolidada" },
+          { name: "Colégio Magno / Mágico de Oz", desc: "Educação bilíngue com certificação internacional da UNESCO" },
+          { name: "The British School (fácil acesso)", desc: "Currículo britânico com diploma internacional" }
+        ],
+        hospitals: [
+          { name: "Hospital e Maternidade Vida's", desc: "Atendimento ambulatorial e emergências" },
+          { name: "Hospital Geral de Pedreira & Centros Diagnósticos", desc: "Rede de suporte médico na região" },
+          { name: "Hospital Israelita Albert Einstein (Chácara Flora)", desc: "A 10 minutos pela Washington Luís" }
+        ],
+        sports: [
+          { name: "São Paulo Golf Club", desc: "O mais antigo e nobre campo de golfe do Brasil, fundado em 1901" },
+          { name: "Represa de Guarapiranga & Iate Clubes", desc: "Esportes náuticos, vela, remo e windsurf a poucos minutos" },
+          { name: "Parque do Cordeiro", desc: "Pista de caminhada, teatro de arena e área verde revitalizada" }
+        ],
+        gastro: [
+          { name: "Restaurantes e Empórios da Rua Sócrates", desc: "O polo gourmet do Jardim Marajoara com bistrôs e padarias artesanais" },
+          { name: "Churrascarias Tradicionais e Culinária Alemã", desc: "Tradição de famílias imigrantes do interior e Zona Sul" }
+        ],
+        walkscore: {
+          fiveMin: "Empórios locais, padarias nobres e farmácias na Alberto de Zagottis",
+          tenMin: "Colégios tradicionais e praças arborizadas do Marajoara",
+          fifteenMin: "Shopping SP Market e Estação Jurubatuba (Linha 9-Esmeralda)"
+        },
+        dayInLife: "A sensação de viver em uma cidade do interior com infraestrutura de metrópole: ruas tranquilas cercadas por árvores frondosas, finais de semana jogando golfe ou velejando na represa, com a tranquilidade de estar a 15 minutos do eixo Berrini/Chucri Zaidan."
+      }
+    };
+
+    function switchBairroGuide(bKey, btn) {
+      document.querySelectorAll('.bairro-tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderBairroGuide(bKey);
+    }
+
+    function renderBairroGuide(bKey) {
+      const g = neighborhoodGuides[bKey];
+      const container = document.getElementById('guide-content-container');
+      if (!g || !container) return;
+
+      container.innerHTML = `
+        <div class="guide-bento-grid">
+          <!-- Card Escolas -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🎓</div>
+            <h4 class="guide-card-title">Escolas Tradicionais & Internacionais</h4>
+            <ul class="guide-card-list">
+              ${g.schools.map(s => `<li><strong>${s.name}</strong>${s.desc}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- Card Hospitais -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🏥</div>
+            <h4 class="guide-card-title">Hospitais & Centros de Excelência</h4>
+            <ul class="guide-card-list">
+              ${g.hospitals.map(h => `<li><strong>${h.name}</strong>${h.desc}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- Card Esportes -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🎾</div>
+            <h4 class="guide-card-title">Esportes de Raquete & Parques</h4>
+            <ul class="guide-card-list">
+              ${g.sports.map(sp => `<li><strong>${sp.name}</strong>${sp.desc}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- Card Gastronomia -->
+          <div class="guide-card">
+            <div class="guide-card-icon">🍷</div>
+            <h4 class="guide-card-title">Gastronomia Autoral & Vinhos</h4>
+            <ul class="guide-card-list">
+              ${g.gastro.map(ga => `<li><strong>${ga.name}</strong>${ga.desc}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Walk Radii -->
+        <div class="walk-strip">
+          <div class="walk-cell">
+            <strong>🚶‍♂️ A 5 Minutos a Pé:</strong>
+            <p>${g.walkscore.fiveMin}</p>
+          </div>
+          <div class="walk-cell">
+            <strong>🚶‍♂️ A 10 Minutos a Pé:</strong>
+            <p>${g.walkscore.tenMin}</p>
+          </div>
+          <div class="walk-cell">
+            <strong>🚶‍♂️ A 15 Minutos a Pé:</strong>
+            <p>${g.walkscore.fifteenMin}</p>
+          </div>
+        </div>
+
+        <!-- A Day In The Life -->
+        <div class="day-in-life-box">
+          <strong>📖 Um Dia no Bairro por Pedro Soares:</strong>
+          <p>${g.dayInLife}</p>
+        </div>
+      `;
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBairroGuide('hipica');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Crédito Imobiliário & Bancos • Lavvi Private Wealth</title>
+  <meta name="description" content="Radar e simulador de crédito imobiliário com taxas vigentes dos 12 principais bancos do Brasil, amortização SAC vs PRICE e consultoria neutra com Pedro Soares.">
+  <link rel="stylesheet" href="assets/css/lavvi-design-system.css">
+  <style>
+    body {
+      background: radial-gradient(circle at 50% 0%, #151C28 0%, #080C13 100%);
+      color: #F0F6FC;
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .credit-main {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .credit-header-box {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 28px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    .credit-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(149, 123, 43, 0.15);
+      border: 1px solid rgba(149, 123, 43, 0.4);
+      border-radius: 9999px;
+      padding: 4px 14px;
+      margin-bottom: 12px;
+      color: #E2C068;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .credit-title {
+      font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 3.2vw, 2.625rem);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin: 0 0 12px 0;
+      line-height: 1.2;
+    }
+
+    .credit-sub {
+      color: #94A3B8;
+      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+      line-height: 1.6;
+      max-width: 820px;
+      margin: 0;
+    }
+
+    .audit-badge {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 7px 16px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .disclaimer-box {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(149, 123, 43, 0.25);
+      border-left: 4px solid #957B2B;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .bento-panel {
+      background: rgba(18, 24, 38, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 36px;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(16px);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+
+    .credit-quick-val, .credit-quick-term {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #CBD5E1;
+      font-size: 0.75rem;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .credit-quick-val:hover, .credit-quick-term:hover {
+      border-color: #957B2B;
+      color: #FFFFFF;
+    }
+
+    .credit-amort-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: transparent;
+      color: #94A3B8;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .credit-amort-btn.active {
+      border-color: #957B2B;
+      background: rgba(149, 123, 43, 0.25);
+      color: #FFFFFF;
+    }
+
+    .spread-barometer {
+      margin-top: 28px;
+      padding: 22px 26px;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.12) 0%, rgba(13, 148, 136, 0.08) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .credit-cat-pill {
+      background: rgba(255, 255, 255, 0.05);
+      color: #CBD5E1;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .credit-cat-pill:hover {
+      border-color: #957B2B;
+      color: #FFFFFF;
+    }
+
+    .credit-cat-pill.active {
+      background: #957B2B;
+      color: #FFFFFF;
+      border-color: #957B2B;
+      box-shadow: 0 4px 14px rgba(149, 123, 43, 0.35);
+    }
+
+    .credit-footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 28px 24px;
+      text-align: center;
+      color: #64748B;
+      font-size: 0.85rem;
+      background: #05080E;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 66px Fixed Return Navigation Bar -->
+  <header class="companion-header companion-header-dark">
+    <div class="companion-nav-left">
+      <a href="index.html" class="companion-return-btn" title="Retornar ao Portal Principal Lavvi">
+        ← Voltar ao Portal
+      </a>
+    </div>
+    <div class="companion-nav-title">
+      LAVVI <span style="color: #957B2B;">• AUDITORIA & SIMULADOR DE CRÉDITO</span>
+    </div>
+    <div class="companion-nav-right">
+      <a href="https://wa.me/5511966105952" target="_blank" class="companion-wa-btn">
+        💬 WhatsApp Peter: (11) 96610-5952
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Simulator Container -->
+  <main class="credit-main">
+
+    <!-- Header Section -->
+    <div class="credit-header-box">
+      <div>
+        <div class="credit-tag">
+          <span>🏦</span> 06 / AUDITORIA FINANCEIRA & CRÉDITO IMOBILIÁRIO
+        </div>
+        <h1 class="credit-title">
+          Radar de Crédito Imobiliário & Simulador de Bancos
+        </h1>
+        <p class="credit-sub">
+          Compare as taxas médias reais vigentes (SFH + TR) dos 12 principais bancos do Brasil, compare o sistema SAC (parcelas decrescentes) com a Tabela PRICE (parcelas fixas) e planeje o repasse das chaves com consultoria independente.
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+        <div class="audit-badge">
+          <span style="width: 8px; height: 8px; background: #10B981; border-radius: 50%;"></span>
+          Dados Auditados • Fonte: Banco Central do Brasil & iBREP
+        </div>
+        <span style="font-size: 0.75rem; color: #64748B;">Taxas referenciais atualizadas periodicamente</span>
+      </div>
+    </div>
+
+    <!-- Safe Harbor Disclaimer Banner -->
+    <div class="disclaimer-box">
+      <span style="font-size: 1.3rem; line-height: 1;">🛡️</span>
+      <div style="font-size: 0.82rem; color: #94A3B8; line-height: 1.5;">
+        <strong style="color: #F8FAFC;">Aviso de Transparência & Dados Oficiais:</strong>
+        As taxas e parcelas simuladas são estimativas referenciais de mercado (médias divulgadas pelo Banco Central do Brasil e iBREP). 
+        <strong>As condições finais exatas (taxa individual, CET, seguros MIP/DFI e tarifas) devem ser consultadas diretamente no simulador oficial de cada instituição financeira.</strong> 
+        Dúvidas sobre o fluxo 35/65 na obra Lavvi ou enquadramento de crédito podem ser esclarecidas diretamente com Pedro Soares: 
+        <a href="https://wa.me/5511966105952" target="_blank" style="color: #D4AF37; font-weight: 700; text-decoration: underline;">(11) 96610-5952</a>.
+      </div>
+    </div>
+
+    <!-- Interactive Bento Control Panel -->
+    <div class="bento-panel">
+      <div class="bento-grid">
+        
+        <!-- Slider 1: Saldo Financiado -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+            <label style="font-size: 0.82rem; color: #94A3B8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Saldo a Financiar (Chaves)</label>
+            <span id="credit-disp-amount" style="font-size: 1.55rem; font-weight: 800; color: #D4AF37;">R$ 1.500.000</span>
+          </div>
+          <input type="range" id="credit-input-amount" min="300000" max="5000000" step="50000" value="1500000" 
+                 style="width: 100%; height: 8px; border-radius: 4px; accent-color: #957B2B; cursor: pointer; background: #2D3748;">
+          <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+            <button class="credit-quick-val" data-val="800000">R$ 800k (Studio / 1D)</button>
+            <button class="credit-quick-val" data-val="1500000">R$ 1.5M (Residences)</button>
+            <button class="credit-quick-val" data-val="2500000">R$ 2.5M (Private House)</button>
+          </div>
+        </div>
+
+        <!-- Slider 2: Prazo em Anos -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+            <label style="font-size: 0.82rem; color: #94A3B8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Prazo do Financiamento</label>
+            <span id="credit-disp-term" style="font-size: 1.55rem; font-weight: 800; color: #60A5FA;">30 anos (360 meses)</span>
+          </div>
+          <input type="range" id="credit-input-term" min="10" max="35" step="5" value="30" 
+                 style="width: 100%; height: 8px; border-radius: 4px; accent-color: #60A5FA; cursor: pointer; background: #2D3748;">
+          <div style="display: flex; gap: 8px; margin-top: 12px;">
+            <button class="credit-quick-term" data-term="15">15 anos</button>
+            <button class="credit-quick-term" data-term="20">20 anos</button>
+            <button class="credit-quick-term" data-term="30">30 anos (Padrão)</button>
+          </div>
+        </div>
+
+        <!-- Amortization System Toggle: SAC vs PRICE -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 20px;">
+          <div style="font-size: 0.8rem; color: #8B949E; margin-bottom: 10px; font-weight: 700; text-transform: uppercase;">Modelo de Amortização</div>
+          <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+            <button id="credit-btn-sac" class="credit-amort-btn active">SAC (Decrescente)</button>
+            <button id="credit-btn-price" class="credit-amort-btn">PRICE (Fixa)</button>
+          </div>
+          <div style="font-size: 0.76rem; color: #94A3B8; line-height: 1.4;">
+            💡 <em>O SAC inicia com amortização linear fixa gerando parcelas decrescentes e menor custo total de juros ao longo do contrato.</em>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Spread Hero Barometer -->
+      <div id="credit-spread-barometer" class="spread-barometer">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="font-size: 2.2rem;">💎</div>
+          <div>
+            <div style="font-size: 0.8rem; color: #6EE7B7; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">Assimetria Financeira de Mercado</div>
+            <div id="credit-spread-desc" style="font-size: 1.15rem; color: #FFFFFF; font-weight: 600; line-height: 1.4;">
+              Calculando economia comparativa entre instituições...
+            </div>
+          </div>
+        </div>
+        <div>
+          <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20simulei%20o%20cr%C3%A9dito%20imobili%C3%A1rio%20no%20portal%20e%20gostaria%20de%20uma%20an%C3%A1lise%20independente%20de%20taxas." target="_blank" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #FFFFFF; text-decoration: none; padding: 12px 22px; border-radius: 8px; font-weight: 700; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(16,185,129,0.35);">
+            💬 Consultar Peter no WhatsApp &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px;">
+      <button class="credit-cat-pill active" data-cat="all">Todos os 12 Bancos</button>
+      <button class="credit-cat-pill" data-cat="publico">Públicos & Associações</button>
+      <button class="credit-cat-pill" data-cat="digital">Bancos Digitais</button>
+      <button class="credit-cat-pill" data-cat="cooperativa">Cooperativas (Sicoob / Sicredi / Unicred)</button>
+      <button class="credit-cat-pill" data-cat="wealth">Wealth & Private (BTG / Safra)</button>
+      <button class="credit-cat-pill" data-cat="privado">Bancões Privados (Itaú / Bradesco / Santander)</button>
+    </div>
+
+    <!-- 12 Bank Simulation Cards Grid -->
+    <div id="credit-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 24px; margin-bottom: 44px;">
+      <!-- Populated via JavaScript -->
+    </div>
+
+    <!-- Advisory Value Proposition -->
+    <div style="background: linear-gradient(135deg, rgba(149,123,43,0.12) 0%, rgba(22, 27, 34, 0.95) 100%); border: 1px solid rgba(149, 123, 43, 0.35); border-radius: 18px; padding: 32px; margin-bottom: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;">
+      <div>
+        <div style="color: #D4AF37; font-weight: 800; font-size: 1.15rem; margin-bottom: 8px;">🤝 Auditoria Neutra e Consultiva</div>
+        <p style="color: #CBD5E1; font-size: 0.88rem; line-height: 1.6; margin: 0;">
+          Diferente do gerente bancário que possui metas da sua própria instituição, nossa consultoria é 100% isenta e sem taxas para o comprador. Ajudamos a selecionar o banco ideal, aprovar com margem e expurgar tarifas embutidas.
+        </p>
+      </div>
+      <div>
+        <div style="color: #34D399; font-weight: 800; font-size: 1.15rem; margin-bottom: 8px;">🔄 Portabilidade a Custo Zero (Lei 14.382/2022)</div>
+        <p style="color: #CBD5E1; font-size: 0.88rem; line-height: 1.6; margin: 0;">
+          Pela legislação vigente, você pode iniciar o financiamento com o banco repassador da obra e transferir a dívida para a Caixa, Inter ou cooperativa sem novo ITBI e sem novas taxas de cartório de avaliação.
+        </p>
+      </div>
+      <div>
+        <div style="color: #60A5FA; font-weight: 800; font-size: 1.15rem; margin-bottom: 8px;">🛡️ Estratégia de Caixa na Obra (35/65)</div>
+        <p style="color: #CBD5E1; font-size: 0.88rem; line-height: 1.6; margin: 0;">
+          Durante os meses de construção, seu capital permanece preservado e rendendo. Você desembolsa apenas as parcelas corrigidas pelo INCC (sem juros de financiamento), contratando o banco apenas no habite-se.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Air-Gap Compliance -->
+  <footer class="credit-footer">
+    <p style="margin: 0 0 6px 0; font-weight: 600; color: #CBD5E1;">
+      Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952
+    </p>
+    <p style="margin: 0; font-size: 0.78rem;">
+      Simulação comparativa indicativa baseada em taxas médias do BACEN/iBREP. Condições finais sujeitas à análise de crédito bancária.
+    </p>
+  </footer>
+
+  <script>
+    (function(){
+      // 12 Banks with verified interest rates
+      const banksData = [
+        {
+          "id": "caixa",
+          "nome": "Caixa Econômica Federal",
+          "sigla": "CAIXA",
+          "categoria": "Público Federal",
+          "categoria_slug": "publico",
+          "taxa_aa": 8.09,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 420,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#005CA9",
+          "cor_texto": "#FFFFFF",
+          "url_simulador_oficial": "https://www.caixa.gov.br/voce/habitacao/simulador/",
+          "pontos_fortes": "Menor taxa média do mercado nacional; maior operador do SFH e funding da Poupança SBPE.",
+          "destaque_tag": "Menor Taxa Oficial do País",
+          "indicado_para": "Compradores buscando o menor custo financeiro absoluto e maior economia em 30 anos."
+        },
+        {
+          "id": "poupex",
+          "nome": "Poupex (Associação de Poupança)",
+          "sigla": "POUPEX",
+          "categoria": "Público / Associação",
+          "categoria_slug": "publico",
+          "taxa_aa": 9.20,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 420,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#0B3B60",
+          "cor_texto": "#FFFFFF",
+          "url_simulador_oficial": "https://www.poupex.com.br/produtos/financiamento-imobiliario/",
+          "pontos_fortes": "Associação de poupança com taxa altamente atrativa, aberta tanto a militares quanto a civis.",
+          "destaque_tag": "Taxa Altamente Competitiva",
+          "indicado_para": "Compradores que buscam taxa quase no nível da Caixa com esteira especializada."
+        },
+        {
+          "id": "inter",
+          "nome": "Banco Inter",
+          "sigla": "INTER",
+          "categoria": "Digital Privado",
+          "categoria_slug": "digital",
+          "taxa_aa": 9.65,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.75,
+          "cor_marca": "#FF7A00",
+          "cor_texto": "#FFFFFF",
+          "url_simulador_oficial": "https://inter.co/pra-voce/credito-imobiliario/",
+          "pontos_fortes": "Processo 100% digital pelo app, aprovação rápida de crédito sem venda casada de pacotes caros.",
+          "destaque_tag": "Melhor Banco Digital",
+          "indicado_para": "Executivos e investidores que valorizam agilidade e esteira documental online."
+        },
+        {
+          "id": "sicoob",
+          "nome": "Sicoob (Sistema de Cooperativas)",
+          "sigla": "SICOOB",
+          "categoria": "Cooperativa de Crédito",
+          "categoria_slug": "cooperativa",
+          "taxa_aa": 9.87,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#003641",
+          "cor_texto": "#7BBF21",
+          "url_simulador_oficial": "https://www.sicoob.com.br/para-voce/credito-imobiliario",
+          "pontos_fortes": "Taxa sub-10% a.a.; distribuição anual de sobras (dividendos) proporcional aos juros pagos.",
+          "destaque_tag": "Distribuição Anual de Sobras",
+          "indicado_para": "Empresários, produtores e cooperados que buscam taxa justa e relacionamento comunitário."
+        },
+        {
+          "id": "unicred",
+          "nome": "Unicred",
+          "sigla": "UNICRED",
+          "categoria": "Cooperativa de Crédito",
+          "categoria_slug": "cooperativa",
+          "taxa_aa": 9.95,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#004B49",
+          "cor_texto": "#85C441",
+          "url_simulador_oficial": "https://www.unicred.com.br/",
+          "pontos_fortes": "Especializada no ecossistema de saúde (médicos, cirurgiões, dentistas) com assessoria dedicada.",
+          "destaque_tag": "Líder para Médicos & Área da Saúde",
+          "indicado_para": "Profissionais da saúde dos grandes hospitais da Zona Sul (Albert Einstein, Sírio, HCor)."
+        },
+        {
+          "id": "bb",
+          "nome": "Banco do Brasil",
+          "sigla": "BB",
+          "categoria": "Público / Misto",
+          "categoria_slug": "publico",
+          "taxa_aa": 10.24,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 420,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#FEE600",
+          "cor_texto": "#0038A8",
+          "url_simulador_oficial": "https://www.bb.com.br/site/pra-voce/financiamentos/financiamento-de-imoveis/",
+          "pontos_fortes": "Solidez centenária, capilaridade máxima, condições especiais para servidores públicos e agronegócio.",
+          "destaque_tag": "Tradicional & Forte no Agro",
+          "indicado_para": "Servidores públicos e famílias tradicionais do interior com relacionamento histórico."
+        },
+        {
+          "id": "sicredi",
+          "nome": "Sicredi",
+          "sigla": "SICREDI",
+          "categoria": "Cooperativa de Crédito",
+          "categoria_slug": "cooperativa",
+          "taxa_aa": 10.27,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#006325",
+          "cor_texto": "#FFFFFF",
+          "url_simulador_oficial": "https://www.sicredi.com.br/site/credito/credito-imobiliario/",
+          "pontos_fortes": "Atendimento consultivo personalizado, taxa competitiva frente aos bancões privados e participação nos resultados.",
+          "destaque_tag": "Excelência Cooperativa",
+          "indicado_para": "Empreendedores e comerciantes que buscam gerente com autonomia de negociação."
+        },
+        {
+          "id": "btg",
+          "nome": "BTG Pactual",
+          "sigla": "BTG",
+          "categoria": "Wealth Management / Privado",
+          "categoria_slug": "wealth",
+          "taxa_aa": 10.45,
+          "indexador": "TR ou IPCA",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.70,
+          "cor_marca": "#001E62",
+          "cor_texto": "#D4AF37",
+          "url_simulador_oficial": "https://banking.btgpactual.com/credito-imobiliario",
+          "pontos_fortes": "Operações estruturadas de crédito para clientes com portfólio custodiado; opção de Home Equity ágil.",
+          "destaque_tag": "Wealth & Private Banking",
+          "indicado_para": "Investidores com carteiras líquidas em ações e renda fixa que buscam alavancagem sem resgate."
+        },
+        {
+          "id": "safra",
+          "nome": "Banco Safra",
+          "sigla": "SAFRA",
+          "categoria": "Private Banking",
+          "categoria_slug": "wealth",
+          "taxa_aa": 10.80,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.70,
+          "cor_marca": "#0A1E3F",
+          "cor_texto": "#D4AF37",
+          "url_simulador_oficial": "https://www.safra.com.br/credito-imobiliario.htm",
+          "pontos_fortes": "Atendimento discreto e sob medida para tickets de financiamento acima de R$ 2.000.000.",
+          "destaque_tag": "Tradição Private Banking",
+          "indicado_para": "Grandes patrimônios e holdings familiares estruturadas."
+        },
+        {
+          "id": "bradesco",
+          "nome": "Bradesco",
+          "sigla": "BRADESCO",
+          "categoria": "Privado Tradicional",
+          "categoria_slug": "privado",
+          "taxa_aa": 11.76,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#CC092F",
+          "cor_texto": "#FFFFFF",
+          "url_simulador_oficial": "https://banco.bradesco/html/classic/produtos-servicos/emprestimo-e-financiamento/imoveis/",
+          "pontos_fortes": "Grande financiador de produção de obras; repasse ágil caso seja o banco repassador da incorporadora.",
+          "destaque_tag": "Varejo & Prime",
+          "indicado_para": "Correntistas Prime com pontuação consolidada de crédito."
+        },
+        {
+          "id": "santander",
+          "nome": "Santander",
+          "sigla": "SANTANDER",
+          "categoria": "Privado Tradicional",
+          "categoria_slug": "privado",
+          "taxa_aa": 11.82,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 420,
+          "cota_max_financiamento": 0.80,
+          "cor_marca": "#EC0000",
+          "cor_texto": "#FFFFFF",
+          "url_simulador_oficial": "https://www.santander.com.br/creditos-e-financiamentos/para-sua-casa/credito-imobiliario",
+          "pontos_fortes": "Esteira ágil, permite financiar despesas de ITBI e emolumentos de cartório embutidos no contrato.",
+          "destaque_tag": "Permite Financiar ITBI & Custas",
+          "indicado_para": "Compradores que querem diluir as custas de registro dentro do fluxo bancário."
+        },
+        {
+          "id": "itau",
+          "nome": "Itaú Unibanco",
+          "sigla": "ITAÚ",
+          "categoria": "Privado Tradicional",
+          "categoria_slug": "privado",
+          "taxa_aa": 11.86,
+          "indexador": "TR (Taxa Referencial)",
+          "prazo_max_meses": 360,
+          "cota_max_financiamento": 0.82,
+          "cor_marca": "#EC7000",
+          "cor_texto": "#001E62",
+          "url_simulador_oficial": "https://www.itau.com.br/creditos-e-financiamentos/imobiliario",
+          "pontos_fortes": "Maior banco privado do país, esteira integrada no app, relacionamento Personnalité e Private.",
+          "destaque_tag": "Maior Banco Privado do Brasil",
+          "indicado_para": "Correntistas que priorizam comodidade no próprio app, apesar do spread mais elevado."
+        }
+      ];
+
+      let currentAmount = 1500000;
+      let currentTermYears = 30;
+      let currentAmortType = 'SAC';
+      let currentCategory = 'all';
+
+      const inputAmount = document.getElementById('credit-input-amount');
+      const inputTerm = document.getElementById('credit-input-term');
+      const dispAmount = document.getElementById('credit-disp-amount');
+      const dispTerm = document.getElementById('credit-disp-term');
+      const btnSac = document.getElementById('credit-btn-sac');
+      const btnPrice = document.getElementById('credit-btn-price');
+      const cardsGrid = document.getElementById('credit-cards-grid');
+      const spreadDesc = document.getElementById('credit-spread-desc');
+
+      function formatBRL(val) {
+        return 'R$ ' + Math.round(val).toLocaleString('pt-BR');
+      }
+
+      function calculateSimulations() {
+        const months = currentTermYears * 12;
+        const amortMonthly = currentAmount / months;
+
+        return banksData.map((b, idx) => {
+          const rateYear = b.taxa_aa / 100.0;
+          const rateMonth = Math.pow(1.0 + rateYear, 1.0 / 12.0) - 1.0;
+          let firstInstallment = 0;
+          let lastInstallment = 0;
+          let totalInterest = 0;
+          let totalPaid = 0;
+
+          if (currentAmortType === 'SAC') {
+            const firstInterest = currentAmount * rateMonth;
+            const lastInterest = amortMonthly * rateMonth;
+            firstInstallment = amortMonthly + firstInterest;
+            lastInstallment = amortMonthly + lastInterest;
+            totalInterest = ((firstInterest + lastInterest) / 2.0) * months;
+            totalPaid = currentAmount + totalInterest;
+          } else {
+            // PRICE
+            firstInstallment = currentAmount * (rateMonth / (1 - Math.pow(1 + rateMonth, -months)));
+            lastInstallment = firstInstallment;
+            totalPaid = firstInstallment * months;
+            totalInterest = totalPaid - currentAmount;
+          }
+
+          return {
+            ...b,
+            pos: idx + 1,
+            firstInstallment,
+            lastInstallment,
+            totalInterest,
+            totalPaid
+          };
+        });
+      }
+
+      function renderGrid() {
+        const sims = calculateSimulations();
+        const filtered = sims.filter(s => currentCategory === 'all' || s.categoria_slug === currentCategory);
+
+        // Update Spread Barometer (Caixa vs Itaú)
+        const caixa = sims.find(s => s.id === 'caixa');
+        const itau = sims.find(s => s.id === 'itau');
+        if (caixa && itau) {
+          const diffMonth = itau.firstInstallment - caixa.firstInstallment;
+          const diffTotal = itau.totalPaid - caixa.totalPaid;
+          if (spreadDesc) {
+            spreadDesc.innerHTML = 'Economia de <span style="color: #34D399; font-weight: 800;">' + formatBRL(diffMonth) + ' / mês</span> na 1ª parcela e <span style="color: #34D399; font-weight: 800;">' + formatBRL(diffTotal) + '</span> no total do contrato (Caixa vs. Itaú).';
+          }
+        }
+
+        if (!cardsGrid) return;
+        cardsGrid.innerHTML = '';
+
+        filtered.forEach(s => {
+          const isTopRate = s.id === 'caixa';
+          const card = document.createElement('div');
+          card.style.cssText = 'background: rgba(18, 24, 38, 0.85); border: 1px solid ' + (isTopRate ? '#10B981' : 'rgba(255,255,255,0.08)') + '; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 10px 28px rgba(0,0,0,0.35); transition: transform 0.25s, border-color 0.25s;';
+          
+          let badgeBg = 'rgba(255,255,255,0.06)';
+          let badgeColor = '#94A3B8';
+          if (s.categoria_slug === 'publico') { badgeBg = 'rgba(16,185,129,0.15)'; badgeColor = '#34D399'; }
+          else if (s.categoria_slug === 'digital') { badgeBg = 'rgba(249,115,22,0.15)'; badgeColor = '#FB923C'; }
+          else if (s.categoria_slug === 'cooperativa') { badgeBg = 'rgba(14,165,233,0.15)'; badgeColor = '#38BDF8'; }
+          else if (s.categoria_slug === 'wealth') { badgeBg = 'rgba(212,175,55,0.15)'; badgeColor = '#D4AF37'; }
+
+          card.innerHTML = `
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                    <span style="background: ${badgeBg}; color: ${badgeColor}; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase;">
+                      ${s.categoria}
+                    </span>
+                    <span style="background: ${s.cor_marca || '#2D3748'}; color: ${s.cor_texto || '#FFF'}; font-size: 0.68rem; font-weight: 800; padding: 2px 7px; border-radius: 3px; letter-spacing: 0.05em;">
+                      ${s.sigla}
+                    </span>
+                  </div>
+                  <h3 style="font-size: 1.15rem; color: #FFFFFF; margin: 0 0 2px 0; font-weight: 700;">
+                    ${s.nome}
+                  </h3>
+                  <div style="font-size: 0.74rem; color: #64748B;">Cota até ${Math.round(s.cota_max_financiamento * 100)}% • ${s.prazo_max_meses} meses max</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 1.45rem; font-weight: 800; color: ${isTopRate ? '#34D399' : '#FFFFFF'};">
+                    ${s.taxa_aa.toFixed(2)}% <span style="font-size: 0.75rem; font-weight: 400; color: #94A3B8;">a.a.</span>
+                  </div>
+                  <div style="font-size: 0.7rem; color: #64748B;">+ ${s.indexador}</div>
+                </div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 14px; margin-bottom: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                  <span style="font-size: 0.8rem; color: #94A3B8;">1ª Parcela (${currentAmortType}):</span>
+                  <strong style="font-size: 1.05rem; color: #FFFFFF; font-weight: 800;">${formatBRL(s.firstInstallment)}</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px;">
+                  <span style="font-size: 0.78rem; color: #94A3B8;">Total Pago (${currentTermYears} anos):</span>
+                  <span style="font-size: 0.85rem; color: #CBD5E1;">${formatBRL(s.totalPaid)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 6px; margin-top: 6px;">
+                  <span style="font-size: 0.74rem; color: #64748B;">Destaque:</span>
+                  <span style="font-size: 0.74rem; color: #D4AF37; font-weight: 700;">${s.destaque_tag}</span>
+                </div>
+              </div>
+
+              <p style="font-size: 0.78rem; color: #94A3B8; line-height: 1.45; margin-bottom: 16px;">
+                ${s.pontos_fortes}
+              </p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <a href="${s.url_simulador_oficial}" target="_blank" rel="noopener noreferrer"
+                 style="display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #E2E8F0; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 0.76rem; font-weight: 600; transition: all 0.2s;">
+                🌐 Acessar Simulador Oficial ${s.sigla} ↗
+              </a>
+              <a href="https://wa.me/5511966105952?text=Olá%20Pedro!%20Simulei%20R$%20${Math.round(currentAmount / 1000)}k%20no%20site%20e%20gostaria%20da%20sua%20assessoria%20para%20aprovar%20com%20o%20${encodeURIComponent(s.nome)}%20(${s.taxa_aa}%%20a.a.)%20no%20meu%20imóvel!" 
+                 target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(149,123,43,0.18); border: 1px solid #957B2B; color: #D4AF37; padding: 9px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 700; transition: all 0.2s;">
+                💬 Tirar Dúvidas com Pedro Soares &rarr;
+              </a>
+            </div>
+          `;
+          cardsGrid.appendChild(card);
+        });
+      }
+
+      // Event Listeners
+      if (inputAmount) {
+        inputAmount.addEventListener('input', function(e) {
+          currentAmount = parseFloat(e.target.value);
+          if (dispAmount) dispAmount.innerText = formatBRL(currentAmount);
+          renderGrid();
+        });
+      }
+
+      if (inputTerm) {
+        inputTerm.addEventListener('input', function(e) {
+          currentTermYears = parseInt(e.target.value);
+          if (dispTerm) dispTerm.innerText = currentTermYears + ' anos (' + (currentTermYears * 12) + ' meses)';
+          renderGrid();
+        });
+      }
+
+      document.querySelectorAll('.credit-quick-val').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const val = parseFloat(this.getAttribute('data-val'));
+          if (inputAmount) inputAmount.value = val;
+          currentAmount = val;
+          if (dispAmount) dispAmount.innerText = formatBRL(val);
+          renderGrid();
+        });
+      });
+
+      document.querySelectorAll('.credit-quick-term').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const term = parseInt(this.getAttribute('data-term'));
+          if (inputTerm) inputTerm.value = term;
+          currentTermYears = term;
+          if (dispTerm) dispTerm.innerText = term + ' anos (' + (term * 12) + ' meses)';
+          renderGrid();
+        });
+      });
+
+      if (btnSac && btnPrice) {
+        btnSac.addEventListener('click', function() {
+          currentAmortType = 'SAC';
+          btnSac.classList.add('active');
+          btnPrice.classList.remove('active');
+          renderGrid();
+        });
+
+        btnPrice.addEventListener('click', function() {
+          currentAmortType = 'PRICE';
+          btnPrice.classList.add('active');
+          btnSac.classList.remove('active');
+          renderGrid();
+        });
+      }
+
+      document.querySelectorAll('.credit-cat-pill').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.credit-cat-pill').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentCategory = this.getAttribute('data-cat');
+          renderGrid();
+        });
+      });
+
+      // Initial Render
+      renderGrid();
+    })();
+  </script>
+</body>
+</html>
