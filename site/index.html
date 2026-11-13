@@ -44,7 +44,7 @@
   <style>
     /* Page-specific refinements on top of lavvi-design-system.css */
     body {
-      padding-top: 66px;
+      padding-top: 0;
       background-color: var(--bg-page, #FFFFFF);
       color: var(--text-dark, #333333);
       font-family: var(--font-primary, 'Archivo', sans-serif);
@@ -395,6 +395,7 @@
     }
     .banner-inner {
       position: relative;
+      padding-top: 72px;
       z-index: 3;
       width: 100%;
       max-width: 980px;
@@ -423,17 +424,19 @@
       backdrop-filter: blur(8px);
     }
     .glass-card-center {
-      background: rgba(24, 40, 66, 0.58);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(212, 175, 55, 0.32);
-      border-radius: 18px;
-      padding: 36px 36px 28px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
       width: 100%;
+      max-width: 900px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: center;
     }
       gap: 8px;
       font-size: 0.74rem;
@@ -458,18 +461,19 @@
     }
     .display-title {
       font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.85rem, 3.6vw, 3.1rem);
-      font-weight: 700;
-      line-height: 1.12;
-      margin: 0 0 10px 0;
-      max-width: 820px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.95);
+      line-height: 1.15;
     }
     .subtitle-lead {
-      font-size: clamp(0.92rem, 1.2vw, 1.08rem);
-      color: rgba(255, 255, 255, 0.9);
-      max-width: 720px;
-      margin: 0 0 24px 0;
-      line-height: 1.5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: #F8FAFC;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.9);
+      line-height: 1.6;
     }
     search.search-container {
       display: flex;
@@ -1103,7 +1107,7 @@
           <button type="button" class="lang-btn" onclick="setLanguage('de')">DE</button>
         </div>
         <a href="https://wa.me/5511966105952?text=Ol%C3%A1%20Pedro%2C%20estou%20no%20seu%20portal%20Lavvi%20e%20gostaria%20de%20atendimento%20direto." target="_blank" rel="noopener" class="btn-header-wa" id="nav-wa-btn">
-          Falar com Pedro
+          WhatsApp Peter
         </a>
 
         <!-- 3 Dots More Options Menu -->
@@ -1164,15 +1168,15 @@
       <div class="carousel-track-wrapper" id="carouselTrackWrapper">
         <!-- Slide 0: Well Perdizes -->
         <div class="carousel-slide-item active" data-index="0" data-project="Well Perdizes" data-eyebrow="LANÇAMENTO • PERDIZES / PUC-SP &amp; ALLIANZ" data-title="Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste" data-lead="Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques.">
-          <img src="assets/images/well_perdizes_gal_2.jpg" alt="Well Perdizes — Perdizes, São Paulo" fetchpriority="high" />
+          <img src="assets/images/well_perdizes_gal_3.jpg" alt="Well Perdizes — Perdizes, São Paulo" fetchpriority="high" />
         </div>
         <!-- Slide 1: Jardim da Hípica -->
         <div class="carousel-slide-item" data-index="1" data-project="Jardim da Hípica" data-eyebrow="LANÇAMENTO MONUMENTAL • ALTO DA BOA VISTA" data-title="Jardim da Hípica • O Resort Mais Exclusivo de SP" data-lead="Terreno monumental de 39.553 m² em frente ao CHSA, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e gestão CBRE + Body Care.">
-          <img src="assets/images/jardim_hipica_facade_4k.jpg" alt="Jardim da Hípica — Rua Antônio Bandeira, 305, Alto da Boa Vista" loading="lazy" />
+          <img src="assets/hipica_piscina60m.jpg" alt="Jardim da Hípica — Rua Antônio Bandeira, 305, Alto da Boa Vista" loading="lazy" />
         </div>
         <!-- Slide 2: T.O.M. Paraíso -->
         <div class="carousel-slide-item" data-index="2" data-project="T.O.M. Paraíso" data-eyebrow="ARQUITETURA DE AUTOR • PARAÍSO / IBIRAPUERA" data-title="T.O.M. Paraíso • Design Assinado a Passos do Parque" data-lead="Apartamentos e Studios R2V com Airbnb liberado na minuta de cartório. Lazer nas alturas e vista panorâmica para o Parque Ibirapuera.">
-          <img src="assets/images/tom_gallery_1.jpg" alt="T.O.M. Paraíso — Rua Tomé de Souza, Paraíso" loading="lazy" />
+          <img src="assets/tom_rooftop_pool.jpg" alt="T.O.M. Paraíso — Rua Tomé de Souza, Paraíso" loading="lazy" />
         </div>
         <!-- Slide 3: Alive Club Resort -->
         <div class="carousel-slide-item" data-index="3" data-project="Alive Club Resort" data-eyebrow="RESORT URBANO • CHÁCARA KLABIN" data-title="Alive Club Resort • Oásis Privativo na Chácara Klabin" data-lead="Complexo de lazer resort completo em localização nobre com conectividade privilegiada e plantas generosas para toda a família.">
@@ -1684,7 +1688,7 @@
         const isNovvo = p.cat === 'novvo' || p.brand_line === 'novvo';
         const isSold = p.cat === 'vendido';
         const statusLabel = p.official_status_2026 || p.status || 'Lançamento';
-        const imgSrc = p.hero_image || 'assets/images/jardim_hipica_facade_4k.jpg';
+        const imgSrc = p.hero_image || 'assets/hipica_piscina60m.jpg';
         const enrich = (window.projectsEnrichment && window.projectsEnrichment[p.nome]) || {};
         const m2Text = p.m2 || (p.units && p.units.length ? `${p.units[p.units.length - 1].m2} a ${p.units[0].m2} m²` : 'Alto Padrão Lavvi');
         const priceStart = enrich.preco_partida ? `A partir de ${enrich.preco_partida}` : (p.fluxo_curto || 'Consulte condições');
@@ -1692,7 +1696,7 @@
         return `
           <article class="project-card" onclick="openProjectHubModal(${idx})" data-cat="${p.cat}" data-brand="${isNovvo ? 'novvo' : 'lavvi'}">
             <div class="aspect-square">
-              <img src="${imgSrc}" alt="${p.nome} — ${p.bairro}" loading="lazy" onerror="this.src='assets/images/jardim_hipica_facade_4k.jpg'" />
+              <img src="${imgSrc}" alt="${p.nome} — ${p.bairro}" loading="lazy" onerror="this.src='assets/hipica_piscina60m.jpg'" />
               <div class="card-badges-top">
                 <span class="badge-status ${isSold ? 'sold' : ''}">${statusLabel}</span>
                 ${isNovvo ? '<span class="badge-novvo">MEU NOVVO</span>' : '<span class="badge-lavvi">LAVVI</span>'}
@@ -2048,7 +2052,7 @@
       const botDiv = document.createElement('div');
       botDiv.className = 'chat-msg bot';
       const waUrl = `https://wa.me/5511966105952?text=${encodeURIComponent('Olá Pedro, conversei com o seu concierge sobre "' + (res.handoffContext || raw) + '" e gostaria de atendimento direto.')}`;
-      botDiv.innerHTML = `${res.text}<div style="margin-top:8px;padding-top:8px;border-top:1px solid #E2E8F0;"><a href="${waUrl}" target="_blank" rel="noopener" style="color:#957B2B;font-weight:700;text-decoration:none;font-size:0.78rem;">Falar com Pedro Soares no WhatsApp (11) 96610-5952 &rarr;</a></div>`;
+      botDiv.innerHTML = `${res.text}<div style="margin-top:8px;padding-top:8px;border-top:1px solid #E2E8F0;"><a href="${waUrl}" target="_blank" rel="noopener" style="color:#957B2B;font-weight:700;text-decoration:none;font-size:0.78rem;">WhatsApp Peter Soares no WhatsApp (11) 96610-5952 &rarr;</a></div>`;
       body.appendChild(botDiv);
       body.scrollTop = body.scrollHeight;
     }
