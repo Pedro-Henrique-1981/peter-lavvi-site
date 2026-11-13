@@ -1,0 +1,758 @@
+{
+  "metadata": {
+    "source": "lavvi.learning.rocks (Skore / Sapiência SCORM & LTI Catalog)",
+    "total_spaces": 7,
+    "total_courses": 41,
+    "curadoria": "Pedro Soares | Lavvi Private Wealth • WhatsApp: (11) 96610-5952",
+    "air_gap_policy": "INTERNAL_BROKER_TRAINING_ONLY — Never expose lavvi.learning.rocks, skore.io, player.sapiencia.com.br, or liorassociados.com.br URLs in public client HTML/JS.",
+    "spaces_synced_2026": [
+      "188982",
+      "189000",
+      "189758",
+      "191356",
+      "191640",
+      "284664",
+      "284665"
+    ],
+    "lior_associados_official_enterprises_count": 35
+  },
+  "spaces": [
+    {
+      "space_id": "284664",
+      "name": "Novvo",
+      "courses_count": 7,
+      "courses": [
+        {
+          "course_id": "1748975",
+          "scorm_id": "150988",
+          "title": "Treinamento - Well Perdizes",
+          "quick_numbers": {
+            "endereco": "Rua Cardoso de Almeida, 218 — Perdizes (a passos da PUC-SP e futura Estação Perdizes / PUC Linha 6-Laranja)",
+            "terreno_m2": 5436,
+            "torres": "2 torres (Torre A: T+24+25º rooftop 450 m² com 8 elevadores; Torre B: T+25 com 6 elevadores = 14 elevadores no total)",
+            "total_unidades": 1252,
+            "divisao_unidades": "971 HIS-2 (77%), 143 R2V Livre (12%), 138 NR1-12 Não Residencial (11%)",
+            "sistema_estrutural": "Alvenaria Estrutural (paredes são estruturais e NÃO podem ser removidas nem alteradas; laje de 10 cm)",
+            "vagas": "0 vagas de uso comum para habitação; 2 vagas de carga/descarga exclusivas NR1-12 (unidades R2V de 47 e 51 m² possuem opção de 1 vaga na tabela)",
+            "itens_lazer": "20 itens de lazer: piscina com raia de 25m (não aquecida), fitness de 200 m² fora da torre, quadra recreativa de areia (13x6,50m), lobby pé-direito 3,20m, gerador de conforto"
+          },
+          "plantas": [
+            {
+              "nome": "START 25 m²",
+              "enquadramento": "HIS-2",
+              "tipologia": "1 Dormitório",
+              "unidades": 638
+            },
+            {
+              "nome": "NOW 30 m²",
+              "enquadramento": "NR1-12 (Não Residencial)",
+              "tipologia": "Studio NR — não pode morar de forma permanente e não tem acesso ao lazer do 25º andar da Torre A; ponto cooktop elétrico 2 bocas",
+              "unidades": 138
+            },
+            {
+              "nome": "SPACE 34 m²",
+              "enquadramento": "HIS-2 e R2V",
+              "tipologia": "2 Dormitórios com terraço",
+              "unidades": 370
+            },
+            {
+              "nome": "MAX 37 m²",
+              "enquadramento": "R2V Livre",
+              "tipologia": "2 Dormitórios amplos",
+              "unidades": 32
+            },
+            {
+              "nome": "PLUS 47 m²",
+              "enquadramento": "R2V Livre",
+              "tipologia": "2 Suítes (Final 19A)",
+              "unidades": 37
+            },
+            {
+              "nome": "PRIME 51 m²",
+              "enquadramento": "R2V Livre",
+              "tipologia": "2 Suítes Master (Finais 14A/15A)",
+              "unidades": 37
+            }
+          ],
+          "entregue_vs_infra": {
+            "piso": "Dormitórios entregues com piso laminado e terraço com piso nivelado; sala e cozinha entregues no contrapiso",
+            "ar_condicionado": "1 ponto de dreno e carga elétrica no dormitório/suíte",
+            "servicos": "Minimercado e lavanderia pay-per-use entregues como espaço físico e infraestrutura"
+          }
+        },
+        {
+          "course_id": "1732417",
+          "title": "Treinamento - Novvo Santa Marina",
+          "quick_numbers": {
+            "endereco": "Av. Santa Marina, 1664 — Água Branca (ao lado da futura Estação Santa Marina da Linha 6-Laranja)",
+            "terreno_m2": 7169.89,
+            "tipologias": "1 e 2 dormitórios com terraço (25 a 41 m²)",
+            "fluxo": "54% Obra / 46% Financiamento (entrega Set/2029)"
+          }
+        },
+        {
+          "course_id": "1737326",
+          "title": "Treinamento - Novvo Anália Franco",
+          "quick_numbers": {
+            "bairro": "Anália Franco",
+            "tipologias": "1 e 2 dormitórios com terraço (31 a 41 m²)",
+            "fluxo": "R2V: 41% Obra / 59% Chaves | HIS: 54% Obra / 46% Chaves (entrega Nov/2028)"
+          }
+        },
+        {
+          "course_id": "1737320",
+          "title": "Treinamento - Novvo Vila Prudente",
+          "quick_numbers": {
+            "bairro": "Vila Prudente (próximo ao Metrô Vila Prudente Linha 2-Verde)",
+            "total_unidades": 900,
+            "tipologias": "1 e 2 dormitórios com terraço (31 a 41 m²)",
+            "fluxo": "R2V: 41% Obra / 59% Chaves | HIS: 54% Obra / 46% Chaves (entrega Out/2028)"
+          }
+        },
+        {
+          "course_id": "1710001",
+          "title": "Treinamento - Novvo Marajoara",
+          "quick_numbers": {
+            "bairro": "Jardim Marajoara",
+            "total_unidades": 794,
+            "tipologias": "1 e 2 dormitórios com terraço (31 a 41 m²)",
+            "fluxo": "54% Obra / 46% Chaves (entrega Fev/2028)"
+          }
+        },
+        {
+          "course_id": "1710002",
+          "title": "Treinamento - Novvo Barra Funda",
+          "quick_numbers": {
+            "bairro": "Barra Funda (a 550m do Terminal Multimodal Barra Funda)",
+            "tipologias": "1 e 2 dormitórios com terraço (31 a 42 m²)",
+            "fluxo": "Imóvel Pronto (Entregue Jul/2026): 30% Sinal / 70% Financiamento"
+          }
+        },
+        {
+          "course_id": "1752000",
+          "title": "Breve Lançamento - Novvo Largo Treze",
+          "quick_numbers": {
+            "endereco": "Rua Suzana Rodrigues, 175 — Santo Amaro (ao lado do Metrô Largo Treze Linha 5-Lilás)",
+            "tipologias": "1 e 2 dormitórios com terraço (25 a 43 m²)",
+            "fluxo": "41% Obra / 59% Chaves (R2V) ou 54% Obra / 46% Chaves (HIS)"
+          }
+        }
+      ]
+    },
+    {
+      "space_id": "284665",
+      "name": "Empreendimentos Lavvi",
+      "courses_count": 10,
+      "courses": [
+        {
+          "course_id": "1733584",
+          "scorm_id": "145342",
+          "title": "Treinamento - T.O.M. Paraíso",
+          "quick_numbers": {
+            "endereco": "Rua Desembargador Eliseu Guilherme, 390 — Paraíso (240m / 3 min a pé da Estação Paraíso, 350m do HCor, 500m da Av. Paulista)",
+            "total_unidades": "901 unidades em 1 torre (175 de 1 dorm 38 a 43 m² + 726 studios 25 a 40 m²)",
+            "plantas_count": 10,
+            "vagas": "0 vagas em todas as tipologias",
+            "lazer": "27 itens de lazer (23 no térreo + 4 no rooftop): 2 piscinas com raia de 25m, 270 m² de fitness, 90 m² de coworking com salas de reunião, quadra de beach tennis",
+            "entorno_medico": "+35 hospitais e 29 mil médicos em raio de 3 km"
+          },
+          "objections": [
+            {
+              "objection": "Não tem vaga de garagem?",
+              "response": "O T.O.M. Paraíso foi desenhado para quem vive a cidade a pé e de metrô, a apenas 240m (3 minutos) da Estação Paraíso e 350m do HCor. Isso reduz o condomínio e maximiza a liquidez para médicos e executivos."
+            },
+            {
+              "objection": "25 m² não é muito pequeno?",
+              "response": "São 10 plantas inteligentes de 25 a 43 m² somadas a 27 itens de lazer de clube urbano, incluindo 270 m² de fitness, 90 m² de coworking e 2 piscinas com raia de 25m."
+            },
+            {
+              "objection": "Tem habitação social (HIS/HMP) e pode fazer Airbnb?",
+              "response": "As cotas HIS-2 e HMP são restritas por lei à moradia tradicional, enquanto as unidades R2V livres já constam expressamente aprovadas para Airbnb e short-stay na Minuta de Convenção arquivada em cartório."
+            }
+          ]
+        },
+        {
+          "course_id": "1730001",
+          "title": "Treinamento - Jardim da Hípica (Residences & Apartments)",
+          "quick_numbers": {
+            "endereco": "Rua Antônio Bandeira, 305 — Alto da Boa Vista (em frente ao Clube Hípico de Santo Amaro - CHSA)",
+            "terreno_m2": "39.553 m² (~40.000 m²) + Praça Pública Verde de 10.000 m² por Benedito Abbud",
+            "esportes_lazer": "02 Quadras de Tênis Oficiais (18x36m) + 02 Quadras de Beach Tennis + Piscina com raia de 60m + 04 Private Houses",
+            "gestao": "Gestão patrimonial CBRE + Assessoria esportiva Body Care inclusa no condomínio",
+            "sistema_estrutural": "Concreto Armado Convencional (permite personalização de paredes internas de vedação) + contrapiso flutuante acústico NBR 15.575"
+          }
+        },
+        {
+          "course_id": "1725001",
+          "title": "Treinamento - Le Six Residences & Le Six Ibirapuera",
+          "quick_numbers": {
+            "paraiso": "Rua Dr. Rafael de Barros x Rua Cubatão, 33 — Paraíso (156, 203, 264 e Duplex 521 m²; CBRE + Body Care inclusos por 3 anos; entrega Jun/2029)",
+            "ibirapuera": "Moema Pássaros — Breve Lançamento (Residences 194 e 264 m² + Studios; previsão Out/2030)"
+          }
+        },
+        {
+          "course_id": "1720001",
+          "title": "Treinamento - Saffire by Elie Saab & Villa Residences by Versace Home",
+          "quick_numbers": {
+            "saffire": "Moema Pássaros (Av. Indianópolis, 394): Mansões suspensas de 360 e 493 m² + Duplex 649 e 868 m², 1º Elie Saab da América Latina, fora da rota de Congonhas, entrega Nov/2026",
+            "villa": "Moema Pássaros: 150 a 221 m² + Studios 28 a 32 m² assinados por Versace Home, pronto para morar"
+          }
+        },
+        {
+          "course_id": "1718001",
+          "title": "Treinamento - Petra & Soleil by Boca do Lobo",
+          "quick_numbers": {
+            "petra": "Brooklin (350m da Estação Brooklin): 162 e 199 m² (3 e 4 suítes), design Boca do Lobo, entrega Jul/2028",
+            "soleil": "Chácara Klabin (Rua Garapeba, 75): Residences 246 m² (4 suítes) e Studios 24 a 30 m², design Boca do Lobo + MCAA, entrega Abr/2029"
+          }
+        },
+        {
+          "course_id": "1715001",
+          "title": "Treinamento - Heaven by YOO, Alive, Palace, Grand Square, Green View & Verdant",
+          "quick_numbers": {
+            "heaven": "Paraíso (Rua Maestro Cardim, 915): Residences 190 e 258 m² by YOO Studio (Philippe Starck), entrega Mar/2029",
+            "alive": "Vila Prudente: Home Resort 72 a 188 m² e Duplex 350 m², parque aquático 2.000 m² e quadra de tênis, entrega Abr/2028",
+            "palace": "Brás / Praças da Cidade: 86, 142 e 164 m² com parque linear de 4.200 m², entrega Dez/2027",
+            "grand_square": "Praça da Árvore (pronto Mai/2026): 32 a 79 m² ao lado do Metrô Linha 1-Azul (4º ao 18º pav. Araré em alvenaria estrutural)",
+            "green_view": "Butantã (pronto Mar/2026): Residences 132 e 159 m² (concreto armado) + Studios Torre 2 (alvenaria estrutural)",
+            "verdant": "Tucuruvi (pronto Fev/2026): 129, 132 e 155 m² em terreno resort de 8.937 m²"
+          }
+        }
+      ]
+    }
+  ],
+  "lior_associados_35_enterprises": [
+    {
+      "nome": "CONDOMÍNIO LE SIX IBIRAPUERA",
+      "rua": "Avenida Chibarás",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Moema Pássaros",
+      "padrao": "Médio alto",
+      "classe": "Residencial",
+      "pavimentos": 1,
+      "garagens": 1,
+      "plantas": [
+        "PLANTA 194M²",
+        "PLANTA 264M²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO TOM PARAÍSO",
+      "rua": "Rua Desembargador Eliseu Guilherme",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Paraíso",
+      "padrao": "Alto",
+      "classe": "Residencial",
+      "total_unidades": 901,
+      "lazer_itens": 27,
+      "airbnb_minuta": "Aprovado para R2V"
+    },
+    {
+      "nome": "CONDOMÍNIO WELL PERDIZES",
+      "rua": "Rua Cardoso de Almeida",
+      "cidade": "São Paulo",
+      "regiao": "Zona Oeste",
+      "bairro": "Perdizes",
+      "padrao": "Econômico / Inteligente",
+      "classe": "Residencial e NR",
+      "unidades": 1252,
+      "estrutura": "Alvenaria Estrutural"
+    },
+    {
+      "nome": "CONDOMÍNIO NOVVO ESTAÇÃO LARGO TREZE",
+      "rua": "Rua Suzana Rodrigues",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Santo Amaro",
+      "padrao": "Econômico",
+      "classe": "Residencial",
+      "unidades": 930,
+      "pavimentos": 21,
+      "garagens": 1,
+      "plantas": [
+        "PLANTA TIPO 25",
+        "PLANTA TIPO 31",
+        "PLANTA TIPO 34",
+        "PLANTA TIPO 37",
+        "PLANTA TIPO 38",
+        "PLANTA TIPO 43"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO CASA CERÂMICA - GESTÃO",
+      "rua": "Alameda Terracota",
+      "cidade": "São Caetano do Sul",
+      "regiao": "Zona Sul / ABC",
+      "bairro": "Cerâmica",
+      "padrao": "Luxo",
+      "classe": "Gestão"
+    },
+    {
+      "nome": "CONDOMÍNIO JARDIM DA HÍPICA",
+      "rua": "Avenida João Dias / Rua Antônio Bandeira, 305",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Alto da Boa Vista",
+      "padrao": "Altíssimo Luxo R2V",
+      "terreno_m2": 39553,
+      "tenis": "02 Quadras de Tênis Oficiais (18x36m)"
+    },
+    {
+      "nome": "CONDOMÍNIO NOVVO SANTA MARINA",
+      "rua": "Rua Henrique Ongari / Av. Santa Marina, 1664",
+      "cidade": "São Paulo",
+      "regiao": "Centro / Oeste",
+      "bairro": "Água Branca",
+      "padrao": "Econômico",
+      "classe": "Residencial",
+      "torres": "3 torres (Fase 1: Torre A; Fase 2: Torres B e C)",
+      "pavimentos": 22,
+      "plantas": [
+        "PLANTA TIPO 25",
+        "PLANTA TIPO 31",
+        "PLANTA TIPO 32",
+        "PLANTA TIPO 34",
+        "PLANTA TIPO 37",
+        "PLANTA TIPO 42",
+        "PLANTA TIPO 43"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO NOVVO ANÁLIA FRANCO",
+      "rua": "Avenida Doutor Eduardo Cotching",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Anália Franco",
+      "padrao": "Econômico",
+      "classe": "Residencial",
+      "plantas": [
+        "PLANTA TIPO 25",
+        "PLANTA TIPO 31",
+        "PLANTA TIPO 34",
+        "PLANTA TIPO 37",
+        "PLANTA TIPO 42"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO CASA CERÂMICA",
+      "rua": "Alameda Terracota",
+      "cidade": "São Caetano do Sul",
+      "regiao": "Zona Sul / ABC",
+      "bairro": "Cerâmica",
+      "padrao": "Luxo",
+      "classe": "Residencial",
+      "terreno_m2": 10000,
+      "pavimentos": 26,
+      "garagens": 4,
+      "plantas": [
+        "PLANTA TIPO 130",
+        "PLANTA DECORADO 130",
+        "PLANTA TIPO 171",
+        "PLANTA DECORADO 171",
+        "PLANTA TIPO 240",
+        "PLANTA TIPO 242",
+        "PLANTA DUPLEX 255",
+        "PLANTA DUPLEX 337",
+        "PLANTA DUPLEX 486",
+        "PLANTA DUPLEX 492"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO NOVVO VILA PRUDENTE",
+      "rua": "Avenida Zelina",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Vila Prudente",
+      "padrao": "Econômico",
+      "classe": "Residencial",
+      "total_unidades": 900,
+      "plantas": [
+        "START 25M²",
+        "IDEAL 31M²",
+        "FULL 32M²",
+        "SPACE 34M²",
+        "MAX 37M²",
+        "PREMIUM 42M²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO SOLEIL",
+      "rua": "Rua Ernesto de Oliveira / Rua Garapeba, 75",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Chácara Klabin",
+      "padrao": "Alto Luxo",
+      "design": "Boca do Lobo",
+      "plantas": [
+        "Residences 246 m²",
+        "Studios 24 a 30 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO LE SIX",
+      "rua": "Rua Doutor Rafael de Barros / Rua Cubatão, 33",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Paraíso",
+      "padrao": "Altíssimo Luxo",
+      "plantas": [
+        "156 m²",
+        "203 m²",
+        "264 m²",
+        "Duplex 521 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO NOVVO MARAJOARA",
+      "rua": "Avenida Engenheiro Alberto de Zagottis",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Jardim Marajoara",
+      "padrao": "Econômico",
+      "classe": "Residencial",
+      "total_unidades": 794,
+      "plantas": [
+        "PLANTA 24M²",
+        "PLANTA 31,50M²",
+        "PLANTA 37 M²",
+        "PLANTA 41M²",
+        "PLANTA 47M²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO HEAVEN",
+      "rua": "Rua Maestro Cardim, 915",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Paraíso",
+      "padrao": "Altíssimo Luxo",
+      "design": "YOO Studio (Philippe Starck)",
+      "plantas": [
+        "190 m²",
+        "258 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO PETRA",
+      "rua": "Avenida Roque Petroni Júnior",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Brooklin",
+      "padrao": "Altíssimo Luxo",
+      "design": "Boca do Lobo",
+      "plantas": [
+        "162 m²",
+        "199 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO PALACE BY PRAÇAS DA CIDADE",
+      "rua": "Rua Ernesto de Castro",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Brás / Mooca",
+      "padrao": "Médio Alto",
+      "plantas": [
+        "86 m²",
+        "142 m²",
+        "164 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO ALIVE",
+      "rua": "Rua Cavour",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Vila Prudente",
+      "padrao": "Resort",
+      "plantas": [
+        "72 a 188 m²",
+        "Duplex 350 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO NOVVO BARRA FUNDA",
+      "rua": "Rua da Várzea",
+      "cidade": "São Paulo",
+      "regiao": "Centro / Oeste",
+      "bairro": "Barra Funda",
+      "padrao": "Econômico",
+      "status": "Pronto",
+      "plantas": [
+        "31 a 42 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO SAFFIRE",
+      "rua": "Avenida Indianópolis, 394",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Moema Pássaros",
+      "padrao": "Altíssimo Luxo",
+      "design": "Elie Saab",
+      "plantas": [
+        "360 e 493 m²",
+        "Duplex 649 e 868 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO GALLERIA",
+      "rua": "Rua Embuaçu",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Vila Mariana / Chácara Klabin",
+      "padrao": "Médio Alto",
+      "status": "Pronto",
+      "plantas": [
+        "70 e 90 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO GRAND SQUARE",
+      "rua": "Rua Araré",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Praça da Árvore",
+      "padrao": "Inteligente",
+      "estrutura": "Alvenaria Estrutural 4º ao 18º pav.",
+      "plantas": [
+        "32 a 79 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO GREEN VIEW",
+      "rua": "Rua Alvarenga",
+      "cidade": "São Paulo",
+      "regiao": "Zona Oeste",
+      "bairro": "Butantã",
+      "padrao": "Médio Alto",
+      "plantas": [
+        "Residences 132 e 159 m²",
+        "Studios 24 a 30 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO VERDANT PARQUE RESORT",
+      "rua": "Avenida Nova Cantareira",
+      "cidade": "São Paulo",
+      "regiao": "Zona Norte",
+      "bairro": "Tucuruvi",
+      "padrao": "Resort",
+      "terreno_m2": 8937,
+      "plantas": [
+        "129, 132 e 155 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO HIGH WONDER",
+      "rua": "Rua Visconde de Parnaíba",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Brás / Mooca",
+      "padrao": "Médio"
+    },
+    {
+      "nome": "CONDOMÍNIO GRAND VITRALI",
+      "rua": "Avenida Jamaris",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Moema",
+      "padrao": "Médio Alto / Studios"
+    },
+    {
+      "nome": "CONDOMINIO WONDER IPIRANGA",
+      "rua": "Rua Doutor Audísio de Alencar",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Ipiranga",
+      "padrao": "Médio"
+    },
+    {
+      "nome": "CONDOMINIO VILLA IBIRAPUERA",
+      "rua": "Avenida Agami",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Moema Pássaros",
+      "padrao": "Altíssimo Luxo",
+      "design": "Versace Home",
+      "plantas": [
+        "150 e 221 m²",
+        "Studios 28 a 32 m²"
+      ]
+    },
+    {
+      "nome": "CONDOMÍNIO LUMIERE",
+      "rua": "Rua Vergueiro",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Vila Mariana",
+      "padrao": "Médio Alto"
+    },
+    {
+      "nome": "CONDOMÍNIO WONDER BY PRAÇAS DA CIDADE",
+      "rua": "Rua Ernesto de Castro",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Brás / Mooca",
+      "padrao": "Médio"
+    },
+    {
+      "nome": "CONDOMÍNIO ONE PARK PERDIZES",
+      "rua": "Rua Ministro Godói",
+      "cidade": "São Paulo",
+      "regiao": "Zona Oeste",
+      "bairro": "Perdizes",
+      "padrao": "Alto"
+    },
+    {
+      "nome": "CONDOMÍNIO NATIV TATUAPÉ CLUB",
+      "rua": "Avenida Conselheiro Carrão",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Tatuapé",
+      "padrao": "Clube"
+    },
+    {
+      "nome": "CONDOMÍNIO VITRALI MOEMA",
+      "rua": "Avenida Jamaris",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Moema",
+      "padrao": "Studios / Compactos"
+    },
+    {
+      "nome": "PALAZZO VILA MARIANA",
+      "rua": "Rua Eça de Queiroz",
+      "cidade": "São Paulo",
+      "regiao": "Zona Sul",
+      "bairro": "Vila Mariana",
+      "padrao": "Alto"
+    },
+    {
+      "nome": "CONDOMÍNIO MOVVA SP",
+      "rua": "Avenida Cásper Líbero",
+      "cidade": "São Paulo",
+      "regiao": "Centro",
+      "bairro": "Centro Histórico / Luz",
+      "padrao": "Compactos"
+    },
+    {
+      "nome": "CONDOMÍNIO PRAÇA MOOCA",
+      "rua": "Rua Ernesto de Castro",
+      "cidade": "São Paulo",
+      "regiao": "Zona Leste",
+      "bairro": "Mooca",
+      "padrao": "Familiar"
+    }
+  ],
+  "spaces_2026_audit": [
+    {
+      "space_id": "188982",
+      "name": "Estoque Lior (Empreendimentos Ativos e Prontos)",
+      "courses_count": 10,
+      "modules": [
+        {
+          "nome": "Alive",
+          "conteudo_id": "1734968"
+        },
+        {
+          "nome": "Le Six",
+          "conteudo_id": "1734969"
+        },
+        {
+          "nome": "Grand Square",
+          "conteudo_id": "1734970"
+        },
+        {
+          "nome": "Heaven",
+          "conteudo_id": "1734971"
+        },
+        {
+          "nome": "Green View",
+          "conteudo_id": "1734972"
+        },
+        {
+          "nome": "Palace",
+          "conteudo_id": "1734973"
+        },
+        {
+          "nome": "Petra",
+          "conteudo_id": "1734974"
+        },
+        {
+          "nome": "Saffire by Elie Saab",
+          "conteudo_id": "1734976"
+        },
+        {
+          "nome": "Villa Residences e Studios by Versace Home",
+          "conteudo_id": "1734977"
+        },
+        {
+          "nome": "Soleil",
+          "conteudo_id": "1734976"
+        }
+      ]
+    },
+    {
+      "space_id": "189000",
+      "name": "Produtos Nvendas (Linha Meu Novvo & Econômico)",
+      "courses_count": 5,
+      "products": [
+        {
+          "nome": "Novvo Santa Marina",
+          "secoes": [
+            "Apresentação geral",
+            "Materiais de Divulgação",
+            "Fotos de Obra",
+            "Fichas de Unidades"
+          ]
+        },
+        {
+          "nome": "Novvo Anália Franco",
+          "secoes": [
+            "Apresentação",
+            "Vídeos",
+            "Material Comercial"
+          ]
+        },
+        {
+          "nome": "Novvo Vila Prudente",
+          "secoes": [
+            "Apresentação",
+            "Assets de Campanha"
+          ]
+        },
+        {
+          "nome": "Well Perdizes",
+          "secoes": [
+            "Apresentação Well Perdizes",
+            "Fotos de Obra",
+            "Vídeos"
+          ]
+        },
+        {
+          "nome": "Novvo Marajoara",
+          "secoes": [
+            "Apresentação Preliminar",
+            "Lazer Completo"
+          ]
+        }
+      ]
+    },
+    {
+      "space_id": "189758",
+      "name": "Lançamento Lior (Jardim da Hípica)",
+      "courses_count": 11,
+      "modules": [
+        "Book Digital Jardim da Hípica",
+        "Apresentação Comercial Completa",
+        "Tabela de Vendas Vigente",
+        "Vídeos Oficiais do Empreendimento",
+        "Plantas Humanizadas Residences & Apartments",
+        "Imagens em Alta Resolução (Renders 4K)"
+      ]
+    }
+  ]
+}

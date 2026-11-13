@@ -909,7 +909,8 @@
     "avail_info": "🟢 239 no Estoque Lior • Pré-Lançamento Out/2026",
     "table_ref": "Out/2026",
     "brand_line": "lavvi",
-    "m2": "194 e 264 m²"
+    "m2": "194 e 264 m²",
+    "endereco_oficial_lior": "Avenida Chibarás (Moema Pássaros)"
   },
   {
     "nome": "Le Six Ibirapuera Apartments",
@@ -955,7 +956,8 @@
     "avail_info": "🟢 Estoque Lior Ativo • Pré-Lançamento Out/2026",
     "table_ref": "Out/2026",
     "brand_line": "lavvi",
-    "m2": "28 m² a 45 m²"
+    "m2": "28 m² a 45 m²",
+    "endereco_oficial_lior": "Avenida Chibarás (Moema Pássaros)"
   },
   {
     "nome": "T.O.M. Paraíso",
@@ -1055,7 +1057,8 @@
     "brand_line": "lavvi",
     "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/casa-ceramica/thumbnail/Perspectiva+ilustrada+do+Voo+Lazer.webp",
     "official_status_2026": "100% Vendido",
-    "m2": "130, 171 e 242 m²"
+    "m2": "130, 171 e 242 m²",
+    "endereco_oficial_lior": "Alameda Terracota (São Caetano do Sul)"
   },
   {
     "nome": "Heaven Apartments",
@@ -1627,7 +1630,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/99875e5a-8e56-4808-8994-1d484d95fa7a_implantacao_lazer_externo.jpg",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/792ab09b-02fa-4073-b91e-34b3c02b323b_planta_tipo_37m_2_dorms.jpg"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Av. Santa Marina, 1664 / Rua Henrique Ongari (Água Branca)"
   },
   {
     "nome": "Novvo Anália Franco",
@@ -1673,7 +1677,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/35790057-08a1-43bd-bc3c-1b027b56b08c_1_planta_tipo_39_m_2_2_dorms_c_terraco.webp",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/83440bd3-a340-4fa4-89ef-2eb7d1c6525a_2_planta_tipo_31_m_2_1_dorm_c_terraco.webp"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Avenida Doutor Eduardo Cotching (Anália Franco)"
   },
   {
     "nome": "Novvo Vila Prudente",
@@ -1719,7 +1724,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f6a82d16-4fb3-4f16-a181-8c825909270e_1_planta_41_m_2_tipo_2_dorms.webp",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/94158b1f-cf16-42c2-96d3-c2d9a3d0df85_2_planta_31_m_2_tipo_1_dorm.webp"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Avenida Zelina (Vila Prudente)"
   },
   {
     "nome": "Novvo Marajoara",
@@ -1765,7 +1771,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e49cb9c9-0fa9-45a2-b680-369a4a10f9be_planta_41_m_2_tipo_2_dorms.webp",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/04804bf2-9bd3-4902-a3ab-4fd61e1df265_planta_31_m_2_tipo_1_dorm.webp"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Avenida Engenheiro Alberto de Zagottis (Jardim Marajoara)"
   },
   {
     "nome": "Novvo Barra Funda",
