@@ -225,44 +225,131 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* Single Full-Bleed Hero + Semantic <search> Bar */
+    /* Single Full-Bleed Hero Carousel + Semantic <search> Bar */
     .hero-fullbleed {
       position: relative;
       width: 100%;
-      height: clamp(460px, 68vh, 660px);
+      height: clamp(520px, 75vh, 740px);
       overflow: hidden;
       background: #182842;
       display: flex;
       align-items: flex-end;
     }
-    .hero-fullbleed > img {
+    .carousel-track-wrapper {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
+      overflow: hidden;
+    }
+    .carousel-slide-item {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), transform 6.5s ease-out;
+      transform: scale(1.05);
+      will-change: opacity, transform;
+    }
+    .carousel-slide-item.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    .carousel-slide-item > img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center 35%;
-      filter: brightness(0.76);
+      object-position: center 38%;
+      filter: brightness(0.72);
     }
     .banner-scrim {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(24,40,66,0.35) 0%, rgba(24,40,66,0.55) 55%, rgba(24,40,66,0.92) 100%);
+      background: linear-gradient(180deg, rgba(24,40,66,0.32) 0%, rgba(24,40,66,0.52) 50%, rgba(24,40,66,0.94) 100%);
+      pointer-events: none;
+    }
+    .carousel-arrow-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .carousel-nav-btn {
+      pointer-events: auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(24, 40, 66, 0.65);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.22s ease;
+    }
+    .carousel-nav-btn:hover {
+      background: #957B2B;
+      border-color: #957B2B;
+      transform: scale(1.08);
+    }
+    .carousel-progress-dots {
+      position: absolute;
+      bottom: 24px;
+      right: 32px;
+      display: flex;
+      gap: 8px;
+      z-index: 4;
+    }
+    .carousel-dot-btn {
+      width: 32px;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      border: none;
+      transition: all 0.28s ease;
+    }
+    .carousel-dot-btn.active {
+      background: #D4AF37;
+      width: 48px;
     }
     .banner-inner {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       width: 100%;
       max-width: 1320px;
       margin: 0 auto;
-      padding: 0 24px 44px;
+      padding: 0 24px 52px;
       color: #FFFFFF;
     }
-    .eyebrow-tag {
-      display: inline-block;
-      font-size: 0.72rem;
+    .lead-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #F3DC8A;
+      background: rgba(24, 40, 66, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      backdrop-filter: blur(6px);
+    }
       text-transform: uppercase;
       color: #F3DC8A;
       background: rgba(24, 40, 66, 0.78);
@@ -883,6 +970,12 @@
   <header class="site-header">
     <nav class="nav-container" aria-label="Navegação Principal">
       <a href="#topo" class="brand-logo-link">
+        <svg class="brand-lion-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Official Lavvi Stylized Lion Profile (Gold) -->
+          <path d="M16 3C14.2 3 12.8 3.8 11.8 5.2C10.5 4.8 9.1 5.2 8.2 6.3C7.4 7.2 7.1 8.6 7.5 9.8C6.3 10.8 5.6 12.3 5.8 14C6 15.5 6.9 16.8 8.2 17.5C8 18.8 8.5 20.2 9.6 21.1C10.5 21.8 11.7 22.1 12.8 21.9C13.5 23.2 14.8 24.1 16.3 24.3L16.5 27.5C16.5 28.3 17.2 29 18 29C18.8 29 19.5 28.3 19.5 27.5L19.2 23.8C22.2 23.2 24.5 20.8 25 17.8C25.5 14.8 24.1 11.8 21.6 10.2C21.4 8.2 20.2 6.5 18.5 5.5C17.7 3.9 16.9 3 16 3Z" fill="#D4AF37"/>
+          <path d="M17.5 9.5C17.5 10.3 16.8 11 16 11C15.2 11 14.5 10.3 14.5 9.5C14.5 8.7 15.2 8 16 8C16.8 8 17.5 8.7 17.5 9.5Z" fill="#182842"/>
+          <path d="M19 14.5C18.2 14.5 17.5 13.8 17.5 13C17.5 12.2 18.2 11.5 19 11.5C19.8 11.5 20.5 12.2 20.5 13C20.5 13.8 19.8 14.5 19 14.5Z" fill="#D4AF37"/>
+        </svg>
         <span class="brand-wordmark">LAVVI</span>
         <span class="brand-divider"></span>
         <span class="brand-advisor">Pedro Soares • Private Wealth</span>
@@ -891,12 +984,15 @@
       <ul class="nav-links-desktop">
         <li><a href="#catalogo">Empreendimentos (46)</a></li>
         <li><a href="#catalogo" onclick="setCategoryTab('novvo', document.getElementById('tab-novvo'))">Linha Novvo (7)</a></li>
-        <li><a href="crm_cockpit.html" style="color:#F3DC8A;">CRM Leads</a></li>
         <li><a href="cinema_lavvi.html">Cinema 4K</a></li>
         <li><a href="#mapa">Mapa &amp; Radar</a></li>
         <li><a href="guias_bairros.html">Guias de Bairros</a></li>
         <li><a href="credito_imobiliario.html">Simulador &amp; Crédito</a></li>
         <li><a href="comparativos.html">Comparativos</a></li>
+        <li><a href="javascript:void(0)" onclick="toggleChatWidget()" style="color:#F3DC8A; display:flex; align-items:center; gap:5px;">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#22C55E; box-shadow:0 0 6px #22C55E;"></span>
+          Peter AI
+        </a></li>
       </ul>
 
       <div class="nav-actions">
@@ -921,12 +1017,17 @@
   <!-- NATIVE DIALOG DRAWER FOR MOBILE NAVIGATION -->
   <dialog class="Drawer" id="mobile-nav-dialog" aria-label="Menu de Navegação">
     <div class="drawer-header">
-      <span class="brand-wordmark">LAVVI</span>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 3C14.2 3 12.8 3.8 11.8 5.2C10.5 4.8 9.1 5.2 8.2 6.3C7.4 7.2 7.1 8.6 7.5 9.8C6.3 10.8 5.6 12.3 5.8 14C6 15.5 6.9 16.8 8.2 17.5C8 18.8 8.5 20.2 9.6 21.1C10.5 21.8 11.7 22.1 12.8 21.9C13.5 23.2 14.8 24.1 16.3 24.3L16.5 27.5C16.5 28.3 17.2 29 18 29C18.8 29 19.5 28.3 19.5 27.5L19.2 23.8C22.2 23.2 24.5 20.8 25 17.8C25.5 14.8 24.1 11.8 21.6 10.2C21.4 8.2 20.2 6.5 18.5 5.5C17.7 3.9 16.9 3 16 3Z" fill="#D4AF37"/>
+        </svg>
+        <span class="brand-wordmark">LAVVI</span>
+      </div>
       <button type="button" onclick="toggleMobileDrawer(false)" style="background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;" aria-label="Fechar menu">&times;</button>
     </div>
     <ul class="drawer-nav-list">
       <li><a href="#catalogo" onclick="toggleMobileDrawer(false)">Todos os 46 Empreendimentos</a></li>
-      <li><a href="crm_cockpit.html" style="color:#F3DC8A;">Peter Private CRM (Leads &amp; Copilot)</a></li>
+      <li><a href="javascript:void(0)" onclick="toggleMobileDrawer(false); toggleChatWidget();" style="color:#F3DC8A;">✨ Peter AI Concierge (6 Idiomas)</a></li>
       <li><a href="#catalogo" onclick="toggleMobileDrawer(false); setCategoryTab('lavvi', document.getElementById('tab-lavvi'));">Coleção Lavvi (39)</a></li>
       <li><a href="#catalogo" onclick="toggleMobileDrawer(false); setCategoryTab('novvo', document.getElementById('tab-novvo'));">Linha Meu Novvo (7)</a></li>
       <li><a href="cinema_lavvi.html">Cinema Lavvi 4K</a></li>
@@ -942,12 +1043,55 @@
   </dialog>
 
   <main id="topo">
-    <!-- 2. SINGLE FULL-BLEED HERO SECTION WITH SEMANTIC <search> -->
+    <!-- 2. SINGLE FULL-BLEED HERO SECTION WITH DYNAMIC CAROUSEL + SEMANTIC <search> -->
     <section class="hero-fullbleed" id="hero-banner">
-      <img src="assets/images/jardim_hipica_facade_4k.jpg" alt="Jardim da Hípica — Rua Antônio Bandeira, 305, Alto da Boa Vista" fetchpriority="high" />
+      <!-- Carousel Slides Container -->
+      <div class="carousel-track-wrapper" id="carouselTrackWrapper">
+        <!-- Slide 0: Jardim da Hípica -->
+        <div class="carousel-slide-item active" data-index="0" data-project="Jardim da Hípica" data-eyebrow="LANÇAMENTO MONUMENTAL • ALTO DA BOA VISTA" data-title="Jardim da Hípica • O Resort Mais Exclusivo de SP" data-lead="Terreno de 39.553 m² em frente ao CHSA, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e gestão CBRE + Body Care.">
+          <img src="assets/images/jardim_hipica_facade_4k.jpg" alt="Jardim da Hípica — Rua Antônio Bandeira, 305, Alto da Boa Vista" fetchpriority="high" />
+        </div>
+        <!-- Slide 1: T.O.M. Paraíso -->
+        <div class="carousel-slide-item" data-index="1" data-project="T.O.M. Paraíso" data-eyebrow="ARQUITETURA DE AUTOR • PARAÍSO / IBIRAPUERA" data-title="T.O.M. Paraíso • Design Assinado a Passos do Parque" data-lead="Apartamentos e Studios R2V com Airbnb liberado em cartório. Lazer nas alturas e vista panorâmica para o Parque Ibirapuera.">
+          <img src="assets/images/tom_gallery_1.jpg" alt="T.O.M. Paraíso — Rua Tomé de Souza, Paraíso" loading="lazy" />
+        </div>
+        <!-- Slide 2: Saffire by Elie Saab -->
+        <div class="carousel-slide-item" data-index="2" data-project="Saffire by Elie Saab" data-eyebrow="ALTA COSTURA MUNDIAL • MOEMA PÁSSAROS" data-title="Saffire by Elie Saab • O Primeiro da América Latina" data-lead="Branded residence internacional com interiores assinados por Elie Saab. Fora da rota de ruído de Congonhas com lajes monumentais.">
+          <img src="assets/images/saffire_elie_saab_facade_4k.jpg" alt="Saffire by Elie Saab — Moema Pássaros" loading="lazy" />
+        </div>
+        <!-- Slide 3: Villa Milano Versace -->
+        <div class="carousel-slide-item" data-index="3" data-project="Villa Milano Versace" data-eyebrow="HAUTE LIVING MILANÊS • MOEMA" data-title="Villa Milano Versace • Ousadia e Sofisticação Italiana" data-lead="A estética icônica da Medusa Versace em Moema. Arquitetura internacional com acabamentos nobres e privacidade inigualável.">
+          <img src="assets/images/villa_moema_versace_facade_4k.jpg" alt="Villa Milano Versace Home — Moema" loading="lazy" />
+        </div>
+        <!-- Slide 4: Linha Meu Novvo -->
+        <div class="carousel-slide-item" data-index="4" data-project="Linha Meu Novvo" data-eyebrow="INTELIGÊNCIA URBANA • 7 PROJETOS NOS EIXOS DE SP" data-title="Linha Meu Novvo • Mobilidade, Design e Alta Rentabilidade" data-lead="Studios e apartamentos inteligentes ao lado do metrô em Barra Funda, Santa Marina, Marajoara e Anália Franco.">
+          <img src="assets/images/novvo_gal_1.png" alt="Linha Meu Novvo by Lavvi — Eixos de Mobilidade de São Paulo" loading="lazy" />
+        </div>
+      </div>
+
       <div class="banner-scrim"></div>
+
+      <!-- Arrow Controls -->
+      <div class="carousel-arrow-controls">
+        <button type="button" class="carousel-nav-btn" id="carouselPrevBtn" onclick="prevHeroSlide()" aria-label="Empreendimento Anterior">&#10094;</button>
+        <button type="button" class="carousel-nav-btn" id="carouselNextBtn" onclick="nextHeroSlide()" aria-label="Próximo Empreendimento">&#10095;</button>
+      </div>
+
+      <!-- Progress Dots -->
+      <div class="carousel-progress-dots" id="carouselDotsWrap">
+        <button type="button" class="carousel-dot-btn active" onclick="goToHeroSlide(0)" aria-label="Slide 1 Jardim da Hípica"></button>
+        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(1)" aria-label="Slide 2 T.O.M. Paraíso"></button>
+        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(2)" aria-label="Slide 3 Saffire by Elie Saab"></button>
+        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(3)" aria-label="Slide 4 Villa Milano Versace"></button>
+        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(4)" aria-label="Slide 5 Linha Meu Novvo"></button>
+      </div>
+
+      <!-- Dynamic Hero Content Layer -->
       <div class="banner-inner">
-        <span class="eyebrow-tag" id="banner-eyebrow-text">COLEÇÃO OFICIAL LAVVI &amp; MEU NOVVO • 46 EMPREENDIMENTOS EM SÃO PAULO</span>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+          <span class="eyebrow-tag" id="banner-eyebrow-text">COLEÇÃO OFICIAL LAVVI &amp; MEU NOVVO • 46 EMPREENDIMENTOS EM SÃO PAULO</span>
+          <span class="lead-badge-pill" id="heroActiveProjectPill">Jardim da Hípica</span>
+        </div>
         <h1 class="display-title" id="banner-title-text">Jardim da Hípica, T.O.M. Paraíso, Saffire by Elie Saab &amp; Portfólio Completo.</h1>
         <p class="subtitle-lead" id="banner-lead-text">
           Terreno monumental de 39.553 m² + Praça Verde de 10.000 m² em frente ao Clube Hípico de Santo Amaro, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e curadoria patrimonial em 6 idiomas.
@@ -1210,27 +1354,33 @@
     </div>
   </div>
 
-  <!-- 6. SINGLE QUIET LUXURY CONCIERGE WIDGET (2 A 3 FRASES CIRÚRGICAS) -->
-  <aside class="concierge-widget" aria-label="Concierge Private Wealth">
+  <!-- 6. SINGLE QUIET LUXURY CONCIERGE WIDGET (PETER AI • 2 A 3 FRASES CIRÚRGICAS) -->
+  <aside class="concierge-widget" aria-label="Peter AI • Concierge Private Wealth">
     <button type="button" class="concierge-launcher" id="chat-launcher-btn" onclick="toggleChatWidget()">
       <div class="concierge-avatar-ring">
         <video class="concierge-avatar-video" src="assets/videos/avatar_peter_flow.mp4" autoplay loop muted playsinline poster="assets/images/pedro_profile.jpg"></video>
       </div>
       <div style="text-align:left;">
-        <div style="font-size:0.82rem;font-weight:700;line-height:1.2;">Concierge Lavvi</div>
-        <div style="font-size:0.68rem;color:#F3DC8A;">Pedro Soares • 6 Idiomas</div>
+        <div style="font-size:0.82rem;font-weight:700;line-height:1.2;display:flex;align-items:center;gap:4px;">
+          <span>Peter AI</span>
+          <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#22C55E;"></span>
+        </div>
+        <div style="font-size:0.68rem;color:#F3DC8A;">Consultor Lavvi • 6 Idiomas</div>
       </div>
     </button>
 
-    <div class="concierge-panel" id="chat-window" role="dialog" aria-label="Assistente Digital de Pedro Soares">
+    <div class="concierge-panel" id="chat-window" role="dialog" aria-label="Peter AI • Assistente Digital de Pedro Soares">
       <div class="concierge-header">
         <div style="display:flex;align-items:center;gap:10px;">
           <div class="concierge-avatar-ring" style="width:36px;height:36px;">
             <video class="concierge-avatar-video" src="assets/videos/avatar_peter_flow.mp4" autoplay loop muted playsinline></video>
           </div>
           <div>
-            <div style="font-size:0.88rem;font-weight:700;">Concierge Private Wealth</div>
-            <div style="font-size:0.68rem;color:#F3DC8A;">Respostas diretas em 2 a 3 frases • PT/EN/FR/IT/ES/DE</div>
+            <div style="font-size:0.88rem;font-weight:700;display:flex;align-items:center;gap:5px;">
+              <span>Peter AI • Concierge Private Wealth</span>
+              <span style="font-size:0.65rem;background:#22C55E;color:#000;padding:1px 5px;border-radius:10px;font-weight:800;">ONLINE</span>
+            </div>
+            <div style="font-size:0.68rem;color:#F3DC8A;">Respostas em 2 a 3 frases • PT/EN/FR/IT/ES/DE</div>
           </div>
         </div>
         <button type="button" onclick="toggleChatWidget()" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;" aria-label="Fechar chat">&times;</button>
@@ -1238,7 +1388,7 @@
 
       <div class="concierge-messages" id="chat-body">
         <div class="chat-msg bot">
-          Olá! Sou o concierge digital de <strong>Pedro Soares</strong> (ESPM &amp; McGill University), calibrado com os 46 empreendimentos Lavvi e Linha Meu Novvo em respostas objetivas de 2 a 3 frases.<br><br>
+          Olá! Sou o <strong>Peter AI</strong>, consultor digital de <strong>Pedro Soares</strong> (ESPM &amp; McGill University), treinado com os 46 empreendimentos Lavvi e Linha Meu Novvo em respostas objetivas de 2 a 3 frases.<br><br>
           Qual empreendimento, bairro ou dúvida técnica (preço/m², tênis, Airbnb R2V vs HIS/HMP ou acústica NBR 15.575) você gostaria de consultar?
         </div>
       </div>
@@ -1555,6 +1705,95 @@
       const pane = document.getElementById('hub-tab-' + tabName);
       if (pane) pane.classList.add('active');
     }
+
+    // === HERO CAROUSEL CONTROLLER ===
+    let currentHeroIndex = 0;
+    let heroTimer = null;
+    const heroSlides = [
+      {
+        project: "Jardim da Hípica",
+        eyebrow: "LANÇAMENTO MONUMENTAL • ALTO DA BOA VISTA",
+        title: "Jardim da Hípica • O Resort Mais Exclusivo de SP",
+        lead: "Terreno de 39.553 m² em frente ao CHSA, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e gestão CBRE + Body Care inclusa no condomínio."
+      },
+      {
+        project: "T.O.M. Paraíso",
+        eyebrow: "ARQUITETURA DE AUTOR • PARAÍSO / IBIRAPUERA",
+        title: "T.O.M. Paraíso • Design Assinado a Passos do Parque",
+        lead: "Apartamentos e Studios R2V com Airbnb liberado na minuta de cartório. Lazer nas alturas e vista panorâmica para o Parque Ibirapuera."
+      },
+      {
+        project: "Saffire by Elie Saab",
+        eyebrow: "ALTA COSTURA MUNDIAL • MOEMA PÁSSAROS",
+        title: "Saffire by Elie Saab • O Primeiro da América Latina",
+        lead: "Branded residence internacional com interiores assinados por Elie Saab. Fora da rota de ruído de Congonhas com lajes monumentais."
+      },
+      {
+        project: "Villa Milano Versace",
+        eyebrow: "HAUTE LIVING MILANÊS • MOEMA",
+        title: "Villa Milano Versace • Ousadia e Sofisticação Italiana",
+        lead: "A estética icônica da Medusa Versace em Moema. Arquitetura internacional com acabamentos nobres e privacidade inigualável."
+      },
+      {
+        project: "Linha Meu Novvo",
+        eyebrow: "INTELIGÊNCIA URBANA • 7 PROJETOS NOS EIXOS DE SP",
+        title: "Linha Meu Novvo • Mobilidade, Design e Alta Rentabilidade",
+        lead: "Studios e apartamentos inteligentes ao lado do metrô em Barra Funda, Santa Marina, Marajoara, Vila Prudente e Anália Franco."
+      }
+    ];
+
+    function updateHeroSlideUI(idx) {
+      const slides = document.querySelectorAll('.carousel-slide-item');
+      const dots = document.querySelectorAll('.carousel-dot-btn');
+      if (!slides.length) return;
+
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === idx);
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+
+      const data = heroSlides[idx] || heroSlides[0];
+      const pill = document.getElementById('heroActiveProjectPill');
+      const eyebrow = document.getElementById('banner-eyebrow-text');
+      const title = document.getElementById('banner-title-text');
+      const lead = document.getElementById('banner-lead-text');
+
+      if (pill) pill.textContent = data.project;
+      if (eyebrow) eyebrow.textContent = data.eyebrow;
+      if (title) title.textContent = data.title;
+      if (lead) lead.textContent = data.lead;
+    }
+
+    function goToHeroSlide(idx) {
+      currentHeroIndex = (idx + heroSlides.length) % heroSlides.length;
+      updateHeroSlideUI(currentHeroIndex);
+      restartHeroTimer();
+    }
+
+    function nextHeroSlide() {
+      goToHeroSlide(currentHeroIndex + 1);
+    }
+
+    function prevHeroSlide() {
+      goToHeroSlide(currentHeroIndex - 1);
+    }
+
+    function startHeroTimer() {
+      if (heroTimer) clearInterval(heroTimer);
+      heroTimer = setInterval(() => {
+        nextHeroSlide();
+      }, 5500);
+    }
+
+    function restartHeroTimer() {
+      startHeroTimer();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      startHeroTimer();
+    });
 
     // === 6-LANGUAGE SWITCHER ===
     const i18nDict = {
