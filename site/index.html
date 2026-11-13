@@ -1300,7 +1300,7 @@
       <div class="carousel-track-wrapper" id="carouselTrackWrapper">
         <!-- Slide 0: Well Perdizes -->
         <div class="carousel-slide-item active" data-index="0" data-project="Well Perdizes" data-eyebrow="LANÇAMENTO • PERDIZES / PUC-SP &amp; ALLIANZ" data-title="Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste" data-lead="Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques.">
-          <img src="assets/images/well_perdizes_gal_2.jpg" alt="Well Perdizes — Perdizes, São Paulo" fetchpriority="high" />
+          <img src="assets/images/well_perdizes_rooftop_4k.jpg" alt="Well Perdizes — Perdizes, São Paulo" fetchpriority="high" />
         </div>
         <!-- Slide 1: Jardim da Hípica -->
         <div class="carousel-slide-item" data-index="1" data-project="Jardim da Hípica" data-eyebrow="LANÇAMENTO MONUMENTAL • ALTO DA BOA VISTA" data-title="Jardim da Hípica • O Resort Mais Exclusivo de SP" data-lead="Terreno monumental de 39.553 m² em frente ao CHSA, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e gestão CBRE + Body Care.">
@@ -1367,43 +1367,11 @@
             Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques.
           </p>
 
-          <!-- Apple-Style Bairro Selector Trigger with Accessible <search> integration -->
-          <div class="bairro-selector-wrapper" id="bairroSelectorWrapper">
-            <button type="button" class="btn-bairro-trigger" id="bairroTriggerBtn" onclick="toggleBairroPopover()" aria-expanded="false" aria-haspopup="listbox" aria-label="Escolher bairro de São Paulo">
-              <span style="display:flex;align-items:center;">
-                <span class="trigger-icon">📍</span>
-                <span id="selectedBairroLabel">Escolha o Bairro (Moema, Paraíso, Hípica, Perdizes...)</span>
-              </span>
-              <span class="trigger-chevron">&#9660;</span>
-            </button>
-
-            <!-- Popover Menu with SP Bairros (Complete Lavvi & Novvo Portfolio) -->
-            <div class="bairro-popover-menu" id="bairroPopoverMenu" role="listbox" aria-label="Opções de Bairros de São Paulo">
-              <button type="button" class="bairro-popover-item active" onclick="selectBairroOption('todos', 'Todos os Bairros')" role="option">🏙️ Todos os Bairros (46)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Alto da Boa Vista', 'Alto da Boa Vista')" role="option">🐎 Alto da Boa Vista (2)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Moema', 'Moema Nobre')" role="option">✈️ Moema Nobre (8)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Paraíso', 'Paraíso / Ibirapuera')" role="option">🌳 Paraíso / Ibirapuera (5)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Chácara Klabin', 'Chácara Klabin')" role="option">🏛️ Chácara Klabin (5)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Brás', 'Brás / Wonder')" role="option">🏢 Brás / Wonder (4)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Brooklin', 'Brooklin')" role="option">💼 Brooklin (2)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Perdizes', 'Perdizes / PUC-SP')" role="option">🎓 Perdizes (2)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Vila Prudente', 'Vila Prudente')" role="option">🚇 Vila Prudente (2)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Ipiranga', 'Ipiranga')" role="option">🌿 Ipiranga (2)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Água Branca', 'Água Branca / Santa Marina')" role="option">🚉 Água Branca (1)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Barra Funda', 'Barra Funda')" role="option">🎨 Barra Funda (1)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Anália Franco', 'Anália Franco')" role="option">💎 Anália Franco (1)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Jardim Marajoara', 'Jardim Marajoara')" role="option">🏡 Jardim Marajoara (1)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Santo Amaro', 'Santo Amaro / Largo Treze')" role="option">🛍️ Santo Amaro (1)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Vila Mariana', 'Vila Mariana')" role="option">🏫 Vila Mariana (1)</button>
-              <button type="button" class="bairro-popover-item" onclick="selectBairroOption('Butantã', 'Butantã')" role="option">📚 Butantã (1)</button>
-            </div>
-
-            <!-- Semantic <search> Landmark for A11y and E2E Test Suite -->
-            <search role="search" class="search-container" aria-label="Buscar empreendimentos por nome, bairro ou metragem" style="display:none;">
-              <input type="search" id="searchInput" class="search-input-field" placeholder="Busque por empreendimento..." oninput="applyCatalogFilters()" />
-              <button type="button" class="btn-buscar" style="min-width: 148px; background-color: #957B2B;" onclick="applyCatalogFilters()">BUSCAR</button>
-            </search>
-          </div>
+          <!-- Semantic <search> Landmark for A11y and E2E Test Suite -->
+          <search role="search" class="search-container" aria-label="Buscar empreendimentos por nome, bairro ou metragem" style="display:none;">
+            <input type="search" id="searchInput" class="search-input-field" placeholder="Busque por empreendimento..." oninput="applyCatalogFilters()" />
+            <button type="button" class="btn-buscar" style="min-width: 148px; background-color: #957B2B;" onclick="applyCatalogFilters()">BUSCAR</button>
+          </search>
         </div>
       </div>
     </section>
