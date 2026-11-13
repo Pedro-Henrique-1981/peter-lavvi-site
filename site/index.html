@@ -226,15 +226,17 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* Single Full-Bleed Hero Carousel + Semantic <search> Bar */
+    /* Full-Bleed 100vh Hero Carousel with Clean Centered Layout */
     .hero-fullbleed {
       position: relative;
       width: 100%;
-      height: clamp(520px, 75vh, 740px);
+      height: 100vh;
+      min-height: 600px;
       overflow: hidden;
       background: #182842;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
+      justify-content: center;
     }
     .carousel-track-wrapper {
       position: absolute;
@@ -250,8 +252,8 @@
       height: 100%;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), transform 6.5s ease-out;
-      transform: scale(1.05);
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 7s ease-out;
+      transform: scale(1.06);
       will-change: opacity, transform;
     }
     .carousel-slide-item.active {
@@ -263,13 +265,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 38%;
-      filter: brightness(0.72);
+      object-position: center;
+      filter: brightness(0.68);
     }
     .banner-scrim {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(24,40,66,0.32) 0%, rgba(24,40,66,0.52) 50%, rgba(24,40,66,0.94) 100%);
+      background: radial-gradient(circle at center, rgba(24,40,66,0.3) 0%, rgba(24,40,66,0.65) 60%, rgba(15,23,42,0.92) 100%);
       pointer-events: none;
     }
     .carousel-arrow-controls {
@@ -280,64 +282,95 @@
       transform: translateY(-50%);
       display: flex;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 28px;
       z-index: 4;
       pointer-events: none;
     }
     .carousel-nav-btn {
       pointer-events: auto;
-      width: 46px;
-      height: 46px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: rgba(24, 40, 66, 0.65);
       border: 1px solid rgba(212, 175, 55, 0.45);
       color: #FFFFFF;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: all 0.22s ease;
+      backdrop-filter: blur(10px);
+      transition: all 0.24s ease;
     }
     .carousel-nav-btn:hover {
       background: #957B2B;
       border-color: #957B2B;
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
     .carousel-progress-dots {
       position: absolute;
-      bottom: 24px;
-      right: 32px;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      gap: 8px;
+      gap: 12px;
       z-index: 4;
     }
     .carousel-dot-btn {
-      width: 32px;
-      height: 4px;
-      border-radius: 2px;
+      width: 38px;
+      height: 5px;
+      border-radius: 3px;
       background: rgba(255, 255, 255, 0.35);
       cursor: pointer;
       border: none;
-      transition: all 0.28s ease;
+      transition: all 0.3s ease;
     }
     .carousel-dot-btn.active {
       background: #D4AF37;
-      width: 48px;
+      width: 56px;
     }
     .banner-inner {
       position: relative;
       z-index: 3;
       width: 100%;
-      max-width: 1320px;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 0 24px 52px;
+      padding: 0 24px;
       color: #FFFFFF;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .lead-badge-pill {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #F3DC8A;
+      background: rgba(24, 40, 66, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      padding: 7px 18px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      backdrop-filter: blur(8px);
+    }
+    .glass-card-center {
+      background: rgba(24, 40, 66, 0.58);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      border-radius: 18px;
+      padding: 36px 36px 28px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
       gap: 8px;
       font-size: 0.74rem;
       font-weight: 700;
@@ -1044,45 +1077,21 @@
   </dialog>
 
   <main id="topo">
-    <!-- 2. SINGLE FULL-BLEED HERO SECTION WITH DYNAMIC CAROUSEL + SEMANTIC <search> -->
+    <!-- 2. SINGLE FULL-BLEED 100VH HERO SECTION WITH DYNAMIC CAROUSEL + SEMANTIC <search> -->
     <section class="hero-fullbleed" id="hero-banner">
-      <!-- Carousel Slides Container (9 Curated Icons) -->
+      <!-- Carousel Slides Container (Curated Trio: Well, Hípica, T.O.M.) -->
       <div class="carousel-track-wrapper" id="carouselTrackWrapper">
-        <!-- Slide 0: Alive Club Resort -->
-        <div class="carousel-slide-item active" data-index="0" data-project="Alive Club Resort" data-eyebrow="CLUB RESORT PRIVATIVO • CHÁCARA KLABIN" data-title="Alive Club Resort • Oásis Exclusivo na Chácara Klabin" data-lead="Complexo aquático monumental, quadra de tênis oficial, lazer resort incomparável e localização nobre a passos do metrô Klabin.">
-          <img src="assets/images/alive_gallery_1.jpg" alt="Alive Club Resort — Chácara Klabin" fetchpriority="high" />
+        <!-- Slide 0: Well Perdizes -->
+        <div class="carousel-slide-item active" data-index="0" data-project="Well Perdizes" data-eyebrow="LANÇAMENTO • PERDIZES / PUC-SP &amp; ALLIANZ" data-title="Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste" data-lead="Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques.">
+          <img src="assets/images/well_perdizes_gal_2.jpg" alt="Well Perdizes — Perdizes, São Paulo" fetchpriority="high" />
         </div>
         <!-- Slide 1: Jardim da Hípica -->
         <div class="carousel-slide-item" data-index="1" data-project="Jardim da Hípica" data-eyebrow="LANÇAMENTO MONUMENTAL • ALTO DA BOA VISTA" data-title="Jardim da Hípica • O Resort Mais Exclusivo de SP" data-lead="Terreno monumental de 39.553 m² em frente ao CHSA, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e gestão CBRE + Body Care.">
           <img src="assets/images/jardim_hipica_facade_4k.jpg" alt="Jardim da Hípica — Rua Antônio Bandeira, 305, Alto da Boa Vista" loading="lazy" />
         </div>
-        <!-- Slide 2: Green View Residence -->
-        <div class="carousel-slide-item" data-index="2" data-project="Green View Residence" data-eyebrow="PRONTO PARA MORAR • VISTA VERDE PRIVILEGIADA" data-title="Green View Residence • Conforto e Natureza Integrada" data-lead="Apartamentos amplos com vista eterna para áreas arborizadas, acabamento impecável e estrutura completa de clube para a família.">
-          <img src="assets/images/greenview_gallery_1.jpg" alt="Green View Residence — São Paulo" loading="lazy" />
-        </div>
-        <!-- Slide 3: T.O.M. Paraíso -->
-        <div class="carousel-slide-item" data-index="3" data-project="T.O.M. Paraíso" data-eyebrow="ARQUITETURA DE AUTOR • PARAÍSO / IBIRAPUERA" data-title="T.O.M. Paraíso • Design Assinado a Passos do Parque" data-lead="Apartamentos e Studios R2V com Airbnb liberado em cartório. Lazer nas alturas e vista panorâmica para o Parque Ibirapuera.">
+        <!-- Slide 2: T.O.M. Paraíso -->
+        <div class="carousel-slide-item" data-index="2" data-project="T.O.M. Paraíso" data-eyebrow="ARQUITETURA DE AUTOR • PARAÍSO / IBIRAPUERA" data-title="T.O.M. Paraíso • Design Assinado a Passos do Parque" data-lead="Apartamentos e Studios R2V com Airbnb liberado em cartório. Lazer nas alturas e vista panorâmica para o Parque Ibirapuera.">
           <img src="assets/images/tom_gallery_1.jpg" alt="T.O.M. Paraíso — Rua Tomé de Souza, Paraíso" loading="lazy" />
-        </div>
-        <!-- Slide 4: Well Perdizes -->
-        <div class="carousel-slide-item" data-index="4" data-project="Well Perdizes" data-eyebrow="LANÇAMENTO • PERDIZES / PUC-SP &amp; ALLIANZ" data-title="Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste" data-lead="Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques.">
-          <img src="assets/images/well_perdizes_gal_2.jpg" alt="Well Perdizes — Perdizes, São Paulo" loading="lazy" />
-        </div>
-        <!-- Slide 5: Grand Square -->
-        <div class="carousel-slide-item" data-index="5" data-project="Grand Square" data-eyebrow="PRONTO PARA MORAR • LARGO 13 / SANTO AMARO" data-title="Grand Square • Grandiosidade Urbana e Conveniência Total" data-lead="Empreendimento entregue de alto padrão com praça privativa, infraestrutura esportiva completa e conexão imediata aos eixos corporativos.">
-          <img src="assets/images/grandsquare_gallery_1.jpg" alt="Grand Square — Santo Amaro" loading="lazy" />
-        </div>
-        <!-- Slide 6: Saffire by Elie Saab -->
-        <div class="carousel-slide-item" data-index="6" data-project="Saffire by Elie Saab" data-eyebrow="ALTA COSTURA MUNDIAL • MOEMA PÁSSAROS" data-title="Saffire by Elie Saab • O Primeiro Branded da América Latina" data-lead="Branded residence internacional com interiores assinados por Elie Saab. Fora da rota de ruído de Congonhas com lajes monumentais.">
-          <img src="assets/images/saffire_elie_saab_facade_4k.jpg" alt="Saffire by Elie Saab — Moema Pássaros" loading="lazy" />
-        </div>
-        <!-- Slide 7: Heaven Residences -->
-        <div class="carousel-slide-item" data-index="7" data-project="Heaven Residences" data-eyebrow="DESIGN GLOBAL YOO • CHÁCARA KLABIN" data-title="Heaven by YOO • Luxo Contemporâneo e Rooftop Celestial" data-lead="Residências exclusivas com design do estúdio londrino YOO. Piscina infinita suspensa, bem-estar e sofisticação cosmopolita.">
-          <img src="assets/images/heaven_gallery_1.jpg" alt="Heaven by YOO Residences — Chácara Klabin" loading="lazy" />
-        </div>
-        <!-- Slide 8: High Wonder -->
-        <div class="carousel-slide-item" data-index="8" data-project="High Wonder" data-eyebrow="ÍCONE ENTREGUE • IPIRANGA RESIDENCIAL" data-title="High Wonder • Majestoso Parque Privativo no Ipiranga" data-lead="Sucesso absoluto entregue com praça central monumental, lazer completo de clube e valorização consolidada na Zona Sul.">
-          <img src="assets/images/high_wonder_praca.webp" alt="High Wonder — Ipiranga, São Paulo" loading="lazy" />
         </div>
       </div>
 
@@ -1094,34 +1103,28 @@
         <button type="button" class="carousel-nav-btn" id="carouselNextBtn" onclick="nextHeroSlide()" aria-label="Próximo Empreendimento">&#10095;</button>
       </div>
 
-      <!-- Progress Dots (9 projects) -->
+      <!-- Clean 3 Progress Dots on Bottom -->
       <div class="carousel-progress-dots" id="carouselDotsWrap">
-        <button type="button" class="carousel-dot-btn active" onclick="goToHeroSlide(0)" aria-label="Slide 1 Alive"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(1)" aria-label="Slide 2 Hípica"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(2)" aria-label="Slide 3 Green View"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(3)" aria-label="Slide 4 T.O.M. Paraíso"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(4)" aria-label="Slide 5 Well Perdizes"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(5)" aria-label="Slide 6 Grand Square"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(6)" aria-label="Slide 7 Saffire"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(7)" aria-label="Slide 8 Heaven"></button>
-        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(8)" aria-label="Slide 9 High Wonder"></button>
+        <button type="button" class="carousel-dot-btn active" onclick="goToHeroSlide(0)" aria-label="Slide 1 Well Perdizes"></button>
+        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(1)" aria-label="Slide 2 Jardim da Hípica"></button>
+        <button type="button" class="carousel-dot-btn" onclick="goToHeroSlide(2)" aria-label="Slide 3 T.O.M. Paraíso"></button>
       </div>
 
-      <!-- Dynamic Hero Content Layer -->
+      <!-- Clean Centered Hero Card Content -->
       <div class="banner-inner">
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
-          <span class="eyebrow-tag" id="banner-eyebrow-text">COLEÇÃO OFICIAL LAVVI &amp; MEU NOVVO • 46 EMPREENDIMENTOS EM SÃO PAULO</span>
-          <span class="lead-badge-pill" id="heroActiveProjectPill">Alive Club Resort</span>
-        </div>
-        <h1 class="display-title" id="banner-title-text">Alive Club Resort • Oásis Exclusivo na Chácara Klabin</h1>
-        <p class="subtitle-lead" id="banner-lead-text">
-          Complexo aquático monumental, quadra de tênis oficial, lazer resort incomparável e localização nobre a passos do metrô Klabin.
-        </p>
+        <div class="glass-card-center">
+          <span class="lead-badge-pill" id="activeProjectPill">Well Perdizes</span>
+          <span class="eyebrow-tag" id="banner-eyebrow-text" style="background:transparent;border:none;padding:0;margin-bottom:6px;">LANÇAMENTO • PERDIZES / PUC-SP &amp; ALLIANZ</span>
+          <h1 class="display-title" id="banner-title-text" style="font-size:clamp(1.9rem, 3.4vw, 2.9rem);margin-bottom:12px;text-align:center;">Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste</h1>
+          <p class="subtitle-lead" id="banner-lead-text" style="text-align:center;max-width:760px;margin:0 auto 24px;color:rgba(255,255,255,0.92);line-height:1.55;">
+            Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques.
+          </p>
 
-        <search role="search" class="search-container" aria-label="Buscar empreendimentos por nome, bairro ou metragem">
-          <input type="search" id="searchInput" class="search-input-field" placeholder="Busque por empreendimento, bairro (Moema, Paraíso, Alto da Boa Vista, Perdizes) ou linha..." oninput="applyCatalogFilters()" />
-          <button type="button" class="btn-buscar" style="min-width: 148px; background-color: #957B2B;" onclick="applyCatalogFilters()">BUSCAR</button>
-        </search>
+          <search role="search" class="search-container" aria-label="Buscar empreendimentos por nome, bairro ou metragem" style="width:100%;max-width:740px;">
+            <input type="search" id="searchInput" class="search-input-field" placeholder="Busque por empreendimento, bairro (Moema, Paraíso, Alto da Boa Vista, Perdizes) ou linha..." oninput="applyCatalogFilters()" />
+            <button type="button" class="btn-buscar" style="min-width: 148px; background-color: #957B2B;" onclick="applyCatalogFilters()">BUSCAR</button>
+          </search>
+        </div>
       </div>
     </section>
 
@@ -1727,15 +1730,15 @@
       if (pane) pane.classList.add('active');
     }
 
-    // === HERO CAROUSEL CONTROLLER (9 CURATED DEVELOPMENTS) ===
+    // === HERO CAROUSEL CONTROLLER (CURATED TRIO: WELL, HÍPICA, T.O.M.) ===
     let currentHeroIndex = 0;
     let heroTimer = null;
     const heroSlides = [
       {
-        project: "Alive Club Resort",
-        eyebrow: "CLUB RESORT PRIVATIVO • CHÁCARA KLABIN",
-        title: "Alive Club Resort • Oásis Exclusivo na Chácara Klabin",
-        lead: "Complexo aquático monumental, quadra de tênis oficial, lazer resort incomparável e localização nobre a passos do metrô Klabin."
+        project: "Well Perdizes",
+        eyebrow: "LANÇAMENTO • PERDIZES / PUC-SP & ALLIANZ",
+        title: "Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste",
+        lead: "Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques."
       },
       {
         project: "Jardim da Hípica",
@@ -1744,46 +1747,10 @@
         lead: "Terreno monumental de 39.553 m² em frente ao CHSA, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e gestão CBRE + Body Care inclusa no condomínio."
       },
       {
-        project: "Green View Residence",
-        eyebrow: "PRONTO PARA MORAR • VISTA VERDE PRIVILEGIADA",
-        title: "Green View Residence • Conforto e Natureza Integrada",
-        lead: "Apartamentos amplos com vista eterna para áreas arborizadas, acabamento impecável e estrutura completa de clube para a família."
-      },
-      {
         project: "T.O.M. Paraíso",
         eyebrow: "ARQUITETURA DE AUTOR • PARAÍSO / IBIRAPUERA",
         title: "T.O.M. Paraíso • Design Assinado a Passos do Parque",
         lead: "Apartamentos e Studios R2V com Airbnb liberado na minuta de cartório. Lazer nas alturas e vista panorâmica para o Parque Ibirapuera."
-      },
-      {
-        project: "Well Perdizes",
-        eyebrow: "LANÇAMENTO • PERDIZES / PUC-SP & ALLIANZ",
-        title: "Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste",
-        lead: "Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques."
-      },
-      {
-        project: "Grand Square",
-        eyebrow: "PRONTO PARA MORAR • LARGO 13 / SANTO AMARO",
-        title: "Grand Square • Grandiosidade Urbana e Conveniência Total",
-        lead: "Empreendimento entregue de alto padrão com praça privativa, infraestrutura esportiva completa e conexão imediata aos eixos corporativos."
-      },
-      {
-        project: "Saffire by Elie Saab",
-        eyebrow: "ALTA COSTURA MUNDIAL • MOEMA PÁSSAROS",
-        title: "Saffire by Elie Saab • O Primeiro Branded da América Latina",
-        lead: "Branded residence internacional com interiores assinados por Elie Saab. Fora da rota de ruído de Congonhas com lajes monumentais."
-      },
-      {
-        project: "Heaven Residences",
-        eyebrow: "DESIGN GLOBAL YOO • CHÁCARA KLABIN",
-        title: "Heaven by YOO • Luxo Contemporâneo e Rooftop Celestial",
-        lead: "Residências exclusivas com design do estúdio londrino YOO. Piscina infinita suspensa, bem-estar e sofisticação cosmopolita."
-      },
-      {
-        project: "High Wonder",
-        eyebrow: "ÍCONE ENTREGUE • IPIRANGA RESIDENCIAL",
-        title: "High Wonder • Majestoso Parque Privativo no Ipiranga",
-        lead: "Sucesso absoluto entregue com praça central monumental, lazer completo de clube e valorização consolidada na Zona Sul."
       }
     ];
 
@@ -1800,7 +1767,7 @@
       });
 
       const data = heroSlides[idx] || heroSlides[0];
-      const pill = document.getElementById('heroActiveProjectPill');
+      const pill = document.getElementById('activeProjectPill');
       const eyebrow = document.getElementById('banner-eyebrow-text');
       const title = document.getElementById('banner-title-text');
       const lead = document.getElementById('banner-lead-text');
