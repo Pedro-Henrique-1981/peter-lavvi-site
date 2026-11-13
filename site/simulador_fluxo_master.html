@@ -85,23 +85,30 @@
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
-        /* Project Selector */
-        select, input[type="text"] {
+        /* Form elements */
+        select, input[type="text"], input[type="number"] {
             width: 100%;
             background: var(--card);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #FFF;
-            padding: 11px 12px;
+            padding: 10px 12px;
             border-radius: 8px;
             font-family: inherit;
             font-size: 13.5px;
             outline: none;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
-        select:focus, input[type="text"]:focus {
+        select:focus, input[type="text"]:focus, input[type="number"]:focus {
             border-color: var(--gold);
+        }
+
+        .row-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         /* Preset Chips */
@@ -226,15 +233,15 @@
     </div>
 
     <div class="header">
-        <span class="badge">⚡ SIMULADOR MASTER DE FLUXO &amp; ARBITRAGEM</span>
+        <span class="badge">⚡ SIMULADOR MASTER • M² &amp; DESCONTO FLEXÍVEL</span>
         <h1>Simulador <span>Fluxo Master</span></h1>
-        <p class="subtitle">Calcule o desembolso exato na obra vs. chaves com 1 toque no celular</p>
+        <p class="subtitle">M² automático, desconto customizado (% ou R$) e fluxo da obra vs. chaves</p>
     </div>
 
-    <!-- 1. Dados Básicos do Imóvel -->
+    <!-- 1. Dados Básicos do Imóvel & M² -->
     <div class="card-box">
         <div class="section-label">
-            <span>1. Selecione o Empreendimento &amp; Valor</span>
+            <span>1. Empreendimento &amp; Metragem (M²)</span>
             <span id="labelPrazoEntrega">Entrega: Mar/2031</span>
         </div>
 
@@ -242,25 +249,81 @@
             <!-- Populado dinamicamente com os 46 projetos -->
         </select>
 
-        <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Valor de Tabela da Unidade (R$)</label>
-        <div style="display:flex; gap:8px;">
-            <input type="text" id="inputPreco" value="2.500.000" oninput="formatAndRecalc()">
+        <div class="row-grid-2">
+            <div>
+                <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Área Privativa (M²)</label>
+                <input type="number" id="inputMetragem" value="150" step="1" min="20" max="900" oninput="onMetragemChange()">
+            </div>
+            <div>
+                <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Valor de Tabela / M² (R$)</label>
+                <input type="text" id="inputPrecoM2" value="16.666" oninput="onPrecoM2Change()">
+            </div>
         </div>
 
-        <!-- Botões de Valores Rápidos -->
-        <div style="display:flex; gap:6px; margin-top:-4px; margin-bottom:12px; overflow-x:auto;">
-            <button type="button" class="chip-btn" onclick="setPreco(350000)" style="flex:1;">R$ 350k</button>
-            <button type="button" class="chip-btn" onclick="setPreco(850000)" style="flex:1;">R$ 850k</button>
-            <button type="button" class="chip-btn" onclick="setPreco(1500000)" style="flex:1;">R$ 1.5M</button>
-            <button type="button" class="chip-btn" onclick="setPreco(2500000)" style="flex:1;">R$ 2.5M</button>
-            <button type="button" class="chip-btn" onclick="setPreco(4500000)" style="flex:1;">R$ 4.5M</button>
+        <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Valor de Tabela Cheia (R$)</label>
+        <input type="text" id="inputPreco" value="2.500.000" oninput="formatAndRecalc()">
+
+        <!-- Atalhos de Metragens Típicas -->
+        <div style="display:flex; gap:6px; margin-top:2px; margin-bottom:6px; overflow-x:auto;">
+            <button type="button" class="chip-btn" onclick="setMetragem(25)" style="flex:1;">25 m²</button>
+            <button type="button" class="chip-btn" onclick="setMetragem(34)" style="flex:1;">34 m²</button>
+            <button type="button" class="chip-btn" onclick="setMetragem(84)" style="flex:1;">84 m²</button>
+            <button type="button" class="chip-btn" onclick="setMetragem(150)" style="flex:1;">150 m²</button>
+            <button type="button" class="chip-btn" onclick="setMetragem(223)" style="flex:1;">223 m²</button>
+            <button type="button" class="chip-btn" onclick="setMetragem(276)" style="flex:1;">276 m²</button>
         </div>
     </div>
 
-    <!-- 2. Estrutura de Fluxo (Presets Rápidos) -->
+    <!-- 2. Módulo de Desconto & Negociação em Mesa -->
     <div class="card-box">
         <div class="section-label">
-            <span>2. Modelo de Fluxo Financeiro</span>
+            <span>2. Desconto Comercial / Margem em Mesa</span>
+            <span id="badgeEconomia" style="color:var(--wa-green); font-weight:700;">Preço de Tabela</span>
+        </div>
+
+        <div style="display:flex; gap:8px; margin-bottom:12px;">
+            <button type="button" class="chip-btn active" id="btnDescPct" onclick="setDiscountMode('pct')" style="flex:1;">Desconto em %</button>
+            <button type="button" class="chip-btn" id="btnDescVal" onclick="setDiscountMode('val')" style="flex:1;">Desconto em R$</button>
+            <button type="button" class="chip-btn" onclick="zerarDesconto()" style="flex:0.8; border-color:rgba(255,255,255,0.15);">Zerar (0%)</button>
+        </div>
+
+        <div id="boxDescPct" class="row-grid-2">
+            <div>
+                <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Percentual de Desconto (%)</label>
+                <input type="number" id="inputDescPct" value="0" min="0" max="30" step="0.5" oninput="onDescPctInput()">
+            </div>
+            <div>
+                <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Atalhos de Desconto</label>
+                <div style="display:flex; gap:6px;">
+                    <button type="button" class="chip-btn" onclick="applyQuickDesc(3)" style="flex:1;">3%</button>
+                    <button type="button" class="chip-btn" onclick="applyQuickDesc(5)" style="flex:1;">5%</button>
+                    <button type="button" class="chip-btn" onclick="applyQuickDesc(7)" style="flex:1;">7%</button>
+                    <button type="button" class="chip-btn" onclick="applyQuickDesc(10)" style="flex:1;">10%</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="boxDescVal" style="display:none;">
+            <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Abatimento em Reais (R$)</label>
+            <input type="text" id="inputDescVal" value="0" oninput="onDescValInput()">
+        </div>
+
+        <div style="background:var(--card); border:1px solid rgba(212,175,55,0.3); border-radius:10px; padding:12px; margin-top:8px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <div style="font-size:10px; color:var(--muted); text-transform:uppercase; font-weight:700;">Valor Líquido Fechamento</div>
+                <div style="font-size:1.25rem; font-weight:800; color:var(--gold-bright);" id="displayPrecoFinal">R$ 2.500.000</div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:10px; color:var(--muted); text-transform:uppercase; font-weight:700;">M² Líquido Real</div>
+                <div style="font-size:1.05rem; font-weight:800; color:#FFF;" id="displayM2Final">R$ 16.666 /m²</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Estrutura de Fluxo (Presets Rápidos) -->
+    <div class="card-box">
+        <div class="section-label">
+            <span>3. Modelo de Fluxo Financeiro</span>
             <span id="fluxoBadgeText" style="color:#FFF;">55% Obra / 45% Chaves</span>
         </div>
 
@@ -288,10 +351,10 @@
         </div>
     </div>
 
-    <!-- 3. Memória de Cálculo & Resultados -->
+    <!-- 4. Memória de Cálculo & Resultados -->
     <div class="card-box">
         <div class="section-label">
-            <span>3. Resumo Financeiro da Proposta</span>
+            <span>4. Resumo Financeiro da Proposta</span>
             <span style="color:var(--gold-bright);">Sem Juros na Obra</span>
         </div>
 
@@ -330,13 +393,13 @@
         </div>
     </div>
 
-    <!-- 4. Disparo WhatsApp 1 Toque -->
+    <!-- 5. Disparo WhatsApp 1 Toque -->
     <div class="card-box">
         <div class="section-label">
-            <span>4. Resposta Pronta para WhatsApp</span>
+            <span>5. Resposta Pronta para WhatsApp</span>
         </div>
 
-        <textarea id="outputWhatsAppMsg" style="width:100%; height:110px; background:var(--card); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:10px; border-radius:8px; font-family:inherit; font-size:12.5px; resize:none;"></textarea>
+        <textarea id="outputWhatsAppMsg" style="width:100%; height:120px; background:var(--card); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:10px; border-radius:8px; font-family:inherit; font-size:12.5px; resize:none;"></textarea>
 
         <a href="#" target="_blank" rel="noopener" id="btnShareWhatsApp" class="btn-wa-action">
             <span>Disparar Resumo no WhatsApp</span> &rarr;
@@ -348,20 +411,23 @@
     <script src="assets/js/lavvi_catalog_bundle.js"></script>
 
     <script>
-        // Preset configurations per Project
+        // Preset configurations per Project with verified m2
         const PROJECT_DEFAULTS = {
-            'Jardim da Hípica': { preco: 2500000, pct: 55, meses: 52, entrega: 'Mar/2031' },
-            'T.O.M. Paraíso': { preco: 450000, pct: 30, meses: 44, entrega: 'Jul/2030' },
-            'Well Perdizes': { preco: 380000, pct: 41, meses: 39, entrega: 'Fev/2030' },
-            'Saffire by Elie Saab': { preco: 6500000, pct: 35, meses: 1, entrega: 'Nov/2026' },
-            'Soleil by Boca do Lobo': { preco: 4030000, pct: 47, meses: 29, entrega: 'Abr/2029' },
-            'Le Six Residences': { preco: 3200000, pct: 35, meses: 31, entrega: 'Jun/2029' },
-            'Novvo Santa Marina': { preco: 320000, pct: 54, meses: 34, entrega: 'Set/2029' },
-            'Novvo Largo Treze': { preco: 295000, pct: 41, meses: 36, entrega: 'Out/2029' }
+            'Jardim da Hípica': { preco: 2500000, m2: 150, m2_preco: 16666, pct: 55, meses: 52, entrega: 'Mar/2031' },
+            'T.O.M. Paraíso': { preco: 450000, m2: 25, m2_preco: 18000, pct: 30, meses: 44, entrega: 'Jul/2030' },
+            'Well Perdizes': { preco: 380000, m2: 34, m2_preco: 11176, pct: 41, meses: 39, entrega: 'Fev/2030' },
+            'Saffire by Elie Saab': { preco: 6500000, m2: 360, m2_preco: 18055, pct: 35, meses: 1, entrega: 'Nov/2026' },
+            'Soleil by Boca do Lobo': { preco: 4030000, m2: 246, m2_preco: 16382, pct: 47, meses: 29, entrega: 'Abr/2029' },
+            'Le Six Residences': { preco: 3200000, m2: 156, m2_preco: 20512, pct: 35, meses: 31, entrega: 'Jun/2029' },
+            'Novvo Santa Marina': { preco: 320000, m2: 34, m2_preco: 9411, pct: 54, meses: 34, entrega: 'Set/2029' },
+            'Novvo Largo Treze': { preco: 295000, m2: 31, m2_preco: 9516, pct: 41, meses: 36, entrega: 'Out/2029' }
         };
 
         let currentPctObra = 55;
         let currentMeses = 52;
+        let discountMode = 'pct'; // 'pct' or 'val'
+        let currentDiscountPct = 0;
+        let currentDiscountVal = 0;
 
         function initMasterSimulator() {
             populateProjects();
@@ -372,8 +438,7 @@
             const sel = document.getElementById('projectSelector');
             const catalog = window.allProjects || [];
             
-            // Put Jardim da Hípica and key projects first
-            const priority = ['Jardim da Hípica', 'T.O.M. Paraíso', 'Well Perdizes', 'Saffire by Elie Saab', 'Soleil by Boca do Lobo', 'Le Six Residences', 'Novvo Santa Marina'];
+            const priority = ['Jardim da Hípica', 'T.O.M. Paraíso', 'Well Perdizes', 'Saffire by Elie Saab', 'Soleil by Boca do Lobo', 'Le Six Residences', 'Novvo Santa Marina', 'Novvo Largo Treze'];
             
             priority.forEach(name => {
                 const opt = document.createElement('option');
@@ -394,9 +459,11 @@
 
         function onProjectChange() {
             const pName = document.getElementById('projectSelector').value;
-            const def = PROJECT_DEFAULTS[pName] || { preco: 1800000, pct: 35, meses: 36, entrega: '2028' };
+            const def = PROJECT_DEFAULTS[pName] || { preco: 1800000, m2: 100, m2_preco: 18000, pct: 35, meses: 36, entrega: '2028' };
 
             document.getElementById('inputPreco').value = def.preco.toLocaleString('pt-BR');
+            document.getElementById('inputMetragem').value = def.m2;
+            document.getElementById('inputPrecoM2').value = Math.round(def.m2_preco).toLocaleString('pt-BR');
             document.getElementById('labelPrazoEntrega').textContent = 'Entrega: ' + def.entrega;
             
             setFluxoPreset(def.pct, 100 - def.pct);
@@ -404,14 +471,85 @@
             document.getElementById('displayMesesObra').textContent = def.meses + ' meses';
             currentMeses = def.meses;
 
+            zerarDesconto();
             recalcAll();
         }
 
-        function setPreco(val) {
-            document.getElementById('inputPreco').value = val.toLocaleString('pt-BR');
+        function setMetragem(m2) {
+            document.getElementById('inputMetragem').value = m2;
+            onMetragemChange();
+        }
+
+        function onMetragemChange() {
+            const m2 = parseFloat(document.getElementById('inputMetragem').value) || 1;
+            const m2Preco = parseCurrency(document.getElementById('inputPrecoM2').value);
+            const total = Math.round(m2 * m2Preco);
+            document.getElementById('inputPreco').value = total.toLocaleString('pt-BR');
             recalcAll();
         }
 
+        function onPrecoM2Change() {
+            const m2 = parseFloat(document.getElementById('inputMetragem').value) || 1;
+            const m2Preco = parseCurrency(document.getElementById('inputPrecoM2').value);
+            const total = Math.round(m2 * m2Preco);
+            document.getElementById('inputPreco').value = total.toLocaleString('pt-BR');
+            recalcAll();
+        }
+
+        function formatAndRecalc() {
+            const total = parseCurrency(document.getElementById('inputPreco').value);
+            const m2 = parseFloat(document.getElementById('inputMetragem').value) || 1;
+            const m2Preco = Math.round(total / m2);
+            document.getElementById('inputPrecoM2').value = m2Preco.toLocaleString('pt-BR');
+            recalcAll();
+        }
+
+        function parseCurrency(str) {
+            const raw = (str || '').toString().replace(/\D/g, '');
+            return parseInt(raw, 10) || 0;
+        }
+
+        // Discount Mode Toggle
+        function setDiscountMode(mode) {
+            discountMode = mode;
+            document.getElementById('btnDescPct').classList.toggle('active', mode === 'pct');
+            document.getElementById('btnDescVal').classList.toggle('active', mode === 'val');
+            document.getElementById('boxDescPct').style.display = mode === 'pct' ? 'grid' : 'none';
+            document.getElementById('boxDescVal').style.display = mode === 'val' ? 'block' : 'none';
+            recalcAll();
+        }
+
+        function zerarDesconto() {
+            currentDiscountPct = 0;
+            currentDiscountVal = 0;
+            document.getElementById('inputDescPct').value = 0;
+            document.getElementById('inputDescVal').value = '0';
+            recalcAll();
+        }
+
+        function applyQuickDesc(pct) {
+            setDiscountMode('pct');
+            document.getElementById('inputDescPct').value = pct;
+            onDescPctInput();
+        }
+
+        function onDescPctInput() {
+            currentDiscountPct = parseFloat(document.getElementById('inputDescPct').value) || 0;
+            const tabelaTotal = parseCurrency(document.getElementById('inputPreco').value);
+            currentDiscountVal = tabelaTotal * (currentDiscountPct / 100);
+            document.getElementById('inputDescVal').value = Math.round(currentDiscountVal).toLocaleString('pt-BR');
+            recalcAll();
+        }
+
+        function onDescValInput() {
+            currentDiscountVal = parseCurrency(document.getElementById('inputDescVal').value);
+            const tabelaTotal = parseCurrency(document.getElementById('inputPreco').value);
+            currentDiscountPct = tabelaTotal > 0 ? (currentDiscountVal / tabelaTotal) * 100 : 0;
+            document.getElementById('inputDescPct').value = (Math.round(currentDiscountPct * 10) / 10);
+            recalcAll();
+        }
+
+        // Fluxo Presets
         function setFluxoPreset(pctObra, pctChaves, btnEl) {
             currentPctObra = pctObra;
             document.getElementById('sliderPctObra').value = pctObra;
@@ -446,32 +584,48 @@
             recalcAll();
         }
 
-        function getNumericPrice() {
-            const raw = document.getElementById('inputPreco').value.replace(/\D/g, '');
-            return parseInt(raw, 10) || 0;
-        }
-
-        function formatAndRecalc() {
-            const num = getNumericPrice();
-            document.getElementById('inputPreco').value = num.toLocaleString('pt-BR');
-            recalcAll();
-        }
-
+        // Master Recalc
         function recalcAll() {
-            const total = getNumericPrice();
+            const tabelaTotal = parseCurrency(document.getElementById('inputPreco').value);
+            const m2 = parseFloat(document.getElementById('inputMetragem').value) || 1;
             const pctObra = currentPctObra;
             const pctChaves = 100 - pctObra;
             const meses = currentMeses;
             const pName = document.getElementById('projectSelector').value;
 
-            const totalObra = total * (pctObra / 100);
-            const totalChaves = total * (pctChaves / 100);
-            const ato = total * 0.07;
-            const saldoMensais = Math.max(0, totalObra - (ato * 2)); // Deduzindo ato e 30/60 dias
+            // Apply Discount
+            let finalPrice = tabelaTotal;
+            let descontoAplicado = 0;
+            if (discountMode === 'pct' && currentDiscountPct > 0) {
+                descontoAplicado = tabelaTotal * (currentDiscountPct / 100);
+                finalPrice = Math.max(0, tabelaTotal - descontoAplicado);
+            } else if (discountMode === 'val' && currentDiscountVal > 0) {
+                descontoAplicado = currentDiscountVal;
+                finalPrice = Math.max(0, tabelaTotal - descontoAplicado);
+            }
+
+            const finalM2 = Math.round(finalPrice / m2);
+
+            document.getElementById('displayPrecoFinal').textContent = 'R$ ' + Math.round(finalPrice).toLocaleString('pt-BR');
+            document.getElementById('displayM2Final').textContent = 'R$ ' + finalM2.toLocaleString('pt-BR') + ' /m²';
+
+            if (descontoAplicado > 0) {
+                document.getElementById('badgeEconomia').textContent = `Economia: -R$ ${Math.round(descontoAplicado).toLocaleString('pt-BR')} (${(Math.round(currentDiscountPct * 10) / 10)}%)`;
+                document.getElementById('badgeEconomia').style.color = 'var(--wa-green)';
+            } else {
+                document.getElementById('badgeEconomia').textContent = 'Preço de Tabela Cheia';
+                document.getElementById('badgeEconomia').style.color = 'var(--muted)';
+            }
+
+            // Calculations based on Final Negotiated Price
+            const totalObra = finalPrice * (pctObra / 100);
+            const totalChaves = finalPrice * (pctChaves / 100);
+            const ato = finalPrice * 0.07;
+            const saldoMensais = Math.max(0, totalObra - (ato * 2));
             const mensalMedia = meses > 0 ? (saldoMensais / meses) : 0;
 
             document.getElementById('resTotalObra').textContent = 'R$ ' + Math.round(totalObra).toLocaleString('pt-BR');
-            document.getElementById('resPctObraSub').textContent = `${pctObra}% do valor total`;
+            document.getElementById('resPctObraSub').textContent = `${pctObra}% do valor negociado`;
 
             document.getElementById('resTotalChaves').textContent = 'R$ ' + Math.round(totalChaves).toLocaleString('pt-BR');
             document.getElementById('resPctChavesSub').textContent = `${pctChaves}% nas chaves / financiamento`;
@@ -482,15 +636,22 @@
 
             // Text Explanation
             document.getElementById('arbitrageExplanation').innerHTML = `
-                Ao desembolsar apenas ${pctObra}% durante o período de obras, seu cliente mantém os outros <strong>R$ ${Math.round(totalChaves).toLocaleString('pt-BR')} (${pctChaves}%)</strong> aplicados em renda fixa (CDI/Selic), rendendo com total liquidez enquanto o imóvel captura a valorização patrimonial de ponta a ponta.
+                Ao desembolsar apenas ${pctObra}% durante a obra (R$ ${Math.round(totalObra).toLocaleString('pt-BR')}), seu cliente mantém os outros <strong>R$ ${Math.round(totalChaves).toLocaleString('pt-BR')} (${pctChaves}%)</strong> aplicados em renda fixa (CDI/Selic), rendendo com total liquidez enquanto o imóvel captura a valorização patrimonial de ponta a ponta.
             `;
 
             // WhatsApp Message
-            const waMsg = `Olá! Montei um estudo exclusivo de fluxo para o ${pName}:\n\n` +
-                `• Valor de Tabela: R$ ${total.toLocaleString('pt-BR')}\n` +
-                `• Fluxo Obra (${pctObra}%): R$ ${Math.round(totalObra).toLocaleString('pt-BR')} (Ato ~R$ ${Math.round(ato).toLocaleString('pt-BR')} + parcelas de ~R$ ${Math.round(mensalMedia).toLocaleString('pt-BR')}/mês)\n` +
-                `• Chaves (${pctChaves}%): R$ ${Math.round(totalChaves).toLocaleString('pt-BR')} financiado apenas na entrega.\n\n` +
-                `Você preserva ${pctChaves}% do seu capital rendendo no CDI durante a construção e captura toda a valorização do m². Quer que eu te detalhe a proposta?`;
+            let descTexto = '';
+            if (descontoAplicado > 0) {
+                descTexto = `• Condição Especial em Mesa: De R$ ${tabelaTotal.toLocaleString('pt-BR')} por R$ ${Math.round(finalPrice).toLocaleString('pt-BR')} (R$ ${finalM2.toLocaleString('pt-BR')}/m²)\n`;
+            } else {
+                descTexto = `• Valor: R$ ${Math.round(finalPrice).toLocaleString('pt-BR')} (R$ ${finalM2.toLocaleString('pt-BR')}/m²)\n`;
+            }
+
+            const waMsg = `Olá! Montei um estudo exclusivo de fluxo para o ${pName} (${m2} m²):\n\n` +
+                descTexto +
+                `• Fluxo na Obra (${pctObra}%): R$ ${Math.round(totalObra).toLocaleString('pt-BR')} (Ato ~R$ ${Math.round(ato).toLocaleString('pt-BR')} + parcelas de ~R$ ${Math.round(mensalMedia).toLocaleString('pt-BR')}/mês)\n` +
+                `• Saldo nas Chaves (${pctChaves}%): R$ ${Math.round(totalChaves).toLocaleString('pt-BR')} financiado apenas na entrega.\n\n` +
+                `Você preserva ${pctChaves}% do capital rendendo no CDI durante a construção e captura toda a valorização do m². Posso te enviar a minuta detalhada?`;
 
             document.getElementById('outputWhatsAppMsg').value = waMsg;
             document.getElementById('btnShareWhatsApp').href = `https://wa.me/?text=${encodeURIComponent(waMsg)}`;
