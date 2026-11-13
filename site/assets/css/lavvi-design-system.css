@@ -408,3 +408,695 @@ dialog.Drawer::backdrop, .Drawer::backdrop {
     padding: 0 2rem;
   }
 }
+
+/* ==========================================================================
+   PORTAL INTERACTIVE MAP & GIS RADAR ENGINE (#mapa)
+   Integrated Quiet Luxury Experience for Pedro Soares • Lavvi Private Wealth
+   ========================================================================== */
+
+#mapa, .mapa-section {
+  scroll-margin-top: 76px;
+  position: relative;
+  width: 100%;
+  background: #f8f9fa;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.mapa-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.mapa-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.mapa-header-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.mapa-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--secondary);
+  color: #F3DC8A;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.mapa-title {
+  font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 2.4vw, 2.125rem);
+  font-weight: 700;
+  color: var(--secondary);
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+.mapa-subtitle {
+  font-size: 0.94rem;
+  color: #475569;
+  max-width: 760px;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.btn-gis-fullscreen {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  background: var(--secondary);
+  color: #ffffff;
+  border: 1px solid rgba(149, 123, 43, 0.45);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(24, 40, 66, 0.12);
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.btn-gis-fullscreen:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(149, 123, 43, 0.28);
+}
+
+/* Lavvi Learning Segmented Filter Bar */
+.lavvi-learning-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(24, 40, 66, 0.04);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lavvi-learning-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.ll-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F8FAFC;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  min-height: 44px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
+}
+
+.ll-filter-pill:hover {
+  background: #ffffff;
+  border-color: #957B2B;
+  color: #182842;
+  transform: translateY(-1px);
+}
+
+.ll-filter-pill.active {
+  background: #182842;
+  border-color: #182842;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(24, 40, 66, 0.25);
+}
+
+.ll-filter-pill.pill-novvo.active {
+  background: #22343E;
+  border-color: #A06F71;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(160, 111, 113, 0.25);
+}
+
+.ll-filter-pill.pill-novvo .ll-pill-count {
+  background: rgba(160, 111, 113, 0.2);
+  color: #A06F71;
+}
+
+.ll-filter-pill.pill-novvo.active .ll-pill-count {
+  background: #A06F71;
+  color: #ffffff;
+}
+
+.ll-filter-pill.pill-historico.active {
+  background: #334155;
+  border-color: #D4AF37;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+}
+
+.ll-pill-badge-historico {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(212, 175, 55, 0.2);
+  color: #957B2B;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.ll-filter-pill.pill-historico.active .ll-pill-badge-historico {
+  background: #D4AF37;
+  color: #0F172A;
+  font-weight: 800;
+}
+
+.ll-filter-pill.pill-radar.active {
+  background: #059669;
+  border-color: #059669;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+}
+
+.ll-filter-pill.pill-concorrencia.active {
+  background: #1E293B;
+  border-color: #94A3B8;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(30, 41, 59, 0.3);
+}
+
+.ll-pill-count {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 2px 7px;
+  border-radius: 9999px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.ll-filter-pill.active .ll-pill-count {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.mapa-status-label {
+  font-size: 0.82rem;
+  color: #475569;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  min-height: 22px;
+}
+
+.mapa-status-label strong {
+  color: #182842;
+}
+
+/* Map Canvas Container */
+.portal-map-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#portal-map {
+  width: 100%;
+  height: 580px;
+  min-height: 480px;
+  border-radius: 14px;
+  border: 1px solid rgba(24, 40, 66, 0.14);
+  box-shadow: 0 10px 30px rgba(24, 40, 66, 0.08);
+  overflow: hidden;
+  background: #E2E8F0;
+  position: relative;
+  z-index: 10;
+}
+
+.portal-scroll-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 500;
+  background: rgba(24, 40, 66, 0.85);
+  backdrop-filter: blur(4px);
+  color: #F8FAFC;
+  font-size: 0.74rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: opacity 0.3s;
+}
+
+/* Leaflet Custom Marker Styles */
+.gpin {
+  position: relative;
+}
+
+.gpin-radar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  background: rgba(149, 123, 43, 0.35);
+  border-radius: 50%;
+  animation: gpin-pulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+.gpin-radar-novvo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  background: rgba(160, 111, 113, 0.35);
+  border-radius: 50%;
+  animation: gpin-pulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+.gpin-radar-historico {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: rgba(212, 175, 55, 0.25);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.gpin-radar-comp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background: rgba(71, 85, 105, 0.25);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@keyframes gpin-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+}
+
+.anchor-marker-refined {
+  cursor: pointer;
+}
+
+.poi-custom-marker {
+  cursor: pointer;
+}
+
+/* Rich Property & POI Modal Overlay */
+.lavvi-rich-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.lavvi-rich-modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px rgba(24, 40, 66, 0.28);
+  animation: pinCardDesktopEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pinCardDesktopEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.pin-card-media-wrap {
+  height: 200px;
+  position: relative;
+  background: #0F172A;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pin-card-media-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pin-card-media-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 40%, rgba(24,40,66,0.7) 100%);
+}
+
+.pin-card-badges-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+.pin-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #ffffff;
+  background: rgba(24, 40, 66, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pin-badge.badge-gold {
+  background: #957B2B;
+  border-color: #F3DC8A;
+  color: #ffffff;
+}
+
+.pin-badge.badge-novvo {
+  background: #22343E;
+  border-color: #A06F71;
+  color: #ffffff;
+}
+
+.pin-badge.badge-historico {
+  background: #334155;
+  border-color: #D4AF37;
+  color: #F3DC8A;
+}
+
+.pin-badge.badge-comp {
+  background: #1E293B;
+  border-color: #94A3B8;
+  color: #ffffff;
+}
+
+.pin-badge.badge-poi {
+  background: #059669;
+  border-color: #A7F3D0;
+  color: #ffffff;
+}
+
+.pin-card-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s ease, outline 0.15s ease;
+}
+
+.pin-card-close-btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+  transform: scale(1.05);
+}
+
+.pin-card-close-btn:focus-visible {
+  outline: 2px solid #F3DC8A;
+  outline-offset: 2px;
+}
+
+.lavvi-rich-modal-card:focus {
+  outline: none;
+}
+
+.pin-card-body {
+  padding: 18px 22px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.pin-card-address {
+  font-size: 0.74rem;
+  color: #64748B;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pin-card-title {
+  font-family: 'IvyOra Display', 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #182842;
+  margin: 4px 0 14px 0;
+  line-height: 1.2;
+}
+
+.pin-card-kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.pin-kpi-cell {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.pin-kpi-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748B;
+  font-weight: 700;
+}
+
+.pin-kpi-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #182842;
+  margin-top: 2px;
+}
+
+.pin-kpi-val.gold-accent {
+  color: #957B2B;
+}
+
+.pin-card-differentials {
+  background: rgba(149, 123, 43, 0.06);
+  border-left: 3px solid #957B2B;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.pin-diff-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #182842;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.pin-diff-list {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 0.80rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.pin-card-legal-box {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.74rem;
+  color: #92400E;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.pin-card-comp-box {
+  background: #F1F5F9;
+  border-left: 3px solid #475569;
+  border-radius: 0 8px 8px 0;
+  padding: 9px 12px;
+  font-size: 0.76rem;
+  color: #1E293B;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.pin-card-footer {
+  padding: 12px 22px;
+  background: #F8FAFC;
+  border-top: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pin-footer-brand {
+  font-size: 0.78rem;
+  color: #182842;
+}
+
+.pin-footer-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-open-full-hub {
+  background: #182842;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 8px 16px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background 0.2s;
+  box-sizing: border-box;
+}
+
+.btn-open-full-hub:hover {
+  background: #243b61;
+}
+
+.btn-pin-wa {
+  background: #059669;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 8px 16px;
+  min-height: 44px;
+  border-radius: 9999px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+  transition: background 0.2s;
+  box-sizing: border-box;
+}
+
+.btn-pin-wa:hover {
+  background: #047857;
+}
+
+/* Mobile Modal & Map Responsiveness */
+@media (max-width: 767px) {
+  #portal-map {
+    height: 440px;
+    min-height: 380px;
+  }
+
+  .mapa-inner {
+    padding: 2rem 1rem;
+  }
+
+  .lavvi-rich-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .lavvi-rich-modal-card {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 20px 20px 0 0;
+    animation: pinCardMobileSlideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .pin-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pin-footer-actions {
+    flex-direction: column;
+  }
+
+  .btn-open-full-hub, .btn-pin-wa {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@keyframes pinCardMobileSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

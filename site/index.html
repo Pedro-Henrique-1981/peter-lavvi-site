@@ -14,6 +14,9 @@
   <!-- Official Lavvi Design System CSS -->
   <link rel="stylesheet" href="assets/css/lavvi-design-system.css" />
 
+  <!-- Leaflet 1.9.4 Mapping Library CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
@@ -890,7 +893,7 @@
         <li><a href="#catalogo" onclick="setCategoryTab('novvo', document.getElementById('tab-novvo'))">Linha Novvo (7)</a></li>
         <li><a href="crm_cockpit.html" style="color:#F3DC8A;">CRM Leads</a></li>
         <li><a href="cinema_lavvi.html">Cinema 4K</a></li>
-        <li><a href="radar_mapa.html">Mapa &amp; Radar</a></li>
+        <li><a href="#mapa">Mapa &amp; Radar</a></li>
         <li><a href="guias_bairros.html">Guias de Bairros</a></li>
         <li><a href="credito_imobiliario.html">Simulador &amp; Crédito</a></li>
         <li><a href="comparativos.html">Comparativos</a></li>
@@ -927,7 +930,7 @@
       <li><a href="#catalogo" onclick="toggleMobileDrawer(false); setCategoryTab('lavvi', document.getElementById('tab-lavvi'));">Coleção Lavvi (39)</a></li>
       <li><a href="#catalogo" onclick="toggleMobileDrawer(false); setCategoryTab('novvo', document.getElementById('tab-novvo'));">Linha Meu Novvo (7)</a></li>
       <li><a href="cinema_lavvi.html">Cinema Lavvi 4K</a></li>
-      <li><a href="radar_mapa.html">Mapa Interativo &amp; Radar 3 km</a></li>
+      <li><a href="#mapa" onclick="toggleMobileDrawer(false)">Mapa Interativo &amp; Radar 3 km</a></li>
       <li><a href="guias_bairros.html">Guias de Bairros &amp; Comparador</a></li>
       <li><a href="credito_imobiliario.html">Simulador 35/65 vs CDI &amp; Crédito</a></li>
       <li><a href="comparativos.html">Dossiês &amp; Comparativos</a></li>
@@ -991,6 +994,72 @@
 
       <!-- 1:1 Square Cards Container -->
       <div class="catalog-grid" id="catalog-grid-container"></div>
+    </section>
+
+    <!-- 3. INTERACTIVE GIS MAP & INFRASTRUCTURE RADAR -->
+    <section class="mapa-section" id="mapa" aria-label="Mapa Interativo e Radar de Localização">
+      <div class="mapa-inner">
+        <div class="mapa-header">
+          <div class="mapa-header-text">
+            <span class="mapa-eyebrow">GEO-INTELIGÊNCIA &amp; RADAR URBANO SP</span>
+            <h2 class="mapa-title">Mapa Interativo dos 46 Empreendimentos Lavvi &amp; Meu Novvo</h2>
+            <p class="mapa-subtitle">
+              Navegue pelos lançamentos, obras ativas, patrimônio entregue com Selo Histórico, radar de conveniência em raio de 3 km e benchmarks competitivos em São Paulo.
+            </p>
+          </div>
+          <div>
+            <a href="radar_mapa.html" class="btn-gis-fullscreen" title="Abrir Radar GIS com visualização de satélite em tela cheia">
+              Explorar Radar GIS Completo &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Segmented Filter Bar (Lavvi Learning Style) -->
+        <div class="lavvi-learning-filter-bar" role="tablist" aria-label="Filtros do Mapa Interativo">
+          <button type="button" class="ll-filter-pill active" id="portal-filter-todos" data-filter="todos" onclick="applyPortalMapFilter('todos', this)" role="tab" aria-selected="true">
+            <span class="ll-pill-icon">🌟</span>
+            <span class="ll-pill-label">Todos</span>
+            <span class="ll-pill-count">46</span>
+          </button>
+          <button type="button" class="ll-filter-pill" id="portal-filter-lancamentos" data-filter="lancamentos" onclick="applyPortalMapFilter('lancamentos', this)" role="tab" aria-selected="false">
+            <span class="ll-pill-icon">🏗️</span>
+            <span class="ll-pill-label">Lançamentos &amp; Obras (Lavvi)</span>
+            <span class="ll-pill-count">17</span>
+          </button>
+          <button type="button" class="ll-filter-pill pill-novvo" id="portal-filter-novvo" data-filter="novvo" onclick="applyPortalMapFilter('novvo', this)" role="tab" aria-selected="false">
+            <span class="ll-pill-icon">🌸</span>
+            <span class="ll-pill-label">Linha Meu Novvo</span>
+            <span class="ll-pill-count">7</span>
+          </button>
+          <button type="button" class="ll-filter-pill pill-historico" id="portal-filter-entregues" data-filter="entregues" onclick="applyPortalMapFilter('entregues', this)" role="tab" aria-selected="false">
+            <span class="ll-pill-icon">🏆</span>
+            <span class="ll-pill-label">100% Vendidos &amp; Entregues</span>
+            <span class="ll-pill-badge-historico">Selo Histórico</span>
+            <span class="ll-pill-count">22</span>
+          </button>
+          <button type="button" class="ll-filter-pill pill-radar" id="portal-filter-lifestyle" data-filter="lifestyle" onclick="applyPortalMapFilter('lifestyle', this)" role="tab" aria-selected="false">
+            <span class="ll-pill-icon">📍</span>
+            <span class="ll-pill-label">Raio 3km (Lifestyle &amp; Conveniência)</span>
+            <span class="ll-pill-count">348</span>
+          </button>
+          <button type="button" class="ll-filter-pill pill-concorrencia" id="portal-filter-concorrencia" data-filter="concorrencia" onclick="applyPortalMapFilter('concorrencia', this)" role="tab" aria-selected="false">
+            <span class="ll-pill-icon">⚔️</span>
+            <span class="ll-pill-label">Concorrência de Mercado</span>
+            <span class="ll-pill-count">12</span>
+          </button>
+        </div>
+
+        <div class="mapa-status-label" id="portal-map-status" aria-live="polite">
+          Carregando geolocalização do portfólio...
+        </div>
+
+        <div class="portal-map-wrapper">
+          <div id="portal-map" role="region" aria-label="Mapa Interativo de São Paulo"></div>
+          <div class="portal-scroll-hint" id="portal-scroll-hint">
+            💡 Clique no mapa para habilitar o zoom por scroll
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 4. STANDALONE TOOLS & NEIGHBORHOOD HELPERS HUB -->
@@ -1722,5 +1791,75 @@
       applyCatalogFilters();
     });
   </script>
+
+  <!-- Rich Property & POI Modal Overlay -->
+  <div class="lavvi-rich-modal-overlay" id="map-pin-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pin-modal-title" style="display: none;">
+    <div class="lavvi-rich-modal-card" id="pin-modal-card" tabindex="-1">
+      <div class="pin-card-media-wrap">
+        <img id="pin-modal-img" src="" alt="" loading="lazy">
+        <div class="pin-card-media-scrim"></div>
+        <div class="pin-card-badges-top" id="pin-modal-badges"></div>
+        <button type="button" class="pin-card-close-btn" onclick="closePropertyModal()" aria-label="Fechar card">&times;</button>
+      </div>
+
+      <div class="pin-card-body">
+        <div class="pin-card-address" id="pin-modal-address"></div>
+        <h3 class="pin-card-title" id="pin-modal-title"></h3>
+
+        <!-- 2x2 KPI Grid -->
+        <div class="pin-card-kpi-grid" id="pin-modal-kpi-grid">
+          <div class="pin-kpi-cell">
+            <div class="pin-kpi-label">Metragens &amp; Plantas</div>
+            <div class="pin-kpi-val" id="pin-kpi-m2">-</div>
+          </div>
+          <div class="pin-kpi-cell">
+            <div class="pin-kpi-label">Tipologia &amp; Suítes</div>
+            <div class="pin-kpi-val" id="pin-kpi-tipo">-</div>
+          </div>
+          <div class="pin-kpi-cell">
+            <div class="pin-kpi-label">Preço de Partida / m²</div>
+            <div class="pin-kpi-val gold-accent" id="pin-kpi-preco">-</div>
+          </div>
+          <div class="pin-kpi-cell">
+            <div class="pin-kpi-label">Entrega &amp; Fluxo</div>
+            <div class="pin-kpi-val" id="pin-kpi-entrega">-</div>
+          </div>
+        </div>
+
+        <!-- Differentials List -->
+        <div class="pin-card-differentials" id="pin-modal-differentials-wrap">
+          <div class="pin-diff-title" id="pin-modal-diff-heading">✨ Diferenciais Exclusivos de Projeto</div>
+          <ul class="pin-diff-list" id="pin-modal-diff-list"></ul>
+        </div>
+
+        <!-- Regulatory / Legal Notice -->
+        <div class="pin-card-legal-box" id="pin-modal-legal-box" style="display: none;"></div>
+
+        <!-- Competitor Asymmetry Box -->
+        <div class="pin-card-comp-box" id="pin-modal-comp-box" style="display: none;"></div>
+      </div>
+
+      <div class="pin-card-footer">
+        <div class="pin-footer-brand">
+          <strong>Pedro Soares</strong> | Lavvi Private Wealth<br>
+          <small style="color: #64748B;">Consultor direto da Incorporadora</small>
+        </div>
+        <div class="pin-footer-actions">
+          <a id="pin-modal-secondary-btn" href="#catalogo" class="btn-open-full-hub">
+            Ver no Catálogo &rarr;
+          </a>
+          <a id="pin-modal-wa-btn" href="https://wa.me/5511966105952" target="_blank" rel="noopener" class="btn-pin-wa">
+            💬 Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet 1.9.4 Library JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Portal Map Engine Script -->
+  <script src="assets/js/portal_map_engine.js"></script>
 </body>
 </html>
