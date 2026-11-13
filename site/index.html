@@ -104,6 +104,12 @@
       text-transform: uppercase;
       white-space: nowrap;
     }
+        .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
     .nav-links-desktop {
       display: flex;
       align-items: center;
@@ -172,7 +178,8 @@
       display: none;
       position: absolute;
       top: calc(100% + 8px);
-      right: 0;
+      left: 0;
+      right: auto;
       width: 240px;
       background: rgba(15, 23, 42, 0.96);
       backdrop-filter: blur(18px);
@@ -1167,7 +1174,13 @@
     }
 
     @media (max-width: 960px) {
-      .nav-links-desktop {
+          .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .nav-links-desktop {
         display: none;
       }
       .btn-drawer-toggle {
@@ -1224,10 +1237,7 @@
         <li><a href="#mapa">Mapa &amp; Radar</a></li>
         <li><a href="guias_bairros.html">Bairros</a></li>
         <li><a href="credito_imobiliario.html">Simulador</a></li>
-        <li><a href="javascript:void(0)" onclick="toggleChatWidget()" style="color:#F3DC8A; display:flex; align-items:center; gap:6px;">
-          <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#22C55E; box-shadow:0 0 6px #22C55E;"></span>
-          Peter AI
-        </a></li>
+
       </ul>
 
       <div class="nav-actions">
@@ -1290,7 +1300,7 @@
       <div class="carousel-track-wrapper" id="carouselTrackWrapper">
         <!-- Slide 0: Well Perdizes -->
         <div class="carousel-slide-item active" data-index="0" data-project="Well Perdizes" data-eyebrow="LANÇAMENTO • PERDIZES / PUC-SP &amp; ALLIANZ" data-title="Well Perdizes • Bem-Estar e Sofisticação na Zona Oeste" data-lead="Plantas inteligentes e lazer contemporâneo em Perdizes nobre. Alta liquidez e conveniência perto de hospitais, faculdades e parques.">
-          <img src="assets/images/well_perdizes_gal_3.jpg" alt="Well Perdizes — Perdizes, São Paulo" fetchpriority="high" />
+          <img src="assets/images/well_perdizes_gal_2.jpg" alt="Well Perdizes — Perdizes, São Paulo" fetchpriority="high" />
         </div>
         <!-- Slide 1: Jardim da Hípica -->
         <div class="carousel-slide-item" data-index="1" data-project="Jardim da Hípica" data-eyebrow="LANÇAMENTO MONUMENTAL • ALTO DA BOA VISTA" data-title="Jardim da Hípica • O Resort Mais Exclusivo de SP" data-lead="Terreno monumental de 39.553 m² em frente ao CHSA, 02 Quadras de Tênis Oficiais (18x36m), Raia de 60m e gestão CBRE + Body Care.">
