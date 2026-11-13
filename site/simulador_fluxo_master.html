@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Simulador de Fluxo Master • Lavvi Private Wealth</title>
+    <meta name="theme-color" content="#0A0C10">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0C10;
+            --surface: #121622;
+            --card: #181E2E;
+            --gold: #D4AF37;
+            --gold-bright: #F3DC8A;
+            --wa-green: #25D366;
+            --text: #F8FAFC;
+            --muted: #94A3B8;
+            --border: rgba(212, 175, 55, 0.25);
+            --border-hover: rgba(212, 175, 55, 0.5);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 16px 14px 60px;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .back-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--gold-bright);
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-bright);
+            border: 1px solid var(--gold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #FFF; margin-bottom: 4px; }
+        .subtitle { font-size: 12px; color: var(--muted); }
+
+        /* Card Container */
+        .card-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .section-label {
+            font-size: 11px;
+            color: var(--gold-bright);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Project Selector */
+        select, input[type="text"] {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #FFF;
+            padding: 11px 12px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 13.5px;
+            outline: none;
+            margin-bottom: 12px;
+        }
+        select:focus, input[type="text"]:focus {
+            border-color: var(--gold);
+        }
+
+        /* Preset Chips */
+        .preset-chips {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .chip-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 9px 6px;
+            border-radius: 8px;
+            font-size: 11.5px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.15s;
+        }
+        .chip-btn.active {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+        }
+
+        /* Range Slider */
+        .slider-box {
+            margin: 14px 0 6px;
+        }
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+        .slider-labels strong { color: var(--gold-bright); font-size: 13px; }
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: #252D3F;
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--gold);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(212,175,55,0.6);
+        }
+
+        /* Breakdown Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .metric-cell {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px;
+        }
+        .metric-title { font-size: 10px; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+        .metric-val { font-size: 1.15rem; font-weight: 800; color: #FFF; margin: 3px 0; }
+        .metric-sub { font-size: 11px; color: var(--gold-bright); }
+
+        /* Arbitrage vs CDI Card */
+        .arbitrage-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.12) 0%, rgba(24,30,46,0.85) 100%);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 14px;
+        }
+        .arbitrage-title { font-size: 12px; font-weight: 800; color: var(--gold-bright); margin-bottom: 6px; }
+        .arbitrage-text { font-size: 12px; color: #E2E8F0; line-height: 1.5; }
+
+        /* Action Buttons */
+        .btn-wa-action {
+            width: 100%;
+            background: var(--wa-green);
+            color: #031A0B;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            margin-top: 12px;
+        }
+        .btn-copy-action {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFF;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="mobile_hub.html" class="back-btn">&larr; Voltar ao Hub</a>
+        <span style="font-size:11px; color:var(--gold-bright); font-weight:700;">46 PROJETOS • NOV/2026</span>
+    </div>
+
+    <div class="header">
+        <span class="badge">⚡ SIMULADOR MASTER DE FLUXO &amp; ARBITRAGEM</span>
+        <h1>Simulador <span>Fluxo Master</span></h1>
+        <p class="subtitle">Calcule o desembolso exato na obra vs. chaves com 1 toque no celular</p>
+    </div>
+
+    <!-- 1. Dados Básicos do Imóvel -->
+    <div class="card-box">
+        <div class="section-label">
+            <span>1. Selecione o Empreendimento &amp; Valor</span>
+            <span id="labelPrazoEntrega">Entrega: Mar/2031</span>
+        </div>
+
+        <select id="projectSelector" onchange="onProjectChange()">
+            <!-- Populado dinamicamente com os 46 projetos -->
+        </select>
+
+        <label style="font-size:11px; color:var(--muted); text-transform:uppercase; font-weight:700; display:block; margin-bottom:4px;">Valor de Tabela da Unidade (R$)</label>
+        <div style="display:flex; gap:8px;">
+            <input type="text" id="inputPreco" value="2.500.000" oninput="formatAndRecalc()">
+        </div>
+
+        <!-- Botões de Valores Rápidos -->
+        <div style="display:flex; gap:6px; margin-top:-4px; margin-bottom:12px; overflow-x:auto;">
+            <button type="button" class="chip-btn" onclick="setPreco(350000)" style="flex:1;">R$ 350k</button>
+            <button type="button" class="chip-btn" onclick="setPreco(850000)" style="flex:1;">R$ 850k</button>
+            <button type="button" class="chip-btn" onclick="setPreco(1500000)" style="flex:1;">R$ 1.5M</button>
+            <button type="button" class="chip-btn" onclick="setPreco(2500000)" style="flex:1;">R$ 2.5M</button>
+            <button type="button" class="chip-btn" onclick="setPreco(4500000)" style="flex:1;">R$ 4.5M</button>
+        </div>
+    </div>
+
+    <!-- 2. Estrutura de Fluxo (Presets Rápidos) -->
+    <div class="card-box">
+        <div class="section-label">
+            <span>2. Modelo de Fluxo Financeiro</span>
+            <span id="fluxoBadgeText" style="color:#FFF;">55% Obra / 45% Chaves</span>
+        </div>
+
+        <div class="preset-chips">
+            <button type="button" class="chip-btn active" id="btnPreset55" onclick="setFluxoPreset(55, 45, this)">55 / 45 (Hípica)</button>
+            <button type="button" class="chip-btn" id="btnPreset35" onclick="setFluxoPreset(35, 65, this)">35 / 65 (Padrão)</button>
+            <button type="button" class="chip-btn" id="btnPreset30" onclick="setFluxoPreset(30, 70, this)">30 / 70 (TOM)</button>
+        </div>
+
+        <!-- Slider customizado de % na Obra -->
+        <div class="slider-box">
+            <div class="slider-labels">
+                <span>Desembolso na Obra:</span>
+                <strong id="displayPctObra">55%</strong>
+            </div>
+            <input type="range" id="sliderPctObra" min="20" max="80" step="5" value="55" oninput="onSliderChange(this.value)">
+        </div>
+
+        <div class="slider-box">
+            <div class="slider-labels">
+                <span>Meses de Obra Restantes:</span>
+                <strong id="displayMesesObra">52 meses</strong>
+            </div>
+            <input type="range" id="sliderMeses" min="12" max="60" step="1" value="52" oninput="onMesesChange(this.value)">
+        </div>
+    </div>
+
+    <!-- 3. Memória de Cálculo & Resultados -->
+    <div class="card-box">
+        <div class="section-label">
+            <span>3. Resumo Financeiro da Proposta</span>
+            <span style="color:var(--gold-bright);">Sem Juros na Obra</span>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-cell">
+                <div class="metric-title">Total Durante a Obra</div>
+                <div class="metric-val" id="resTotalObra">R$ 1.375.000</div>
+                <div class="metric-sub" id="resPctObraSub">55% do valor do imóvel</div>
+            </div>
+
+            <div class="metric-cell">
+                <div class="metric-title">Financiamento / Chaves</div>
+                <div class="metric-val" id="resTotalChaves">R$ 1.125.000</div>
+                <div class="metric-sub" id="resPctChavesSub">45% na entrega</div>
+            </div>
+
+            <div class="metric-cell">
+                <div class="metric-title">Sinal Estimado (Ato)</div>
+                <div class="metric-val" id="resAto">R$ 175.000</div>
+                <div class="metric-sub">~7% na assinatura</div>
+            </div>
+
+            <div class="metric-cell">
+                <div class="metric-title">Média Mensal na Obra</div>
+                <div class="metric-val" id="resMensalMedia">R$ 15.384 /mês</div>
+                <div class="metric-sub" id="resParcelasSub">em 52 parcelas</div>
+            </div>
+        </div>
+
+        <!-- Card de Arbitragem com o CDI -->
+        <div class="arbitrage-card">
+            <div class="arbitrage-title">📈 Efeito Arbitragem CDI (Preservação de Capital):</div>
+            <div class="arbitrage-text" id="arbitrageExplanation">
+                Ao desembolsar apenas 55% durante a obra, seu cliente mantém os outros <strong>R$ 1.125.000 (45%)</strong> investidos em renda fixa (CDI/Selic), gerando rendimento líquido de liquidez enquanto o imóvel captura a valorização integral do m² até 2031.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Disparo WhatsApp 1 Toque -->
+    <div class="card-box">
+        <div class="section-label">
+            <span>4. Resposta Pronta para WhatsApp</span>
+        </div>
+
+        <textarea id="outputWhatsAppMsg" style="width:100%; height:110px; background:var(--card); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:10px; border-radius:8px; font-family:inherit; font-size:12.5px; resize:none;"></textarea>
+
+        <a href="#" target="_blank" rel="noopener" id="btnShareWhatsApp" class="btn-wa-action">
+            <span>Disparar Resumo no WhatsApp</span> &rarr;
+        </a>
+        <button type="button" class="btn-copy-action" onclick="copySummaryText()">Copiar Texto da Simulação</button>
+    </div>
+
+    <!-- Load Canonical Catalog Bundle -->
+    <script src="assets/js/lavvi_catalog_bundle.js"></script>
+
+    <script>
+        // Preset configurations per Project
+        const PROJECT_DEFAULTS = {
+            'Jardim da Hípica': { preco: 2500000, pct: 55, meses: 52, entrega: 'Mar/2031' },
+            'T.O.M. Paraíso': { preco: 450000, pct: 30, meses: 44, entrega: 'Jul/2030' },
+            'Well Perdizes': { preco: 380000, pct: 41, meses: 39, entrega: 'Fev/2030' },
+            'Saffire by Elie Saab': { preco: 6500000, pct: 35, meses: 1, entrega: 'Nov/2026' },
+            'Soleil by Boca do Lobo': { preco: 4030000, pct: 47, meses: 29, entrega: 'Abr/2029' },
+            'Le Six Residences': { preco: 3200000, pct: 35, meses: 31, entrega: 'Jun/2029' },
+            'Novvo Santa Marina': { preco: 320000, pct: 54, meses: 34, entrega: 'Set/2029' },
+            'Novvo Largo Treze': { preco: 295000, pct: 41, meses: 36, entrega: 'Out/2029' }
+        };
+
+        let currentPctObra = 55;
+        let currentMeses = 52;
+
+        function initMasterSimulator() {
+            populateProjects();
+            onProjectChange();
+        }
+
+        function populateProjects() {
+            const sel = document.getElementById('projectSelector');
+            const catalog = window.allProjects || [];
+            
+            // Put Jardim da Hípica and key projects first
+            const priority = ['Jardim da Hípica', 'T.O.M. Paraíso', 'Well Perdizes', 'Saffire by Elie Saab', 'Soleil by Boca do Lobo', 'Le Six Residences', 'Novvo Santa Marina'];
+            
+            priority.forEach(name => {
+                const opt = document.createElement('option');
+                opt.value = name;
+                opt.textContent = name;
+                sel.appendChild(opt);
+            });
+
+            catalog.forEach(p => {
+                if (!priority.includes(p.nome)) {
+                    const opt = document.createElement('option');
+                    opt.value = p.nome;
+                    opt.textContent = p.nome;
+                    sel.appendChild(opt);
+                }
+            });
+        }
+
+        function onProjectChange() {
+            const pName = document.getElementById('projectSelector').value;
+            const def = PROJECT_DEFAULTS[pName] || { preco: 1800000, pct: 35, meses: 36, entrega: '2028' };
+
+            document.getElementById('inputPreco').value = def.preco.toLocaleString('pt-BR');
+            document.getElementById('labelPrazoEntrega').textContent = 'Entrega: ' + def.entrega;
+            
+            setFluxoPreset(def.pct, 100 - def.pct);
+            document.getElementById('sliderMeses').value = def.meses;
+            document.getElementById('displayMesesObra').textContent = def.meses + ' meses';
+            currentMeses = def.meses;
+
+            recalcAll();
+        }
+
+        function setPreco(val) {
+            document.getElementById('inputPreco').value = val.toLocaleString('pt-BR');
+            recalcAll();
+        }
+
+        function setFluxoPreset(pctObra, pctChaves, btnEl) {
+            currentPctObra = pctObra;
+            document.getElementById('sliderPctObra').value = pctObra;
+            document.getElementById('displayPctObra').textContent = pctObra + '%';
+            document.getElementById('fluxoBadgeText').textContent = `${pctObra}% Obra / ${pctChaves}% Chaves`;
+
+            document.querySelectorAll('.preset-chips .chip-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) {
+                btnEl.classList.add('active');
+            } else {
+                if (pctObra === 55) document.getElementById('btnPreset55').classList.add('active');
+                else if (pctObra === 35) document.getElementById('btnPreset35').classList.add('active');
+                else if (pctObra === 30) document.getElementById('btnPreset30').classList.add('active');
+            }
+
+            recalcAll();
+        }
+
+        function onSliderChange(val) {
+            currentPctObra = parseInt(val, 10);
+            const pctChaves = 100 - currentPctObra;
+            document.getElementById('displayPctObra').textContent = currentPctObra + '%';
+            document.getElementById('fluxoBadgeText').textContent = `${currentPctObra}% Obra / ${pctChaves}% Chaves`;
+            
+            document.querySelectorAll('.preset-chips .chip-btn').forEach(b => b.classList.remove('active'));
+            recalcAll();
+        }
+
+        function onMesesChange(val) {
+            currentMeses = parseInt(val, 10);
+            document.getElementById('displayMesesObra').textContent = currentMeses + ' meses';
+            recalcAll();
+        }
+
+        function getNumericPrice() {
+            const raw = document.getElementById('inputPreco').value.replace(/\D/g, '');
+            return parseInt(raw, 10) || 0;
+        }
+
+        function formatAndRecalc() {
+            const num = getNumericPrice();
+            document.getElementById('inputPreco').value = num.toLocaleString('pt-BR');
+            recalcAll();
+        }
+
+        function recalcAll() {
+            const total = getNumericPrice();
+            const pctObra = currentPctObra;
+            const pctChaves = 100 - pctObra;
+            const meses = currentMeses;
+            const pName = document.getElementById('projectSelector').value;
+
+            const totalObra = total * (pctObra / 100);
+            const totalChaves = total * (pctChaves / 100);
+            const ato = total * 0.07;
+            const saldoMensais = Math.max(0, totalObra - (ato * 2)); // Deduzindo ato e 30/60 dias
+            const mensalMedia = meses > 0 ? (saldoMensais / meses) : 0;
+
+            document.getElementById('resTotalObra').textContent = 'R$ ' + Math.round(totalObra).toLocaleString('pt-BR');
+            document.getElementById('resPctObraSub').textContent = `${pctObra}% do valor total`;
+
+            document.getElementById('resTotalChaves').textContent = 'R$ ' + Math.round(totalChaves).toLocaleString('pt-BR');
+            document.getElementById('resPctChavesSub').textContent = `${pctChaves}% nas chaves / financiamento`;
+
+            document.getElementById('resAto').textContent = 'R$ ' + Math.round(ato).toLocaleString('pt-BR');
+            document.getElementById('resMensalMedia').textContent = 'R$ ' + Math.round(mensalMedia).toLocaleString('pt-BR') + ' /mês';
+            document.getElementById('resParcelasSub').textContent = `em ~${meses} mensais sem juros`;
+
+            // Text Explanation
+            document.getElementById('arbitrageExplanation').innerHTML = `
+                Ao desembolsar apenas ${pctObra}% durante o período de obras, seu cliente mantém os outros <strong>R$ ${Math.round(totalChaves).toLocaleString('pt-BR')} (${pctChaves}%)</strong> aplicados em renda fixa (CDI/Selic), rendendo com total liquidez enquanto o imóvel captura a valorização patrimonial de ponta a ponta.
+            `;
+
+            // WhatsApp Message
+            const waMsg = `Olá! Montei um estudo exclusivo de fluxo para o ${pName}:\n\n` +
+                `• Valor de Tabela: R$ ${total.toLocaleString('pt-BR')}\n` +
+                `• Fluxo Obra (${pctObra}%): R$ ${Math.round(totalObra).toLocaleString('pt-BR')} (Ato ~R$ ${Math.round(ato).toLocaleString('pt-BR')} + parcelas de ~R$ ${Math.round(mensalMedia).toLocaleString('pt-BR')}/mês)\n` +
+                `• Chaves (${pctChaves}%): R$ ${Math.round(totalChaves).toLocaleString('pt-BR')} financiado apenas na entrega.\n\n` +
+                `Você preserva ${pctChaves}% do seu capital rendendo no CDI durante a construção e captura toda a valorização do m². Quer que eu te detalhe a proposta?`;
+
+            document.getElementById('outputWhatsAppMsg').value = waMsg;
+            document.getElementById('btnShareWhatsApp').href = `https://wa.me/?text=${encodeURIComponent(waMsg)}`;
+        }
+
+        function copySummaryText() {
+            const txt = document.getElementById('outputWhatsAppMsg').value;
+            navigator.clipboard.writeText(txt).then(() => {
+                alert('Resumo copiado com sucesso para a área de transferência!');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initMasterSimulator);
+    </script>
+</body>
+</html>
