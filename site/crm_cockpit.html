@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Cockpit CRM &amp; Pipeline de Leads • Pedro Soares | Lavvi Private Wealth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/lavvi-design-system.css">
+    <style>
+        :root {
+            --bg-main: #0B0E14;
+            --bg-card: #121722;
+            --bg-subtle: #182030;
+            --gold: #D4AF37;
+            --gold-bright: #F3DC8A;
+            --gold-hover: #AA8E39;
+            --wa-green: #25D366;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-line: rgba(212, 175, 55, 0.22);
+            --border-hover: rgba(212, 175, 55, 0.45);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 24px 20px 60px;
+            min-height: 100vh;
+        }
+        .crm-header {
+            max-width: 1440px;
+            margin: 0 auto 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 1px solid var(--border-line);
+            padding-bottom: 18px;
+        }
+        .brand-zone { display: flex; align-items: center; gap: 14px; }
+        .back-pill {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--gold-bright);
+            border: 1px solid var(--border-line);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .back-pill:hover { background: var(--gold); color: #000; }
+        .kpi-strip {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            border-radius: 10px;
+            padding: 8px 16px;
+            min-width: 120px;
+        }
+        .kpi-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .kpi-val { font-size: 1.15rem; font-weight: 700; color: var(--gold-bright); }
+
+        /* Main Workspace: 2-Panel Layout (Kanban + Live Copilot) */
+        .crm-workspace {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.35fr 0.95fr;
+            gap: 24px;
+        }
+        @media (max-width: 1080px) {
+            .crm-workspace { grid-template-columns: 1fr; }
+        }
+
+        /* Column Cards & Kanban */
+        .panel-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            border-radius: 14px;
+            padding: 20px;
+        }
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .panel-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Filter & Action Bar */
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .filter-row input, .filter-row select {
+            background: var(--bg-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #FFF;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
+        }
+        .filter-row input:focus, .filter-row select:focus {
+            border-color: var(--gold);
+        }
+        .btn-add-lead {
+            background: linear-gradient(135deg, var(--gold) 0%, #B89328 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 9px 16px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        /* Kanban Columns Grid */
+        .kanban-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        @media (max-width: 768px) {
+            .kanban-grid { grid-template-columns: 1fr; }
+        }
+        .kanban-col {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 12px;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .col-header {
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .col-badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-bright);
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        /* Lead Card */
+        .lead-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .lead-card:hover, .lead-card.selected {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+        .lead-card.selected {
+            background: #151D2A;
+            border-left: 3px solid var(--gold);
+        }
+        .lead-name { font-size: 0.92rem; font-weight: 700; color: #FFF; margin-bottom: 4px; }
+        .lead-project { font-size: 0.78rem; color: var(--gold-bright); font-weight: 600; margin-bottom: 6px; }
+        .lead-meta { font-size: 0.72rem; color: var(--text-muted); display: flex; justify-content: space-between; }
+        .tag-pill {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .tag-investidor { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+        .tag-familia { background: rgba(59, 130, 246, 0.15); color: #60A5FA; }
+        .tag-medico { background: rgba(236, 72, 153, 0.15); color: #F472B6; }
+
+        /* Right Panel: Active Lead Copilot & History */
+        .copilot-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .active-lead-header {
+            background: var(--bg-subtle);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid var(--border-line);
+        }
+        .lead-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.82rem;
+            margin-top: 8px;
+        }
+        .lead-info-item span { color: var(--text-muted); display: block; font-size: 0.7rem; text-transform: uppercase; }
+        .lead-info-item strong { color: #FFF; }
+
+        /* Quick Objections / Action Prompts */
+        .quick-script-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0;
+        }
+        .script-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.74rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .script-chip:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-bright);
+        }
+
+        /* Message Box & Output */
+        .message-generator-box {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-line);
+            border-radius: 10px;
+            padding: 14px;
+        }
+        .textarea-reply {
+            width: 100%;
+            height: 120px;
+            background: #090C12;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: #FFF;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 0.86rem;
+            line-height: 1.5;
+            resize: vertical;
+            margin-top: 8px;
+        }
+        .action-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn-wa-direct {
+            flex: 1;
+            background: var(--wa-green);
+            color: #031A0B;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-copy-reply {
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFF;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        /* Touch Steps Tracker (Follow-up cadence) */
+        .touch-history-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 14px;
+        }
+        .touch-log-item {
+            font-size: 0.78rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top CRM Header -->
+    <header class="crm-header">
+        <div class="brand-zone">
+            <a href="index.html" class="back-pill">&larr; Portal Principal</a>
+            <div>
+                <h1 style="font-size: 1.4rem; font-weight: 700; color: #FFF;">Peter Private CRM <span style="font-size: 0.75rem; color: var(--gold-bright); font-weight: 600; border: 1px solid var(--border-line); padding: 3px 8px; border-radius: 6px; margin-left: 6px;">46 PROJETOS • NOV/2026</span></h1>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 2px;">Pipeline Visual de Alta Renda, Copiloto de Objeções &amp; Disparo WhatsApp 1 Toque</p>
+            </div>
+        </div>
+
+        <div class="kpi-strip">
+            <div class="kpi-card">
+                <div class="kpi-label">Leads Ativos</div>
+                <div class="kpi-val" id="kpi-leads-count">12</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Follow-up Hoje</div>
+                <div class="kpi-val" id="kpi-followup-today">4</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Negociações</div>
+                <div class="kpi-val" id="kpi-negotiations">3</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">VGVs Mapeados</div>
+                <div class="kpi-val" id="kpi-vgv">R$ 24,8M</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="crm-workspace">
+        
+        <!-- Left Panel: Pipeline Kanban -->
+        <section class="panel-box">
+            <div class="panel-header">
+                <h2 class="panel-title">
+                    <span>Funil de Atendimento Lavvi</span>
+                </h2>
+                <button type="button" class="btn-add-lead" onclick="openAddLeadModal()">+ Novo Lead</button>
+            </div>
+
+            <!-- Controls & Search -->
+            <div class="filter-row">
+                <input type="text" id="leadSearchInput" placeholder="Buscar por nome, telefone ou nota..." oninput="renderKanban()" style="flex: 1.2;">
+                <select id="filterProjectSelect" onchange="renderKanban()" style="flex: 1;">
+                    <option value="todos">Todos os Empreendimentos (46)</option>
+                </select>
+                <select id="filterTagSelect" onchange="renderKanban()">
+                    <option value="todos">Todas as Tags</option>
+                    <option value="investidor">Investidor</option>
+                    <option value="familia">Família / Moradia</option>
+                    <option value="medico">Médico / Saúde</option>
+                </select>
+            </div>
+
+            <!-- 4-Stage Kanban Columns -->
+            <div class="kanban-grid">
+                <!-- Col 1: Novos / Primeiro Contato -->
+                <div class="kanban-col" id="col-novos" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'novos')">
+                    <div class="col-header">
+                        <span>1. Primeiro Contato</span>
+                        <span class="col-badge" id="badge-novos">0</span>
+                    </div>
+                    <div class="cards-wrap" id="cards-novos"></div>
+                </div>
+
+                <!-- Col 2: Apresentação & Material Enviado -->
+                <div class="kanban-col" id="col-material" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'material')">
+                    <div class="col-header">
+                        <span>2. Material &amp; Tabela</span>
+                        <span class="col-badge" id="badge-material">0</span>
+                    </div>
+                    <div class="cards-wrap" id="cards-material"></div>
+                </div>
+
+                <!-- Col 3: Visita / Decorado Agendado -->
+                <div class="kanban-col" id="col-visita" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'visita')">
+                    <div class="col-header">
+                        <span>3. Visita Agendada</span>
+                        <span class="col-badge" id="badge-visita">0</span>
+                    </div>
+                    <div class="cards-wrap" id="cards-visita"></div>
+                </div>
+
+                <!-- Col 4: Proposta & Fluxo 35/65 -->
+                <div class="kanban-col" id="col-proposta" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'proposta')">
+                    <div class="col-header">
+                        <span>4. Proposta / Fechamento</span>
+                        <span class="col-badge" id="badge-proposta">0</span>
+                    </div>
+                    <div class="cards-wrap" id="cards-proposta"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel: Active Lead Copilot & Intelligence Engine -->
+        <aside class="copilot-panel">
+            
+            <div class="panel-box">
+                <div class="panel-header">
+                    <h3 class="panel-title">
+                        <span>Copiloto de Atendimento &amp; Objeções</span>
+                    </h3>
+                    <span style="font-size: 0.72rem; color: var(--gold-bright); font-weight: 700;">Grounded Specs 26.11</span>
+                </div>
+
+                <!-- Selected Lead Meta Card -->
+                <div class="active-lead-header" id="selectedLeadDetails">
+                    <div style="font-size: 1.05rem; font-weight: 700; color: #FFF;" id="activeLeadName">Selecione um Lead</div>
+                    <div style="font-size: 0.8rem; color: var(--gold-bright); font-weight: 600;" id="activeLeadProject">Clique em qualquer lead no funil ao lado</div>
+                    
+                    <div class="lead-info-grid">
+                        <div class="lead-info-item">
+                            <span>WhatsApp</span>
+                            <strong id="activeLeadPhone">—</strong>
+                        </div>
+                        <div class="lead-info-item">
+                            <span>Perfil / Tag</span>
+                            <strong id="activeLeadTag">—</strong>
+                        </div>
+                        <div class="lead-info-item">
+                            <span>Último Contato</span>
+                            <strong id="activeLeadLastTouch">—</strong>
+                        </div>
+                        <div class="lead-info-item">
+                            <span>Próximo Passo</span>
+                            <strong id="activeLeadNextStep">—</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- One-Click Quick Intelligence Scripts -->
+                <div style="margin-top: 14px;">
+                    <label style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Scripts Rápidos por Cenário (1 Toque):</label>
+                    <div class="quick-script-chips">
+                        <button type="button" class="script-chip" onclick="applyPresetScript('apresentacao')">📑 Apresentação + Book</button>
+                        <button type="button" class="script-chip" onclick="applyPresetScript('cdi')">📈 Arbitragem 35/65 vs CDI</button>
+                        <button type="button" class="script-chip" onclick="applyPresetScript('airbnb')">🔑 Regra Airbnb / Minuta</button>
+                        <button type="button" class="script-chip" onclick="applyPresetScript('acustica')">🧱 Acústica &amp; Alvenaria NBR 15.575</button>
+                        <button type="button" class="script-chip" onclick="applyPresetScript('visita')">☕ Convite Decorado Exclusivo</button>
+                    </div>
+                </div>
+
+                <!-- Response Generator -->
+                <div class="message-generator-box">
+                    <label style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Mensagem Pronta para WhatsApp (2 a 3 Frases Cirúrgicas):</label>
+                    <textarea class="textarea-reply" id="copilotGeneratedMessage" placeholder="Selecione um script acima ou digite para personalizar..."></textarea>
+                    
+                    <div class="action-row">
+                        <button type="button" class="btn-copy-reply" onclick="copyCopilotMessage()">Copiar</button>
+                        <a href="#" target="_blank" rel="noopener" class="btn-wa-direct" id="btnSendWhatsApp">
+                            <span>Enviar no WhatsApp</span> &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Touch Cadence & Notes -->
+                <div class="touch-history-box" style="margin-top: 14px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                        <span style="font-size: 0.72rem; color: var(--gold-bright); font-weight: 700; text-transform: uppercase;">Cadência de Follow-Up (Dias 3, 7 e 15)</span>
+                        <button type="button" onclick="recordTouchAction()" style="background:none; border:none; color:var(--gold); font-size:0.75rem; font-weight:700; cursor:pointer;">+ Registrar Toque Hoje</button>
+                    </div>
+                    <div id="touchLogsContainer">
+                        <div class="touch-log-item">
+                            <span>Toque 1 (Apresentação Inicial)</span>
+                            <span style="color:var(--text-muted);">Realizado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- Modal for Adding / Editing Lead -->
+    <dialog id="leadModal" style="background:var(--bg-card); color:#FFF; border:1px solid var(--border-line); border-radius:12px; padding:24px; max-width:440px; width:90%; margin:auto;">
+        <h3 style="font-size:1.15rem; margin-bottom:14px; color:var(--gold-bright);" id="modalLeadTitle">Adicionar Novo Lead</h3>
+        <form method="dialog" id="leadForm" onsubmit="saveLeadFromModal(event)">
+            <input type="hidden" id="modalLeadId">
+            
+            <label style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Nome Completo</label>
+            <input type="text" id="modalLeadName" required style="width:100%; background:var(--bg-subtle); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:9px; border-radius:6px; margin:4px 0 12px;">
+
+            <label style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">WhatsApp (com DDD)</label>
+            <input type="text" id="modalLeadPhone" placeholder="11999999999" required style="width:100%; background:var(--bg-subtle); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:9px; border-radius:6px; margin:4px 0 12px;">
+
+            <label style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Empreendimento de Interesse</label>
+            <select id="modalLeadProject" required style="width:100%; background:var(--bg-subtle); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:9px; border-radius:6px; margin:4px 0 12px;"></select>
+
+            <label style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Perfil / Tag</label>
+            <select id="modalLeadTag" style="width:100%; background:var(--bg-subtle); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:9px; border-radius:6px; margin:4px 0 12px;">
+                <option value="investidor">Investidor (Renda / Ganho de Capital)</option>
+                <option value="familia">Família (Moradia 3-4 Suítes)</option>
+                <option value="medico">Médico / Área da Saúde (T.O.M. / HCor)</option>
+            </select>
+
+            <label style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Estágio Inicial</label>
+            <select id="modalLeadStage" style="width:100%; background:var(--bg-subtle); border:1px solid rgba(255,255,255,0.15); color:#FFF; padding:9px; border-radius:6px; margin:4px 0 16px;">
+                <option value="novos">1. Primeiro Contato</option>
+                <option value="material">2. Material &amp; Tabela Enviada</option>
+                <option value="visita">3. Visita Agendada</option>
+                <option value="proposta">4. Proposta / Fechamento</option>
+            </select>
+
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button type="button" onclick="document.getElementById('leadModal').close()" style="background:transparent; border:1px solid rgba(255,255,255,0.2); color:#FFF; padding:8px 14px; border-radius:6px; cursor:pointer;">Cancelar</button>
+                <button type="submit" style="background:var(--gold); color:#000; font-weight:700; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;">Salvar Lead</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Load Canonical Catalog Data -->
+    <script src="assets/js/lavvi_catalog_bundle.js"></script>
+
+    <script>
+        // === CANONICAL LEADS STORAGE (PERSISTENT IN LOCALSTORAGE) ===
+        const STORAGE_KEY = 'peter_crm_leads_v1';
+        
+        const DEFAULT_LEADS = [
+            {
+                id: 'lead-1',
+                name: 'Dr. Roberto Meirelles',
+                phone: '11988887777',
+                project: 'Jardim da Hípica',
+                stage: 'proposta',
+                tag: 'familia',
+                lastTouch: 'Hoje',
+                nextStep: 'Ajustar fluxo 55/45 Torre A 276m²',
+                notes: 'Interessado nas 02 Quadras de Tênis Oficiais (18x36m) e gestão Body Care.',
+                touches: ['Toque 1: Book Enviado', 'Toque 2: Visita realizada ao terreno de 40.000 m²']
+            },
+            {
+                id: 'lead-2',
+                name: 'Renata Albuquerque',
+                phone: '11977776666',
+                project: 'T.O.M. Paraíso',
+                stage: 'visita',
+                tag: 'investidor',
+                lastTouch: 'Ontem',
+                nextStep: 'Visita ao decorado 25m² e 34m²',
+                notes: 'Focada em Studios R2V livres para Airbnb com aprovação expressa em Minuta.',
+                touches: ['Toque 1: Apresentação médica enviada (350m HCor)']
+            },
+            {
+                id: 'lead-3',
+                name: 'Carlos Eduardo Faria',
+                phone: '11966665555',
+                project: 'Saffire by Elie Saab',
+                stage: 'material',
+                tag: 'investidor',
+                lastTouch: 'Há 2 dias',
+                nextStep: 'Arbitragem de fluxo vs CDI líquido',
+                notes: 'Dúvida se vale aplicar em CDI ou entrar em obra na mansão de 360m².',
+                touches: ['Toque 1: Book Elie Saab enviado']
+            },
+            {
+                id: 'lead-4',
+                name: 'Juliana Marcondes',
+                phone: '11955554444',
+                project: 'Well Perdizes',
+                stage: 'novos',
+                tag: 'medico',
+                lastTouch: 'Hoje',
+                nextStep: 'Apresentar plantas 25 a 51m² PUC-SP',
+                notes: 'Filha vai estudar na PUC Perdizes; quer unidade com fácil locação futura.',
+                touches: []
+            },
+            {
+                id: 'lead-5',
+                name: 'Marcos Vinicius Prado',
+                phone: '11944443333',
+                project: 'Soleil by Boca do Lobo',
+                stage: 'material',
+                tag: 'familia',
+                lastTouch: 'Há 3 dias',
+                nextStep: 'Comparar planta de 246m² com Vila Mariana',
+                notes: 'Aprecia o design de luxo Boca do Lobo em Chácara Klabin.',
+                touches: ['Toque 1: Tabela vigente e book enviados']
+            }
+        ];
+
+        let leads = [];
+        let selectedLeadId = null;
+
+        function initCRM() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    leads = JSON.parse(stored);
+                } else {
+                    leads = DEFAULT_LEADS;
+                    saveLeads();
+                }
+            } catch (e) {
+                leads = DEFAULT_LEADS;
+            }
+
+            populateProjectDropdowns();
+            renderKanban();
+
+            // Select first lead by default
+            if (leads.length > 0) {
+                selectLead(leads[0].id);
+            }
+        }
+
+        function saveLeads() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+            } catch (e) {
+                console.error('Failed to save leads to localStorage', e);
+            }
+            updateKPIs();
+        }
+
+        function populateProjectDropdowns() {
+            const catalog = window.allProjects || [];
+            const filterSel = document.getElementById('filterProjectSelect');
+            const modalSel = document.getElementById('modalLeadProject');
+            
+            catalog.forEach(p => {
+                const opt1 = document.createElement('option');
+                opt1.value = p.nome;
+                opt1.textContent = p.nome;
+                filterSel.appendChild(opt1);
+
+                const opt2 = document.createElement('option');
+                opt2.value = p.nome;
+                opt2.textContent = p.nome;
+                modalSel.appendChild(opt2);
+            });
+        }
+
+        function updateKPIs() {
+            document.getElementById('kpi-leads-count').textContent = leads.length;
+            const todayCount = leads.filter(l => l.lastTouch === 'Hoje' || l.stage === 'novos').length;
+            document.getElementById('kpi-followup-today').textContent = todayCount;
+            const negCount = leads.filter(l => l.stage === 'proposta' || l.stage === 'visita').length;
+            document.getElementById('kpi-negotiations').textContent = negCount;
+        }
+
+        function renderKanban() {
+            const query = (document.getElementById('leadSearchInput').value || '').toLowerCase().trim();
+            const projFilter = document.getElementById('filterProjectSelect').value;
+            const tagFilter = document.getElementById('filterTagSelect').value;
+
+            const stages = ['novos', 'material', 'visita', 'proposta'];
+            stages.forEach(s => {
+                document.getElementById(`cards-${s}`).innerHTML = '';
+            });
+
+            const counts = { novos: 0, material: 0, visita: 0, proposta: 0 };
+
+            leads.forEach(lead => {
+                // Filters
+                if (query && !lead.name.toLowerCase().includes(query) && !lead.phone.includes(query) && !lead.project.toLowerCase().includes(query)) {
+                    return;
+                }
+                if (projFilter !== 'todos' && lead.project !== projFilter) {
+                    return;
+                }
+                if (tagFilter !== 'todos' && lead.tag !== tagFilter) {
+                    return;
+                }
+
+                if (counts[lead.stage] !== undefined) {
+                    counts[lead.stage]++;
+                }
+
+                const card = document.createElement('div');
+                card.className = `lead-card ${lead.id === selectedLeadId ? 'selected' : ''}`;
+                card.draggable = true;
+                card.id = `card-${lead.id}`;
+                card.ondragstart = (e) => e.dataTransfer.setData('text/plain', lead.id);
+                card.onclick = () => selectLead(lead.id);
+
+                let tagClass = 'tag-investidor';
+                if (lead.tag === 'familia') tagClass = 'tag-familia';
+                if (lead.tag === 'medico') tagClass = 'tag-medico';
+
+                card.innerHTML = `
+                    <div class="lead-name">${lead.name}</div>
+                    <div class="lead-project">${lead.project}</div>
+                    <div class="lead-meta">
+                        <span>${lead.lastTouch}</span>
+                        <span class="tag-pill ${tagClass}">${lead.tag.toUpperCase()}</span>
+                    </div>
+                `;
+
+                const col = document.getElementById(`cards-${lead.stage}`);
+                if (col) col.appendChild(card);
+            });
+
+            stages.forEach(s => {
+                const badge = document.getElementById(`badge-${s}`);
+                if (badge) badge.textContent = counts[s];
+            });
+
+            updateKPIs();
+        }
+
+        // Drag and Drop
+        function allowDrop(e) { e.preventDefault(); }
+        function handleDrop(e, newStage) {
+            e.preventDefault();
+            const leadId = e.dataTransfer.getData('text/plain');
+            const targetLead = leads.find(l => l.id === leadId);
+            if (targetLead) {
+                targetLead.stage = newStage;
+                targetLead.lastTouch = 'Hoje';
+                saveLeads();
+                renderKanban();
+                selectLead(leadId);
+            }
+        }
+
+        function selectLead(id) {
+            selectedLeadId = id;
+            document.querySelectorAll('.lead-card').forEach(c => c.classList.remove('selected'));
+            const card = document.getElementById(`card-${id}`);
+            if (card) card.classList.add('selected');
+
+            const lead = leads.find(l => l.id === id);
+            if (!lead) return;
+
+            document.getElementById('activeLeadName').textContent = lead.name;
+            document.getElementById('activeLeadProject').textContent = `Empreendimento: ${lead.project}`;
+            document.getElementById('activeLeadPhone').textContent = lead.phone;
+            document.getElementById('activeLeadTag').textContent = lead.tag.toUpperCase();
+            document.getElementById('activeLeadLastTouch').textContent = lead.lastTouch;
+            document.getElementById('activeLeadNextStep').textContent = lead.nextStep;
+
+            // Render Touch Logs
+            const logBox = document.getElementById('touchLogsContainer');
+            logBox.innerHTML = '';
+            if (lead.touches && lead.touches.length > 0) {
+                lead.touches.forEach(t => {
+                    const row = document.createElement('div');
+                    row.className = 'touch-log-item';
+                    row.innerHTML = `<span>${t}</span><span style="color:var(--gold-bright);">✓</span>`;
+                    logBox.appendChild(row);
+                });
+            } else {
+                logBox.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted);">Nenhum toque registrado ainda.</div>';
+            }
+
+            // Generate Default Script for this lead
+            applyPresetScript('apresentacao');
+        }
+
+        function applyPresetScript(type) {
+            const lead = leads.find(l => l.id === selectedLeadId);
+            if (!lead) return;
+
+            const name = lead.name.split(' ')[0];
+            let msg = '';
+
+            if (type === 'apresentacao') {
+                msg = `Olá ${name}, tudo bem? Sou o Pedro Soares da Lavvi. Preparei os dados oficiais e o book digital completo do ${lead.project} para sua avaliação. Posso te enviar por aqui?`;
+            } else if (type === 'cdi') {
+                msg = `Olá ${name}! Fizemos uma modelagem financeira comparando o fluxo 35% durante a obra do ${lead.project} contra o CDI líquido: você preserva 65% do capital rendendo até as chaves e captura a valorização do m² de ponta a ponta. Quer que eu te envie o estudo comparativo?`;
+            } else if (type === 'airbnb') {
+                msg = `Olá ${name}! Um ponto jurídico crucial sobre o ${lead.project}: as unidades livres já contam com aprovação expressa para locação short-stay na Minuta de Convenção de Condomínio, com segurança patrimonial total. Posso te detalhar as rentabilidades projetadas?`;
+            } else if (type === 'acustica') {
+                msg = `Olá ${name}! Sobre os padrões de engenharia da Lavvi no ${lead.project}: entregamos manta acústica no contrapiso flutuante e paredes entre unidades em alvenaria sólida conforme a ABNT NBR 15.575 para máximo silêncio. Gostaria de ver o memorial de acabamentos?`;
+            } else if (type === 'visita') {
+                msg = `Olá ${name}! O decorado do ${lead.project} está espetacular e gostaria de te receber pessoalmente para um café reservado. Você teria disponibilidade nesta quinta ou sábado pela manhã?`;
+            }
+
+            const txtArea = document.getElementById('copilotGeneratedMessage');
+            txtArea.value = msg;
+            updateWhatsAppLink(lead.phone, msg);
+        }
+
+        function updateWhatsAppLink(phone, text) {
+            const btn = document.getElementById('btnSendWhatsApp');
+            const cleanPhone = phone.replace(/\D/g, '');
+            const url = `https://wa.me/55${cleanPhone}?text=${encodeURIComponent(text)}`;
+            btn.href = url;
+        }
+
+        document.getElementById('copilotGeneratedMessage').addEventListener('input', (e) => {
+            const lead = leads.find(l => l.id === selectedLeadId);
+            if (lead) {
+                updateWhatsAppLink(lead.phone, e.target.value);
+            }
+        });
+
+        function copyCopilotMessage() {
+            const txt = document.getElementById('copilotGeneratedMessage').value;
+            navigator.clipboard.writeText(txt).then(() => {
+                alert('Mensagem copiada para a área de transferência!');
+            });
+        }
+
+        function recordTouchAction() {
+            const lead = leads.find(l => l.id === selectedLeadId);
+            if (!lead) return;
+            const dateStr = new Date().toLocaleDateString('pt-BR');
+            const action = prompt('Resumo do contato realizado:', 'Mensagem de WhatsApp enviada');
+            if (action) {
+                if (!lead.touches) lead.touches = [];
+                lead.touches.push(`${dateStr}: ${action}`);
+                lead.lastTouch = 'Hoje';
+                saveLeads();
+                selectLead(lead.id);
+            }
+        }
+
+        // Modal Handling
+        function openAddLeadModal() {
+            document.getElementById('leadForm').reset();
+            document.getElementById('modalLeadId').value = '';
+            document.getElementById('modalLeadTitle').textContent = 'Adicionar Novo Lead';
+            document.getElementById('leadModal').showModal();
+        }
+
+        function saveLeadFromModal(e) {
+            e.preventDefault();
+            const id = document.getElementById('modalLeadId').value || `lead-${Date.now()}`;
+            const name = document.getElementById('modalLeadName').value.trim();
+            const phone = document.getElementById('modalLeadPhone').value.trim();
+            const project = document.getElementById('modalLeadProject').value;
+            const tag = document.getElementById('modalLeadTag').value;
+            const stage = document.getElementById('modalLeadStage').value;
+
+            const existingIdx = leads.findIndex(l => l.id === id);
+            const newLead = {
+                id,
+                name,
+                phone,
+                project,
+                tag,
+                stage,
+                lastTouch: 'Hoje',
+                nextStep: 'Apresentação inicial',
+                touches: [`${new Date().toLocaleDateString('pt-BR')}: Lead cadastrado`],
+                notes: ''
+            };
+
+            if (existingIdx >= 0) {
+                leads[existingIdx] = { ...leads[existingIdx], ...newLead };
+            } else {
+                leads.unshift(newLead);
+            }
+
+            saveLeads();
+            renderKanban();
+            selectLead(id);
+            document.getElementById('leadModal').close();
+        }
+
+        // Initialize on Load
+        document.addEventListener('DOMContentLoaded', initCRM);
+    </script>
+</body>
+</html>
