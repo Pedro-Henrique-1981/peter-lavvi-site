@@ -1944,7 +1944,7 @@
         } else if (mp4Src) {
           wrap.innerHTML = `<video src="${mp4Src}" controls playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;"></video>`;
         } else {
-          wrap.innerHTML = `<img src="${p.hero_image}" alt="${p.nome}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />`;
+          wrap.innerHTML = `<img src="${p.hero_image || 'assets/hipica_piscina60m.jpg'}" alt="${p.nome}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.onerror=null;this.src='assets/hipica_piscina60m.jpg';" />`;
         }
       }
 
@@ -1956,7 +1956,7 @@
         if (localPlantas.length > 0) {
           plantasEl.innerHTML = localPlantas.map(pl => `
             <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;overflow:hidden;">
-              <img src="${pl.img}" alt="${pl.tipo}" style="width:100%;height:180px;object-fit:cover;" loading="lazy" />
+              <img src="${pl.img}" alt="${pl.tipo}" style="width:100%;height:180px;object-fit:cover;" loading="lazy" onerror="this.onerror=null;this.src='assets/hipica_piscina60m.jpg';" />
               <div style="padding:12px;">
                 <div style="font-weight:700;font-size:0.9rem;color:#F3DC8A;">${pl.tipo}</div>
                 <div style="font-size:0.78rem;color:#CBD5E1;margin-top:4px;">${pl.desc}</div>
@@ -1966,7 +1966,7 @@
         } else if (s3Plantas.length > 0) {
           plantasEl.innerHTML = s3Plantas.map((url, i) => `
             <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;overflow:hidden;">
-              <img src="${url}" alt="Planta ${p.nome} ${i+1}" style="width:100%;height:200px;object-fit:contain;background:#fff;" loading="lazy" />
+              <img src="${url}" alt="Planta ${p.nome} ${i+1}" style="width:100%;height:200px;object-fit:contain;background:#fff;" loading="lazy" onerror="this.onerror=null;this.src='assets/hipica_piscina60m.jpg';" />
               <div style="padding:10px;font-size:0.82rem;color:#F3DC8A;font-weight:700;">Planta Oficial ${i+1} — ${p.nome}</div>
             </div>
           `).join('');
@@ -2402,7 +2402,7 @@
   <div class="lavvi-rich-modal-overlay" id="map-pin-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pin-modal-title" style="display: none;">
     <div class="lavvi-rich-modal-card" id="pin-modal-card" tabindex="-1">
       <div class="pin-card-media-wrap">
-        <img id="pin-modal-img" src="" alt="" loading="lazy">
+        <img id="pin-modal-img" src="assets/hipica_piscina60m.jpg" alt="" decoding="async" onerror="this.onerror=null;this.src='assets/hipica_piscina60m.jpg';">
         <div class="pin-card-media-scrim"></div>
         <div class="pin-card-badges-top" id="pin-modal-badges"></div>
         <button type="button" class="pin-card-close-btn" onclick="closePropertyModal()" aria-label="Fechar card">&times;</button>

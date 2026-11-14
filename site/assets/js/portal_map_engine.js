@@ -27,7 +27,7 @@
       "preco_partida": "R$ 3.200.000",
       "status": "Em Obras",
       "entrega": "Fases 2025-2027",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/images/jardim_hipica_facade_4k.jpg",
       "assimetria_lavvi": "Jardim da Hípica oferece bairro estritamente residencial (Alto da Boa Vista), 39.553 m² de terreno com praça de 10.000 m² e assessoria Body Care inclusa no condomínio, sem o fluxo comercial da Marginal.",
       "diferenciais": [
         "Terreno massivo com shopping e universidade vizinhos",
@@ -48,7 +48,7 @@
       "preco_partida": "R$ 2.900.000",
       "status": "Pronto para Morar",
       "entrega": "Entregue",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/735c0211-1a3b-4861-ab8a-8285514f165e_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/hipica_piscina60m.jpg",
       "assimetria_lavvi": "Jardim da Hípica possui fração ideal superior em terreno 100% privativo de 40.000 m², 2 quadras de tênis oficiais e raia de 60m, sem divisão de área com torres de escritórios corporativos.",
       "diferenciais": [
         "Integração ao shopping Parque da Cidade e hotel Four Seasons",
@@ -69,7 +69,7 @@
       "preco_partida": "R$ 550.000",
       "status": "Em Obras",
       "entrega": "Dezembro/2026",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/6df6c41b-a489-49aa-971c-3093282b5454_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/hipica_private_house.jpg",
       "assimetria_lavvi": "Jardim da Hípica privilegia o refúgio familiar com lazer de resort em 40.000 m² no Alto da Boa Vista, contra o perfil corporativo/investidor de eixo viário do Brooklin.",
       "diferenciais": [
         "Rooftop icônico com piscina suspensa nas alturas",
@@ -90,7 +90,7 @@
       "preco_partida": "R$ 1.050.000",
       "status": "Em Obras",
       "entrega": "Outubro/2026",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/images/hipica_apartments_piscina_25m.jpg",
       "assimetria_lavvi": "Terreno convencional compacto de torre isolada vs. o complexo de 40.000 m² do Jardim da Hípica, que entrega 2 quadras de tênis oficiais (18x36m), 2 quadras de beach tennis e raia de 60m.",
       "diferenciais": [
         "Lazer assinado na cobertura com piscina de borda infinita",
@@ -111,7 +111,7 @@
       "preco_partida": "R$ 2.640.000",
       "status": "Em Obras",
       "entrega": "Março/2027",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/fa66f48a-6663-4702-b2f7-f027e8d7a188_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/tom_rooftop_pool.jpg",
       "assimetria_lavvi": "T.O.M. Paraíso oferece terreno incomparável de 5.600 m² e minuta de convenção em cartório com liberação formal para Airbnb no R2V, garantindo liquidez contra assembleias restritivas.",
       "diferenciais": [
         "Localização privilegiada a passos do Parque Ibirapuera",
@@ -132,7 +132,7 @@
       "preco_partida": "R$ 510.000",
       "status": "Em Obras",
       "entrega": "Novembro/2026",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/6df6c41b-a489-49aa-971c-3093282b5454_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/tom_beach_tennis.jpg",
       "assimetria_lavvi": "T.O.M. Paraíso conjuga studios com torre residencial de grande escala e terreno de 5.600 m² a 240m do Metrô Paraíso, permitindo fluxo 47/53 atrativo para investidores.",
       "diferenciais": [
         "Conceito boutique moderno para locação urbana",
@@ -153,7 +153,7 @@
       "preco_partida": "R$ 3.220.000",
       "status": "Em Obras",
       "entrega": "Agosto/2027",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/images/heaven_gal_1.jpg",
       "assimetria_lavvi": "Le Six Paraíso oferece concierge CBRE e assessoria Body Care inclusos por 3 anos, além de arquitetura com vedações convencionais maciças anti-ruído.",
       "diferenciais": [
         "Arquitetura contemporânea de alto padrão",
@@ -174,7 +174,7 @@
       "preco_partida": "R$ 1.100.000",
       "status": "Em Obras",
       "entrega": "Junho/2026",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/fa66f48a-6663-4702-b2f7-f027e8d7a188_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/images/hipica_apartments_fachada_oficial.jpg",
       "assimetria_lavvi": "T.O.M. Paraíso possui 5.600 m² de terreno com áreas de lazer amplas e design Triplex Arquitetura, a 350m do HCor e 240m do Metrô Paraíso.",
       "diferenciais": [
         "Lazer elevado com vista panorâmica para o Parque Ibirapuera",
@@ -195,7 +195,7 @@
       "preco_partida": "R$ 25.000.000",
       "status": "Pronto para Morar",
       "entrega": "Entregue",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/735c0211-1a3b-4861-ab8a-8285514f165e_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/images/saffire_elie_saab_facade_4k.jpg",
       "assimetria_lavvi": "Saffire by Elie Saab em Moema Pássaros entrega grife de alta costura internacional comparável com terreno de 7.600 m² e ticket de entrada com liquidez patrimonial consideravelmente superior.",
       "diferenciais": [
         "Design aerodinâmico icônico assinado pelo estúdio Pininfarina",
@@ -216,7 +216,7 @@
       "preco_partida": "Locação Gerida",
       "status": "Pronto para Morar",
       "entrega": "Operação Ativa",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/6df6c41b-a489-49aa-971c-3093282b5454_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/images/villa_moema_versace_facade_4k.jpg",
       "assimetria_lavvi": "O modelo JFL Living opera com locação restrita e gestão centralizada da operadora. A Lavvi oferece imóveis 100% escriturados para o investidor com liberdade total de uso, revenda e rendimento líquido sem taxa de carregamento de fundo.",
       "diferenciais": [
         "Operação profissional de short e long stay corporativo",
@@ -237,7 +237,7 @@
       "preco_partida": "R$ 490.000",
       "status": "Em Obras",
       "entrega": "Julho/2026",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/books/pages/petra/page_020.jpg",
       "assimetria_lavvi": "Petra by Boca do Lobo no Brooklin (Av. Roque Petroni Jr, 305) entrega 5.701 m² de terreno, design de mobiliário assinado e plantas de 162 a 199 m² com qualidade construtiva Cyrela.",
       "diferenciais": [
         "A 600m da estação Campo Belo da Linha 5-Lilás",
@@ -258,7 +258,7 @@
       "preco_partida": "R$ 990.000",
       "status": "Em Obras",
       "entrega": "Dezembro/2026",
-      "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/735c0211-1a3b-4861-ab8a-8285514f165e_1_perspectiva_ilustrada_da_fachada.webp",
+      "hero_image": "assets/images/hipica_apartments_beach_tennis.jpg",
       "assimetria_lavvi": "Jardim da Hípica supera em escala urbana com 40.000 m² de terreno, 2 quadras de tênis oficiais (18x36m), 2 quadras de beach tennis, raia de 60m e assessoria esportiva Body Care inclusa no condomínio.",
       "diferenciais": [
         "Lazer de clube completo para a família",
@@ -267,6 +267,18 @@
       ]
     }
   ];
+
+  // Verified local 4K renders per 3km Lifestyle cluster
+  const CLUSTER_HERO_IMAGES = {
+    hipica: 'assets/images/jardim_hipica_facade_4k.jpg',
+    moema: 'assets/images/saffire_elie_saab_facade_4k.jpg',
+    paraiso: 'assets/tom_rooftop_pool.jpg',
+    brooklin: 'assets/images/petra_gallery_1.jpg',
+    well_perdizes: 'assets/images/well_perdizes_rooftop_4k.jpg',
+    klabin: 'assets/images/heaven_gal_1.jpg',
+    analia_franco: 'assets/images/alive_gallery_4.jpg',
+    marajoara: 'assets/images/greenview_gallery_1.jpg'
+  };
 
   // 8 Anchor Clusters Fallback (Zero-CORS / Local File Resilience)
   const ANCHOR_CLUSTERS_FALLBACK = {
@@ -627,6 +639,7 @@
 
         for (const key in data.projects) {
           const cluster = data.projects[key];
+          cluster._clusterKey = key;
           if (cluster.lat && cluster.lon) {
             // 3km radius circle
             L.circle([cluster.lat, cluster.lon], {
@@ -670,6 +683,7 @@
                   pMarker.on('click', (function (pItem, clItem) {
                     return function () {
                       pItem._cluster = clItem;
+                      pItem._clusterKey = clItem._clusterKey;
                       window.openPropertyModal(pItem, 'poi');
                     };
                   })(poi, cluster));
@@ -914,6 +928,7 @@
       if (!item && cachedRadarData && cachedRadarData.projects) {
         for (const k in cachedRadarData.projects) {
           const cl = cachedRadarData.projects[k];
+          cl._clusterKey = k;
           if (cl.nome && cl.nome.toLowerCase().includes(itemOrId.toLowerCase())) {
             item = cl;
             type = 'anchor';
@@ -925,6 +940,7 @@
           if (pMatch) {
             item = pMatch;
             item._cluster = cl;
+            item._clusterKey = k;
             type = 'poi';
             break;
           }
@@ -940,13 +956,13 @@
       previousActiveElement = document.activeElement;
     }
 
-    renderModalContent(item, type);
-
     const overlay = document.getElementById('map-pin-modal-overlay');
     if (overlay) {
       overlay.style.display = 'flex';
       setBackgroundInert(true);
     }
+
+    renderModalContent(item, type);
 
     const card = document.getElementById('pin-modal-card');
     if (card && typeof card.focus === 'function') {
@@ -987,6 +1003,12 @@
     const waBtn = document.getElementById('pin-modal-wa-btn');
 
     if (!imgEl || !titleEl) return;
+
+    imgEl.removeAttribute('loading');
+    imgEl.onerror = function () {
+      this.onerror = null;
+      this.src = 'assets/hipica_piscina60m.jpg';
+    };
 
     // Reset dynamic boxes
     if (legalBoxEl) {
@@ -1031,7 +1053,8 @@
     } else if (type === 'poi') {
       const cluster = item._cluster || { nome: 'São Paulo', bairro: 'SP' };
       const catInfo = (cachedRadarData && cachedRadarData.categories && cachedRadarData.categories[item.cat]) || { label: 'Conveniência', icon: '📍' };
-      imgEl.src = 'assets/images/jardim_hipica_facade_4k.jpg';
+      const cKey = item._clusterKey || (cluster && cluster._clusterKey) || 'hipica';
+      imgEl.src = CLUSTER_HERO_IMAGES[cKey] || 'assets/images/jardim_hipica_facade_4k.jpg';
       imgEl.alt = item.nome;
       badgesEl.innerHTML = `
         <span class="pin-badge badge-poi">${catInfo.icon} ${catInfo.label}</span>
@@ -1066,7 +1089,8 @@
       const waText = encodeURIComponent(`Olá Pedro! Vi a indicação do ${item.nome} no Radar 3km de ${cluster.nome} e gostaria de informações sobre imóveis nesta região.`);
       waBtn.href = `https://wa.me/5511966105952?text=${waText}`;
     } else if (type === 'anchor') {
-      imgEl.src = 'assets/images/jardim_hipica_facade_4k.jpg';
+      const cKey = item._clusterKey || 'hipica';
+      imgEl.src = CLUSTER_HERO_IMAGES[cKey] || 'assets/images/jardim_hipica_facade_4k.jpg';
       imgEl.alt = item.nome;
       badgesEl.innerHTML = `
         <span class="pin-badge badge-gold">🏛️ Empreendimento Âncora</span>

@@ -1,5 +1,5 @@
 # AGÊNCIA LAVVI — MEMÓRIA UNIFICADA MULTI-COMPUTADOR (VITO & BOARDROOM)
-> **Última Atualização:** 12/11/2026 - 23:05 (Horário de Brasília)
+> **Última Atualização:** 13/11/2026 - 21:49 (Horário de Brasília)
 > **Último Hardware Ativo:** `PedroRadeon6700` (PC 1 • Home Master GPU)
 > **Sincronização Ativa:** PC 1 Master (GPU Casa) <---> Google Drive (`G:\Meine Ablage\LAVVI`) <---> PC 2 Portátil (ARM) <---> Celular Samsung
 
@@ -50,3 +50,11 @@ Sempre que Pedro disser **"subi no Drive"** (ou *"atualizei o grupo do Michel"*)
 
 4. **Regra Anti-Sobrecarga:**
    - Sempre responder indicando: **ONDE OLHAR**, **O QUE PROCURAR (em negrito)** e **O QUE FAZER (1 ação)**.
+
+---
+
+## 3. ATUALIZAÇÃO RECENTE (13/11/2026 • Correção de Imagens no Mapa Interativo & Catálogo):
+- **Modais de Mapa & Hub (`site/index.html`, `site/assets/js/portal_map_engine.js`, `site/radar_mapa.html`):** Overlay (`#map-pin-modal-overlay`) passa a abrir antes da atribuição de `imgEl.src`, com `loading="lazy"` removido dinamicamente e fallback automático `onerror` para `assets/hipica_piscina60m.jpg`.
+- **Pinos de Mercado & Clusters (`MARKET_COMPETITORS` & `CLUSTER_HERO_IMAGES`):** Todos os 12 concorrentes e 8 clusters/POIs nos mapas interativos atualizados para renders locais verificados sob `site/assets/`.
+- **Catálogo 46 Projetos (`site/lavvi_45_projects_clean.json`, `site/assets/js/lavvi_catalog_bundle.js` e `FALLBACK_GEO_PROJECTS` em `site/radar_mapa.html`):** Removidas 100% das URLs antigas `s3.us-east-1.amazonaws.com` e atualizados 19 empreendimentos (incluindo *Well Perdizes*, *Palace*, *Jardim da Hípica*, *T.O.M. Paraíso*, *Villa Residence/Studios*, *Petra*, *Alive*, *Heaven*, *Grand Square*, *Green View*, *Studios Elie Saab* e *High Wonder*) para renders locais autenticados em disco (`49/49` presentes).
+- **Validação Executada:** `test_portal_map_e2e.py` (`26/26 PASS`), `test_e2e_portal.py` (`133/133 PASS`) e `cosimo_sentinel.py` (exit `0`).

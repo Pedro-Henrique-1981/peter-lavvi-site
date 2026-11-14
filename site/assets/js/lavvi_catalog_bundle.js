@@ -78,10 +78,11 @@
       }
     ],
     "mat": "assets/books/book_jardim_da_hipica.pdf",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/20b362e7-f04b-4a11-9387-137c3483da4f_1_perspectiva_ilustrada_da_fachada.webp",
+    "hero_image": "assets/hipica_piscina60m.jpg",
     "gallery": [
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/6a7af7a5-8150-41f9-9417-4b0f8baa165c_thumbhipicavaranda.webp",
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/1b63b3eb-821a-46bf-9a7b-f30d3c2cf130_churrasqueira.webp"
+      "assets/hipica_piscina60m.jpg",
+      "assets/images/jardim_hipica_facade_4k.jpg",
+      "assets/hipica_private_house.jpg"
     ],
     "official_status_2026": "Em Obras",
     "lancamento": "Abr/2026",
@@ -272,9 +273,10 @@
       }
     ],
     "mat": "assets/books/book_villa_versace.pdf",
-    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-residence/imagens/thumbnail/foto_da_area_de_lazer.webp",
+    "hero_image": "assets/images/villa_moema_versace_facade_4k.jpg",
     "gallery": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-residence/imagens/thumbnail/foto_da_area_de_lazer.webp"
+      "assets/images/villa_moema_versace_facade_4k.jpg",
+      "assets/images/versace_gallery_1.jpg"
     ],
     "official_status_2026": "100% Vendido",
     "lancamento": "Jun/2021",
@@ -317,10 +319,10 @@
       }
     ],
     "mat": "assets/books/book_villa_versace.pdf",
-    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/banner/BannerPrincipalVillaStudios.webp",
+    "hero_image": "assets/images/versace_gallery_1.jpg",
     "gallery": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/galeria/1_-_foto_da_area_de_lazer_do_rooftop.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/imagens/galeria/3_-_foto_do_piscina_do_rooftop.webp"
+      "assets/images/versace_gallery_1.jpg",
+      "assets/images/villa_moema_versace_facade_4k.jpg"
     ],
     "official_status_2026": "Pronto Para Morar",
     "lancamento": "Jun/2021",
@@ -333,8 +335,8 @@
     "brand_line": "lavvi",
     "tour_360": "https://tour.lavvi.com.br/villa-studio",
     "floor_plans": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/plantas/1_-_planta_tipo_31_m_2.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/villa-studios/plantas/2_-_planta_tipo_28_m_2.webp"
+      "assets/plantas/versace_planta_150m2.png",
+      "assets/plantas/versace_planta_220m2.png"
     ],
     "m2": "28 a 32 m²"
   },
@@ -368,7 +370,7 @@
       }
     ],
     "mat": "assets/books/book_green_view.pdf",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/30349a37-5ea0-4d44-be1f-e90fc5311463_1_foto_da_fachada.webp",
+    "hero_image": "assets/images/greenview_gallery_1.jpg",
     "official_status_2026": "Pronto Para Morar",
     "lancamento": "Jun/2022",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
@@ -446,7 +448,7 @@
       }
     ],
     "mat": "assets/books/book_alive.pdf",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f326a0b9-5c4a-43cf-ae17-21b333469145_1_foto_da_fachada.webp",
+    "hero_image": "assets/images/alive_gallery_4.jpg",
     "official_status_2026": "Em Obras",
     "lancamento": "Mar/2024",
     "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
@@ -458,8 +460,8 @@
     "brand_line": "lavvi",
     "tour_360": "https://tour.lavvi.com.br/alive/",
     "floor_plans": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/alive/plantas/1_-_planta_188_m_2_tipo_-_4_suites.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/alive/plantas/2_-_planta_170_m_2_tipo_-_3_suites.webp"
+      "assets/books/pages/alive/page_039.jpg",
+      "assets/books/pages/alive/page_041.jpg"
     ],
     "m2": "72 a 188m²"
   },
@@ -499,7 +501,7 @@
       }
     ],
     "mat": "https://www.lavvi.com.br/empreendimentos/heaven-residences",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d316e6d1-dcf3-4ba9-b3e6-fa1ee0ae6692_bannerheavenresidences.jpg",
+    "hero_image": "assets/images/heaven_gal_1.jpg",
     "official_status_2026": "Em Obras",
     "lancamento": "Out/2024",
     "fluxo_curto": "Fluxo 35% Obra / 65% Chaves",
@@ -510,8 +512,8 @@
     "table_ref": "Out/2026 (26.10)",
     "brand_line": "lavvi",
     "floor_plans": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/heaven-residences/plantas/1-Planta-tipo-de-258-m-4-suites.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/heaven-residences/plantas/3-Planta-tipo-de-189-m-3-suites.webp"
+      "assets/plantas/heaven_250m_residence.jpg",
+      "assets/plantas/heaven_170m_residence.jpg"
     ],
     "m2": "190 m² e 258 m²"
   },
@@ -566,12 +568,12 @@
     "table_ref": "Out/2026 (26.10)",
     "brand_line": "lavvi",
     "official_status_2026": "Em Obras",
-    "hero_image": "assets/images/palace_gallery_1.jpg",
+    "hero_image": "assets/books/pages/palace/page_010.jpg",
     "tour_360": "https://tour.lavvi.com.br/palace",
     "floor_plans": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/palace/plantas/1_-_planta_tipo_86_m_2_-_3_dorms.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/palace/plantas/2_-_planta_tipo_142_m_2_-_4_dorms.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/palace/plantas/3_-_planta_tipo_164_m_2_-_4_dorms.webp"
+      "assets/plantas/palace_planta_86m2.jpg",
+      "assets/plantas/palace_planta_142m2.jpg",
+      "assets/plantas/palace_planta_164m2.jpg"
     ],
     "m2": "86, 142 e 164 m²"
   },
@@ -620,11 +622,11 @@
     "table_ref": "Out/2026 (26.10)",
     "brand_line": "lavvi",
     "official_status_2026": "Em Obras",
-    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/petra/banner/Perspectiva+ilustrada+do+sal%C3%A3o+de+festas.webp",
+    "hero_image": "assets/images/petra_gallery_1.jpg",
     "tour_360": "https://tour.lavvi.com.br/petra",
     "floor_plans": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/petra/plantas/1_-_planta_tipo_162m_3_suites.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/petra/plantas/3_-_planta_tipo_198m_4_suites.webp"
+      "assets/plantas/petra_162m_tipo.jpg",
+      "assets/plantas/petra_198m_tipo.jpg"
     ],
     "m2": "162 e 199 m²"
   },
@@ -711,10 +713,7 @@
     "official_status_2026": "Em Obras",
     "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/41dcce59-d2b0-4d5a-b561-f80aaa35c28b_thumbsoleilapartments.webp",
     "tour_360": "https://tour.lavvi.com.br/soleil/",
-    "floor_plans": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/soleil-apartments/plantas/1-Planta-de-30m.webp",
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/soleil-apartments/plantas/2-Planta-de-24m.webp"
-    ],
+    "floor_plans": [],
     "m2": "30m²"
   },
   {
@@ -764,9 +763,7 @@
     "table_ref": "Out/2026",
     "brand_line": "lavvi",
     "tour_360": "https://tour.lavvi.com.br/soleil/",
-    "floor_plans": [
-      "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/soleil-residences/plantas/1-Planta-de-246m-com-4-suites.webp"
-    ],
+    "floor_plans": [],
     "m2": "246 m²"
   },
   {
@@ -820,7 +817,7 @@
     "table_ref": "Out/2026",
     "brand_line": "lavvi",
     "official_status_2026": "Pronto Para Morar",
-    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/verdant/imagens/thumbnail/Thumb.webp",
+    "hero_image": "assets/images/foto_real_parque.jpg",
     "tour_360": "https://tour.lavvi.com.br/verdant",
     "m2": "129, 132 e 155 m²"
   },
@@ -860,7 +857,7 @@
       }
     ],
     "mat": "https://www.lavvi.com.br/empreendimentos/grand-square",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/d63ea75e-88fe-4e5c-9c02-7c9367d3e098_1_foto_da_fachada.webp",
+    "hero_image": "assets/images/grandsquare_gallery_1.jpg",
     "official_status_2026": "Pronto Para Morar",
     "lancamento": "Ago/2022",
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
@@ -870,7 +867,11 @@
     "avail_info": "🟢 62 Prontos Livres (260 Vend.) • Tabela 26.10",
     "table_ref": "Out/2026 (26.10)",
     "brand_line": "lavvi",
-    "m2": "32, 45, 65 e 79m²"
+    "m2": "32, 45, 65 e 79m²",
+    "floor_plans": [
+      "assets/plantas/grand_square_planta_79m2_tipo.jpg",
+      "assets/plantas/grand_square_studio_32m2.jpg"
+    ]
   },
   {
     "nome": "Le Six Ibirapuera",
@@ -916,7 +917,8 @@
     "avail_info": "🟢 239 no Estoque Lior • Pré-Lançamento Out/2026",
     "table_ref": "Out/2026",
     "brand_line": "lavvi",
-    "m2": "194 e 264 m²"
+    "m2": "194 e 264 m²",
+    "endereco_oficial_lior": "Avenida Chibarás (Moema Pássaros)"
   },
   {
     "nome": "Le Six Ibirapuera Apartments",
@@ -962,7 +964,8 @@
     "avail_info": "🟢 Estoque Lior Ativo • Pré-Lançamento Out/2026",
     "table_ref": "Out/2026",
     "brand_line": "lavvi",
-    "m2": "28 m² a 45 m²"
+    "m2": "28 m² a 45 m²",
+    "endereco_oficial_lior": "Avenida Chibarás (Moema Pássaros)"
   },
   {
     "nome": "T.O.M. Paraíso",
@@ -1012,12 +1015,10 @@
       }
     ],
     "mat": null,
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f020e835-439f-4193-8c61-064f503a4c33_bannertom_v2.webp",
+    "hero_image": "assets/tom_rooftop_pool.jpg",
     "gallery": [
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/85c2389f-dbe6-4fa2-ac0e-a33d5cc79f3c_tom_01_fachada_a_ef_v3.webp",
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f0360526-0d1e-4471-9c6e-67bbd00c29a0_tom_03_quadra_beach_ef2.webp",
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/201bd6a2-69f6-44d6-b013-b825d7009bb8_tom_09_piscina_ext_ef_v3.webp",
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bed0a629-f429-4685-be53-49b1438434a2_tom_11_lobby_ef_v1.webp"
+      "assets/tom_rooftop_pool.jpg",
+      "assets/tom_beach_tennis.jpg"
     ],
     "official_status_2026": "Lançamento",
     "lancamento": "Out/2026",
@@ -1060,9 +1061,10 @@
     "avail_info": "🟢 29 Livres de 39 (Lior API) • Out/2026",
     "table_ref": "Out/2026",
     "brand_line": "lavvi",
-    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/casa-ceramica/thumbnail/Perspectiva+ilustrada+do+Voo+Lazer.webp",
+    "hero_image": "assets/images/foto_real_piscina.jpg",
     "official_status_2026": "100% Vendido",
-    "m2": "130, 171 e 242 m²"
+    "m2": "130, 171 e 242 m²",
+    "endereco_oficial_lior": "Alameda Terracota (São Caetano do Sul)"
   },
   {
     "nome": "Heaven Apartments",
@@ -1089,7 +1091,7 @@
     "avail_info": "🟢 28 Livres • Tabela 26.10",
     "table_ref": "Out/2026 (26.10)",
     "brand_line": "lavvi",
-    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/heaven-apartments/thumbnail/PERSPECTIVA+ILUSTRADA+ENTRANCE+GALLERY.webp",
+    "hero_image": "assets/images/heaven_gal_1.jpg",
     "official_status_2026": "100% Vendido",
     "m2": "46 m², 85 m²"
   },
@@ -1143,7 +1145,7 @@
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
     "fluxo_obra": "Imóvel Pronto (Entregue Jun/2025): 30% Sinal / Ato + 70% Financiamento Bancário",
     "brand_line": "lavvi",
-    "hero_image": "https://lavvipublico.s3.us-east-1.amazonaws.com/lavvicombr/empreendimentos/wonder-residence/imagens/thumbnail/FotoThumbWonderIpiranga.webp",
+    "hero_image": "assets/images/high_wonder_praca.webp",
     "official_status_2026": "100% Vendido",
     "m2": "82, 105 e 122 m²"
   },
@@ -1243,7 +1245,7 @@
     "fluxo_curto": "Pronto: 30% Sinal / 70% Financ.",
     "fluxo_obra": "Imóvel Pronto (Entregue Nov/2025): 30% Sinal / Ato + 70% Financiamento Bancário Imediato",
     "brand_line": "lavvi",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/0fcc9967-863d-4768-bc5f-f1daa8716212_4_foto_da_praca.webp",
+    "hero_image": "assets/images/high_wonder_praca.webp",
     "official_status_2026": "100% Vendido",
     "m2": "84, 111 e 126 m²"
   },
@@ -1475,9 +1477,13 @@
     "fluxo_curto": "Fluxo 30% Chaves / 70% Financ.",
     "fluxo_obra": "Reta Final de Entrega (Nov/2026): 15% Sinal (Out/26) + 15% Única na Entrega (Nov/26) + 70% Financiamento",
     "brand_line": "lavvi",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/3f73cfd8-e1dd-4173-af1f-87c91cec639b_6_foto_da_piscina.jpg",
+    "hero_image": "assets/images/safire_gallery_1.jpg",
     "official_status_2026": "100% Vendido",
-    "m2": "29, 31 e 34 m²"
+    "m2": "29, 31 e 34 m²",
+    "floor_plans": [
+      "assets/plantas/saffire_studio_29m2.jpg",
+      "assets/plantas/saffire_studio_34m2.jpg"
+    ]
   },
   {
     "nome": "Vitrali Moema",
@@ -1634,7 +1640,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/99875e5a-8e56-4808-8994-1d484d95fa7a_implantacao_lazer_externo.jpg",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/792ab09b-02fa-4073-b91e-34b3c02b323b_planta_tipo_37m_2_dorms.jpg"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Av. Santa Marina, 1664 / Rua Henrique Ongari (Água Branca)"
   },
   {
     "nome": "Novvo Anália Franco",
@@ -1680,7 +1687,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/35790057-08a1-43bd-bc3c-1b027b56b08c_1_planta_tipo_39_m_2_2_dorms_c_terraco.webp",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/83440bd3-a340-4fa4-89ef-2eb7d1c6525a_2_planta_tipo_31_m_2_1_dorm_c_terraco.webp"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Avenida Doutor Eduardo Cotching (Anália Franco)"
   },
   {
     "nome": "Novvo Vila Prudente",
@@ -1726,7 +1734,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f6a82d16-4fb3-4f16-a181-8c825909270e_1_planta_41_m_2_tipo_2_dorms.webp",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/94158b1f-cf16-42c2-96d3-c2d9a3d0df85_2_planta_31_m_2_tipo_1_dorm.webp"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Avenida Zelina (Vila Prudente)"
   },
   {
     "nome": "Novvo Marajoara",
@@ -1772,7 +1781,8 @@
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/e49cb9c9-0fa9-45a2-b680-369a4a10f9be_planta_41_m_2_tipo_2_dorms.webp",
       "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/04804bf2-9bd3-4902-a3ab-4fd61e1df265_planta_31_m_2_tipo_1_dorm.webp"
     ],
-    "m2": "31 m² a 41 m²"
+    "m2": "31 m² a 41 m²",
+    "endereco_oficial_lior": "Avenida Engenheiro Alberto de Zagottis (Jardim Marajoara)"
   },
   {
     "nome": "Novvo Barra Funda",
@@ -1864,10 +1874,12 @@
       }
     ],
     "mat": "assets/books/book_well_perdizes.pdf",
-    "hero_image": "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/4150ee13-4f2f-4286-99fa-a3b80ab619dd_22_novvo_cardoso_voo_de_passaro_r03.jpg",
+    "hero_image": "assets/images/well_perdizes_rooftop_4k.jpg",
     "gallery": [
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/bcd59772-3885-49ca-a15f-282f2ad98a42_01_novvo_cardoso_fachada_torre_a_r03a.jpg",
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/f45c9dd3-ec22-41c9-9c12-00bd0275d260_05_novvo_cardoso_piscina_r02a.jpg"
+      "assets/images/well_perdizes_rooftop_4k.jpg",
+      "assets/images/well_perdizes_pool_4k.jpg",
+      "assets/images/well_perdizes_portaria_4k.jpg",
+      "assets/images/well_perdizes_lobby_4k.jpg"
     ],
     "official_status_2026": "Lançamento",
     "lancamento": "Ago/2026",
@@ -1879,9 +1891,9 @@
     "table_ref": "Out/2026",
     "brand_line": "novvo",
     "floor_plans": [
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/81767346-81a3-4633-8f7a-b07b08505f0e_planta_51m_2_suites.jpg",
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/24903f91-0e91-4527-9d4e-13965cc3b102_planta_35m_2_dorms.jpg",
-      "https://lavvipublico.s3.amazonaws.com/lavvicombr/images/03284f07-7a1d-4d04-9530-883786872830_planta_25m_1_dorm.jpg"
+      "assets/plantas/well_perdizes_2suites_51m2.jpg",
+      "assets/plantas/well_perdizes_2dorms_37m2.jpg",
+      "assets/plantas/well_perdizes_1dorm_25m2.jpg"
     ],
     "m2": "25 m² a 51 m²"
   },
